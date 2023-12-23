@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import LeaderBoard from './components/LeaderBoard'
+import LeaderBoard from './components/LeaderBoard/TeamLeaderBoard'
 
 import React from 'react'
 
