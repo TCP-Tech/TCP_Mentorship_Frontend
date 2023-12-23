@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import './App.css'
-function App() {
+import LeaderBoard from './components/LeaderBoard'
+
+import React from 'react'
+
+const App = () => {
   return (
-    <>
-      
-    </>
+   <LeaderBoard/>
   )
 }
+
+
 
 export default App
