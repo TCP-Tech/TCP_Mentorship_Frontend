@@ -4,23 +4,24 @@ import TopRankersCarousel from '../TopRankersCarousel';
 
 
 const MenteeLeaderBoard = () => {
-  const [showCarousel, setshowCarousel] = useState(false);
+  const [showCarousel, setShowCarousel] = useState(false);
   const topThreeRankers=[
     mentees[0],mentees[1],mentees[2]
   ]
   useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth <= 768) {
-        setshowCarousel(true); 
+    const handleResize = () => {
+      if (window.outerWidth >= 700) {
+        setShowCarousel(false);
       } else {
-        setshowCarousel(false); 
+        setShowCarousel(true); 
       }
-    }
-
+    };
+    handleResize();
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
-
   return (
     <div>
         <section className="container px-4 mx-auto">
