@@ -25,7 +25,9 @@
   scroll-behavior: smooth;
   /* background-color: var(--color-bg); */
 }
-
+body{
+  background-color: var(--color-bg);
+}
 ::-webkit-scrollbar{
   width: 5px;
 }
