@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { mentees } from '../../data/MenteeData'
-import TopRankersCarousel from '../topRankersCarousel';
+import TopRankersCarousel from '../TopRankersCarousel';
 
 
 const MenteeLeaderBoard = () => {
