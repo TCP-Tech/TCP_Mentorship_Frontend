@@ -1,83 +1,63 @@
 export const mentees = [
-  {
-      "id": "🥇",
+    {
+      "id": 1,
       "name": "Mentee 1",
       "problemsSolved": 20,
-      "pointsScored": 180,
-      "achievements": ["Top Performer", "Problem Solver"],
-      "teamName": "Team A",
-      "dp":"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-  },
-  {
-      "id": "🥈",
+      "pointsScored": 180
+    },
+    {
+      "id": 2,
       "name": "Mentee 2",
       "problemsSolved": 15,
-      "pointsScored": 150,
-      "achievements": ["Most Improved"],
-      "teamName": "Team B"
-  },
-  {
-      "id": "🥉",
+      "pointsScored": 150
+    },
+    {
+      "id": 3,
       "name": "Mentee 3",
       "problemsSolved": 25,
-      "pointsScored": 250,
-      "achievements": ["Leaderboard Champion"],
-      "teamName": "Team A"
-  },
-  {
+      "pointsScored": 250
+    },
+    {
       "id": 4,
       "name": "Mentee 4",
       "problemsSolved": 18,
-      "pointsScored": 170,
-      "achievements": ["Code Master"],
-      "teamName": "Team C"
-  },
-  {
+      "pointsScored": 170
+    },
+    {
       "id": 5,
       "name": "Mentee 5",
       "problemsSolved": 30,
-      "pointsScored": 270,
-      "achievements": ["Bug Hunter"],
-      "teamName": "Team B"
-  },
-  {
+      "pointsScored": 270
+    },
+    {
       "id": 6,
       "name": "Mentee 6",
       "problemsSolved": 22,
-      "pointsScored": 200,
-      "achievements": ["Innovator"],
-      "teamName": "Team A"
-  },
-  {
+      "pointsScored": 200
+    },
+    {
       "id": 7,
       "name": "Mentee 7",
       "problemsSolved": 27,
-      "pointsScored": 230,
-      "achievements": ["Quality Assurance Expert"],
-      "teamName": "Team C"
-  },
-  {
+      "pointsScored": 230
+    },
+    {
       "id": 8,
       "name": "Mentee 8",
       "problemsSolved": 35,
-      "pointsScored": 300,
-      "achievements": ["Puzzle Solver"],
-      "teamName": "Team A"
-  },
-  {
+      "pointsScored": 300
+    },
+    {
       "id": 9,
       "name": "Mentee 9",
       "problemsSolved": 28,
-      "pointsScored": 260,
-      "achievements": ["Top Analyst"],
-      "teamName": "Team B"
-  },
-  {
+      "pointsScored": 260
+    },
+    {
       "id": 10,
       "name": "Mentee 10",
       "problemsSolved": 33,
-      "pointsScored": 290,
-      "achievements": ["Creative Coder"],
-      "teamName": "Team C"
-  }
-];
+      "pointsScored": 290
+    }
+  ];
+  
