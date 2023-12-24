@@ -1,19 +1,89 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { mentees } from '../../data/MenteeData'
+import TopRankersCarousel from '../topRankersCarousel';
 
 const MenteeLeaderBoard = () => {
+  const [showCarousel, setshowCarousel] = useState(false);
+  const topThreeRankers=[
+    mentees[0],mentees[1],mentees[2]
+  ]
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= 768) {
+        setshowCarousel(true); 
+      } else {
+        setshowCarousel(false); 
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div>
         <section className="container px-4 mx-auto">
     <div className="flex items-center text-center justify-center gap-x-3 mt-7">
         <h2 className="md:text-5xl text-3xl font-bold font-custom text-gray-800 dark:text-black">Mentee LeaderBoard</h2>
     </div>
+    <div className="flex md:gap-20 gap-2  mt-4 justify-center text-black">
+        {
+            !showCarousel? 
+            <div className="Top-rankers flex md:gap-20 gap-2">
+            <div className="rank-box flex justify-center items-center h-72 w-72 border ">
+              Here we display our weekly rankers
+            </div>
+            <div className="rank-box flex flex-col items-center justify-center h-72 w-72 border shadow-lg">
+              <img
+                className="object-cover w-20 h-20 rounded-full"
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+               alt={mentees[0].name}
+                />
+              <h2 className="font-medium text-lg text-gray-800 dark:text-white"> {mentees[0].name}</h2>
+              <h2 className="font-medium text-lg text-gray-800 dark:text-white"> {mentees[0].id}</h2>
+              <p className="text-sm font-normal text-gray-600 dark:text-gray-400"> Team: {mentees[0].teamName}</p>
+              <p className="text-sm font-normal text-gray-600 dark:text-gray-400">Points: {mentees[0].pointsScored}</p>
+             </div>
 
-    <div className="flex flex-col mt-6">
+             {/* 2ND POSITION HOLDER */}
+
+            <div className="rank-box flex flex-col items-center justify-center h-72 w-72 border shadow-lg">
+              <img
+                className="object-cover w-20 h-20 rounded-full"
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+               alt={mentees[0].name}
+                />
+              <h2 className="font-medium text-lg text-gray-800 dark:text-white"> {mentees[0].name}</h2>
+              <h2 className="font-medium text-lg text-gray-800 dark:text-white"> {mentees[1].id}</h2>
+              <p className="text-sm font-normal text-gray-600 dark:text-gray-400"> Team: {mentees[0].teamName}</p>
+              <p className="text-sm font-normal text-gray-600 dark:text-gray-400">Points: {mentees[0].pointsScored}</p>
+             </div>
+            
+            {/* 3RD POSITION HOLDER */}
+
+            <div className="rank-box flex flex-col items-center justify-center h-72 w-72 border shadow-lg">
+              <img
+                className="object-cover w-20 h-20 rounded-full"
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+               alt={mentees[0].name}
+                />
+              <h2 className="font-medium text-lg text-gray-800 dark:text-white"> {mentees[0].name}</h2>
+              <h2 className="font-medium text-lg text-gray-800 dark:text-white"> {mentees[2].id}</h2>
+              <p className="text-sm font-normal text-gray-600 dark:text-gray-400"> Team: {mentees[0].teamName}</p>
+              <p className="text-sm font-normal text-gray-600 dark:text-gray-400">Points: {mentees[0].pointsScored}</p>
+             </div>
+          </div>
+            : 
+            
+            <TopRankersCarousel topThreeRankers={topThreeRankers}/>
+        }
+         
+          </div>
+    <div className="flex flex-col mt-6 ">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <div className="overflow-auto md:max-h-96 max-h-screen  border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 table-fixed">
                         <thead className="bg-gray-50 dark:bg-black">
                             <tr>
                                 
@@ -52,6 +122,7 @@ const MenteeLeaderBoard = () => {
                         </thead>
                         {
                             mentees.map((mentee)=>(
+                                
                                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-primary">
                                 <tr>
                                     <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">

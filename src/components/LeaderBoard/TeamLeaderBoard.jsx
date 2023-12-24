@@ -12,9 +12,9 @@ const LeaderBoard = () => {
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth <= 768) {
-        setShowModal(false); // Hide the modal on small screens initially
+        setShowModal(false); 
       } else {
-        setShowModal(true); // Show the individual leaderboard by default on larger screens
+        setShowModal(true); 
       }
     }
 
@@ -25,7 +25,7 @@ const LeaderBoard = () => {
   const handleClick = (teamName) => {
     setTeamName(teamName);
     if (window.innerWidth <= 768) {
-      setShowModal(true); // Show the modal when clicking on a team on small screens
+      setShowModal(true); 
     }
   };
   const closeModal = () => {
@@ -34,7 +34,7 @@ const LeaderBoard = () => {
 
   return (
     <div className='grid grid-cols-12 gap-4 bg-white'>
-      {/* LeaderBoard Heading */}
+     
       <div className='col-span-12 text-center'>
         <h1 className='md:text-5xl text-3xl p-8 font-bold font-custom text-black'>Team LeaderBoard</h1>
       </div>
