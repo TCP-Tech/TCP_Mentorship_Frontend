@@ -36,13 +36,13 @@ const LeaderBoard = () => {
     <div className='grid grid-cols-12 gap-4 bg-white'>
       {/* LeaderBoard Heading */}
       <div className='col-span-12 text-center'>
-        <h1 className='md:text-5xl text-3xl p-8 font-bold text-black'>Team LeaderBoard</h1>
+        <h1 className='md:text-5xl text-3xl p-8 font-bold font-custom text-black'>Team LeaderBoard</h1>
       </div>
 
       {/* Team LeaderBoard */}
       <div className='col-span-12 md:col-span-6 md:pl-5 md:p-0 p-3'>
         <div className='text-black flex flex-col text-center'>
-          <div className='bg-[#004AAD]  overflow-hidden py-6 md:h-[50vh] h-[50%] rounded-md'>
+          <div className='bg-primary  overflow-hidden py-6 md:h-[50vh] h-[50%] rounded-md'>
             {/* Team data placeholders */}
             <div className='grid grid-cols-3 gap-4 p-10'>
               {/* Placeholder team data */}
