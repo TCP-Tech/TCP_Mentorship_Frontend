@@ -29,6 +29,7 @@ body{
   background-color: var(--color-bg);
 }
 ::-webkit-scrollbar{
+  display: none;
   width: 5px;
 }
 
