@@ -23,7 +23,7 @@
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
-  background-color: var(--color-bg);
+  /* background-color: var(--color-bg); */
 }
 
 ::-webkit-scrollbar{

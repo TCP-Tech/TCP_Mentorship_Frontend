@@ -1,10 +1,13 @@
 import { useState } from 'react'
+
 import {
   BrowserRouter as Router,
   Route,
   Routes,
 } from "react-router-dom";
-import LeaderBoard from './components/LeaderBoard'
+
+import LeaderBoard from './components/LeaderBoard/TeamLeaderBoard'
+
 
 import React from 'react'
 import Login from './components/Login/Login';
