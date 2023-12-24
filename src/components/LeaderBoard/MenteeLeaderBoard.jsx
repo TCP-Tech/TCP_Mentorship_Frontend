@@ -4,23 +4,24 @@ import TopRankersCarousel from '../TopRankersCarousel';
 
 
 const MenteeLeaderBoard = () => {
-  const [showCarousel, setshowCarousel] = useState(false);
+  const [showCarousel, setShowCarousel] = useState(false);
   const topThreeRankers=[
     mentees[0],mentees[1],mentees[2]
   ]
   useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth <= 768) {
-        setshowCarousel(true); 
+    const handleResize = () => {
+      if (window.outerWidth >= 700) {
+        setShowCarousel(false);
       } else {
-        setshowCarousel(false); 
+        setShowCarousel(true); 
       }
-    }
-
+    };
+    handleResize();
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
-
   return (
     <div>
         <section className="container px-4 mx-auto">
@@ -89,12 +90,12 @@ const MenteeLeaderBoard = () => {
                             <tr>
                                 
                                 <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-white">
-                                    <div className="flex items-center pl-14 text-xl">
+                                    <div className="flex items-center pl-14 text-sm md:text-xl">
                                         <span>Name</span>
                                     </div>
                                 </th>
 
-                                <th scope="col" className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <th scope="col" className="px-12 py-3.5 md:text-sm text-xs font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <button className="flex items-center gap-x-2 ">
                                         <span>Problems Solved</span>
 
@@ -106,7 +107,7 @@ const MenteeLeaderBoard = () => {
                                     </button>
                                 </th>
 
-                                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <th scope="col" className="px-4 py-3.5 text-xs md:text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <button className="flex items-center gap-x-2">
                                         <span>Points</span>
 
@@ -126,8 +127,8 @@ const MenteeLeaderBoard = () => {
                                 
                                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-primary">
                                 <tr>
-                                    <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                        <div className="inline-flex items-center gap-x-3 text-lg text-white">
+                                    <td className="px-5 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                        <div className="inline-flex items-center gap-x-3  md:text-lg text-white">
                                             <h1>{mentee.id}</h1>
     
                                             <div className="flex items-center gap-x-2">
@@ -152,7 +153,7 @@ const MenteeLeaderBoard = () => {
                                              <div className="flex flex-wrap justify-center gap-2">
                                                  {mentee.achievements.map((achievement, index) => (
                                               <div key={index} className="flex items-center justify-center text-center gap-x-3">
-                                   <p className="px-3 py-1 text-sm  text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60"> {achievement}</p>
+                                   <p className="px-3 py-1 text-xs md:text-sm  text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60"> {achievement}</p>
                                    </div>
                                     ))}
                                   </div>
