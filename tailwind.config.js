@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         primary: '#004AAD',
         secondary: '#38b6ff',
-        customGray: 'rgba(78, 82, 88, 0.4)',
+        customGray: 'rgba(78, 82, 88, 0.4)', 
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
