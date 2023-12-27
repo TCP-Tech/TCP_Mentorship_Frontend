@@ -13,4 +13,5 @@ const Home = () => {
         <MenteeLeaderBoard />
       </div>
       <Footer />
+    </div>
 export default Home;
