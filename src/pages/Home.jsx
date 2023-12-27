@@ -14,5 +14,4 @@ const Home = () => {
       <Footer />
   );
 };
-
 export default Home;
