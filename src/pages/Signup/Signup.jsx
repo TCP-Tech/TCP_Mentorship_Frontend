@@ -9,7 +9,7 @@ const Signup = () => {
           <button
             type="button"
             id="mentee"
-            className="rounded-full mx-1 my-1 border-4 border-blue-600"
+            className="rounded-full mx-1 my-1 p-2 border-4 border-blue-600"
           >
             <img src={Menteeimg} alt="" className="h-36 w-36 rounded-full" />
             <span className="text-black">Mentee</span>
