@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const TopRankersCarousel = ({ topThreeRankers }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,7 +17,10 @@ const TopRankersCarousel = ({ topThreeRankers }) => {
 
   return (
     <div className="carousel-container relative flex justify-center items-center">
-      <button className="carousel-button left bg-white text-3xl p-0" onClick={handlePrevious}>
+      <button
+        className="carousel-button left bg-white text-3xl p-0"
+        onClick={handlePrevious}
+      >
         &lt;
       </button>
       <div className="card-container">
@@ -43,7 +46,10 @@ const TopRankersCarousel = ({ topThreeRankers }) => {
           </div>
         </div>
       </div>
-      <button className="carousel-button right bg-white text-3xl p-0" onClick={handleNext}>
+      <button
+        className="carousel-button right bg-white text-3xl p-0"
+        onClick={handleNext}
+      >
         &gt;
       </button>
     </div>
