@@ -21,7 +21,7 @@ const MenteeLeaderBoard = () => {
   }, []);
   return (
     <div>
-      <section className="container px-4 mx-auto">
+      <section className="px-4 mx-auto">
         <div className="flex items-center text-center justify-center gap-x-3 mt-20">
           <h2 className="md:text-5xl text-3xl font-bold font-custom text-gray-800 dark:text-black mb-16">
             Mentee LeaderBoard

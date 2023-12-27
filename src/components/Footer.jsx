@@ -105,7 +105,7 @@ const Footer = () => {
         {/* Content for the left side */}
         <div className="flex md:flex-row flex-col justify-between">
           <div className="bg-black rounded-lg  sm:w-1/2 md:my-0 my-2">
-            <div className="flex justify-center items-center flex-row p-4 ">
+            <div className="flex justify-center items-center flex-row p-4 md:pt-7 ">
               <img src={NIT} className="h-32 w-auto mr-4" alt="NIT Raipur" />
               <div className="text-white ">
                 <h4 className="text-lg font-semibold">About NIT Raipur</h4>
