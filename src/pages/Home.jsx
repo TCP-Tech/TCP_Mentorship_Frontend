@@ -1,5 +1,6 @@
 
 import React from "react";
+import HeroSection from '../components/HeroSection/HeroSection'
 import LeaderBoard from "../components/LeaderBoard/TeamLeaderBoard";
 import MenteeLeaderBoard from "../components/LeaderBoard/MenteeLeaderBoard";
 import Navbar from "../components/Navbar";
@@ -9,9 +10,12 @@ const Home = () => {
     <div>
       <Navbar />
       <div>
+        <HeroSection />
         <LeaderBoard />
         <MenteeLeaderBoard />
       </div>
       <Footer />
     </div>
+  );
+};
 export default Home;
