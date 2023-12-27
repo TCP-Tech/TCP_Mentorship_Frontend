@@ -40,7 +40,7 @@ const Navbar = () => {
             <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
               Leaderboard
             </Link>
-            <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
+            <Link to='/login' className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
               Log In
             </Link>
             {!isDarkMode ? (
@@ -59,7 +59,7 @@ const Navbar = () => {
               />
             )}
             {/* Button Start*/}
-            <Link className="hidden md:block text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 rounded-md sm:text-sm sm:py-3 sm:px-4 px-2 text-center">
+            <Link to="/signup" className="hidden md:block text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 rounded-md sm:text-sm sm:py-3 sm:px-4 px-2 text-center">
               Sign Up
             </Link>
             {/* Button End*/}

@@ -7,21 +7,14 @@ import Mentorlog from "./Mentorlog";
 const Login = () => {
   const [usertype, setusertype] = useState("Mentee");
 
-  const menteebutton = document.getElementById("mentee");
-  const mentorbutton = document.getElementById("mentor");
-
   const mentorlogin = () => {
     setusertype("Mentor");
-    // mentorbutton.classList.add("border-4");
-    // console.log("Mentor clicked");
-    // menteebutton.classList.remove("border-4");
+  
   };
 
   const Menteelogin = () => {
     setusertype("Mentee");
-    // mentorbutton.classList.remove("border-4");
-    // console.log("mentee button");
-    // menteebutton.classList.add("border-4");
+  
   };
 
   return (
@@ -31,7 +24,7 @@ const Login = () => {
           <button
             type="button"
             id="mentee"
-            className={`rounded-full mx-1 my-1 ${
+            className={`rounded-full mx-1 my-1 p-2 ${
               usertype === "Mentee" ? "border-4" : " "
             } border-blue-600`}
             onClick={Menteelogin}
@@ -42,7 +35,7 @@ const Login = () => {
           <button
             type="button"
             id="mentor"
-            className={`rounded-full ${
+            className={`rounded-full p-2 ${
               usertype === "Mentor" ? "border-4" : " "
             } border-blue-600`}
             onClick={mentorlogin}
