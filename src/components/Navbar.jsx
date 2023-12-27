@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import logo from "../assets/images/tcpLogo.png";
 import ham from "../assets/images/hamburger.svg";
 import { Link } from "react-router-dom";
@@ -6,26 +6,27 @@ import { MdWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
-
   const [isDarkMode, setDarkMode] = useState(false);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleDarkMode = () => {
     setDarkMode(!isDarkMode);
   };
 
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!isDropdownOpen);   
+  };
+
   return (
     <header className="sticky top-0 backdrop-blur-md">
       <nav className="bg-transparent w-full">
-        <div className="flex flex-wrap items-center justify-between md:px-8 h-[80px]">
+        <div className="flex flex-wrap items-center justify-between h-[80px] md:pl-7 md:pr-9 pr-3 pl-2 md:visible">
           <Link to={"/"} className="flex items-center">
-            <img src={logo} className="h-[70px]" alt="TCP Logo" />
+            <img src={logo} className="md:h-[70px] h-[63px]" alt="TCP Logo"/>
           </Link>
-          <div className="flex items-center gap-5 font-medium text-md">
-            <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
+          <div className="flex">
+          <div className="md:flex items-center gap-5 font-medium text-md hidden">
+            <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 ">
               Home
             </Link>
             <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
@@ -40,7 +41,7 @@ const Navbar = () => {
             <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
               Leaderboard
             </Link>
-            <Link to='/login' className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
+            <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
               Log In
             </Link>
             {!isDarkMode ? (
@@ -59,89 +60,79 @@ const Navbar = () => {
               />
             )}
             {/* Button Start*/}
-            <Link to="/signup" className="hidden md:block text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 rounded-md sm:text-sm sm:py-3 sm:px-4 px-2 text-center">
+            <Link className="hidden md:block text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 rounded-md sm:text-sm sm:py-3 sm:px-4 px-2 text-center">
               Sign Up
             </Link>
             {/* Button End*/}
-            <button
-              data-collapse-toggle="navbar-cta"
-              type="button"
-              onClick={toggleDropdown}
-              className="inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black m-2"
-              aria-controls="navbar-cta"
-              aria-expanded={isDropdownOpen}
-            >
-              <img src={ham} alt="Hamburger icon" />
-            </button>
+          
           </div>
-
-          {/* <div
-            className={`items-center justify-between w-full md:flex md:w-auto md:order-1 bg-transparent ${
-              isDropdownOpen ? "block" : "hidden"
-            }`}
-            id="navbar-cta"
+        <div className="flex items-center gap-2 md:hidden">
+          {!isDarkMode ? (
+            <MdWbSunny
+              fill="#f1c40f"
+              size={24}
+              onClick={handleDarkMode}
+              className="cursor-pointer"
+            />
+          ) : (
+            <FaMoon
+              fill="#111"
+              size={24}
+              onClick={handleDarkMode}
+              className="cursor-pointer"
+            />
+          )}
+          <button
+            className="inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black m-2"
+            onClick={handleDropdownToggle}
           >
-            <ul className="flex flex-col font-medium  md:p-0 mt-4 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:mb-0 ">
-              <li>
-                <a
-                  href="#"
-                  className={`block py-2 px-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--secondary-c]`}
-                  aria-current="page"
-                >
-                  Home
-                </a>
-                
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className={`block py-2 px-2 md:p-0 text-gray-900 rounded  md:hover:bg-transparent hover:text-[--secondary-c]`}
-                >
-                  Leaderboard
-                </a>
-                
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className={`block py-2 px-2 md:p-0 text-gray-900 rounded  md:hover:bg-transparent hover:text-[--secondary-c]`}
-                >
-                  Mentors
-                </a>
-                
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className={`block py-2 px-2 md:p-0 text-gray-900 rounded  md:hover:bg-transparent hover:text-[--secondary-c] `}
-                >
-                  Problems
-                </a>
-                
-              </li>
-              <li className="md:hidden">
-                <a
-                  href="#"
-                  className="block py-2 px-2 md:p-0 text-gray-900 rounded md:hover:bg-transparent hover:text-[--secondary-c]"
-                >
-                  Login
-                </a>
-                
-              </li>
-              <li className="md:hidden">
-                <a
-                  href="#"
-                  className="block py-2 px-2 md:p-0 text-gray-900 rounded md:hover:bg-transparent hover:text-[--secondary-c]"
-                >
-                  Sign Up
-                </a>
-                
-              </li>
-            </ul>
-          </div> */}
-
+            <img src={ham} alt="Hamburger icon" />
+          </button>
         </div>
-        <hr className="border-gray-300" />
+        </div>
+        </div>
+        {isDropdownOpen && (
+          <div className="md:hidden">
+           <div className="flex flex-col h-[100vh]">
+        <Link className="p-3  pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
+              Home
+            <hr className="absolute left-2 right-2 border-gray-300 md:hidden  my-2" />
+
+            </Link>
+
+            <Link className="p-3 pl-4 py-3  md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
+              About
+            <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
+
+            </Link>
+
+            <Link className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
+              Mentor
+            <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
+
+            </Link>
+            <Link className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
+              Mentee
+            <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
+
+            </Link>
+            <Link className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
+              Leaderboard
+            <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
+
+            </Link>
+            <Link className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200">
+              Log In
+            <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
+
+            </Link>
+            <Link className="self-center md:block text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 my-5 rounded-md py-3 w-[200px] text-center ">
+              Sign Up
+            </Link>
+        </div>
+          </div>
+        )}
+         <hr className="border-gray-300" />
       </nav>
     </header>
   );
