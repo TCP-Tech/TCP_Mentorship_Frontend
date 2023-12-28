@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="flex flex-wrap items-center justify-between h-[80px] md:pl-7 md:pr-9 pr-3 pl-2 md:visible">
           <Link to={"/"} className="flex items-center">
             <img src={logoDark} className="md:h-[60px] h-[53px] hidden dark:block" alt="TCP Logo"/>
-            <img src={logo} className="md:h-[70px] h-[63px] hidden dark:hidden" alt="TCP Logo"/>
+            <img src={logo} className="md:h-[70px] h-[63px] dark:hidden" alt="TCP Logo"/>
           </Link>
           <div className="flex">
           <div className="md:flex items-center gap-5 font-medium text-md hidden dark:text-white">
@@ -43,7 +43,7 @@ const Navbar = () => {
             <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
               Leaderboard
             </Link>
-            <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
+            <Link to="/login" className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
               Log In
             </Link>
             {!isDarkMode ? (
@@ -123,7 +123,7 @@ const Navbar = () => {
             <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
 
             </Link>
-            <Link className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
+            <Link to="/login" className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
               Log In
             <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
 
