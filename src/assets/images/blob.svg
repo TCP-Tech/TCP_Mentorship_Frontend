@@ -1,3 +1,1 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <ellipse  fill="#38B6FF" cx="100" cy="50" rx="150" ry="50" />
-</svg>
+<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b"><stop offset="0%" stop-color="#38b6ff"/><stop offset="100%" stop-color="#b9e5ff"/></linearGradient><clipPath id="a"><path fill="currentColor" d="M603.5 706Q262 912 273 519.5t341.5-206Q945 500 603.5 706Z"/></clipPath></defs><g clip-path="url(#a)"><path fill="url(#b)" d="M603.5 706Q262 912 273 519.5t341.5-206Q945 500 603.5 706Z"/></g></svg>
