@@ -1,21 +1,19 @@
-import tcpName from "../assets/images/tcpLogo.png";
+import tcpName from "../assets/images/tcpName.svg";
 import { Link } from "react-router-dom";
 import NIT from "../assets/images/NIT.webp";
 
 const Footer = () => {
   return (
-    <div className="font-sans text-black mx-auto max-w-80rem py-6 md:px-36 px-4 border border-gray-300 shadow-md mt-12">
+    <div className="font-sans text-black mx-auto max-w-80rem py-6 md:px-36 px-4 border border-gray-300 shadow-md mt-12 bg-gray-200">
       <div className="flex justify-between items-start md:flex-row flex-col w-full mt-8">
-        <div className="flex items-center flex-row">
-          {/* <img src={codeutsava} className="w-20 h-auto" /> */}
-          <img src={tcpName} className="md:w-48 md:h-36 w-28 h-28 ml-4" />
-        </div>
+        {/* <img src={codeutsava} className="w-20 h-auto" /> */}
+        <img src={tcpName} className="ml-4 w-[300px]" />
         <div className="w-full">
-          <div className="flex flex-wrap md:justify-end justify-center mb-2">
+          <div className="flex flex-wrap md:justify-end justify-center mb-2 gap-4">
             <a
               href="https://www.facebook.com/codeutsava/"
               target="_blank"
-              className="text-2xl text-black hover:text-white transition duration-300 ease-in-out mr-4"
+              className="text-2xl text-black hover:text-white transition duration-300 ease-in-out"
             >
               <svg
                 fill="black"
@@ -31,7 +29,7 @@ const Footer = () => {
             <a
               href="https://www.instagram.com/codeutsavanitrr/"
               target="_blank"
-              className="text-2xl text-gray-400 hover:text-white transition duration-300 ease-in-out mr-4"
+              className="text-2xl text-gray-400 hover:text-white transition duration-300 ease-in-out"
             >
               <svg
                 fill="black"
@@ -47,7 +45,7 @@ const Footer = () => {
             <a
               href="https://github.com/TCP-Tech"
               target="_blank"
-              className="text-2xl text-gray-400 hover:text-white transition duration-300 ease-in-out mr-4"
+              className="text-2xl text-gray-400 hover:text-white transition duration-300 ease-in-out"
             >
               <svg
                 fill="black"
@@ -63,7 +61,7 @@ const Footer = () => {
             <a
               href="https://twitter.com/codeutsavanitrr?lang=en"
               target="_blank"
-              className="text-2xl text-gray-400 hover:text-white transition duration-300 ease-in-out mr-4"
+              className="text-2xl text-gray-400 hover:text-white transition duration-300 ease-in-out"
             >
               <svg
                 fill="black"
@@ -79,7 +77,7 @@ const Footer = () => {
             <a
               target="_blank"
               href="https://www.linkedin.com/company/codeutsava/"
-              className="text-2xl text-gray-400 hover:text-white transition duration-300 ease-in-out mr-4"
+              className="text-2xl text-gray-400 hover:text-white transition duration-300 ease-in-out"
             >
               <svg
                 fill="black"
@@ -106,7 +104,7 @@ const Footer = () => {
         <div className="flex md:flex-row flex-col justify-between">
           <div className="bg-black rounded-lg  sm:w-1/2 md:my-0 my-2">
             <div className="flex justify-center items-center flex-row p-4 md:pt-7 ">
-              <img src={NIT} className="h-32 w-auto mr-4" alt="NIT Raipur" />
+              <img src={NIT} className="h-32 w-auto" alt="NIT Raipur" />
               <div className="text-white ">
                 <h4 className="text-lg font-semibold">About NIT Raipur</h4>
                 <p className="text-sm">
@@ -132,7 +130,7 @@ const Footer = () => {
               href="/events"
               className="block py-2 text-black text-lg md:text-2xl hover:text-primary transition duration-300 ease-in-out"
             >
-              LeaderBoard
+              Leaderboard
             </a>
             <a
               href="/events"
@@ -150,27 +148,27 @@ const Footer = () => {
           {/* Add other links similarly */}
         </div>
       </div>
-      <div className="flex justify-between items-center w-full mt-8 mb-8">
+      <div className="flex justify-between items-center w-full my-8">
         <div className=" md:text-lg text-sm">
-          Architected with ❤️ by
+          Architected with ❤️ by {" "}
           <Link to="/team" className="underline text-primary-c">
             TCP Team
           </Link>
         </div>
         <div className="flex items-center">
+          <svg
+            fill="#900"
+            className="w-5 h-5 mr-1 transform"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+          >
+            <path d="M320 144c0 79.5-64.5 144-144 144S32 223.5 32 144S96.5 0 176 0s144 64.5 144 144zM176 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM144 480V317.1c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32z" />
+          </svg>
           <a
             target="_blank"
             href="https://www.google.com/maps/place/National+Institute+of+Technology(NIT),+Raipur,+Great+Eastern+Rd,+Amanaka,+Raipur,+Chhattisgarh+492010/@21.2497222,81.6050291,17z/data=!4m6!3m5!1s0x3a28dde213f66723:0x21543965c50c43c7!8m2!3d21.2497222!4d81.6050291!16zL20vMGNqeXFk"
             className="flex items-center md:text-sm text-xs"
           >
-            <svg
-              fill="#900"
-              className="w-5 h-5 mr-1 transform translate-y-1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 320 512"
-            >
-              <path d="M320 144c0 79.5-64.5 144-144 144S32 223.5 32 144S96.5 0 176 0s144 64.5 144 144zM176 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM144 480V317.1c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32z" />
-            </svg>
             View Map Location
           </a>
         </div>
