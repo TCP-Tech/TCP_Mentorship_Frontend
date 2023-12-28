@@ -43,7 +43,7 @@ const Navbar = () => {
             <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
               Leaderboard
             </Link>
-            <Link className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
+            <Link to="/login" className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
               Log In
             </Link>
             {!isDarkMode ? (
@@ -123,7 +123,7 @@ const Navbar = () => {
             <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
 
             </Link>
-            <Link className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
+            <Link to="/login" className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
               Log In
             <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
 
