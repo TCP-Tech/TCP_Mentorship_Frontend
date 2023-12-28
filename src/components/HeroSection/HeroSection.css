@@ -3,11 +3,7 @@
 	margin: 0;
 	padding: 0;
 }
-.rightSection img{
-    z-index: 99;
-}
 .container {
-    background: #ffffff;
     height: 100%;
     width: 100%;
     display: flex;
@@ -21,7 +17,6 @@
     height: 100%;
     background: rgba( 255, 255, 255, 0.15 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    z-index: 10;
     color: whitesmoke;
   }
 
@@ -29,8 +24,15 @@
     position: absolute;
     top: -390px;
     left: -250px;
-    filter: blur( 40px );
+    filter: blur( 7px );
     opacity: 0.3;
-    height: 70%;
-    width: 150%;
+    height: 100%;
+    width: 250%;
+    pointer-events: none;
+  }
+  @media screen and (max-width: 768px) {
+    .blob {
+      top:-300px;
+      left: -100px;
+    }   
   }
