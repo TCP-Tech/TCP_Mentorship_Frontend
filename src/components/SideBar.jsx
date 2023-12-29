@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import tcpName from "../assets/images/tcpLogo.png";
 import { FaBars, FaTimes } from 'react-icons/fa';
 
-const MentorSidebar = ({ toggleSidebar }) => {
+const SideBar = ({ toggleSidebar }) => {
     // const[activeMenu,setActiveMenu]=useState("Dash")
   return (
     <div className='flex flex-col border text-left h-screen md:relative absolute md:w-fit w-screen bg-white text-black'>
@@ -20,15 +20,14 @@ const MentorSidebar = ({ toggleSidebar }) => {
       </div>
       <div className="px-3 pt-8"> 
         <ul className="text-lg space-y-5 pt-2 font-semibold">
-        <li className="hover:bg-primary hover:text-white rounded-md px-5 py-2 cursor-pointer transition duration-300 ease-in-out">Profile</li>  
           <li className="hover:bg-primary hover:text-white rounded-md px-5 py-2 cursor-pointer transition duration-300 ease-in-out">Dashboard</li>
-          <li className="hover:bg-primary hover:text-white rounded-md px-5 py-2 cursor-pointer transition duration-300 ease-in-out">Team Stats</li>
-          <li className="hover:bg-primary hover:text-white rounded-md px-5 py-2 cursor-pointer transition duration-300 ease-in-out">Team Leaderboard</li>
-          <li className="hover:bg-primary hover:text-white rounded-md px-5 py-2 cursor-pointer transition duration-300 ease-in-out">Problems assigned</li>
+          <li className="hover:bg-primary hover:text-white rounded-md px-5 py-2 cursor-pointer transition duration-300 ease-in-out">LeaderBoard</li>
+          <li className="hover:bg-primary hover:text-white rounded-md px-5 py-2 cursor-pointer transition duration-300 ease-in-out">Team LeaderBoard</li>
+          <li className="hover:bg-primary hover:text-white rounded-md px-5 py-2 cursor-pointer transition duration-300 ease-in-out">Problems</li>
         </ul>
       </div>
     </div>
   );
 };
 
-export default MentorSidebar;
+export default SideBar;
