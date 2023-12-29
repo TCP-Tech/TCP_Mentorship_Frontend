@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import tcpName from "../assets/images/tcpLogo.png";
 import { FaBars, FaTimes } from 'react-icons/fa';
 import SideBar from '../components/SideBar';
@@ -7,17 +7,31 @@ import Chart from '../components/Chart';
 
 const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= 768) {
+        setIsSidebarOpen(false); // Update state to hide sidebar for smaller screens
+      } else {
+        setIsSidebarOpen(true); // Show sidebar for larger screens
+      }
+    }
 
+    // Initial check on load
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
     <>
-      <div className="flex flex-col  space-x-3 md:flex-row pt-4">
+      <div className="flex flex-col  space-x-3 md:flex-row">
       
         {isSidebarOpen && (
-          <div className=''>
+          <div>
             <SideBar toggleSidebar={toggleSidebar} />
           </div>
         )}
@@ -25,7 +39,7 @@ const DashBoard = () => {
         {/* Second part */}
         <div className={`${!isSidebarOpen ? 'pl-4' : ''} flex flex-col space-y-2 `}>
           {/* Kinda Navbar */}
-          <div className="flex items-center ">
+          <div className="flex items-center mt-4">
             {!isSidebarOpen && (
               
               <FaBars className="text-2xl cursor-pointer text-black" onClick={toggleSidebar} />
@@ -33,7 +47,7 @@ const DashBoard = () => {
           </div>
 
           {/* Main Dash */}
-          <div className={`${!isSidebarOpen && 'space-x-10  p-7  w-screen'} flex flex-col   md:flex-row justify-between flex-1`}>
+          <div className={`${!isSidebarOpen && 'md:space-x-10  p-7  w-screen'} flex flex-col   md:flex-row justify-between `}>
           <div className="flex flex-col ">
             <div>
               <p className="text-2xl text-black font-semibold pb-2">Hello Mentee1 👋</p>
@@ -41,18 +55,18 @@ const DashBoard = () => {
             </div>
 
             {/* Overview */}
-            <div>
+            <div >
               <h1 className="text-3xl text-black pt-7 pb-5 font-semibold">Overview</h1>
-              <div className="flex flex-row md:flex-nowrap flex-wrap md:space-x-8 space-y-3">
-              <div className="flex flex-col rounded-lg p-4 w-60 bg-red-100 ">
+              <div className="flex md:flex-row  flex-col  flex-wrap  md:space-y-2 space-y-3">
+              <div className="flex flex-col rounded-lg p-4 w-60 bg-red-100 md:mr-2 mt-2">
                    <h1 className="text-lg font-semibold mb-2 text-black">Questions Solved</h1>
                    <h1 className="border-b-4 w-1/2 border-red-500 text-2xl py-2 font-bold text-black">522</h1>
               </div>
-             <div className="flex flex-col rounded-lg p-4 w-60 bg-green-100">
+             <div className="flex flex-col rounded-lg p-4 w-60 bg-green-100  md:mr-2 ">
                  <h1 className="text-lg font-semibold mb-2 text-black">Score</h1>
                  <h1 className="border-b-4 w-1/2 border-green-500 text-2xl py-2 font-bold text-black">325</h1>
              </div>
-            <div className="flex flex-col rounded-lg p-4 w-60 bg-blue-100">
+            <div className="flex flex-col rounded-lg p-4 w-60 bg-blue-100  md:mr-2 ">
                    <h1 className="text-lg font-semibold mb-2 text-black">Rating</h1>
                   <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl py-2 font-bold text-black">120</h1>
              </div>
@@ -63,15 +77,15 @@ const DashBoard = () => {
               </div>
             </div>
      {/* ################################## Task Table And graph #######################################3*/}
-            <div className="flex flex-col md:flex-row  mt-9 w-full">
+            <div className="flex flex-col md:flex-row  mt-9 border mr-6">
               <TaskTable/>
             </div>
           </div>
  {/* ################################### Profile ############################################### */}
-          <div  className=" border order-1 border-black w-full py-7">
-         <div className="flex flex-col space-y-4">
+          <div  className=" w-full py-7 border">
+         <div className="flex flex-col justify-center items-center space-y-4">
           <div
-          className="flex flex-col items-center space-y-4">
+          className="flex flex-col items-center justify-center space-y-4">
          <h1 className="md:text-3xl text-2xl font-semibold text-black">Profile</h1>
          <div className="mentee-profile-pic border-2 border-primary rounded-full p-2">
             <img
@@ -85,15 +99,15 @@ const DashBoard = () => {
             <h1 className="text-gray-400 md:text-lg text-sm">@Mentee</h1>
        </div>
        </div>
-       <div  className="flex items-center text-center px-5 space-x-1">
-          <h1 className="font-semibold text-lg text-black">Assigned Mentor :</h1>
-          <h1 className="font-normal text-lg text-gray-400">Mentor Name</h1>
+       <div  className="flex items-center text-center justify-center px-5 space-x-1 mr-10">
+          <h1 className="font-semibold md:text-lg text-sm text-black">Assigned Mentor :</h1>
+          <h1 className="font-normal md:text-lg text-sm text-gray-400">Mentor Name</h1>
        </div>
-       <div  className="flex items-center text-center px-5 space-x-1">
-          <h1 className="font-semibold text-lg text-black">Achievements :</h1>
-          <h1 className="font-normal text-lg text-gray-400">No achievements yet!</h1>
+       <div  className="flex items-center justify-center text-center px-5 space-x-1">
+          <h1 className="font-semibold md:text-lg text-sm text-black">Achievements :</h1>
+          <h1 className="font-normal md:text-lg text-sm text-gray-400">No achievements yet!</h1>
        </div>
-       <div className='w-fit h-fit'>
+       <div className='w-fit h-fit pt-6'>
        <Chart/>
        </div>
       </div>

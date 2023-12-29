@@ -25,7 +25,7 @@ const TaskTable = () => {
   };
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto md:w-[62vw]">
       <table className="min-w-full">
         <thead>
           <tr className="bg-gray-100">

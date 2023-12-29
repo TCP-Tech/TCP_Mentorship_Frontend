@@ -8,14 +8,15 @@ const LineChart = () => {
   useEffect(() => {
     if (chartContainer && chartContainer.current) {
       const data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: ['Jan 1', 'Jan 2', 'Jan 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7'],
         datasets: [
           {
-            label: 'My First Dataset',
-            data: [65, 59, 80, 81, 56, 55, 40],
+            label: 'Problems Solved',
+            data: [5, 8, 6, 10, 7, 12, 9], 
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1,
+            borderColor: 'rgba(59, 130, 246)',
+            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+            tension: 0.4,
           },
         ],
       };
@@ -27,13 +28,23 @@ const LineChart = () => {
           scales: {
             y: {
               beginAtZero: true,
+              title: {
+                display: true,
+                text: ' Problems Solved',
+              },
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Date',
+              },
             },
           },
         },
       };
 
       if (lineChart) {
-        lineChart.destroy(); 
+        lineChart.destroy();
       }
 
       lineChart = new Chart(chartContainer.current, config);
@@ -41,9 +52,11 @@ const LineChart = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Line Chart</h2>
-      <canvas ref={chartContainer} />
+    <div className="bg-white p-6 rounded-lg shadow-md">
+      <h2 className="md:text-2xl text-xl font-bold mb-4 text-black">Problems Solved Over Time</h2>
+      <div className="flex justify-center">
+        <canvas className="w-full max-w-md" ref={chartContainer} />
+      </div>
     </div>
   );
 };
