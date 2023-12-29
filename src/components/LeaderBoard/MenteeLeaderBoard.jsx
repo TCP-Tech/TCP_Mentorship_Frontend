@@ -23,14 +23,14 @@ const MenteeLeaderBoard = () => {
     <div>
       <section className="px-4 mx-auto">
         <div className="flex items-center text-center justify-center gap-x-3 mt-20">
-          <h2 className="md:text-5xl text-3xl font-bold font-custom text-gray-800 dark:text-black mb-16">
+          <h2 className="md:text-5xl text-3xl font-bold font-custom dark:text-white text-black mb-16">
             Mentee LeaderBoard
           </h2>
         </div>
         <div className="flex md:gap-20 gap-2  mt-4 justify-center text-black">
           {!showCarousel ? (
             <div className="Top-rankers flex md:max-xl:flex-wrap md:max-xl:justify-center  lg:gap-20 gap-2">
-              <div className="rank-box flex justify-center items-center  h-72 w-72 border ">
+              <div className="rank-box flex justify-center items-center  h-72 w-72 border dark:text-white">
                 Here we display our weekly rankers
               </div>
               <div className="rank-box flex flex-col items-center justify-center h-72 w-72 border shadow-lg">

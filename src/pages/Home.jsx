@@ -8,7 +8,7 @@ import Wrapper from "../components/Wrapper";
 import Counter from "../components/Counter";
 const Home = () => {
   return (
-    <div>
+    <div className="dark:bg-gray-900">
       <Navbar />
       <Wrapper>
         <HeroSection />
