@@ -1,143 +1,251 @@
-import React from "react";
-import Menteeimg from "../../assets/images/Menteeimg.jpg";
+import React, { useState } from "react";
+// import { fetchDataFromApi } from "../utils/api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+
+import Menteeimg from "../../assets/images/Menteeimg.jpg";
+
+import { useNavigate } from "react-router-dom";
+// import bgImage from "../assets/bgImage.jpg";
+import { useLayoutEffect } from "react";
+
 const Signup = () => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
+
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    fullname:"",
+    userid: "",
+    username:"",
+    password: "",
+    confirmpassword:"",
+    phonenumber:"",
+    branch:"",
+    sem:"",
+    leetcode:"",
+    codechef:""
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(form.confirmpassword===form.password){
+    toast.success("Sign In Successful", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+   }
+   else{
+    toast.error("password and confirm password should be same", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+
+   }
+    
+  };
+
+
+
+  function handle(e) {
+    const n = { ...form };
+    n[e.target.name]=e.target.value;
+    setForm(n);
+  }
+
+  const handleForgotPassword = async (e) => {
+    toast.error("OK", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <div className=" text-center">
+    <div className="flex h-screen flex-col justify-center">
+    <div className="h-screen w-screen">
+      <ToastContainer />
+      <div className="h-screen w-full bg-white flex-col md:flex-row shadow-lg flex">
+        <div className="h-screen sm:overflow-y-auto p-8 flex justify-center flex-col w-full md:w-[50%] ">
+            
+          {/* <Link
+            to={"/"}
+            className="w-[30%] max-w-[100px] text-center bg-[var(--primary-c)] rounded-md text-white py-2 hover:bg-[var(--tertiary-c)] duration-300"
+          >
+            Home
+          </Link> */}
+        <div className="sm:mx-auto mt-[40rem] sm:mt-[36rem] sm:w-full sm:max-w-sm">
+        <div className="text-center ">
           <button
             type="button"
             id="mentee"
-            className="rounded-full mx-1 my-1 p-2 border-4 border-blue-600"
+            className={`rounded-full mx-1 p-2 border-4 border-blue-600`}
           >
             <img src={Menteeimg} alt="" className="h-36 w-36 rounded-full" />
             <span className="text-black">Mentee</span>
           </button>
         </div>
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Sign Up with your details
-        </h2>
+        
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
-          {/* FullName */}
-          <div>
-            <label
-              for="name"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Full Name
-            </label>
-            <div className="mt-2">
-              <input
-                id="name"
-                name="fullname"
-                type="text"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-2 bg-white"
-              />
-            </div>
-          </div>
-          {/* Email */}
-          <div>
-            <label
-              for="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Email address
-            </label>
-            <div className="mt-2">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-2 bg-white"
-              />
-            </div>
-          </div>
-          {/* username */}
-          <div>
-            <label
-              for="username"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              User Name
-            </label>
-            <div className="mt-2">
-              <input
-                id="username"
-                name="username"
-                type="text"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-2 bg-white"
-              />
-            </div>
-          </div>
-          {/* Password */}
-          <div>
-            <div className="flex items-center justify-between">
-              <label
-                for="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
-            </div>
-            <div className="mt-2">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autocomplete="current-password"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-2 bg-white"
-              />
-            </div>
-          </div>
-          {/* Confirm Password */}
-          <div>
-            <div className="flex items-center justify-between">
-              <label
-                for="cnfpassword"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Confirm Password
-              </label>
-            </div>
-            <div className="mt-2">
-              <input
-                id="cnfpassword"
-                name="cnfpassword"
-                type="password"
-                autocomplete="current-password"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-2 bg-white"
-              />
-            </div>
-          </div>
-          {/* Phonenumber */}
-          <div>
-            <label
-              for="number"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Phone Number
-            </label>
-            <div className="mt-2">
-              <input
-                id="number"
-                name="number"
-                type="number"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-2 bg-white"
-              />
-            </div>
-          </div>
+          <h2 className="font-bold text-4xl mt-8 text-[var(--primary-c)]">
+            {`Signup`}
+          </h2>
+          <p className="text-lg mt-4 text-black">
+            Register with your details
+          </p>
 
+         
+          <div >
+          <form
+            action=""
+            className="flex flex-col gap-4"
+            onSubmit={(e) => handleSubmit(e)}
+          >
+            {/* Fullname */}
+             <div className="flex flex-col items-start mt-8 text-black">
+              <p>Full Name</p>
+              <input
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                type="text"
+                name="fullname"
+                required
+                placeholder="Enter your name"
+                onChange={(e) => handle(e)}
+              />
+            </div>
+
+            {/* email */}
+            <div className="flex flex-col items-start  text-black">
+              <p>Email or Mobile No.</p>
+              <input
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                type="text"
+                name="userid"
+                required
+                placeholder="Email or Mobile No."
+                onChange={(e) => handle(e)}
+              />
+            </div>
+            {/* username */}
+            <div className="flex flex-col items-start  text-black">
+              <p>User Name</p>
+              <input
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                type="text"
+                name="username"
+                required
+                placeholder="Enter your  User name"
+                onChange={(e) => handle(e)}
+              />
+            </div>
+            {/* password */}
+            <div className="relative">
+              <div className="flex flex-col items-start text-black">
+                <p>Password</p>
+                <input
+                  className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  required
+                  onChange={(e) => handle(e)}
+                />
+              </div>
+              {showPassword ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  className="absolute cursor-pointer top-[39px] right-2"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  <path
+                    d="M12 5C5.63636 5 2 12 2 12C2 12 5.63636 19 12 19C18.3636 19 22 12 22 12C22 12 18.3636 5 12 5Z"
+                    stroke="#aaa"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                    stroke="#aaa"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  className="absolute cursor-pointer top-[39px] right-2"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  <path
+                    d="M20 14.8335C21.3082 13.3317 22 12 22 12C22 12 18.3636 5 12 5C11.6588 5 11.3254 5.02013 11 5.05822C10.6578 5.09828 10.3244 5.15822 10 5.23552M12 9C12.3506 9 12.6872 9.06015 13 9.17071C13.8524 9.47199 14.528 10.1476 14.8293 11C14.9398 11.3128 15 11.6494 15 12M3 3L21 21M12 15C11.6494 15 11.3128 14.9398 11 14.8293C10.1476 14.528 9.47198 13.8524 9.1707 13C9.11386 12.8392 9.07034 12.6721 9.04147 12.5M4.14701 9C3.83877 9.34451 3.56234 9.68241 3.31864 10C2.45286 11.1282 2 12 2 12C2 12 5.63636 19 12 19C12.3412 19 12.6746 18.9799 13 18.9418"
+                    stroke="#aaa"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+            </div>
+            {/* confirmpassword */}
+              <div className="flex flex-col items-start text-black">
+                <p>Confirm Password</p>
+                <input
+                  className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                  type="text"
+                  name="confirmpassword"
+                  placeholder="Confirm Password"
+                  required
+                  onChange={(e) => handle(e)}
+                />
+              </div>
+
+              {/* phonenumber */}
+              <div className="flex flex-col items-start  text-black">
+              <p>Phone number</p>
+              <input
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                type="number"
+                name="username"
+                required
+                placeholder="Enter your Phone number"
+                onChange={(e) => handle(e)}
+              />
+            </div>
+
+            
           {/* {Branch} */}
           <div>
             <div
@@ -148,103 +256,142 @@ const Signup = () => {
               <select
                 name="branch"
                 id="branch"
+                required
+                onChange={(e) => handle(e)}
                 className="text-black mx-4 bg-white"
+                
               >
                 <option value="select" default>
                   Select
                 </option>
-                <option value="cse">CSE</option>
-                <option value="it">IT</option>
-                <option value="ece">ECE</option>
-                <option value="ee">EE</option>
-                <option value="mech">MECH</option>
-                <option value="civil">CIVIL</option>
-                <option value="chem">CHEM</option>
-                <option value="meta">META</option>
-                <option value="min">MIN</option>
-                <option value="biotech">BIOTECH</option>
-                <option value="biomed">BIOMED</option>
-                <option value="mca">MCA</option>
+                <option >CSE</option>
+                <option >IT</option>
+                <option >ECE</option>
+                <option >EE</option>
+                <option >MECH</option>
+                <option >CIVIL</option>
+                <option >CHEM</option>
+                <option >META</option>
+                <option >MIN</option>
+                <option >BIOTECH</option>
+                <option >BIOMED</option>
+                <option >MCA</option>
               </select>
             </div>
           </div>
-
-          {/* {Semester} */}
-          <div>
+              {/* {Semester} */}
+            <div>
             <div
               for="sem"
               className=" text-sm font-medium leading-6 text-gray-900"
             >
               Semester
-              <select name="sem" id="sem" className="text-black mx-4 bg-white">
+              <select
+               name="sem"
+               id="sem" 
+               onChange={(e) => handle(e)}
+               required
+               className="text-black mx-4 bg-white">
                 <option value="select" default>
                   Select
-                </option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
+                </option >
+                <option >1</option>
+                <option >2</option>
+                <option >3</option>
+                <option >4</option>
+                <option >5</option>
+                <option >6</option>
               </select>
             </div>
           </div>
 
-          {/* Leetcode link */}
-          <div>
-            <label
-              for="leetcode"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Leetcode Link
-            </label>
-            <div className="mt-2">
+          {/* leetcode */}
+          <div className="flex flex-col items-start  text-black">
+              <p>Leetcode </p>
               <input
-                id="leetcode"
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                type="text"
                 name="leetcode"
-                type="text"
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-2 bg-white"
+                placeholder="Enter your Leetcode profile url"
+                onChange={(e) => handle(e)}
               />
             </div>
-          </div>
-          {/* Codechef link */}
-          <div>
-            <label
-              for="codechef"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Codechef Link
-            </label>
-            <div className="mt-2">
+
+            {/* codechef */}
+            <div className="flex flex-col items-start  text-black">
+              <p>Codechef </p>
               <input
-                id="codechef"
-                name="codechef"
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
                 type="text"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 px-2 bg-white"
+                name="codechef"
+                placeholder="Enter your Codechef profile url"
+                onChange={(e) => handle(e)}
               />
             </div>
-          </div>
 
-          <div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-            >
-              Sign Up
+
+          <button className="bg-[var(--primary-c)] rounded-md text-white py-2 mt-8 hover:bg-[var(--tertiary-c)] duration-300">
+              Signup
             </button>
+          </form>
           </div>
-        </form>
+          {/* <div className="mt-6 grid grid-cols-3 items-center text-gray-400">
+            <hr className="border-gray-400" />
+            <p className="text-center text-sm">OR</p>
+            <hr className="border-gray-400" />
+          </div>
 
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Already registered?
-          <Link
-            to="/login"
-            className="font-semibold leading-6 text-blue-600 hover:text-blue-500"
-          >
-            Sign IN
-          </Link>
-        </p>
+          <button className="bg-white border py-2 w-full rounded-full mt-5 flex justify-center items-center text-sm hover:opacity-[0.7] duration-300 text-[var(--primary-c)]">
+            <svg
+              className="mr-3"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 48 48"
+              width="25px"
+            >
+              <path
+                fill="#FFC107"
+                d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"
+              />
+              <path
+                fill="#FF3D00"
+                d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"
+              />
+              <path
+                fill="#4CAF50"
+                d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"
+              />
+              <path
+                fill="#1976D2"
+                d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
+              />
+            </svg>
+            Login with Google
+          </button> */}
+
+          
+           <div className="flex flex-row items-center gap-2 text-[var(--primary-c)] mt-4 text-sm">
+              <p className="text-right">Already have a account?</p>
+              <Link to="/login">
+                <div className="py-2 px-5 bg-white border rounded-full hover:opacity-[0.7] duration-300">
+                  Login
+                </div>
+              </Link>
+          </div>
+        
+        </div>
+
+        <div className="hidden md:flex items-center relative justify-center bg-[var(--primary-c)] w-[70%] text-center">
+          {/* <img
+            src={bgImage}
+            className="absolute object-cover top-0 right-0 z-0 h-full opacity-50"
+          /> */}
+          <div className="text-white px-8 text-3xl font-extrabold z-10">
+            TCP Mentorship Program 2024
+          </div>
+        </div>
       </div>
+    </div>
     </div>
   );
 };
