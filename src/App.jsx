@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home";
 import DashBoard from "./pages/DashBoard";
+import Newsignup from "./pages/Signup/Signup";
 
 const App = () => {
   return (
