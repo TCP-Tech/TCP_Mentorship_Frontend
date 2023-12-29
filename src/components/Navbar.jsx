@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 backdrop-blur-md dark:bg-gray-900 z-50">
+    <header className="sticky top-0 backdrop-blur-md z-50">
       <nav className="bg-transparent w-full">
         <div className="flex flex-wrap items-center justify-between h-[80px] md:pl-7 md:pr-9 pr-3 pl-2 md:visible">
           <Link to={"/"} className="flex items-center">
@@ -85,7 +85,7 @@ const Navbar = () => {
             />
           )}
           <button
-            className="inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black m-2"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 dark:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black m-2"
             onClick={handleDropdownToggle}
           >
             <img src={ham} alt="Hamburger icon" />
