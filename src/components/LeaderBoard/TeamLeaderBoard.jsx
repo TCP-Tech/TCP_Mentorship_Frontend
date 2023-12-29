@@ -33,10 +33,10 @@ const LeaderBoard = () => {
   };
 
   return (
-    <div className="grid grid-cols-12 gap-4 bg-white">
+    <div className="grid grid-cols-12 gap-4 bg-white dark:bg-gray-900">
       {/* LeaderBoard Heading */}
       <div className="col-span-12 text-center">
-        <h1 className="md:text-5xl text-3xl p-8 font-bold text-black">
+        <h1 className="md:text-5xl text-3xl p-8 font-bold text-black dark:text-white">
           Team LeaderBoard
         </h1>
       </div>
