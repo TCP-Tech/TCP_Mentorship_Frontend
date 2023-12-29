@@ -4,8 +4,9 @@ import React from "react";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home";
-import DashBoard from "./pages/DashBoard";
 import Newsignup from "./pages/Signup/Signup";
+import MenteeDashBoard from "./pages/MenteeDashBoard";
+import MentorDashboard from "./pages/MentorDashboard";
 
 const App = () => {
   return (
@@ -14,7 +15,8 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
-        <Route exact path="/dashboard" element={<DashBoard />} />
+        <Route exact path="/dashboard" element={<MenteeDashBoard />} />
+        <Route exact path="/mentor" element={<MentorDashboard />} />
       </Routes>
     </Router>
   );
