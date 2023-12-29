@@ -18,8 +18,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col justify-center px-6 py-12 lg:px-8 bg-white">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+    <div className="flex h-screen flex-col justify-center">
+      {/* <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <div className=" text-center">
           <button
             type="button"
@@ -47,7 +47,7 @@ const Login = () => {
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign in to your {usertype} account
         </h2>
-      </div>
+      </div> */}
 
       {usertype == "Mentee" ? <MenteeLog /> : <Mentorlog />}
     </div>
