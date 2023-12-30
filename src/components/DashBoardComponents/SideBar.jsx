@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import tcpName from "../assets/images/tcpLogo.png";
+import React from 'react';
+import tcpName from "../../assets/images/tcpLogo.png";
 import { FaTimes } from 'react-icons/fa';
 
 const MentorSidebar = ({ toggleSidebar, setSelectedOption , options }) => {
   const handleOptionClick = (option) => {
-    setSelectedOption(option); // Update the selected option in the parent component
+    setSelectedOption(option); 
   };
 
   return (
     <div className='flex flex-col border text-left h-screen md:relative absolute md:w-fit w-screen bg-white text-black'>
-<div className="flex items-center justify-between px-5">
+      <div className="flex items-center justify-between px-5">
         <div>
           <img 
             src={tcpName} 
@@ -17,10 +17,10 @@ const MentorSidebar = ({ toggleSidebar, setSelectedOption , options }) => {
             alt="TCP Logo" 
           />
         </div>
-        <div>
+      <div>
           <FaTimes className="text-2xl cursor-pointer text-black" onClick={toggleSidebar} />
-        </div>
       </div>
+    </div>
       <div className="px-3 pt-8"> 
         <ul className="text-lg space-y-5 pt-2 font-semibold">
           {
@@ -31,9 +31,6 @@ const MentorSidebar = ({ toggleSidebar, setSelectedOption , options }) => {
               >{option}</li>)
             )
           }
-       
-    
-          {/* Add similar onClick handlers for other list items */}
         </ul>
       </div>
     </div>
