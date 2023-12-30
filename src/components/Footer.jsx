@@ -150,7 +150,7 @@ const Footer = () => {
       </div>
       <div className="flex justify-between items-center w-full my-8">
         <div className=" md:text-lg text-sm">
-          Architected with ❤️ by {" "}
+          Architected with ❤️ by{" "}
           <Link to="/team" className="underline text-primary-c">
             TCP Team
           </Link>
