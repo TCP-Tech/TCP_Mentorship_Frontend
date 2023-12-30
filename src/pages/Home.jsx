@@ -18,7 +18,7 @@ const Home = () => {
         <LeaderBoard />
         <MenteeLeaderBoard />
       </Wrapper>
-      <Footer />
+      <Footer /> 
     </div>
   );
 };
