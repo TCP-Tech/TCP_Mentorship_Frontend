@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import tcpName from "../assets/images/tcpLogo.png";
-import { FaBars, FaTimes } from 'react-icons/fa';
-import SideBar from '../components/SideBar';
-import AddProblem from '../components/AddProblem';
-import LeaderBoard from '../components/LeaderBoard/TeamLeaderBoard';
-import MenteeLeaderBoard from '../components/LeaderBoard/MenteeLeaderBoard';
-import MenteeDefaultDash from '../components/MenteeDefaultDash';
+import React, { useEffect, useState } from "react";
+import { FaBars } from "react-icons/fa";
+import SideBar from "../../components/DashBoardComponents/SideBar";
+import AddProblem from "../../components/DashBoardComponents/AddProblem";
+import LeaderBoard from "../../components/LeaderBoard/TeamLeaderBoard";
+import MenteeLeaderBoard from "../../components/LeaderBoard/MenteeLeaderBoard";
+import MenteeDefaultDash from "../../components/DashBoardComponents/MenteeDefaultDash";
 const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedOption, setSelectedOption] = useState("Dashboard"); 
@@ -35,10 +34,8 @@ const DashBoard = () => {
         setIsSidebarOpen(true); // Show sidebar for larger screens
       }
     }
-
     // Initial check on load
     handleResize();
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -48,21 +45,19 @@ const DashBoard = () => {
 
   return (
     <>
-      <div className="flex flex-col  space-x-3 md:flex-row">
+      <div className="flex flex-col space-x-3 md:flex-row">
         {isSidebarOpen && (
           <div>
              <SideBar 
-                    options={options}
-                    toggleSidebar={toggleSidebar} 
-                    setSelectedOption={setSelectedOption} 
-                  />
+                options={options}
+                toggleSidebar={toggleSidebar} 
+                setSelectedOption={setSelectedOption} 
+             />
           </div>
         )}
-
         {/* Second part */}
         <div
-          className={`${!isSidebarOpen ? "pl-4" : ""} flex flex-col space-y-2 `}
-        >
+          className={`${!isSidebarOpen ? "pl-4" : ""} flex flex-col space-y-2 `} >
           {/* Kinda Navbar */}
           <div className="flex items-center mt-4">
             {!isSidebarOpen && (
@@ -72,7 +67,6 @@ const DashBoard = () => {
               />
             )}
           </div>
-
           {/* Main Dash */}
           <div
             className={`${
@@ -86,8 +80,7 @@ const DashBoard = () => {
                 </p>
                 <p className="text-gray-500">Let's learn something new today</p>
               </div>
-
-            {/* Overview */}
+            {/* Rendering content based on selections */}
           {renderMainContent()}
           </div>
         </div>

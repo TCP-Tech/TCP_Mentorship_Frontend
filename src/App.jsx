@@ -4,10 +4,8 @@ import React from "react";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home";
-import Newsignup from "./pages/Signup/Signup";
-import MenteeDashBoard from "./pages/MenteeDashBoard";
-import MentorDashboard from "./pages/MentorDashboard";
-
+import MenteeDashBoard from "./pages/DashBoard/MenteeDashBoard";
+import MentorDashboard from "./pages/DashBoard/MentorDashboard";
 
 const App = () => {
   return (
@@ -22,5 +20,4 @@ const App = () => {
     </Router>
   );
 };
-
 export default App;

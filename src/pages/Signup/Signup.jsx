@@ -368,8 +368,6 @@ const Signup = () => {
             </svg>
             Login with Google
           </button> */}
-
-          
            <div className="flex flex-row items-center gap-2 text-[var(--primary-c)] mt-4 text-sm">
               <p className="text-right">Already have a account?</p>
               <Link to="/login">
@@ -378,9 +376,7 @@ const Signup = () => {
                 </div>
               </Link>
           </div>
-        
-        </div>
-
+         </div>
         <div className="hidden md:flex items-center relative justify-center bg-[var(--primary-c)] w-[70%] text-center">
           {/* <img
             src={bgImage}
@@ -392,7 +388,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
-    </div>
+  </div>
   );
 };
 
