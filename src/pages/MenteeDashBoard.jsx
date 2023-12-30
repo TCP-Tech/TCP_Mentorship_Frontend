@@ -49,7 +49,6 @@ const DashBoard = () => {
   return (
     <>
       <div className="flex flex-col  space-x-3 md:flex-row">
-      
         {isSidebarOpen && (
           <div>
              <SideBar 
@@ -61,22 +60,32 @@ const DashBoard = () => {
         )}
 
         {/* Second part */}
-        <div className={`${!isSidebarOpen ? 'pl-4' : ''} flex flex-col space-y-2 `}>
+        <div
+          className={`${!isSidebarOpen ? "pl-4" : ""} flex flex-col space-y-2 `}
+        >
           {/* Kinda Navbar */}
           <div className="flex items-center mt-4">
             {!isSidebarOpen && (
-              
-              <FaBars className="text-2xl cursor-pointer text-black" onClick={toggleSidebar} />
+              <FaBars
+                className="text-2xl cursor-pointer text-black"
+                onClick={toggleSidebar}
+              />
             )}
           </div>
 
           {/* Main Dash */}
-          <div className={`${!isSidebarOpen && 'md:space-x-10  p-7  w-screen'} flex flex-col   md:flex-row justify-between `}>
-          <div className="flex flex-col ">
-            <div>
-              <p className="text-2xl text-black font-semibold pb-2">Hello Mentee1 👋</p>
-              <p className="text-gray-500">Let's learn something new today</p>
-            </div>
+          <div
+            className={`${
+              !isSidebarOpen && "md:space-x-10  p-7  w-screen"
+            } flex flex-col   md:flex-row justify-between `}
+          >
+            <div className="flex flex-col ">
+              <div>
+                <p className="text-2xl text-black font-semibold pb-2">
+                  Hello Mentee1 👋
+                </p>
+                <p className="text-gray-500">Let's learn something new today</p>
+              </div>
 
             {/* Overview */}
           {renderMainContent()}
