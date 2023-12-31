@@ -25,14 +25,11 @@ const DashBoard = () => {
   const handleSignOut = () => {
     navigate("/login");
   };
-  const handleMouseEnter = () => {
-    setdropVisible(true);
-  };
-
-  const handleMouseLeave = () => {
-    setdropVisible(false);
+  const handleMouseClick = () => {
+    setdropVisible(!dropVisible);
   };
   const handleOptionSelect = (option) => {
+    setdropVisible(!dropVisible);
     setSelectedOption(option);
   };
   const renderMainContent = () => {
@@ -83,15 +80,23 @@ const DashBoard = () => {
             />
           </div>
         )}
-        <div className={`Right_part border w-full flex flex-col ${isSidebarOpen&& "md:ml-72"}`}>
-          <nav className={`w-full z-[999] flex fixed items-center justify-between shadow-md py-2 px-5  ${isSidebarOpen&& "pr-80"} bg-white`}>
+        <div
+          className={`Right_part border w-full flex flex-col ${
+            isSidebarOpen && "md:ml-72"
+          }`}
+        >
+          <nav
+            className={`w-full z-[999] flex fixed items-center justify-between shadow-md py-2 px-5  ${
+              isSidebarOpen && "pr-80"
+            } bg-white`}
+          >
             {!isSidebarOpen && (
               <FaBars
                 className="text-2xl cursor-pointer text-black"
                 onClick={toggleSidebar}
               />
             )}
-            <div className="h-auto py-2">
+            <div className="h-auto py-2 mr-auto pl-4">
               <p className="md:text-2xl text-sm text-black font-semibold md:block hidden">
                 Welcome Back!👋
               </p>
@@ -99,38 +104,37 @@ const DashBoard = () => {
                 Let's learn something new today.
               </p>
             </div>
-            <div
-              className="flex items-center "
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className="cursor-pointer flex justify-center items-center gap-2">
+            <div className="flex items-center">
+              <div className="cursor-pointer flex justify-center items-center">
                 <img
-                  className="object-cover md:w-10 md:h-10 w-7 h-7 rounded-full"
+                  className="object-cover md:w-10 md:h-10 w-7 h-7 rounded-full mr-2"
                   src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                   alt=""
                 />
                 <p className="text-black md:text-lg text-sm">Hi Rishabh!</p>
-                <div className="text-black w-8 h-8 flex justify-center items-center ">
+                <div
+                  onClick={handleMouseClick}
+                  className="text-black w-8 h-8 flex justify-center items-center "
+                >
                   {dropVisible ? <FaChevronUp /> : <FaChevronDown />}
                 </div>
               </div>
               {dropVisible && (
-                <div
-                  className="absolute right-0 z-[500] mt-12 bg-white  dark:bg-gray-800 text-white rounded-md shadow-xl cursor-pointer"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div className={`absolute  ${isSidebarOpen ? "right-80" : "right-2"} z-20 w-48 py-2 mt-2 origin-top-right bg-white dark:bg-gray-800 text-white rounded-md shadow-xl cursor-pointer`}>
+                <div className="absolute right-0 z-[500] mt-8 bg-white  dark:bg-gray-800 text-black rounded-md shadow-xl cursor-pointer duration-200">
+                  <div
+                    className={`absolute  ${
+                      isSidebarOpen ? "right-80" : "right-2"
+                    } z-20 w-48 mt-2 origin-top-right bg-white dark:bg-gray-800 text-black rounded-md duration-100 shadow-xl cursor-pointer`}
+                  >
                     <li
-                      className="flex items-center px-4 py-3 hover:bg-gray-700"
+                      className="flex items-center px-4 py-3 hover:bg-[var(--primary-c)] hover:text-white duration-200"
                       onClick={() => handleOptionSelect("Profile")}
                     >
                       <FaUserCircle className="mr-2" />
                       Your profile
                     </li>
                     <li
-                      className="flex items-center px-4 py-3 hover:bg-gray-700"
+                      className="flex items-center px-4 py-3 hover:bg-[var(--primary-c)] hover:text-white duration-200"
                       onClick={handleSignOut}
                     >
                       <FaSignOutAlt className="mr-2" />

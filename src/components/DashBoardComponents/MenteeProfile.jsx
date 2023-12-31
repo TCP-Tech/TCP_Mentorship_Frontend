@@ -49,7 +49,7 @@ const Profile = () => {
 
   return (
     <div className="flex justify-center items-center h-full">
-      <div className="w-full py-7 flex flex-col justify-center items-center border rounded-lg ">
+      <div className="w-full py-10 flex flex-col justify-center items-center">
         <h1 className="text-3xl font-bold mb-4 text-black">Your Profile</h1>
         <form
           action=""
