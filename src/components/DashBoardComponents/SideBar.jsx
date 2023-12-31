@@ -27,7 +27,7 @@ const MentorSidebar = ({ toggleSidebar, setSelectedOption , selectedOption , opt
           {
             options.map((option)=>(
               <li 
-              className={`hover:bg-primary hover:text-white ${selectedOption === option ? 'bg-primary text-white' : ''} rounded-md px-5 py-2 cursor-pointer transition duration-300 ease-in-out`}
+              className={`hover:bg-primary hover:text-white ${isSidebarOpen && selectedOption === option ? 'bg-primary text-white' : ''} rounded-md px-5 py-2 cursor-pointer transition duration-300 ease-in-out`}
               onClick={()=>handleOptionClick(option)}
               >{option}</li>)
             )

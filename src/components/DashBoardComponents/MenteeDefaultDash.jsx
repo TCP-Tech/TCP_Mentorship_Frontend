@@ -3,7 +3,7 @@ import ProblemList from "./ProblemList"
 
 const MenteeDefaultDash = () => {
   return (
-    <div >
+    <div className="p-5">
     <h1 className="text-3xl text-black pt-7 pb-5 font-semibold">Overview</h1>
     <div className="flex md:flex-row  flex-col  flex-wrap  md:space-y-2 space-y-3">
     <div className="flex flex-col rounded-lg p-4 w-60 bg-red-100 md:mr-2 mt-2">

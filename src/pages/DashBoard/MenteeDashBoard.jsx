@@ -84,10 +84,10 @@ const DashBoard = () => {
               />
             )}
               <div>
-                <p className="md:text-2xl text-sm text-black font-semibold pb-2 md:visible hidden">
+                <p className="md:text-2xl text-sm text-black font-semibold pb-2 md:block hidden">
                   Hello Mentee👋
                 </p>
-                <p className="text-gray-500 md:text-lg text-xs md:visible hidden">Let's learn something new today</p>
+                <p className="text-gray-500 md:text-lg text-xs md:block hidden">Let's learn something new today</p>
               </div>
               <div className="flex items-center "
                 onMouseEnter={handleMouseEnter}
