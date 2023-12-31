@@ -4,8 +4,8 @@ import NIT from "../assets/images/NIT.webp";
 import tcpNameDark from "../assets/images/tcpNameDark.svg"
 const Footer = () => {
   return (
-    <div className="font-sans text-black mx-auto max-w-80rem py-6 lg:px-20 px-4 md:px-10 shadow-md mt-12  dark:bg-gray-900">
-        <hr className="dark:border-white border-black" />
+    <div className="font-sans text-black mx-auto max-w-80rem py-6 lg:px-20 px-4 md:px-10 shadow-md mt-12 bg-gray-300 dark:bg-gray-900">
+        <hr className="dark:border-white hidden dark:block" />
       
       <div className="flex justify-between md:items-start items-center gap-8 md:flex-row flex-col w-full mt-8">
         {/* <img src={codeutsava} className="w-20 h-auto" /> */}
