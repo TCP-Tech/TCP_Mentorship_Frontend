@@ -5,6 +5,9 @@ import AddProblem from "../../components/DashBoardComponents/AddProblem";
 import LeaderBoard from "../../components/LeaderBoard/TeamLeaderBoard";
 import MenteeLeaderBoard from "../../components/LeaderBoard/MenteeLeaderBoard";
 import MenteeDefaultDash from "../../components/DashBoardComponents/MenteeDefaultDash";
+import Profile from "../../components/DashBoardComponents/Profile";
+
+    
 const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedOption, setSelectedOption] = useState("Dashboard"); 
@@ -22,6 +25,8 @@ const DashBoard = () => {
         return <AddProblem />;
       case "Team LeaderBoard":
         return <LeaderBoard />;
+      case "Profile" : 
+        return <Profile/>
       default:
         return null;
     }

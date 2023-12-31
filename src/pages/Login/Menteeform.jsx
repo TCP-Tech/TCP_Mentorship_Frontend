@@ -40,10 +40,10 @@ const Menteeform = () => {
         className="flex flex-col gap-4"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div className="flex flex-col items-start mt-8 text-black">
+        <div className="flex flex-col items-start mt-8 dark:text-white text-black">
           <p>Email or Mobile No.</p>
           <input
-            className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+            className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
             type="text"
             name="userid"
             required
@@ -52,10 +52,10 @@ const Menteeform = () => {
           />
         </div>
         <div className="relative">
-          <div className="flex flex-col items-start text-black">
+          <div className="flex flex-col items-start dark:text-white text-black">
             <p>Password</p>
             <input
-              className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+              className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Password"

@@ -67,23 +67,23 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col justify-center">
+    <div className="flex  h-screen flex-col justify-center">
       <div className="h-screen w-screen">
         <ToastContainer />
         <div className="h-screen w-full bg-white flex-col md:flex-row shadow-lg flex">
-          <div className="p-8 flex justify-center flex-col w-full md:w-[50%]">
+          <div className="p-8 dark:bg-gray-900 flex justify-center flex-col w-full md:w-[50%]">
             {/* <Link
             to={"/"}
             className="w-[30%] max-w-[100px] text-center bg-[var(--primary-c)] rounded-md text-white py-2 hover:bg-[var(--tertiary-c)] duration-300"
           >
             Home
           </Link> */}
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-              <div className=" text-center">
+            <div className="sm:mx-auto  sm:w-full sm:max-w-sm">
+              <div className=" text-center w-max">
                 <button
                   type="button"
                   id="mentee"
-                  className={`rounded-full mx-1 my-1 p-2 ${
+                  className={`rounded-full mx-2 ml-0 sm:mr-6  my-1 p-3 h-40 w-40 sm:h-48 sm:w-48 dark:bg-white ${
                     usertype === "Mentee" ? "border-4" : " "
                   } border-blue-600`}
                   onClick={Menteelogin}
@@ -93,12 +93,12 @@ const Login = () => {
                     alt=""
                     className="sm:h-36 sm:w-36 h-28 w-28 rounded-full"
                   />
-                  <span className="text-black">Mentee</span>
+                  <span className="text-black ">Mentee</span>
                 </button>
                 <button
                   type="button"
                   id="mentor"
-                  className={`rounded-full p-2 ${
+                  className={`rounded-full sm:ml-0 p-3 h-40 w-40 sm:h-48 sm:w-48  dark:bg-white ${
                     usertype === "Mentor" ? "border-4" : " "
                   } border-blue-600`}
                   onClick={mentorlogin}
@@ -108,14 +108,14 @@ const Login = () => {
                     alt=""
                     className="sm:h-36 sm:w-36 h-28 w-28 rounded-full"
                   />
-                  <span className="text-black">Mentor</span>
+                  <span className="text-black ">Mentor</span>
                 </button>
               </div>
             </div>
             <h2 className="font-bold text-4xl mt-8 text-[var(--primary-c)]">
               {`Login As ${usertype}`}
             </h2>
-            <p className="text-xl mt-4 text-black">
+            <p className="text-xl mt-4 dark:text-white text-black">
               Welcome back, you have been missed!
             </p>
 
