@@ -5,10 +5,14 @@ import AddProblem from "../../components/DashBoardComponents/AddProblem";
 import LeaderBoard from "../../components/LeaderBoard/TeamLeaderBoard";
 import MentorDefaultDash from "../../components/DashBoardComponents/MentorDefaultDash";
 import MenteeLeaderBoard from "../../components/LeaderBoard/MenteeLeaderBoard";
+import Profile from "../../components/DashBoardComponents/Profile";
+import ProblemList from "../../components/DashBoardComponents/ProblemList";
 
+     
 const MentorDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedOption, setSelectedOption] = useState("Dashboard"); 
+  // const options =["Profile", "Dashboard" , "Team LeaderBoard" , "LeaderBoard" , "Assign Problem","Assigned Problems"]
   const options =["Profile", "Dashboard" , "Team LeaderBoard" , "LeaderBoard" , "Assign Problem"]
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
@@ -16,15 +20,19 @@ const MentorDashboard = () => {
   const renderMainContent = () => {
     switch (selectedOption) {
       case "Dashboard" : 
-      return <MentorDefaultDash/>
+      return <MentorDefaultDash/>;
       case "LeaderBoard":
         return <MenteeLeaderBoard />;
-      case "Assign Problem":
-        return <AddProblem />;
       case "Team LeaderBoard":
         return <LeaderBoard />;
+      case "Profile" : 
+        return <Profile/>
+      case "Assign Problem":
+        return <><AddProblem /><ProblemList /></>;
+      // case "Assigned Problems":
+      //   return <ProblemList/>;
       default:
-        return null;
+        return <MentorDefaultDash/>;
     }
   };
   useEffect(() => {
