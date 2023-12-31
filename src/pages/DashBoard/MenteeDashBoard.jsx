@@ -91,7 +91,7 @@ const DashBoard = () => {
                 onClick={toggleSidebar}
               />
             )}
-            <div className="h-auto py-2">
+            <div className="h-auto py-2 mr-auto pl-4">
               <p className="md:text-2xl text-sm text-black font-semibold md:block hidden">
                 Welcome Back!👋
               </p>

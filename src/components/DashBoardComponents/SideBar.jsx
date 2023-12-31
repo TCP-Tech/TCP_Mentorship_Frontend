@@ -14,12 +14,12 @@ const MentorSidebar = ({ toggleSidebar, setSelectedOption , selectedOption , opt
         <div>
           <img 
             src={tcpName} 
-            className="w-36 h-w-28"
+            className="w-40 h-w-28"
             alt="TCP Logo" 
           />
         </div>
-     { isSidebarOpen && <div className='border-2 border-black p-3 rounded-md'>
-          <FaTimes className="text-2xl cursor-pointer text-primary " onClick={toggleSidebar} />
+     { isSidebarOpen && <div className='rounded-md'>
+          <FaTimes className="text-2xl cursor-pointer" onClick={toggleSidebar} />
       </div>}
     </div>
       <div className="px-3 pt-8"> 
