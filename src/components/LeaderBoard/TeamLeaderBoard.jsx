@@ -30,19 +30,19 @@ const LeaderBoard = () => {
         <div className="outer flex flex-col justify-center items-center w-full md:px-5">
           <div className="w-full h-36 md:h-44 dark:bg-gray-800 shadow-sm rounded-2xl flex justify-around border dark:border-gray-600">
             <div className="flex flex-col items-center">
-              <div className="rounded-full overflow-hidden border-4 border-sky-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
+              <div className="rounded-full overflow-hidden border-4 border-gray-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
                 <img
                   className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
                   src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                   alt=""
                 />
               </div>
-              <div className="md:w-6 md:h-6 w-4 h-4 flex justify-center origin-top-left rotate-45 -mt-3 md:-mt-5 ml-4 md:ml-6 bg-sky-500 rounded-md md:rounded-lg">
+              <div className="md:w-6 md:h-6 w-4 h-4 flex justify-center origin-top-left rotate-45 -mt-3 md:-mt-5 ml-4 md:ml-6 bg-gray-500 rounded-md md:rounded-lg">
                 <div className="transform -rotate-45 text-xs md:text-lg">2</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
                 <h1 className="md:text-xl text-sm">Team-B</h1>
-                <h1 className="md:text-xl text-sm text-blue-500">2356</h1>
+                <h1 className="md:text-xl text-sm text-gray-500">2356</h1>
               </div>
             </div>
             {/* First Position */}
@@ -87,19 +87,19 @@ const LeaderBoard = () => {
               </div>
             </div>
             <div className="flex flex-col items-center ">
-              <div className="rounded-full overflow-hidden border-4 border-green-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
+              <div className="rounded-full overflow-hidden border-4 border-amber-700 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
                 <img
                   className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
                   src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                   alt=""
                 />
               </div>
-              <div className="md:w-6 md:h-6 w-4 h-4 flex justify-center origin-top-left rotate-45 -mt-3 md:-mt-5 ml-4 md:ml-6 bg-green-500 rounded-md md:rounded-lg">
+              <div className="md:w-6 md:h-6 w-4 h-4 flex justify-center origin-top-left rotate-45 -mt-3 md:-mt-5 ml-4 md:ml-6 bg-amber-700 rounded-md md:rounded-lg">
                 <div className="transform -rotate-45 text-xs md:text-lg">3</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
                 <h1 className="md:text-xl text-sm">Team C</h1>
-                <h1 className="md:text-xl text-sm text-green-500">2356</h1>
+                <h1 className="md:text-xl text-sm text-amber-700">2356</h1>
               </div>
             </div>
           </div>
