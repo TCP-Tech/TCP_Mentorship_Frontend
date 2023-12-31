@@ -14,7 +14,7 @@ const MentorSidebar = ({ toggleSidebar, setSelectedOption , selectedOption , opt
         <div>
           <img 
             src={tcpName} 
-            className="w-40 h-w-28"
+            className="w-44 h-w-28"
             alt="TCP Logo" 
           />
         </div>
@@ -23,7 +23,7 @@ const MentorSidebar = ({ toggleSidebar, setSelectedOption , selectedOption , opt
       </div>}
     </div>
       <div className="px-3 pt-8"> 
-        <ul className="text-lg space-y-5 pt-2 font-semibold">
+        <ul className="text-lg space-y-2 pt-2 font-semibold">
           {
             options.map((option)=>(
               <li 
