@@ -27,89 +27,74 @@ const MenteeLeaderBoard = () => {
             Mentee LeaderBoard
           </h2>
         </div>
-        <div className="flex md:gap-20 gap-2  mt-4 justify-center text-black">
-          {!showCarousel ? (
-            <div className="Top-rankers flex md:max-xl:flex-wrap md:max-xl:justify-center  lg:gap-20 gap-2">
-              <div className="rank-box flex justify-center items-center  h-72 w-72 border dark:text-white">
-                Here we display our weekly rankers
-              </div>
-              <div className="rank-box flex flex-col items-center justify-center h-72 w-72 border shadow-lg">
+        <div className="md:pt-52 pt-32">
+        <div className="w-full h-36 md:h-44 dark:bg-gray-800 shadow-sm rounded-2xl flex justify-around border dark:border-gray-600" >
+      <div className="flex flex-col items-center">
+             <div className="rounded-full overflow-hidden border-4 border-sky-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
                 <img
-                  className="object-cover w-20 h-20 rounded-full"
+                  className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
                   src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                  alt={mentees[0].name}
+                  alt=""
                 />
-                <h2 className="font-medium text-lg text-gray-800 dark:text-white">
-                  {" "}
-                  {mentees[0].name}
-                </h2>
-                <h2 className="font-medium text-lg text-gray-800 dark:text-white">
-                  {" "}
-                  {mentees[0].id}
-                </h2>
-                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                  {" "}
-                  Team: {mentees[0].teamName}
-                </p>
-                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                  Points: {mentees[0].pointsScored}
-                </p>
+                </div>
+                <div className="md:w-6 md:h-6 w-4 h-4 flex justify-center origin-top-left rotate-45 -mt-3 md:-mt-5 ml-4 md:ml-6 bg-sky-500 rounded-md md:rounded-lg" >
+                <div className="transform -rotate-45 text-xs md:text-lg">2</div>
+                </div>
+                <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
+                <h1 className="md:text-xl text-sm">Team-B</h1>
+                <h1 className="md:text-xl text-sm text-blue-500">2356</h1>
               </div>
-
-              {/* 2ND POSITION HOLDER */}
-
-              <div className="rank-box flex flex-col items-center justify-center h-72 w-72 border shadow-lg">
-                <img
-                  className="object-cover w-20 h-20 rounded-full"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                  alt={mentees[0].name}
-                />
-                <h2 className="font-medium text-lg text-gray-800 dark:text-white">
-                  {" "}
-                  {mentees[0].name}
-                </h2>
-                <h2 className="font-medium text-lg text-gray-800 dark:text-white">
-                  {" "}
-                  {mentees[1].id}
-                </h2>
-                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                  {" "}
-                  Team: {mentees[0].teamName}
-                </p>
-                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                  Points: {mentees[0].pointsScored}
-                </p>
-              </div>
-
-              {/* 3RD POSITION HOLDER */}
-
-              <div className="rank-box flex flex-col items-center justify-center h-72 w-72 border shadow-lg">
-                <img
-                  className="object-cover w-20 h-20 rounded-full"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                  alt={mentees[0].name}
-                />
-                <h2 className="font-medium text-lg text-gray-800 dark:text-white">
-                  {" "}
-                  {mentees[0].name}
-                </h2>
-                <h2 className="font-medium text-lg text-gray-800 dark:text-white">
-                  {" "}
-                  {mentees[2].id}
-                </h2>
-                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                  {" "}
-                  Team: {mentees[0].teamName}
-                </p>
-                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                  Points: {mentees[0].pointsScored}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <TopRankersCarousel topThreeRankers={topThreeRankers} />
-          )}
         </div>
+        {/* First Position */}
+        <div className="md:w-44 w-28 h-46 bg-slate-100 shadow-md dark:bg-gray-700 rounded-tl-[30px] rounded-tr-[30px] z-20 -mt-14 border dark:border-gray-600" >
+        <div className="flex flex-col items-center">
+           {/* <img className="absolute -mt-32 " src={crown}/> */}
+           <svg className="absolute -mt-20 md:-mt-32 w-36 md:w-40 " height="40" viewBox="0 0 34 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M30.3004 11.5684C30.0255 11.3553 29.6916 11.2182 29.3369 11.1729C28.9821 11.1275 28.6208 11.1756 28.294 11.3118L22.2148 13.8219L18.6826 7.90917C18.5138 7.63312 18.2691 7.40355 17.9737 7.24385C17.6782 7.08414 17.3424 7 17.0006 7C16.6587 7 16.3229 7.08414 16.0275 7.24385C15.732 7.40355 15.4874 7.63312 15.3186 7.90917L11.7864 13.8219L5.70711 11.3118C5.37972 11.1758 5.01791 11.1276 4.66256 11.1726C4.30722 11.2176 3.97252 11.354 3.69629 11.5664C3.42006 11.7788 3.21333 12.0587 3.09946 12.3745C2.9856 12.6903 2.96914 13.0294 3.05194 13.3534L6.10358 25.4355C6.16193 25.6694 6.27082 25.8899 6.42364 26.0836C6.57646 26.2773 6.77004 26.4401 6.99264 26.5623C7.29401 26.7298 7.63859 26.8184 7.98983 26.8189C8.16057 26.8186 8.33043 26.796 8.49443 26.7519C14.0568 25.3239 19.9323 25.3239 25.4947 26.7519C26.0026 26.8759 26.5427 26.8077 26.9965 26.5623C27.2205 26.4417 27.4151 26.2793 27.5681 26.0853C27.7211 25.8914 27.8292 25.6701 27.8855 25.4355L30.9492 13.3534C31.0311 13.0293 31.0137 12.6904 30.8991 12.3749C30.7844 12.0595 30.5771 11.7801 30.3004 11.5684Z" fill="#FFAA00"/>
+                      <circle cx="17" cy="4" r="4" fill="#FFAA00"/>
+                      <circle cx="17" cy="18" r="3" fill="#BE9502"/>
+                      <circle cx="31.5" cy="10.5" r="2.5" fill="#FFAA00"/>
+                      <circle cx="2.5" cy="10.5" r="2.5" fill="#FFAA00"/>
+                      <circle cx="9.5" cy="19.5" r="1.5" fill="#BE9502"/>
+                      <circle cx="24.5" cy="19.5" r="1.5" fill="#BE9502"/>
+            </svg>
+
+             <div className="rounded-full overflow-hidden border-4 border-amber-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 -mt-10 md:-mt-20">
+                <img
+                  className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt=""
+                />
+                </div>
+                <div className="md:w-6 md:h-6 w-4 h-4 flex justify-center origin-top-left rotate-45 -mt-3 md:-mt-5 ml-4 md:ml-6 bg-amber-500 rounded-md md:rounded-lg" >
+                <div className="transform -rotate-45 text-xs md:text-lg">1</div>
+                </div>
+                <div className="flex flex-col justify-center text-center space-y-3 mt-8 md:mt-10">
+                <h1 className="md:text-xl text-sm">Team A</h1>
+                <h1 className="md:text-xl text-sm text-amber-500">2356</h1>
+              </div>
+        </div>
+      </div>
+          <div className="flex flex-col items-center ">
+          <div className="rounded-full overflow-hidden border-4 border-green-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
+                <img
+                  className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt=""
+                />
+              </div>
+              <div className="md:w-6 md:h-6 w-4 h-4 flex justify-center origin-top-left rotate-45 -mt-3 md:-mt-5 ml-4 md:ml-6 bg-green-500 rounded-md md:rounded-lg" >
+                <div className="transform -rotate-45 text-xs md:text-lg">3</div>
+                </div>
+                <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
+                <h1 className="md:text-xl text-sm">Team C</h1>
+                <h1 className="md:text-xl text-sm text-green-500">2356</h1>
+              </div>
+        </div>
+      </div>
+      </div>
+
+    {/*####################################### Table part starts here ############################################*/}
         <div className="flex flex-col mt-6 ">
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -132,12 +117,6 @@ const MenteeLeaderBoard = () => {
                       >
                         <button className="flex items-center gap-x-2 ">
                           <span>Problems Solved</span>
-
-                          {/* <svg className="h-3" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2.13347 0.0999756H2.98516L5.01902 4.79058H3.86226L3.45549 3.79907H1.63772L1.24366 4.79058H0.0996094L2.13347 0.0999756ZM2.54025 1.46012L1.96822 2.92196H3.11227L2.54025 1.46012Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
-                                            <path d="M0.722656 9.60832L3.09974 6.78633H0.811638V5.87109H4.35819V6.78633L2.01925 9.60832H4.43446V10.5617H0.722656V9.60832Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
-                                            <path d="M8.45558 7.25664V7.40664H8.60558H9.66065C9.72481 7.40664 9.74667 7.42274 9.75141 7.42691C9.75148 7.42808 9.75146 7.42993 9.75116 7.43262C9.75001 7.44265 9.74458 7.46304 9.72525 7.49314C9.72522 7.4932 9.72518 7.49326 9.72514 7.49332L7.86959 10.3529L7.86924 10.3534C7.83227 10.4109 7.79863 10.418 7.78568 10.418C7.77272 10.418 7.73908 10.4109 7.70211 10.3534L7.70177 10.3529L5.84621 7.49332C5.84617 7.49325 5.84612 7.49318 5.84608 7.49311C5.82677 7.46302 5.82135 7.44264 5.8202 7.43262C5.81989 7.42993 5.81987 7.42808 5.81994 7.42691C5.82469 7.42274 5.84655 7.40664 5.91071 7.40664H6.96578H7.11578V7.25664V0.633865C7.11578 0.42434 7.29014 0.249976 7.49967 0.249976H8.07169C8.28121 0.249976 8.45558 0.42434 8.45558 0.633865V7.25664Z" fill="currentColor" stroke="currentColor" stroke-width="0.3" />
-                                        </svg> */}
                         </button>
                       </th>
 
@@ -181,7 +160,7 @@ const MenteeLeaderBoard = () => {
                     </tr>
                   </thead>
                   {mentees.map((mentee) => (
-                    <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-primary">
+                    <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800">
                       <tr>
                         <td className="px-5 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                           <div className="inline-flex items-center gap-x-3  md:text-lg text-white">

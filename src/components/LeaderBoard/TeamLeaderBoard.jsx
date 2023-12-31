@@ -38,7 +38,7 @@ const LeaderBoard = () => {
                 />
                 </div>
                 <div className="md:w-6 md:h-6 w-4 h-4 flex justify-center origin-top-left rotate-45 -mt-3 md:-mt-5 ml-4 md:ml-6 bg-sky-500 rounded-md md:rounded-lg" >
-                <div className="transform -rotate-45 text-xs">2</div>
+                <div className="transform -rotate-45 text-xs md:text-lg">2</div>
                 </div>
                 <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
                 <h1 className="md:text-xl text-sm">Team-B</h1>
@@ -102,7 +102,7 @@ const LeaderBoard = () => {
                   teamPoints={team.pointsScored}
                   id={index}
                 />
-                <div className="w-[334px] h-0 md:w-full border border-zinc-600 border-opacity-50"></div>
+                <div className=" h-0 w-full border border-zinc-300 dark:border-zinc-600 border-opacity-50"></div>
               </div>
             ))}
           </div>
