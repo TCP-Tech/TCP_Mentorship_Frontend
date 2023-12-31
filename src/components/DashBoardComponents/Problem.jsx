@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Problem = ({ title, desc, topic, level, url }) => {
+const Problem = ({ title, desc, topic, level, url,time }) => {
   const [isMarked, setIsMarked] = useState(false);
 
   const toggleMark = () => {
@@ -11,9 +11,10 @@ const Problem = ({ title, desc, topic, level, url }) => {
     <div className="flex flex-col sm:flex-row items-center dark:bg-gray-800 dark:border-white justify-between border border-gray-400 rounded-lg m-2">
       <a href={url} target="_blank">
         <div className="flex flex-col p-2">
-          <h1 className="m-4 text-2xl dark:text-white font-semibold">
+          <h1 className="m-2 text-2xl dark:text-white font-semibold">
             {title}
           </h1>
+          <p className="ml-2 text-sm italic text-black dark:text-white">Posted on <span>{time}</span></p>
           <h3 className="m-4 text-md dark:text-white">{desc}</h3>
         </div>
       </a>
