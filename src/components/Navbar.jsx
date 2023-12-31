@@ -7,10 +7,18 @@ import { MdWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
-  const [isDarkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(false)
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleDarkMode = () => {
+    if(isDarkMode === false)
+    {
+      window.document.documentElement.classList.add("dark");
+    }
+    else
+    {
+      window.document.documentElement.classList.remove("dark");
+    }
     setDarkMode(!isDarkMode);
   };
 
