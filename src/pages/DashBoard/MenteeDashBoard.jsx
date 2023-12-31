@@ -73,7 +73,7 @@ const DashBoard = () => {
       <div className="flex flex-col md:flex-row">
         {/* Second part */}
         {isSidebarOpen && (
-          <div className="Sidebar z-[999] md:relative absolute">
+          <div className="Sidebar z-[9999] md:fixed absolute">
             <SideBar
               options={options}
               selectedOption={selectedOption}
@@ -83,8 +83,8 @@ const DashBoard = () => {
             />
           </div>
         )}
-        <div className="Right_part border w-full flex flex-col">
-          <nav className="w-full flex items-center justify-between shadow-md py-2 px-5">
+        <div className={`Right_part border w-full flex flex-col ${isSidebarOpen&& "md:ml-72"}`}>
+          <nav className={`w-full z-[999] flex fixed items-center justify-between shadow-md py-2 px-5  ${isSidebarOpen&& "pr-80"} bg-white`}>
             {!isSidebarOpen && (
               <FaBars
                 className="text-2xl cursor-pointer text-black"
@@ -117,11 +117,11 @@ const DashBoard = () => {
               </div>
               {dropVisible && (
                 <div
-                  className="absolute right-0 z-30 mt-12 bg-white dark:bg-gray-800 text-white rounded-md shadow-xl cursor-pointer"
+                  className="absolute right-0 z-[500] mt-12 bg-white  dark:bg-gray-800 text-white rounded-md shadow-xl cursor-pointer"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <div className="absolute right-0 z-20 w-48 py-2 mt-2 origin-top-right bg-white dark:bg-gray-800 text-white rounded-md shadow-xl cursor-pointer">
+                  <div className={`absolute  ${isSidebarOpen ? "right-80" : "right-2"} z-20 w-48 py-2 mt-2 origin-top-right bg-white dark:bg-gray-800 text-white rounded-md shadow-xl cursor-pointer`}>
                     <li
                       className="flex items-center px-4 py-3 hover:bg-gray-700"
                       onClick={() => handleOptionSelect("Profile")}
@@ -142,7 +142,7 @@ const DashBoard = () => {
             </div>
           </nav>
           {/* Main section starts */}
-          <div className="flex flex-col ">{renderMainContent()}</div>
+          <div className="flex flex-col mt-20">{renderMainContent()}</div>
         </div>
       </div>
     </>
