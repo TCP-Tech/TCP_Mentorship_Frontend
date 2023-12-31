@@ -88,7 +88,7 @@ const Signup = () => {
     <div className="h-screen w-screen">
       <ToastContainer />
       <div className="h-screen w-full bg-white flex-col md:flex-row shadow-lg flex">
-        <div className="h-screen sm:overflow-y-auto p-8 flex justify-center flex-col w-full md:w-[50%] ">
+        <div className="h-max sm:h-screen sm:overflow-y-auto dark:bg-gray-900 p-8 flex justify-center flex-col w-full md:w-[50%] ">
             
           {/* <Link
             to={"/"}
@@ -96,15 +96,15 @@ const Signup = () => {
           >
             Home
           </Link> */}
-        <div className="sm:mx-auto mt-[40rem] sm:mt-[36rem] sm:w-full sm:max-w-sm">
+        <div className="sm:mx-auto  sm:mt-[36rem] sm:w-full sm:max-w-sm">
         <div className="text-center ">
           <button
             type="button"
             id="mentee"
-            className={`rounded-full mx-1 p-2 border-4 border-blue-600`}
+            className={`rounded-full mx-1 p-2 h-48 w-48 border-4 dark:bg-white border-blue-600`}
           >
             <img src={Menteeimg} alt="" className="h-36 w-36 rounded-full" />
-            <span className="text-black">Mentee</span>
+            <span className=" text-black">Mentee</span>
           </button>
         </div>
         
@@ -113,7 +113,7 @@ const Signup = () => {
           <h2 className="font-bold text-4xl mt-8 text-[var(--primary-c)]">
             {`Signup`}
           </h2>
-          <p className="text-lg mt-4 text-black">
+          <p className="text-lg mt-4  dark:text-white text-black">
             Register with your details
           </p>
 
@@ -125,10 +125,10 @@ const Signup = () => {
             onSubmit={(e) => handleSubmit(e)}
           >
             {/* Fullname */}
-             <div className="flex flex-col items-start mt-8 text-black">
+             <div className="flex flex-col items-start mt-8  dark:text-white text-black">
               <p>Full Name</p>
               <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                 type="text"
                 name="fullname"
                 required
@@ -138,10 +138,10 @@ const Signup = () => {
             </div>
 
             {/* email */}
-            <div className="flex flex-col items-start  text-black">
+            <div className="flex flex-col items-start  dark:text-white text-black">
               <p>Email or Mobile No.</p>
               <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                 type="text"
                 name="userid"
                 required
@@ -150,10 +150,10 @@ const Signup = () => {
               />
             </div>
             {/* username */}
-            <div className="flex flex-col items-start  text-black">
+            <div className="flex flex-col items-start  dark:text-white text-black">
               <p>User Name</p>
               <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                 type="text"
                 name="username"
                 required
@@ -163,10 +163,10 @@ const Signup = () => {
             </div>
             {/* password */}
             <div className="relative">
-              <div className="flex flex-col items-start text-black">
+              <div className="flex flex-col items-start dark:text-white text-black">
                 <p>Password</p>
                 <input
-                  className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                  className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Password"
@@ -220,10 +220,10 @@ const Signup = () => {
               )}
             </div>
             {/* confirmpassword */}
-              <div className="flex flex-col items-start text-black">
+              <div className="flex flex-col items-start dark:text-white text-black">
                 <p>Confirm Password</p>
                 <input
-                  className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                  className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                   type="text"
                   name="confirmpassword"
                   placeholder="Confirm Password"
@@ -233,10 +233,10 @@ const Signup = () => {
               </div>
 
               {/* phonenumber */}
-              <div className="flex flex-col items-start  text-black">
+              <div className="flex flex-col items-start  dark:text-white text-black">
               <p>Phone number</p>
               <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                 type="number"
                 name="username"
                 required
@@ -250,7 +250,7 @@ const Signup = () => {
           <div>
             <div
               for="Branch"
-              className=" text-sm font-medium leading-6 text-gray-900"
+              className=" text-sm font-medium leading-6 text-black dark:text-white"
             >
               Branch
               <select
@@ -258,7 +258,7 @@ const Signup = () => {
                 id="branch"
                 required
                 onChange={(e) => handle(e)}
-                className="text-black mx-4 bg-white"
+                className=" text-black mx-4 bg-white"
                 
               >
                 <option value="select" default>
@@ -283,7 +283,7 @@ const Signup = () => {
             <div>
             <div
               for="sem"
-              className=" text-sm font-medium leading-6 text-gray-900"
+              className=" text-sm font-medium leading-6 text-black dark:text-white"
             >
               Semester
               <select
@@ -291,7 +291,7 @@ const Signup = () => {
                id="sem" 
                onChange={(e) => handle(e)}
                required
-               className="text-black mx-4 bg-white">
+               className=" text-black mx-4 bg-white">
                 <option value="select" default>
                   Select
                 </option >
@@ -306,10 +306,10 @@ const Signup = () => {
           </div>
 
           {/* leetcode */}
-          <div className="flex flex-col items-start  text-black">
+          <div className="flex flex-col items-start  dark:text-white text-black">
               <p>Leetcode </p>
               <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                 type="text"
                 name="leetcode"
                 required
@@ -319,10 +319,10 @@ const Signup = () => {
             </div>
 
             {/* codechef */}
-            <div className="flex flex-col items-start  text-black">
+            <div className="flex flex-col items-start  dark:text-white text-black">
               <p>Codechef </p>
               <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] bg-white"
+                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                 type="text"
                 name="codechef"
                 placeholder="Enter your Codechef profile url"
