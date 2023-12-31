@@ -13,7 +13,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/TCP-Tech/TCP_Mentorship_Frontend">
-    <img src="/src/assets/images/codeutsavaTitle.svg" alt="Logo" width="400">
+    <img src="/src/assets/images/tcpName.svg" alt="Logo" width="400">
   </a>
 
   <h3 align="center">TCP Mentorship</h3>
