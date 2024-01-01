@@ -94,7 +94,7 @@ const Navbar = () => {
                 />
               ) : (
                 <FaMoon
-                  fill="#111"
+                  fill="#fff"
                   size={24}
                   onClick={handleDarkMode}
                   className="cursor-pointer"
