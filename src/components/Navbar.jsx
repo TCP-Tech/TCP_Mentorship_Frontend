@@ -7,6 +7,7 @@ import { MdWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
+  
   const [isDarkMode, setDarkMode] = useState(false)
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
@@ -74,7 +75,7 @@ const Navbar = () => {
                 />
               ) : (
                 <FaMoon
-                  fill="#111"
+                  fill="#fff"
                   size={24}
                   onClick={handleDarkMode}
                   className="cursor-pointer"
