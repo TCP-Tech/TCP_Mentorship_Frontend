@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/images/tcpLogo.png";
 import logoDark from "../assets/images/tcp.png";
 import ham from "../assets/images/hamburger.svg";
@@ -7,20 +7,40 @@ import { MdWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
-  const [isDarkMode, setDarkMode] = useState(false)
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [isDarkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme ? savedTheme === 'dark' : prefersDarkMode;
+  });
 
   const handleDarkMode = () => {
-    if(isDarkMode === false)
-    {
-      window.document.documentElement.classList.add("dark");
-    }
-    else
-    {
-      window.document.documentElement.classList.remove("dark");
-    }
-    setDarkMode(!isDarkMode);
+    const newMode = !isDarkMode;
+    setDarkMode(newMode);
+    localStorage.setItem('theme', newMode ? 'dark' : 'light');
   };
+
+  useEffect(() => {
+    const prefersDarkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const updateTheme = (e) => {
+      const newMode = e.matches;
+      setDarkMode(newMode);
+      localStorage.setItem('theme', newMode ? 'dark' : 'light');
+    };
+  
+    prefersDarkModeQuery.addListener(updateTheme);
+    return () => {
+      prefersDarkModeQuery.removeListener(updateTheme);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleDropdownToggle = () => {
     setDropdownOpen(!isDropdownOpen);
