@@ -18,7 +18,7 @@ const LeaderBoard = () => {
   };
 
   return (
-    <div className="bg-white flex flex-col dark:bg-gray-900 pt-12">
+    <div className="bg-transparent flex flex-col  pt-12">
       {/* LeaderBoard Heading */}
       <div className="text-center">
         <h1 className="md:text-5xl text-3xl p-8 font-bold text-black dark:text-white">
