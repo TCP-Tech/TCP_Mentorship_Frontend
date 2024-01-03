@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 const ProblemList = ({toggleConfetti}) => {
   return (
     <div className="flex flex-col">
-      <h1 className="text-3xl text-black pt-7 pb-5 font-semibold">
+      <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 font-semibold">
         Problems Assigned
       </h1>
       <div className="flex flex-col">
