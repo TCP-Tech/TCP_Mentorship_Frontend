@@ -33,7 +33,7 @@ const customStyles = {
 const AddProblem = () => {
   return (
     <div className="flex flex-col  space-x-8">
-      <h1 className="text-3xl text-black pt-7 pb-5 ml-8 font-semibold">
+      <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 ml-8 font-semibold">
         Add a Problem
       </h1>
       <form>
@@ -43,7 +43,7 @@ const AddProblem = () => {
               <div className="sm:col-span-4">
                 <label
                   htmlFor="title"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
                 >
                   Problem Title
                 </label>
@@ -60,7 +60,7 @@ const AddProblem = () => {
               <div className="sm:col-span-3">
                 <label
                   htmlFor="topic"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
                 >
                   Problem Topic
                 </label>
@@ -80,7 +80,7 @@ const AddProblem = () => {
               <div className="sm:col-span-3">
                 <label
                   htmlFor="level"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
                 >
                   Problem Difficulty
                 </label>
@@ -101,7 +101,7 @@ const AddProblem = () => {
               <div className="col-span-full">
                 <label
                   htmlFor="desc"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
                 >
                   About
                 </label>
@@ -121,7 +121,7 @@ const AddProblem = () => {
               <div className="sm:col-span-4">
                 <label
                   htmlFor="url"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
                 >
                   Problem URL
                 </label>

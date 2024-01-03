@@ -4,7 +4,7 @@ const MentorDefaultDash = () => {
   return (
     <>
     <div>
-    <h1 className="text-3xl pt-7 pb-5  text-black font-semibold">Overview</h1>
+    <h1 className="text-3xl pt-7 pb-5  text-black dark:text-white font-semibold">Overview</h1>
     <div className="flex flex-col md:flex-row justify-center items-center">
     <div className="flex md:flex-row m-2 flex-col flex-wrap items-center justify-center w-[100%] md:w-[50%]">
     <div className="flex flex-col rounded-lg p-4 m-2 w-60 md:w-64 bg-red-100 md:mr-2 mt-2">
@@ -28,7 +28,7 @@ const MentorDefaultDash = () => {
     </div>
   </div>
 <div>
-    <h1 className="text-3xl pt-7 pb-5  text-black font-semibold">Problem Stats</h1>
+    <h1 className="text-3xl pt-7 pb-5  text-black dark:text-white font-semibold">Problem Stats</h1>
     <div className="flex flex-col">
       <div className="flex flex-wrap">
         <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
@@ -45,7 +45,7 @@ const MentorDefaultDash = () => {
         </div>
       </div>
     </div>
-    <h1 className="text-3xl text-black pt-7 pb-5 font-semibold">Topics covered</h1>
+    <h1 className="text-3xl text-black  dark:text-white pt-7 pb-5 font-semibold">Topics covered</h1>
     <div className="flex flex-col">
       <div className="flex flex-wrap">
         <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-gray-100">
