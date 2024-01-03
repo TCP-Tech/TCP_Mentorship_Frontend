@@ -71,7 +71,7 @@ const DashBoard = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row bg:white dark:bg-gray-900">
          {showConfetti && <Confetti  onComplete={() => setShowConfetti(false)}/>}
         {/* Second part */}
         {isSidebarOpen && (
@@ -86,23 +86,23 @@ const DashBoard = () => {
           </div>
         )}
         <div
-          className={`Right_part border w-full flex flex-col ${
+          className={`Right_part  w-full flex flex-col ${
             isSidebarOpen && "md:ml-72"
           }`}
         >
           <nav
             className={`w-full z-[999] flex fixed items-center justify-between shadow-md py-2 px-5  ${
               isSidebarOpen && "pr-80"
-            } bg-white`}
+            } bg-transparent backdrop-blur-md`}
           >
             {!isSidebarOpen && (
               <FaBars
-                className="text-2xl cursor-pointer text-black"
+                className="text-2xl cursor-pointer text-black dark:text-white"
                 onClick={toggleSidebar}
               />
             )}
-            <div className="h-auto py-2 mr-auto pl-4">
-              <p className="md:text-2xl text-sm text-black font-semibold md:block hidden">
+            <div className="h-auto py-2 mr-auto pl-4 ">
+              <p className="md:text-2xl text-sm  font-semibold md:block hidden text-black dark:text-white">
                 Welcome Back!👋
               </p>
               <p className="text-gray-500 md:text-lg text-xs md:block hidden">
@@ -116,10 +116,10 @@ const DashBoard = () => {
                   src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                   alt=""
                 />
-                <p className="text-black md:text-lg text-sm">Hi Rishabh!</p>
+                <p className="text-black dark:text-gray-500 md:text-lg text-sm">Hi Rishabh!</p>
                 <div
                   onClick={handleMouseClick}
-                  className="text-black w-8 h-8 flex justify-center items-center "
+                  className="text-black dark:text-gray-500 w-8 h-8 flex justify-center items-center "
                 >
                   {dropVisible ? <FaChevronUp /> : <FaChevronDown />}
                 </div>

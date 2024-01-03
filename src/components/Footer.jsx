@@ -148,7 +148,6 @@ const Footer = () => {
               Problems
             </a>
           </div>
-          {/* Add other links similarly */}
         </div>
       </div>
       <div className="flex justify-between items-center w-full my-8">

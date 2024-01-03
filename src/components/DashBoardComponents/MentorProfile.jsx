@@ -50,7 +50,7 @@ const Profile = () => {
   return (
     <div className="flex justify-center items-center h-full">
       <div className="w-full py-10 flex flex-col justify-center items-center">
-        <h1 className="text-3xl font-bold mb-4 text-black">Your Profile</h1>
+        <h1 className="text-3xl font-bold mb-4 text-black dark:text-white">Your Profile</h1>
         <form
           action=""
           className="flex flex-col gap-4 w-4/5"
@@ -65,7 +65,7 @@ const Profile = () => {
               />
               {!disabledForm && (
                 <div className="absolute ml-28 mt-1 mr-1">
-                  <FaEdit className="text-black cursor-pointer" />
+                  <FaEdit className="text-black dark:text-white cursor-pointer" />
                 </div>
               )}
             </div>
