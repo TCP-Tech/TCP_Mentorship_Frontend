@@ -1,12 +1,23 @@
 import React from "react";
+import { useEffect } from "react";
 // import "./HeroSection.css";
 // import blob from "../../assets/images/blob.svg";
 // import blob2 from "../../assets/images/blob2.svg";
 import { Player } from "@lottiefiles/react-lottie-player";
 import heroAnimation from "../assets/images/heroAnimation.json";
-import Wrapper from "./Wrapper";
+import { fetchDataFromApiWithResponse } from "../utils/api";
 
 const HeroSection = () => {
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const body = { username: "virajchandra51@gmail.com", password: "viraj123" };
+    const data = await fetchDataFromApiWithResponse(body, "login");
+    console.log(data.data.name);
+  };
+
   return (
     <div className="flex lg:justify-center lg:items-center md:my-16 my-12">
       <div className="flex flex-col card bg-transparent lg:flex-row">
