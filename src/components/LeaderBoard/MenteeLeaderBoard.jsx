@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { mentees } from "../../data/MenteeData";
-import TopRankersCarousel from "../TopRankersCarousel";
+import Confetti from "../../utils/Confetti";
 
 const MenteeLeaderBoard = () => {
   const [showCarousel, setShowCarousel] = useState(false);
   const topThreeRankers = [mentees[0], mentees[1], mentees[2]];
-  useEffect(() => {
+  useEffect(() => { 
     const handleResize = () => {
       if (window.outerWidth >= 768) {
         setShowCarousel(false);
@@ -19,6 +19,7 @@ const MenteeLeaderBoard = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <div>
       <section className="px-4 mx-auto">

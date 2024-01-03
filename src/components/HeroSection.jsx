@@ -9,7 +9,7 @@ import Wrapper from "./Wrapper";
 const HeroSection = () => {
   return (
     <div className="flex lg:justify-center lg:items-center md:my-16 my-12">
-      <div className="flex flex-col card bg-white dark:bg-gray-900 lg:flex-row">
+      <div className="flex flex-col card bg-transparent lg:flex-row">
         <div className="lg:w-[60%] flex flex-col justify-start pb-5">
           <h3 className="text-2xl md:text-3xl text-gray-900 dark:text-white font-bold mt-7">
             TCP PRESENTS
