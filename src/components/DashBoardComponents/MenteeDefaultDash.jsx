@@ -2,7 +2,7 @@ import React from "react"
 import ProblemList from "./ProblemList"
 import Profile from "./Profile"
 
-const MenteeDefaultDash = () => {
+const MenteeDefaultDash = ({toggleConfetti}) => {
   return (
     <div className="p-5">
     <h1 className="text-3xl text-black pt-7 pb-5 font-semibold">Overview</h1>
@@ -27,7 +27,7 @@ const MenteeDefaultDash = () => {
     </div>
     <div className=" w-[100%] md:w-[50%] flex justify-center items-center"><Profile mode="mentee"/></div>
     </div>
-    <ProblemList/>
+    <ProblemList toggleConfetti={toggleConfetti} />
   </div>
   )
 }

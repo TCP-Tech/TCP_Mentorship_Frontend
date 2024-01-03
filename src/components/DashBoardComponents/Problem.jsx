@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 
-const Problem = ({ title, desc, topic, level, url,time }) => {
+const Problem = ({ title, desc, topic, level, url,time,toggleConfetti }) => {
   const [isMarked, setIsMarked] = useState(false);
 
-  const toggleMark = () => {
-    setIsMarked(!isMarked);
+  const toggleMark = () => { 
+    setIsMarked(true);
+    if(!isMarked){
+      toggleConfetti();
+    }
+  
   };
 
   return (
