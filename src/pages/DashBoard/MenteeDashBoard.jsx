@@ -13,6 +13,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import Confetti from "../../utils/Confetti";
 
 const options = ["Profile", "Dashboard", "Team Leaderboard", "Leaderboard"];
 
@@ -20,6 +21,7 @@ const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedOption, setSelectedOption] = useState("Dashboard");
   const [dropVisible, setdropVisible] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   const navigate = useNavigate();
 
   const handleSignOut = () => {
@@ -32,10 +34,13 @@ const DashBoard = () => {
     setdropVisible(!dropVisible);
     setSelectedOption(option);
   };
+  const toggleConfetti = () => {
+    setShowConfetti(true);
+  };
   const renderMainContent = () => {
     switch (selectedOption) {
       case "Dashboard":
-        return <MenteeDefaultDash />;
+        return <MenteeDefaultDash toggleConfetti={toggleConfetti} />;
       case "Leaderboard":
         return <MenteeLeaderBoard />;
       case "Assign Problem":
@@ -51,12 +56,11 @@ const DashBoard = () => {
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth <= 768) {
-        setIsSidebarOpen(false); // Update state to hide sidebar for smaller screens
+        setIsSidebarOpen(false); 
       } else {
-        setIsSidebarOpen(true); // Show sidebar for larger screens
+        setIsSidebarOpen(true); 
       }
     }
-    // Initial check on load
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -68,6 +72,7 @@ const DashBoard = () => {
   return (
     <>
       <div className="flex flex-col md:flex-row">
+         {showConfetti && <Confetti  onComplete={() => setShowConfetti(false)}/>}
         {/* Second part */}
         {isSidebarOpen && (
           <div className="Sidebar z-[9999] md:fixed absolute">
