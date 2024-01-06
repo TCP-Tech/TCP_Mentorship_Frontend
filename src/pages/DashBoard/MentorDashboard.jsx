@@ -16,7 +16,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 
 
-const options = ["Profile", "Dashboard" , "Team LeaderBoard" , "LeaderBoard" , "Assign Problem"];
+const options = ["Profile", "Dashboard" , "Team Leaderboard" , "Leaderboard" , "Assign Problem"];
 
 const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -38,9 +38,9 @@ const DashBoard = () => {
     switch (selectedOption) {
      case "Dashboard" : 
       return <MentorDefaultDash/>;
-      case "LeaderBoard":
+      case "Leaderboard":
         return <MenteeLeaderBoard />;
-      case "Team LeaderBoard":
+      case "Team Leaderboard":
         return <LeaderBoard />;
       case "Profile" : 
         return <Profile/>
