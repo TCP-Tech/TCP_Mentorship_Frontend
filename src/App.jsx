@@ -6,6 +6,7 @@ import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home";
 import MenteeDashBoard from "./pages/DashBoard/MenteeDashBoard";
 import MentorDashboard from "./pages/DashBoard/MentorDashboard";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const App = () => {
   const [isDarkMode, setDarkMode] = useState(false);
@@ -27,6 +28,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route exact path="*" element={<NotFoundPage />} />
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
