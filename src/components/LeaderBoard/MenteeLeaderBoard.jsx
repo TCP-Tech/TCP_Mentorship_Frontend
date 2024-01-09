@@ -42,7 +42,7 @@ const MenteeLeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">2</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="md:text-xl text-sm">Team-B</h1>
+                <h1 className="md:text-xl text-sm dark:text-white text-black">Team-B</h1>
                 <h1 className="md:text-xl text-sm text-gray-500">2356</h1>
               </div>
             </div>
@@ -82,7 +82,7 @@ const MenteeLeaderBoard = () => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center text-center space-y-3 mt-8 md:mt-10">
-                  <h1 className="md:text-xl text-sm">Team A</h1>
+                  <h1 className="md:text-xl text-sm dark:text-white text-black">Team A</h1>
                   <h1 className="md:text-xl text-sm text-amber-500">2356</h1>
                 </div>
               </div>
@@ -99,7 +99,7 @@ const MenteeLeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">3</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="md:text-xl text-sm">Team C</h1>
+                <h1 className="md:text-xl text-sm dark:text-white text-black">Team C</h1>
                 <h1 className="md:text-xl text-sm text-amber-700">2356</h1>
               </div>
             </div>
