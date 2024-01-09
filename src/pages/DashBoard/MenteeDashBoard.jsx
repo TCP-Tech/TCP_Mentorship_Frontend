@@ -132,14 +132,14 @@ const DashBoard = () => {
                     } z-20 w-48 mt-2 origin-top-right bg-white dark:bg-gray-800 text-black rounded-md duration-100 shadow-xl cursor-pointer`}
                   >
                     <li
-                      className="flex items-center px-4 py-3 hover:bg-[var(--primary-c)] hover:text-white duration-200"
+                      className="flex items-center px-4 py-3 hover:bg-[var(--primary-c)] hover:text-white dark:text-gray-500 duration-200"
                       onClick={() => handleOptionSelect("Profile")}
                     >
                       <FaUserCircle className="mr-2" />
                       Your profile
                     </li>
                     <li
-                      className="flex items-center px-4 py-3 hover:bg-[var(--primary-c)] hover:text-white duration-200"
+                      className="flex items-center px-4 py-3 hover:bg-[var(--primary-c)] hover:text-white duration-200 dark:text-gray-500"
                       onClick={handleSignOut}
                     >
                       <FaSignOutAlt className="mr-2" />

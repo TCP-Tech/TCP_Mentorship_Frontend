@@ -70,7 +70,7 @@ const Login = () => {
     <div className="flex  h-screen flex-col justify-center">
       <div className="h-screen w-screen">
         <ToastContainer />
-        <div className="h-screen w-full bg-white flex-col md:flex-row shadow-lg flex">
+        <div className="h-screen w-full bg-white  md:flex-row shadow-lg flex">
           <div className="p-8 dark:bg-gray-900 flex justify-center flex-col w-full md:w-[50%]">
             {/* <Link
             to={"/"}
