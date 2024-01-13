@@ -21,7 +21,6 @@ const options = ["Profile", "Dashboard" , "Team Leaderboard" , "Leaderboard" , "
 const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
-  console.log(mentor)
   const [selectedOption, setSelectedOption] = useState("Dashboard");
   const [dropVisible, setdropVisible] = useState(false);
   const navigate = useNavigate();
