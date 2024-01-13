@@ -34,7 +34,7 @@ const App = () => {
         position="bottom-right" />
       <Routes>
         <Route exact path="*" element={<NotFoundPage />} />
-        <Route exact path="/" element={<PrivateRoute element={<Home />} />} />
+        <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/mentee" element={<PrivateRoute element={<MenteeDashBoard />} />} />
