@@ -1,31 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { fetchDataFromApiWithResponse } from "../../utils/api";
 
 const Mentorform = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
+  const fetchData = async () => {
+    const body = { username: form.userid, password: form.password };
+   
+    const data = await fetchDataFromApiWithResponse(body, "login");
+    if(data.user_data){
+      toast.success("Sign In Successful", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      localStorage.setItem("Mentor", JSON.stringify(data.user_data));
+      setLoggedIn(true);
+    }
+    console.log("User" , data.user_data);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Sign In Successful", {
-      position: "bottom-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    fetchData();
   };
 
   const [form, setForm] = useState({
     userid: "",
     password: "",
   });
+  const checkLoggedIn = () => {
+    const mentorData = localStorage.getItem("Mentor");
+    return mentorData !== null;
+  };
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/mentor");
+    } else if (checkLoggedIn()) {
+      setLoggedIn(true);
+    }
+  }, [loggedIn, navigate]);
 
   function handle(e) {
     const n = { ...form };

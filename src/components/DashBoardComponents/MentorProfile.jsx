@@ -18,7 +18,7 @@ const branchList = [
 ];
 
 const Profile = () => {
-  
+  const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -76,7 +76,7 @@ const Profile = () => {
               className="px-3 py-1.5 rounded-md border w-[100%]"
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder={mentor.name}
               required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
@@ -88,7 +88,7 @@ const Profile = () => {
               className="px-3 py-1.5 rounded-md border w-[100%]"
               type="text"
               name="emailid"
-              placeholder="Email"
+              placeholder={mentor.username}
               required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
@@ -101,7 +101,7 @@ const Profile = () => {
                 className="px-3 py-1.5 rounded-md border w-[100%]"
                 type="text"
                 name="mobileno"
-                placeholder="Phone"
+                placeholder={mentor.phone_number}
                 required
                 onChange={(e) => handle(e)}
                 disabled={disabledForm}
@@ -115,7 +115,7 @@ const Profile = () => {
                 className="px-3 py-1.5 rounded-md border w-[100%]"
                 type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder="Password"
+                placeholder={mentor.password}
                 onChange={(e) => handle(e)}
                 disabled={disabledForm}
               />
