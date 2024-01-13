@@ -20,11 +20,12 @@ const options = ["Profile", "Dashboard" , "Team Leaderboard" , "Leaderboard" , "
 
 const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
   const [selectedOption, setSelectedOption] = useState("Dashboard");
   const [dropVisible, setdropVisible] = useState(false);
   const navigate = useNavigate();
-
   const handleSignOut = () => {
+    localStorage.removeItem("Mentor")
     navigate("/login");
   };
   const handleMouseClick = () => {
@@ -55,12 +56,11 @@ const DashBoard = () => {
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth <= 768) {
-        setIsSidebarOpen(false); // Update state to hide sidebar for smaller screens
+        setIsSidebarOpen(false); 
       } else {
-        setIsSidebarOpen(true); // Show sidebar for larger screens
+        setIsSidebarOpen(true); 
       }
     }
-    // Initial check on load
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -103,7 +103,7 @@ const DashBoard = () => {
             )}
           <div className="h-auto py-2 mr-auto pl-4">
               <p className="md:text-2xl text-sm text-black dark:text-white font-semibold md:block hidden">
-              Hello Mentor1 👋
+              Welcome back {mentor.name} 👋
               </p>
               <p className="text-gray-500 md:text-lg text-xs md:block hidden">
               Ready to guide the energetic mentees in their coding and development journey?!
@@ -116,7 +116,7 @@ const DashBoard = () => {
                   src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                   alt=""
                 />
-                <p className="text-black dark:text-gray-500 md:text-lg text-sm">Hi Rishabh!</p>
+                <p className="text-black dark:text-gray-500 md:text-lg text-sm">Hi {mentor.name} !</p>
                 <div
                   onClick={handleMouseClick}
                   className="text-black dark:text-gray-500 w-8 h-8 flex justify-center items-center "

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeroSection from "../components/HeroSection";
 import LeaderBoard from "../components/LeaderBoard/TeamLeaderBoard";
 import MenteeLeaderBoard from "../components/LeaderBoard/MenteeLeaderBoard";
@@ -6,7 +6,15 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Wrapper from "../components/Wrapper";
 import Counter from "../components/Counter";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
+  const navigate=useNavigate()
+  useEffect(()=>{
+      if(mentor){
+        navigate("/mentor");
+      }
+  },[mentor])
   return (
     <div className="dark:bg-gray-900">
     <div class="bg-zinc-500 absolute -bottom-[10rem] -z-10 w-right-[5rem] h-[15.25rem] w-[21.25rem] rounded-full blur-[100rem] sm:w-[68.75rem] dark:bg-[#fff] dark:hidden"></div>

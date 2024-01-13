@@ -8,15 +8,15 @@ import heroAnimation from "../assets/images/heroAnimation.json";
 import { fetchDataFromApiWithResponse } from "../utils/api";
 
 const HeroSection = () => {
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  const fetchData = async () => {
-    const body = { username: "virajchandra51@gmail.com", password: "viraj123" };
-    const data = await fetchDataFromApiWithResponse(body, "login");
-    console.log(data.data.name);
-  };
+  // const fetchData = async () => {
+  //   const body = { username: "virajchandra51@gmail.com", password: "viraj123" };
+  //   const data = await fetchDataFromApiWithResponse(body, "login");
+  //   console.log(data.data.name);
+  // };
 
   return (
     <div className="flex lg:justify-center lg:items-center md:my-16 my-12">
