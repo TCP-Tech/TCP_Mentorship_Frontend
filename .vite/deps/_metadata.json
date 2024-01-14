@@ -1,0 +1,100 @@
+{
+  "hash": "9b9c431b",
+  "configHash": "f0e5df53",
+  "lockfileHash": "80c85a8c",
+  "browserHash": "aa7d29b1",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "0dcc1cff",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "a6e09c7c",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "b9f488d6",
+      "needsInterop": false
+    },
+    "react-toastify": {
+      "src": "../../node_modules/react-toastify/dist/react-toastify.esm.mjs",
+      "file": "react-toastify.js",
+      "fileHash": "fbc5d35c",
+      "needsInterop": false
+    },
+    "react-icons/fa": {
+      "src": "../../node_modules/react-icons/fa/index.esm.js",
+      "file": "react-icons_fa.js",
+      "fileHash": "12e931f0",
+      "needsInterop": false
+    },
+    "@lottiefiles/react-lottie-player": {
+      "src": "../../node_modules/@lottiefiles/react-lottie-player/dist/lottie-react.esm.js",
+      "file": "@lottiefiles_react-lottie-player.js",
+      "fileHash": "c822842b",
+      "needsInterop": false
+    },
+    "react-icons/md": {
+      "src": "../../node_modules/react-icons/md/index.esm.js",
+      "file": "react-icons_md.js",
+      "fileHash": "5c5bd226",
+      "needsInterop": false
+    },
+    "react-modal": {
+      "src": "../../node_modules/react-modal/lib/index.js",
+      "file": "react-modal.js",
+      "fileHash": "0337d1f5",
+      "needsInterop": true
+    },
+    "react-countup": {
+      "src": "../../node_modules/react-countup/build/index.js",
+      "file": "react-countup.js",
+      "fileHash": "7023885d",
+      "needsInterop": true
+    },
+    "react-scroll-trigger": {
+      "src": "../../node_modules/react-scroll-trigger/es/index.js",
+      "file": "react-scroll-trigger.js",
+      "fileHash": "67d6d20b",
+      "needsInterop": false
+    },
+    "react-select": {
+      "src": "../../node_modules/react-select/dist/react-select.esm.js",
+      "file": "react-select.js",
+      "fileHash": "b1633a25",
+      "needsInterop": false
+    },
+    "chart.js/auto": {
+      "src": "../../node_modules/chart.js/auto/auto.js",
+      "file": "chart__js_auto.js",
+      "fileHash": "9772da4d",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-WERRJZK3": {
+      "file": "chunk-WERRJZK3.js"
+    },
+    "chunk-NMIZHWR2": {
+      "file": "chunk-NMIZHWR2.js"
+    },
+    "chunk-ORBZ5EXD": {
+      "file": "chunk-ORBZ5EXD.js"
+    },
+    "chunk-4ZSTBHIF": {
+      "file": "chunk-4ZSTBHIF.js"
+    },
+    "chunk-HAZNF34R": {
+      "file": "chunk-HAZNF34R.js"
+    },
+    "chunk-WXXH56N5": {
+      "file": "chunk-WXXH56N5.js"
+    }
+  }
+}
