@@ -5,49 +5,123 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
 import Menteeimg from "../../assets/images/Menteeimg.jpg";
+import Select from "react-select";
 
 import { useNavigate } from "react-router-dom";
 // import bgImage from "../assets/bgImage.jpg";
 import { useLayoutEffect } from "react";
+
+const branchList = [
+  {
+    label: "CSE",
+    value: "CSE",
+  },
+  {
+    label: "IT",
+    value: "IT",
+  },
+  {
+    label: "ECE",
+    value: "ECE",
+  },
+  {
+    label: "EE",
+    value: "EE",
+  },
+  {
+    label: "MECH",
+    value: "MECH",
+  },
+  {
+    label: "CIVIL",
+    value: "CIVIL",
+  },
+  {
+    label: "CHEM",
+    value: "CHEM",
+  },
+  {
+    label: "META",
+    value: "META",
+  },
+  {
+    label: "MIN",
+    value: "MIN",
+  },
+  {
+    label: "BIOTECH",
+    value: "BIOTECH",
+  },
+  {
+    label: "BIOMED",
+    value: "BIOMED",
+  },
+  {
+    label: "MCA",
+    value: "MCA",
+  },
+];
+
+const semesterList = [
+  {
+    label: "1",
+    value: "1",
+  },
+  {
+    label: "2",
+    value: "2",
+  },
+  {
+    label: "3",
+    value: "3",
+  },
+  {
+    label: "4",
+    value: "4",
+  },
+  {
+    label: "5",
+    value: "5",
+  },
+  {
+    label: "6",
+    value: "6",
+  },
+  {
+    label: "7",
+    value: "7",
+  },
+  {
+    label: "8",
+    value: "8",
+  },
+];
 
 const Signup = () => {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   });
 
-
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    fullname:"",
+    fullname: "",
     userid: "",
-    username:"",
+    username: "",
     password: "",
-    confirmpassword:"",
-    phonenumber:"",
-    branch:"",
-    sem:"",
-    leetcode:"",
-    codechef:""
+    confirmpassword: "",
+    phonenumber: "",
+    branch: "",
+    sem: "",
+    leetcode: "",
+    codechef: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(form.confirmpassword===form.password){
-    toast.success("Sign In Successful", {
-      position: "bottom-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-   }
-   else{
-    toast.error("password and confirm password should be same", {
+    if (form.confirmpassword === form.password) {
+      toast.success("Sign In Successful", {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -57,16 +131,29 @@ const Signup = () => {
         progress: undefined,
         theme: "dark",
       });
-
-   }
-    
+    } else {
+      toast.error("password and confirm password should be same", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
-
-
 
   function handle(e) {
     const n = { ...form };
-    n[e.target.name]=e.target.value;
+    n[e.target.name] = e.target.value;
+    setForm(n);
+  }
+
+  function handleSelect(selectedOption, object) {
+    const n = { ...form };
+    n[object.name] = selectedOption.value;
     setForm(n);
   }
 
@@ -85,258 +172,223 @@ const Signup = () => {
 
   return (
     <div className="flex h-screen flex-col justify-center">
-    <div className="h-screen w-screen">
-      <ToastContainer />
-      <div className="h-screen w-full bg-white flex-col md:flex-row shadow-lg flex">
-        <div className="h-max sm:h-screen sm:overflow-y-auto dark:bg-gray-900 p-8 flex justify-center flex-col w-full md:w-[50%] ">
-            
-          {/* <Link
+      <div className="h-screen w-screen">
+        <ToastContainer />
+        <div className="h-screen w-full bg-white flex-col md:flex-row shadow-lg flex">
+          <div className="h-max sm:h-screen sm:overflow-y-auto dark:bg-gray-900 p-8 flex justify-center flex-col w-full md:w-[50%] ">
+            {/* <Link
             to={"/"}
             className="w-[30%] max-w-[100px] text-center bg-[var(--primary-c)] rounded-md text-white py-2 hover:bg-[var(--tertiary-c)] duration-300"
           >
             Home
           </Link> */}
-        <div className="sm:mx-auto  sm:mt-[36rem] sm:w-full sm:max-w-sm">
-        <div className="text-center ">
-          <button
-            type="button"
-            id="mentee"
-            className={`rounded-full mx-1 p-2 h-48 w-48 border-4 dark:bg-white border-blue-600`}
-          >
-            <img src={Menteeimg} alt="" className="h-36 w-36 rounded-full" />
-            <span className=" text-black">Mentee</span>
-          </button>
-        </div>
-        
-      </div>
-
-          <h2 className="font-bold text-4xl mt-8 text-[var(--primary-c)]">
-            {`Signup`}
-          </h2>
-          <p className="text-lg mt-4  dark:text-white text-black">
-            Register with your details
-          </p>
-
-         
-          <div >
-          <form
-            action=""
-            className="flex flex-col gap-4"
-            onSubmit={(e) => handleSubmit(e)}
-          >
-            {/* Fullname */}
-             <div className="flex flex-col items-start mt-8  dark:text-white text-black">
-              <p>Full Name</p>
-              <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                type="text"
-                name="fullname"
-                required
-                placeholder="Enter your name"
-                onChange={(e) => handle(e)}
-              />
-            </div>
-
-            {/* email */}
-            <div className="flex flex-col items-start  dark:text-white text-black">
-              <p>Email or Mobile No.</p>
-              <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                type="text"
-                name="userid"
-                required
-                placeholder="Email or Mobile No."
-                onChange={(e) => handle(e)}
-              />
-            </div>
-            {/* username */}
-            <div className="flex flex-col items-start  dark:text-white text-black">
-              <p>User Name</p>
-              <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                type="text"
-                name="username"
-                required
-                placeholder="Enter your  User name"
-                onChange={(e) => handle(e)}
-              />
-            </div>
-            {/* password */}
-            <div className="relative">
-              <div className="flex flex-col items-start dark:text-white text-black">
-                <p>Password</p>
-                <input
-                  className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  placeholder="Password"
-                  required
-                  onChange={(e) => handle(e)}
-                />
-              </div>
-              {showPassword ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  className="absolute cursor-pointer top-[39px] right-2"
-                  onClick={() => setShowPassword((prev) => !prev)}
+            <div className="sm:mx-auto  sm:mt-[36rem] sm:w-full sm:max-w-sm">
+              <div className="text-center ">
+                <button
+                  type="button"
+                  id="mentee"
+                  className={`rounded-full mx-1 p-2 h-48 w-48 border-4 dark:bg-white border-blue-600`}
                 >
-                  <path
-                    d="M12 5C5.63636 5 2 12 2 12C2 12 5.63636 19 12 19C18.3636 19 22 12 22 12C22 12 18.3636 5 12 5Z"
-                    stroke="#aaa"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <img
+                    src={Menteeimg}
+                    alt=""
+                    className="h-36 w-36 rounded-full"
                   />
-                  <path
-                    d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
-                    stroke="#aaa"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  className="absolute cursor-pointer top-[39px] right-2"
-                  onClick={() => setShowPassword((prev) => !prev)}
-                >
-                  <path
-                    d="M20 14.8335C21.3082 13.3317 22 12 22 12C22 12 18.3636 5 12 5C11.6588 5 11.3254 5.02013 11 5.05822C10.6578 5.09828 10.3244 5.15822 10 5.23552M12 9C12.3506 9 12.6872 9.06015 13 9.17071C13.8524 9.47199 14.528 10.1476 14.8293 11C14.9398 11.3128 15 11.6494 15 12M3 3L21 21M12 15C11.6494 15 11.3128 14.9398 11 14.8293C10.1476 14.528 9.47198 13.8524 9.1707 13C9.11386 12.8392 9.07034 12.6721 9.04147 12.5M4.14701 9C3.83877 9.34451 3.56234 9.68241 3.31864 10C2.45286 11.1282 2 12 2 12C2 12 5.63636 19 12 19C12.3412 19 12.6746 18.9799 13 18.9418"
-                    stroke="#aaa"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              )}
-            </div>
-            {/* confirmpassword */}
-              <div className="flex flex-col items-start dark:text-white text-black">
-                <p>Confirm Password</p>
-                <input
-                  className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                  type="text"
-                  name="confirmpassword"
-                  placeholder="Confirm Password"
-                  required
-                  onChange={(e) => handle(e)}
-                />
+                  <span className=" text-black">Mentee</span>
+                </button>
               </div>
-
-              {/* phonenumber */}
-              <div className="flex flex-col items-start  dark:text-white text-black">
-              <p>Phone number</p>
-              <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                type="number"
-                name="username"
-                required
-                placeholder="Enter your Phone number"
-                onChange={(e) => handle(e)}
-              />
             </div>
 
-            
-          {/* {Branch} */}
-          <div>
-            <div
-              for="Branch"
-              className=" text-sm font-medium leading-6 text-black dark:text-white"
-            >
-              Branch
-              <select
-                name="branch"
-                id="branch"
-                required
-                onChange={(e) => handle(e)}
-                className=" text-black mx-4 bg-white"
-                
-              >
-                <option value="select" default>
-                  Select
-                </option>
-                <option >CSE</option>
-                <option >IT</option>
-                <option >ECE</option>
-                <option >EE</option>
-                <option >MECH</option>
-                <option >CIVIL</option>
-                <option >CHEM</option>
-                <option >META</option>
-                <option >MIN</option>
-                <option >BIOTECH</option>
-                <option >BIOMED</option>
-                <option >MCA</option>
-              </select>
-            </div>
-          </div>
-              {/* {Semester} */}
+            <h2 className="font-bold text-4xl mt-8 text-[var(--primary-c)]">
+              {`Signup`}
+            </h2>
+            <p className="text-lg mt-4  dark:text-white text-black">
+              Register with your details
+            </p>
+
             <div>
-            <div
-              for="sem"
-              className=" text-sm font-medium leading-6 text-black dark:text-white"
-            >
-              Semester
-              <select
-               name="sem"
-               id="sem" 
-               onChange={(e) => handle(e)}
-               required
-               className=" text-black mx-4 bg-white">
-                <option value="select" default>
-                  Select
-                </option >
-                <option >1</option>
-                <option >2</option>
-                <option >3</option>
-                <option >4</option>
-                <option >5</option>
-                <option >6</option>
-              </select>
+              <form
+                action=""
+                className="flex flex-col gap-4"
+                onSubmit={(e) => handleSubmit(e)}
+              >
+                {/* Fullname */}
+                <div className="flex flex-col items-start mt-8  dark:text-white text-black">
+                  <p>Full Name</p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="text"
+                    name="fullname"
+                    required
+                    placeholder="Enter your name"
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
+
+                {/* email */}
+                <div className="flex flex-col items-start  dark:text-white text-black">
+                  <p>Email or Mobile No.</p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="text"
+                    name="userid"
+                    required
+                    placeholder="Email or Mobile No."
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
+                {/* username */}
+                <div className="flex flex-col items-start  dark:text-white text-black">
+                  <p>User Name</p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="text"
+                    name="username"
+                    required
+                    placeholder="Enter your  User name"
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
+                {/* password */}
+                <div className="relative">
+                  <div className="flex flex-col items-start dark:text-white text-black">
+                    <p>Password</p>
+                    <input
+                      className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      placeholder="Password"
+                      required
+                      onChange={(e) => handle(e)}
+                    />
+                  </div>
+                  {showPassword ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      className="absolute cursor-pointer top-[39px] right-2"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    >
+                      <path
+                        d="M12 5C5.63636 5 2 12 2 12C2 12 5.63636 19 12 19C18.3636 19 22 12 22 12C22 12 18.3636 5 12 5Z"
+                        stroke="#aaa"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                        stroke="#aaa"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      className="absolute cursor-pointer top-[39px] right-2"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    >
+                      <path
+                        d="M20 14.8335C21.3082 13.3317 22 12 22 12C22 12 18.3636 5 12 5C11.6588 5 11.3254 5.02013 11 5.05822C10.6578 5.09828 10.3244 5.15822 10 5.23552M12 9C12.3506 9 12.6872 9.06015 13 9.17071C13.8524 9.47199 14.528 10.1476 14.8293 11C14.9398 11.3128 15 11.6494 15 12M3 3L21 21M12 15C11.6494 15 11.3128 14.9398 11 14.8293C10.1476 14.528 9.47198 13.8524 9.1707 13C9.11386 12.8392 9.07034 12.6721 9.04147 12.5M4.14701 9C3.83877 9.34451 3.56234 9.68241 3.31864 10C2.45286 11.1282 2 12 2 12C2 12 5.63636 19 12 19C12.3412 19 12.6746 18.9799 13 18.9418"
+                        stroke="#aaa"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
+                </div>
+                {/* confirmpassword */}
+                <div className="flex flex-col items-start dark:text-white text-black">
+                  <p>Confirm Password</p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="text"
+                    name="confirmpassword"
+                    placeholder="Confirm Password"
+                    required
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
+
+                {/* phonenumber */}
+                <div className="flex flex-col items-start  dark:text-white text-black">
+                  <p>Phone number</p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="number"
+                    name="username"
+                    required
+                    placeholder="Enter your Phone number"
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
+                    <p>Branch</p>
+                    <Select
+                      options={branchList}
+                      onChange={handleSelect}
+                      placeholder="Select Branch"
+                      name="branch"
+                      className="w-full mt-2"
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
+                    <p>Semester</p>
+                    <Select
+                      options={semesterList}
+                      onChange={handleSelect}
+                      placeholder="Select Semester"
+                      name="semester"
+                      className="w-full mt-2"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* leetcode */}
+                <div className="flex flex-col items-start  dark:text-white text-black">
+                  <p>Leetcode </p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="text"
+                    name="leetcode"
+                    required
+                    placeholder="Enter your Leetcode Profile Url"
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
+
+                {/* codechef */}
+                <div className="flex flex-col items-start  dark:text-white text-black">
+                  <p>Codechef </p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="text"
+                    name="codechef"
+                    placeholder="Enter your Codechef Profile Url"
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
+
+                <button className="bg-[var(--primary-c)] rounded-md text-white py-2 mt-8 hover:bg-[var(--tertiary-c)] duration-300">
+                  Signup
+                </button>
+              </form>
             </div>
-          </div>
-
-          {/* leetcode */}
-          <div className="flex flex-col items-start  dark:text-white text-black">
-              <p>Leetcode </p>
-              <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                type="text"
-                name="leetcode"
-                required
-                placeholder="Enter your Leetcode profile url"
-                onChange={(e) => handle(e)}
-              />
-            </div>
-
-            {/* codechef */}
-            <div className="flex flex-col items-start  dark:text-white text-black">
-              <p>Codechef </p>
-              <input
-                className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                type="text"
-                name="codechef"
-                placeholder="Enter your Codechef profile url"
-                onChange={(e) => handle(e)}
-              />
-            </div>
-
-
-          <button className="bg-[var(--primary-c)] rounded-md text-white py-2 mt-8 hover:bg-[var(--tertiary-c)] duration-300">
-              Signup
-            </button>
-          </form>
-          </div>
-          {/* <div className="mt-6 grid grid-cols-3 items-center text-gray-400">
+            {/* <div className="mt-6 grid grid-cols-3 items-center text-gray-400">
             <hr className="border-gray-400" />
             <p className="text-center text-sm">OR</p>
             <hr className="border-gray-400" />
@@ -368,27 +420,27 @@ const Signup = () => {
             </svg>
             Login with Google
           </button> */}
-           <div className="flex flex-row items-center gap-2 text-[var(--primary-c)] mt-4 text-sm">
+            <div className="flex flex-row items-center justify-between gap-2 text-[var(--primary-c)] mt-4 text-sm">
               <p className="text-right">Already have a account?</p>
               <Link to="/login">
                 <div className="py-2 px-5 bg-white border rounded-full hover:opacity-[0.7] duration-300">
                   Login
                 </div>
               </Link>
+            </div>
           </div>
-         </div>
-        <div className="hidden md:flex items-center relative justify-center bg-[var(--primary-c)] w-[70%] text-center">
-          {/* <img
+          <div className="hidden md:flex items-center relative justify-center bg-[var(--primary-c)] w-[70%] text-center">
+            {/* <img
             src={bgImage}
             className="absolute object-cover top-0 right-0 z-0 h-full opacity-50"
           /> */}
-          <div className="text-white px-8 text-3xl font-extrabold z-10">
-            TCP Mentorship Program 2024
+            <div className="text-white px-8 text-3xl font-extrabold z-10">
+              TCP Mentorship Program 2024
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   );
 };
 

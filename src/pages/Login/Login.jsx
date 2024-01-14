@@ -91,7 +91,7 @@ const Login = () => {
                   <img
                     src={Menteeimg}
                     alt=""
-                    className="sm:h-36 sm:w-36 h-28 w-28 rounded-full"
+                    className="sm:h-36 h-28 w-full object-contain rounded-full aspect-square"
                   />
                   <span className="text-black ">Mentee</span>
                 </button>
@@ -106,7 +106,7 @@ const Login = () => {
                   <img
                     src={Mentorimg}
                     alt=""
-                    className="sm:h-36 sm:w-36 h-28 w-28 rounded-full"
+                    className="sm:h-36 h-28 w-full object-contain rounded-full aspect-square"
                   />
                   <span className="text-black ">Mentor</span>
                 </button>
