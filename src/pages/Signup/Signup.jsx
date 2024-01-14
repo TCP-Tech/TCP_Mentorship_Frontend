@@ -322,13 +322,13 @@ const Signup = () => {
 
                 {/* phonenumber */}
                 <div className="flex flex-col items-start  dark:text-white text-black">
-                  <p>Phone number</p>
+                  <p>Phone Number</p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                    type="number"
+                    type="text"
                     name="username"
                     required
-                    placeholder="Enter your Phone number"
+                    placeholder="Enter your Phone Number"
                     onChange={(e) => handle(e)}
                   />
                 </div>
