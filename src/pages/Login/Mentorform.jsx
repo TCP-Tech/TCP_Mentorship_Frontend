@@ -12,9 +12,9 @@ const Mentorform = () => {
 
   const fetchData = async () => {
     const body = { username: form.userid, password: form.password };
-   
-    const data = await fetchDataFromApiWithResponse(body, "login");
-    if(data.user_data){
+
+    const data = await fetchDataFromApiWithResponse(body, "mentor_login");
+    if (data.user_data) {
       toast.success("Sign In Successful", {
         position: "bottom-right",
         autoClose: 3000,
@@ -28,7 +28,7 @@ const Mentorform = () => {
       localStorage.setItem("Mentor", JSON.stringify(data.user_data));
       setLoggedIn(true);
     }
-    console.log("User" , data.user_data);
+    console.log("User", data.user_data);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
