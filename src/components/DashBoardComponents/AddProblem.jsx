@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
-const options = [
+const topicList = [
   { value: "Arrays & Strings", label: "Arrays & Strings" },
   { value: "Linked List", label: "Linked List" },
   { value: "Recursion & Backtracking", label: "Recursion & Backtracking" },
   { value: "DP", label: "DP" },
   { value: "Trees", label: "Trees" },
   { value: "Graphs", label: "Graphs" },
+];
+
+const difficultyList = [
+  { value: "Easy", label: "Easy" },
+  { value: "Medium", label: "Medium" },
+  { value: "Hard", label: "Hard" },
 ];
 
 const customStyles = {
@@ -31,127 +37,108 @@ const customStyles = {
 };
 
 const AddProblem = () => {
+  const [form, setForm] = useState({
+    fullname: "",
+    userid: "",
+    username: "",
+    password: "",
+    confirmpassword: "",
+    phonenumber: "",
+    branch: "",
+    sem: "",
+    leetcode: "",
+    codechef: "",
+  });
+  function handle(e) {
+    const n = { ...form };
+    n[e.target.name] = e.target.value;
+    setForm(n);
+  }
+
+  function handleSelect(selectedOption, object) {
+    const n = { ...form };
+    n[object.name] = selectedOption.value;
+    setForm(n);
+  }
   return (
-    <div className="flex flex-col  space-x-8">
-      <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 ml-8 font-semibold">
+    <div className="flex flex-col">
+      <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 font-semibold">
         Add a Problem
       </h1>
-      <form>
-        <div className="space-y-12 m-5">
-          <div className="border-b border-gray-900/10">
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="title"
-                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
-                >
-                  Problem Title
-                </label>
-                <div className="mt-2">
-                  <input
-                    required
-                    id="title"
-                    name="title"
-                    type="text"
-                    className="block p-2 w-full bg-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="topic"
-                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
-                >
-                  Problem Topic
-                </label>
-                <div className="mt-2">
-                  <Select
-                    required
-                    styles={customStyles}
-                    defaultValue={[options[0], options[1]]}
-                    isMulti
-                    name="topics"
-                    options={options}
-                    className="basic-multi-select"
-                    classNamePrefix="select"
-                  />
-                </div>
-              </div>
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="level"
-                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
-                >
-                  Problem Difficulty
-                </label>
-                <div className="mt-2">
-                  <select
-                    required
-                    id="level"
-                    name="level"
-                    className="block bg-white p-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                  >
-                    <option>Easy</option>
-                    <option>Medium</option>
-                    <option>Hard</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="col-span-full">
-                <label
-                  htmlFor="desc"
-                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
-                >
-                  About
-                </label>
-                <div className="mt-2">
-                  <textarea
-                    id="desc"
-                    name="desc"
-                    rows={3}
-                    className="block p-2 w-full rounded-md border-0 py-1.5 bg-white text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    defaultValue={""}
-                  />
-                </div>
-                <p className="mt-3 text-sm leading-6 text-gray-600">
-                  Write a few sentences about the problem. (optional)
-                </p>
-              </div>
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="url"
-                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
-                >
-                  Problem URL
-                </label>
-                <div className="mt-2">
-                  <input
-                    required
-                    id="url"
-                    name="url"
-                    type="url"
-                    autoComplete="url"
-                    className="block p-2 w-full bg-white rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-              <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button
-                  type="button"
-                  className="text-sm font-semibold leading-6 text-gray-900"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="rounded-md bg-[var(--primary-c)] px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Add
-                </button>
-              </div>
-            </div>
+      <form className="flex flex-col gap-4 ml-2">
+        <div className="flex flex-col items-start mt-8  dark:text-white text-black">
+          <p>Problem Title</p>
+          <input
+            className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+            type="text"
+            name="title"
+            required
+            placeholder="Enter Problem Title"
+            onChange={(e) => handle(e)}
+          />
+        </div>
+        <div className="flex gap-4">
+          <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
+            <p>Problem Topic</p>
+            <Select
+              options={topicList}
+              onChange={handleSelect}
+              defaultValue={[topicList[0], topicList[1]]}
+              placeholder="Select Topic"
+              isMulti
+              name="topic"
+              className="w-full mt-2"
+              required
+            />
           </div>
+          <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
+            <p>Problem Difficulty</p>
+            <Select
+              options={difficultyList}
+              onChange={handleSelect}
+              defaultValue={[difficultyList[0]]}
+              placeholder="Select Difficulty"
+              name="difficulty"
+              className="w-full mt-2"
+              required
+            />
+          </div>
+        </div>
+        <div className="flex flex-col items-start  dark:text-white text-black">
+          <p>Problem Description</p>
+          <textarea
+            className="px-3 py-1.5 mt-2 h-[150px] rounded-md border w-[100%] dark:text-black bg-white"
+            type="text"
+            name="description"
+            required
+            placeholder="Enter Problem Description (Optional)"
+            onChange={(e) => handle(e)}
+          />
+        </div>
+        <div className="flex flex-col items-start dark:text-white text-black">
+          <p>Problem URL</p>
+          <input
+            className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+            type="text"
+            name="url"
+            required
+            placeholder="Enter Problem URL"
+            onChange={(e) => handle(e)}
+          />
+        </div>
+        <div className="mt-6 flex items-center justify-end gap-x-6">
+          <button
+            type="button"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="rounded-md bg-[var(--primary-c)] px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Add
+          </button>
         </div>
       </form>
     </div>
