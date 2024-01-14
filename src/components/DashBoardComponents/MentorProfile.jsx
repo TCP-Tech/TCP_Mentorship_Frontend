@@ -5,15 +5,51 @@ import Select from "react-select";
 const branchList = [
   {
     label: "CSE",
-    value: "0",
+    value: "CSE",
   },
   {
     label: "IT",
-    value: "1",
+    value: "IT",
   },
   {
     label: "ECE",
-    value: "2",
+    value: "ECE",
+  },
+  {
+    label: "EE",
+    value: "EE",
+  },
+  {
+    label: "MECH",
+    value: "MECH",
+  },
+  {
+    label: "CIVIL",
+    value: "CIVIL",
+  },
+  {
+    label: "CHEM",
+    value: "CHEM",
+  },
+  {
+    label: "META",
+    value: "META",
+  },
+  {
+    label: "MIN",
+    value: "MIN",
+  },
+  {
+    label: "BIOTECH",
+    value: "BIOTECH",
+  },
+  {
+    label: "BIOMED",
+    value: "BIOMED",
+  },
+  {
+    label: "MCA",
+    value: "MCA",
   },
 ];
 
@@ -50,7 +86,9 @@ const Profile = () => {
   return (
     <div className="flex justify-center items-center h-full">
       <div className="w-full py-10 flex flex-col justify-center items-center">
-        <h1 className="text-3xl font-bold mb-4 text-black dark:text-white">Your Profile</h1>
+        <h1 className="text-3xl font-bold mb-4 text-black dark:text-white">
+          Your Profile
+        </h1>
         <form
           action=""
           className="flex flex-col gap-4 w-4/5"
