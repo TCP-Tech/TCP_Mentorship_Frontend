@@ -57,7 +57,7 @@ const Team = () => {
               name={member.Name}
               position={member.Designation}
               linkedin={member.linkedin}
-              domain={member.Domain}
+            //   domain={member.Domain}
             />
           ))}
         </div>

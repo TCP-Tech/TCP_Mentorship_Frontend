@@ -1,7 +1,9 @@
 import React from 'react'
-import { FaLinkedin } from 'react-icons/fa';
+import { FaLinkedin, FaMailBulk, FaMailchimp } from 'react-icons/fa';
+import { FiMail } from 'react-icons/fi';
 
 const TeamCard = ({
+    email,
     img,
     name,
     position,
@@ -23,6 +25,16 @@ const TeamCard = ({
             <h4 className="block text-gray-500 font-semibold">{domain}</h4>
           </div>
           <ul className="social absolute bottom-0 left-0 w-full transform translate-y-full transition-all ease-in-out duration-500 group-hover:translate-y-0 bg-primary rounded-tr-[80%] rounded-tl-[80%]">
+            {email&&<li className="inline-block mt-2">
+              <a
+                href={`mailto:${email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-2 rounded-full text-white text-lg transition-all ease-in-out duration-500  hover:text-primary hover:bg-white "
+              >
+               <FiMail className='text-black w-6 h-6 hover:text-primary'/>
+              </a>
+            </li>}
             <li className="inline-block mt-2">
               <a
                 href={linkedin}
