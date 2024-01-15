@@ -10,6 +10,7 @@ import MenteeDashBoard from "./pages/DashBoard/MenteeDashBoard";
 import MentorDashboard from "./pages/DashBoard/MentorDashboard";
 import NotFoundPage from "./pages/NotFoundPage";
 import PrivateRoute from "./components/PrivateRoute";
+import Team from "./pages/Team";
 
 const App = () => {
   const [isDarkMode, setDarkMode] = useState(false);
@@ -36,6 +37,7 @@ const App = () => {
         <Route exact path="*" element={<NotFoundPage />} />
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/team" element={<Team />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/mentee" element={<PrivateRoute element={<MenteeDashBoard />} />} />
         <Route exact path="/mentor" element={<PrivateRoute element={<MentorDashboard />} />} />
