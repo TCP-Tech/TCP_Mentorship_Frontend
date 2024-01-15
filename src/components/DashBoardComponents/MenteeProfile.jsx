@@ -5,15 +5,51 @@ import Select from "react-select";
 const branchList = [
   {
     label: "CSE",
-    value: "0",
+    value: "CSE",
   },
   {
     label: "IT",
-    value: "1",
+    value: "IT",
   },
   {
     label: "ECE",
-    value: "2",
+    value: "ECE",
+  },
+  {
+    label: "EE",
+    value: "EE",
+  },
+  {
+    label: "MECH",
+    value: "MECH",
+  },
+  {
+    label: "CIVIL",
+    value: "CIVIL",
+  },
+  {
+    label: "CHEM",
+    value: "CHEM",
+  },
+  {
+    label: "META",
+    value: "META",
+  },
+  {
+    label: "MIN",
+    value: "MIN",
+  },
+  {
+    label: "BIOTECH",
+    value: "BIOTECH",
+  },
+  {
+    label: "BIOMED",
+    value: "BIOMED",
+  },
+  {
+    label: "MCA",
+    value: "MCA",
   },
 ];
 

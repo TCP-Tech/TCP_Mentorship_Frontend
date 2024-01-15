@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import Wrapper from "../components/Wrapper";
 import Counter from "../components/Counter";
 import { useNavigate } from "react-router-dom";
+import TeamSection from "../components/TeamSection";
 const Home = () => {
   const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
   const navigate=useNavigate()
@@ -28,6 +29,7 @@ const Home = () => {
         <LeaderBoard />
         <MenteeLeaderBoard />
       </Wrapper>
+      <TeamSection/>
       <Footer /> 
     </div>
   );
