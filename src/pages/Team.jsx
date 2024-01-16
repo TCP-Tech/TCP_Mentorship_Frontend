@@ -30,11 +30,12 @@ const Team = () => {
   const managers = state.data.filter((member) => member.Designation == "Manager")
   const executives = state.data.filter((member) => member.Designation == "Executive")
   return (
-    <div className="text-black w-screen h-full flex flex-col items-center text-center dark:bg-gray-800 ">
-      <nav className='w-screen fixed z-50'>
+    <>
+    <nav className='w-screen fixed z-50 border-b '>
         <TeamNav/>
       </nav>
-        <div className="flex justify-center items-center py-12  gap-2">
+    <div className="text-black relative w-screen h-full flex flex-col items-center text-center dark:bg-gray-900 pt-20">
+        <div className="flex justify-center items-center py-12  gap-2"> 
           <img 
           src={tcp}
           className="md:w-32 md:h-32 w-20 h-20 dark:block hidden"
@@ -111,6 +112,7 @@ const Team = () => {
         </div>
         </div>
       </div>
+      </>
   )
 }
 
