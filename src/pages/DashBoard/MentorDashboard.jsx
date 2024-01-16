@@ -7,6 +7,8 @@ import MentorDefaultDash from "../../components/DashBoardComponents/MentorDefaul
 import MenteeLeaderBoard from "../../components/LeaderBoard/MenteeLeaderBoard";
 import Profile from "../../components/DashBoardComponents/MentorProfile";
 import ProblemList from "../../components/DashBoardComponents/ProblemList";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   FaChevronUp,
   FaChevronDown,
@@ -15,8 +17,13 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
-
-const options = ["Profile", "Dashboard" , "Team Leaderboard" , "Leaderboard" , "Assign Problem"];
+const options = [
+  "Profile",
+  "Dashboard",
+  "Team Leaderboard",
+  "Leaderboard",
+  "Assign Problem",
+];
 
 const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -25,8 +32,20 @@ const DashBoard = () => {
   const [dropVisible, setdropVisible] = useState(false);
   const navigate = useNavigate();
   const handleSignOut = () => {
-    localStorage.removeItem("Mentor")
-    navigate("/login");
+    toast.success("Sign Out Successful!", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    localStorage.removeItem("Mentor");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
   const handleMouseClick = () => {
     setdropVisible(!dropVisible);
@@ -37,28 +56,33 @@ const DashBoard = () => {
   };
   const renderMainContent = () => {
     switch (selectedOption) {
-     case "Dashboard" : 
-      return <MentorDefaultDash/>;
+      case "Dashboard":
+        return <MentorDefaultDash />;
       case "Leaderboard":
         return <MenteeLeaderBoard />;
       case "Team Leaderboard":
         return <LeaderBoard />;
-      case "Profile" : 
-        return <Profile/>
+      case "Profile":
+        return <Profile />;
       case "Assign Problem":
-        return <><AddProblem /><ProblemList /></>;
+        return (
+          <>
+            <AddProblem />
+            <ProblemList />
+          </>
+        );
       // case "Assigned Problems":
       //   return <ProblemList/>;
       default:
-        return <MentorDefaultDash/>;
+        return <MentorDefaultDash />;
     }
-  };   
+  };
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth <= 768) {
-        setIsSidebarOpen(false); 
+        setIsSidebarOpen(false);
       } else {
-        setIsSidebarOpen(true); 
+        setIsSidebarOpen(true);
       }
     }
     handleResize();
@@ -69,9 +93,9 @@ const DashBoard = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  
   return (
     <>
+      <ToastContainer />
       <div className="flex flex-col md:flex-row dark:bg-gray-900">
         {/* Second part */}
         {isSidebarOpen && (
@@ -101,12 +125,13 @@ const DashBoard = () => {
                 onClick={toggleSidebar}
               />
             )}
-          <div className="h-auto py-2 mr-auto pl-4">
+            <div className="h-auto py-2 mr-auto pl-4">
               <p className="md:text-2xl text-sm text-black dark:text-white font-semibold md:block hidden">
-              Welcome back {mentor.name} 👋
+                Welcome back {mentor.name} 👋
               </p>
               <p className="text-gray-500 md:text-lg text-xs md:block hidden">
-              Ready to guide the energetic mentees in their coding and development journey?!
+                Ready to guide the energetic mentees in their coding and
+                development journey?!
               </p>
             </div>
             <div className="flex items-center">
@@ -116,7 +141,9 @@ const DashBoard = () => {
                   src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                   alt=""
                 />
-                <p className="text-black dark:text-gray-500 md:text-lg text-sm">Hi {mentor.name} !</p>
+                <p className="text-black dark:text-gray-500 md:text-lg text-sm">
+                  Hi {mentor.name} !
+                </p>
                 <div
                   onClick={handleMouseClick}
                   className="text-black dark:text-gray-500 w-8 h-8 flex justify-center items-center "

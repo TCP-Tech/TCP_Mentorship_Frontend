@@ -25,7 +25,7 @@ const DashBoard = () => {
   const navigate = useNavigate();
 
   const handleSignOut = () => {
-    navigate("/login");
+    navigate("/");
   };
   const handleMouseClick = () => {
     setdropVisible(!dropVisible);
