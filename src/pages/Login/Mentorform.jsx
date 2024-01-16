@@ -15,7 +15,7 @@ const Mentorform = () => {
 
     const data = await fetchDataFromApiWithResponse(body, "mentor_login");
     if (data.user_data) {
-      toast.success("Sign In Successful", {
+      toast.success("Sign In Successful!", {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -27,6 +27,9 @@ const Mentorform = () => {
       });
       localStorage.setItem("Mentor", JSON.stringify(data.user_data));
       setLoggedIn(true);
+      setTimeout(() => {
+        navigate("/mentor");
+      }, 2000);
     }
     console.log("User", data.user_data);
   };
@@ -39,6 +42,7 @@ const Mentorform = () => {
     userid: "",
     password: "",
   });
+
   const checkLoggedIn = () => {
     const mentorData = localStorage.getItem("Mentor");
     return mentorData !== null;
@@ -46,7 +50,6 @@ const Mentorform = () => {
 
   useEffect(() => {
     if (loggedIn) {
-      navigate("/mentor");
     } else if (checkLoggedIn()) {
       setLoggedIn(true);
     }

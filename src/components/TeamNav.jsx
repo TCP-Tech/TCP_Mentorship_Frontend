@@ -51,7 +51,7 @@ const TeamNav = () => {
   };
 
   return (
-    <header className="sticky top-0 backdrop-blur-md z-50 py-2 md:px-32">
+    <header className="sticky top-0 backdrop-blur-md z-50 md:px-60">
       <nav className="bg-transparent w-full">
         <div className="flex items-center justify-between h-[80px] md:pl-7 md:pr-9 pr-3 pl-2 md:visible">
           <Link to={"/"} className="flex items-center">
@@ -66,7 +66,7 @@ const TeamNav = () => {
               alt="TCP Logo"
             />
           </Link>
-          <div className="flex-grow md:ml-28 flex items-center justify-center text-gray-900  md:text-2xl hover:text-[--primary-c] duration-200 dark:text-gray-500">
+          <div className="flex-grow md:ml-28 flex items-center justify-center text-gray-900 text-md hover:text-[--primary-c] duration-200 dark:text-gray-500">
             <Link to="/">
               Back to Main Page
             </Link>
