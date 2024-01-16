@@ -3,11 +3,14 @@ import { FaLinkedin, FaMailBulk, FaMailchimp } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 
 const TeamCard = ({ email, img, name, position, linkedin, domain }) => {
+  const imgIdRegex = /\/uc\?id=([\w-]+)&?/;
+  const match = img.match(imgIdRegex);
+  const extractedId = match ? match[1] : null;
   return (
     <div className="p-10 bg-white text-center overflow-hidden relative rounded-2xl md:w-[350px] w-[300px] h-[25rem] group border dark:border-none">
       <div className="inline-block  h-40 w-40 mb-4 bg-primary group-hover:bg-white overflow-hidden  border-[8px] border-primary rounded-full">
         <img
-          src={img}
+          src={`https://drive.google.com/thumbnail?id=${extractedId}`}
           alt={`${name}'s profile`}
           className="w-full h-full bg-primary object-cover rounded-full transform scale-100 group-hover:scale-90 transition-all ease-in-out duration-500"
         />
