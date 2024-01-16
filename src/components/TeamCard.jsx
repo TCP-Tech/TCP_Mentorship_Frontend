@@ -11,7 +11,7 @@ const TeamCard = ({
     domain,
 }) => {
     return (
-        <div className="p-10 bg-white text-center overflow-hidden relative rounded-2xl w-[350px] h-[25rem] group">
+        <div className="p-10 bg-white text-center overflow-hidden relative rounded-2xl md:w-[350px] w-[300px] h-[25rem] group border dark:border-none">
           <div className="inline-block  h-40 w-40 mb-4 bg-primary group-hover:bg-white overflow-hidden  border-[8px] border-primary rounded-full">
             <img
               src={img}
