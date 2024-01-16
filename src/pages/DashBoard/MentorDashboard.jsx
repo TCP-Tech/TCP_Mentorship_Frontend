@@ -95,7 +95,6 @@ const DashBoard = () => {
 
   return (
     <>
-      <ToastContainer />
       <div className="flex flex-col md:flex-row dark:bg-gray-900">
         {/* Second part */}
         {isSidebarOpen && (

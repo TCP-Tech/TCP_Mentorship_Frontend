@@ -6,6 +6,8 @@ import LeaderBoard from "../../components/LeaderBoard/TeamLeaderBoard";
 import MenteeLeaderBoard from "../../components/LeaderBoard/MenteeLeaderBoard";
 import MenteeDefaultDash from "../../components/DashBoardComponents/MenteeDefaultDash";
 import MenteeProfile from "../../components/DashBoardComponents/MenteeProfile";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   FaChevronUp,
   FaChevronDown,
@@ -25,7 +27,20 @@ const DashBoard = () => {
   const navigate = useNavigate();
 
   const handleSignOut = () => {
-    navigate("/");
+    toast.success("Sign Out Successful!", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    localStorage.removeItem("Mentee");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
   const handleMouseClick = () => {
     setdropVisible(!dropVisible);
