@@ -26,7 +26,7 @@ const branchList = [
   },
   {
     label: "ELEC",
-    value: 4,
+    value: "ELEC",
   },
   {
     label: "MECH",
@@ -140,7 +140,7 @@ const Signup = () => {
       linkedinID : form.linkedin ,
     }
     const data = await fetchDataFromApiWithResponse(body, "mentee_signup");
-    if (data.user_data) {
+    if (data.status_code == 200) {
       toast.success("Registered Successfully!", {
         position: "bottom-right",
         autoClose: 3000,
@@ -155,34 +155,48 @@ const Signup = () => {
         navigate("/login");
       }, 2000);
     }
-    console.log("User", data);
+    else {
+      let errorMessage = "";
+  
+      if (data.user_data) {
+        Object.entries(data.user_data).forEach(([key, value]) => {
+          if (value && Array.isArray(value) && value.length > 0) {
+          errorMessage = value[0] + " ";
+          toast.error(errorMessage, {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+          }
+        });
+      }
+   
+    }
+    // console.log("User", data.user_data.phone_number[0]);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    fetchData();
-    if (form.confirmpassword === form.password) {
-      toast.success("Sign In Successful", {
-        position: "bottom-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    } else {
-      toast.error("password and confirm password should be same", {
-        position: "bottom-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+    if(form.password == form.confirmpassword){
+      fetchData();
     }
+    else{
+      toast.error("Password and Confirm Password should be same" , {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+    }
+    
   };
 
   function handle(e) {
@@ -222,7 +236,7 @@ const Signup = () => {
           >
             Home
           </Link> */}
-            <div className="sm:mx-auto  sm:mt-[36rem] sm:w-full sm:max-w-sm">
+            <div className="sm:mx-auto  sm:mt-[60rem] sm:w-full sm:max-w-sm">
               <div className="text-center ">
                 <button
                   type="button"
@@ -404,6 +418,7 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="linkedin"
+                    required
                     placeholder="Enter your LinkedIn Profile Url"
                     onChange={(e) => handle(e)}
                   />
@@ -428,6 +443,7 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="codechef"
+                    required
                     placeholder="Enter your Codechef Profile Url"
                     onChange={(e) => handle(e)}
                   />
@@ -438,6 +454,7 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="codeforces"
+                    required
                     placeholder="Enter your Codeforces Profile Url"
                     onChange={(e) => handle(e)}
                   />
@@ -448,6 +465,7 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="gfg"
+                    required
                     placeholder="Enter your GFG Profile Url"
                     onChange={(e) => handle(e)}
                   />
@@ -458,6 +476,7 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="hackerrank"
+                    required
                     placeholder="Enter your HackerRank Profile Url"
                     onChange={(e) => handle(e)}
                   />
