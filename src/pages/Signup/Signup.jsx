@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import Menteeimg from "../../assets/images/Menteeimg.jpg";
 import Select from "react-select";
-
+import { fetchDataFromApiWithResponse } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 // import bgImage from "../assets/bgImage.jpg";
 import { useLayoutEffect } from "react";
@@ -25,8 +25,8 @@ const branchList = [
     value: "ECE",
   },
   {
-    label: "EE",
-    value: "EE",
+    label: "ELEC",
+    value: 4,
   },
   {
     label: "MECH",
@@ -65,35 +65,35 @@ const branchList = [
 const semesterList = [
   {
     label: "1",
-    value: "1",
+    value: 1,
   },
   {
     label: "2",
-    value: "2",
+    value: 2,
   },
   {
     label: "3",
-    value: "3",
+    value: 3,
   },
   {
     label: "4",
-    value: "4",
+    value: 4,
   },
   {
     label: "5",
-    value: "5",
+    value: 5,
   },
   {
     label: "6",
-    value: "6",
+    value: 6,
   },
   {
     label: "7",
-    value: "7",
+    value: 7,
   },
   {
     label: "8",
-    value: "8",
+    value: 8,
   },
 ];
 
@@ -113,13 +113,53 @@ const Signup = () => {
     confirmpassword: "",
     phonenumber: "",
     branch: "",
-    sem: "",
+    semester: "",
+    linkedin: "",
     leetcode: "",
     codechef: "",
+    codeforces: "",
+    gfg: "",
+    hackerrank: "",
   });
-
+  console.log(form.semester)
+  const fetchData = async () => {
+    const body={
+      id : form.userid ,
+      name:form.fullname , 
+      username : form.username , 
+      password : form.password , 
+      branch : form.branch , 
+      semester: parseInt(form.semester),
+      phone_number:form.phonenumber ,
+      confirmpassword : form.confirmpassword ,
+      codechefID : form.codechef,
+      codeforcesID : form.codeforces,
+      leetcodeID : form.leetcode ,
+      gfgID : form.gfg ,
+      hackerrankID : form.hackerrank ,
+      linkedinID : form.linkedin ,
+    }
+    const data = await fetchDataFromApiWithResponse(body, "mentee_signup");
+    if (data.user_data) {
+      toast.success("Registered Successfully!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+    console.log("User", data);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    fetchData();
     if (form.confirmpassword === form.password) {
       toast.success("Sign In Successful", {
         position: "bottom-right",
@@ -326,7 +366,7 @@ const Signup = () => {
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
-                    name="username"
+                    name="phonenumber"
                     required
                     placeholder="Enter your Phone Number"
                     onChange={(e) => handle(e)}
@@ -358,6 +398,16 @@ const Signup = () => {
                   </div>
                 </div>
 
+                <div className="flex flex-col items-start  dark:text-white text-black">
+                  <p>Linkedin </p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="text"
+                    name="linkedin"
+                    placeholder="Enter your LinkedIn Profile Url"
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
                 {/* leetcode */}
                 <div className="flex flex-col items-start  dark:text-white text-black">
                   <p>Leetcode </p>
@@ -379,6 +429,36 @@ const Signup = () => {
                     type="text"
                     name="codechef"
                     placeholder="Enter your Codechef Profile Url"
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
+                <div className="flex flex-col items-start  dark:text-white text-black">
+                  <p>Codeforces </p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="text"
+                    name="codeforces"
+                    placeholder="Enter your Codeforces Profile Url"
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
+                <div className="flex flex-col items-start  dark:text-white text-black">
+                  <p>GFG </p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="text"
+                    name="gfg"
+                    placeholder="Enter your GFG Profile Url"
+                    onChange={(e) => handle(e)}
+                  />
+                </div>
+                <div className="flex flex-col items-start  dark:text-white text-black">
+                  <p>HackerRank </p>
+                  <input
+                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                    type="text"
+                    name="hackerrank"
+                    placeholder="Enter your HackerRank Profile Url"
                     onChange={(e) => handle(e)}
                   />
                 </div>
