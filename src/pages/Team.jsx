@@ -61,7 +61,7 @@ const Team = () => {
           </h1>
         </div>
         <Link to="/">
-          <div className="bg-primary flex space-x-2 md:ml-10 text-lg px-10 py-4 text-white hover:bg-[--tertiary-c] dark:bg-transparent dark:border dark:hover:bg-primary dark:hover:border-primary dark:hover:text-black transition-all duration-300 rounded-lg">
+          <div className="bg-primary flex space-x-2 text-lg px-10 py-4 text-white hover:bg-[--tertiary-c] dark:bg-transparent dark:border dark:hover:bg-primary dark:hover:border-primary dark:hover:text-black transition-all duration-300 rounded-lg">
             <FaArrowLeft className="mt-1" />
             <button>Back to main page</button>
           </div>
