@@ -65,7 +65,7 @@ const Profile = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [disabledForm, setDisabledForm] = useState(true);
-
+  const [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
   function handle(e) {
     const n = { ...form };
     n[e.target.name] = e.target.value;
@@ -96,7 +96,7 @@ const Profile = () => {
             <div className="flex justify-center">
               <img
                 className="object-cover w-28 h-28 rounded-full border-2 border-[var(--primary-c)] p-1"
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                src={mentee.image}
                 alt=""
               />
               {!disabledForm && (
@@ -112,7 +112,7 @@ const Profile = () => {
               className="px-3 py-1.5 rounded-md border w-[100%]"
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder={mentee.name}
               required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
@@ -137,7 +137,7 @@ const Profile = () => {
                 className="px-3 py-1.5 rounded-md border w-[100%]"
                 type="text"
                 name="mobileno"
-                placeholder="Phone"
+                placeholder={mentee.phone_number}
                 required
                 onChange={(e) => handle(e)}
                 disabled={disabledForm}
@@ -148,7 +148,7 @@ const Profile = () => {
               <Select
                 options={branchList}
                 onChange={handleSelect}
-                placeholder="Branch"
+                placeholder={mentee.branch}
                 name="branch"
                 className="w-[100%]"
                 isDisabled={disabledForm}
@@ -162,7 +162,7 @@ const Profile = () => {
                 className="px-3 py-1.5 rounded-md border w-[100%]"
                 type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder="Password"
+                placeholder={mentee.password}
                 onChange={(e) => handle(e)}
                 disabled={disabledForm}
               />

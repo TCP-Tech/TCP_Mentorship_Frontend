@@ -10,12 +10,16 @@ import { useNavigate } from "react-router-dom";
 import TeamSection from "../components/TeamSection";
 const Home = () => {
   const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
+  const [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
   const navigate = useNavigate();
   useEffect(() => {
     if (mentor) {
       navigate("/mentor");
     }
-  }, [mentor]);
+    if(mentee){
+      navigate("/mentee")
+    }
+  }, [mentor , mentee]);
   return (
     <div className="dark:bg-gray-900">
       <div className="bg-zinc-500 absolute -bottom-[10rem] -z-10 w-right-[5rem] h-[15.25rem] w-[21.25rem] rounded-full blur-[100rem] sm:w-[68.75rem] dark:bg-[#fff] dark:hidden"></div>
