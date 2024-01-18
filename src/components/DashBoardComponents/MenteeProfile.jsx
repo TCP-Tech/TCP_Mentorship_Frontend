@@ -97,6 +97,34 @@ const Profile = () => {
     console.log("User", data);
   };
 
+  const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      background: "#f1f5f9",
+      borderRadius: state.isFocused ? "6px 6px 0 0" : 6,
+      borderColor: state.isFocused ? "black" : null,
+      boxShadow: null,
+      "&:hover": {
+        // Overwrittes the different states of border
+        borderColor: null
+      }      
+    }),
+    menu: base => ({
+      ...base,
+      background: "#f1f5f9",
+      // override border radius to match the box
+      borderRadius: 0,
+      // kill the gap
+      marginTop: 0
+    }),
+    menuList: base => ({
+      ...base,
+      background: "#f1f5f9",
+      // kill the white space on first and last option
+      padding: 0
+    })
+  };
+
   return (
     <div className="flex justify-center items-center h-full">
       <div className="w-full py-10 flex flex-col justify-center items-center">
@@ -191,9 +219,10 @@ const Profile = () => {
                 options={branchList}
                 onChange={handleSelect}
                 placeholder={mentee.branch}
-                value={form.branch}
+                // value={form.branch}
                 name="branch"
-                className="w-[100%] dark:bg-black bg-slate-200 text-black"
+                styles={customStyles}
+                className="w-[100%] dark:bg-black text-black"
                 isDisabled={disabledForm}
               />
             </div>
@@ -203,9 +232,10 @@ const Profile = () => {
                 options={semesterList}
                 onChange={handleSelect}
                 placeholder={mentee.semester}
-                value={form.semester}
+                // value={form.semester}
                 name="branch"
-                className="w-[100%] dark:bg-black bg-slate-200 text-black"
+                styles={customStyles}
+                className="w-[100%] dark:bg-black text-black"
                 isDisabled={disabledForm}
               />
             </div>
