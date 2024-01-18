@@ -28,7 +28,7 @@ const Profile = ({mode}) => {
             </div>
           </div> */}
           <div className="flex items-center text-center justify-center px-5 space-x-1 mr-10">
-            <h1 className="font-semibold md:text-lg text-sm text-black">
+            <h1 className="font-semibold md:text-lg text-sm text-black dark:text-white">
               Assigned {mode === "mentee" ? "Mentor" : "Mentees"} :
             </h1>
             <h1 className="font-normal md:text-lg text-sm text-gray-400">
@@ -36,7 +36,7 @@ const Profile = ({mode}) => {
             </h1>
           </div>
           <div className="flex items-center justify-center text-center px-5 space-x-1">
-            <h1 className="font-semibold md:text-lg text-sm text-black">
+            <h1 className="font-semibold md:text-lg text-sm text-black dark:text-white">
               Achievements :
             </h1>
             <h1 className="font-normal md:text-lg text-sm text-gray-400">
@@ -47,19 +47,19 @@ const Profile = ({mode}) => {
             <div className="w-full px-4 text-center">
               <div className="flex justify-center py-4 lg:pt-4 pt-8">
                 <div className="mr-4 p-1 text-center">
-                  <span className="text-xl text-black font-bold block uppercase tracking-wide text-blueGray-600">
+                  <span className="text-xl text-black dark:text-white font-bold block uppercase tracking-wide text-blueGray-600">
                     {mode === "mentee" ? "22" : "--"}
                   </span>
                   <span className="text-sm text-gray-400">Points</span>
                 </div>
                 <div className="mr-4 p-1 text-center">
-                  <span className="text-xl text-black font-bold block uppercase tracking-wide text-blueGray-600">
+                  <span className="text-xl text-black dark:text-white font-bold block uppercase tracking-wide text-blueGray-600">
                     10
                   </span>
                   <span className="text-sm text-gray-400">Team Rank</span>
                 </div>
                 <div className="lg:mr-4 p-1 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-black text-blueGray-600">
+                  <span className="text-xl font-bold block uppercase tracking-wide text-black dark:text-white">
                   {mode === "mentee" ? "89" : "--"}
                   </span>
                   <span className="text-sm text-gray-400">Overall Rank</span>

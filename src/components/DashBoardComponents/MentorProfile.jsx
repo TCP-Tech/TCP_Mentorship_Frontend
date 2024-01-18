@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {toast} from "react-toastify";
 import { FaEdit, FaPencilAlt } from "react-icons/fa";
 import Select from "react-select";
 import { fetchDataFromApiWithResponse } from "../../utils/api";
@@ -56,38 +57,44 @@ const branchList = [
 
 const Profile = () => {
   const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    branch: "",
-    phone: "",
-    password: "",
-  });
+  const [form, setForm] = useState({});
 
+  useEffect(() => {
+    setForm({
+      name: mentor.name || "",
+      email: mentor.email || "",
+      phone: mentor.phone_number || "",
+      password: mentor.password || "",
+    });
+}, [mentor]);
   const [showPassword, setShowPassword] = useState(false);
   const [disabledForm, setDisabledForm] = useState(true);
 
-  function handle(e) {
+  const handle=(e)=>{
     const n = { ...form };
     n[e.target.name] = e.target.value;
     setForm(n);
   }
 
-  function handleSelect(selectedOption, object) {
+  const handleSelect=(selectedOption, object)=>{
     const n = { ...form };
     n[object.name] = selectedOption.value;
     setForm(n);
   }
 
-  function handleDisabledForm(e) {
+  const handleDisabledForm=(e)=>{
     e.preventDefault();
     setDisabledForm((prev) => !prev);
   }
+  const handleSubmit=(e)=>{
+     e.preventDefault();
+     fetchData();
+  }
   const fetchData = async () => {
-    const body = { username: form.userid, password: form.password };
+    const body = { username: form.userid, phone_number : form.phone, password: form.password };
 
     const data = await fetchDataFromApiWithResponse(body, "update_mentor");
-    if (data.user_data) {
+    if (data.status_code == 200) {
       toast.success("Updated Successfully!", {
         position: "bottom-right",
         autoClose: 3000,
@@ -99,8 +106,48 @@ const Profile = () => {
         theme: "dark",
       });
     }
-    console.log("User", data.user_data);
+    else{
+      toast.error(data.status_message, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    console.log("User", data);
   };
+
+  // const customStyles = {
+  //   control: (base, state) => ({
+  //     ...base,
+  //     background: "#f1f5f9",
+  //     borderRadius: state.isFocused ? "6px 6px 0 0" : 6,
+  //     borderColor: state.isFocused ? "black" : null,
+  //     boxShadow: null,
+  //     "&:hover": {
+  //       // Overwrittes the different states of border
+  //       borderColor: null
+  //     }      
+  //   }),
+  //   menu: base => ({
+  //     ...base,
+  //     background: "#f1f5f9",
+  //     // override border radius to match the box
+  //     borderRadius: 0,
+  //     // kill the gap
+  //     marginTop: 0
+  //   }),
+  //   menuList: base => ({
+  //     ...base,
+  //     background: "#f1f5f9",
+  //     // kill the white space on first and last option
+  //     padding: 0
+  //   })
+  // };
 
   return (
     <div className="flex justify-center items-center h-full">
@@ -117,7 +164,7 @@ const Profile = () => {
             <div className="flex justify-center">
               <img
                 className="object-cover w-28 h-28 rounded-full border-2 border-[var(--primary-c)] p-1"
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                src={mentor.image} 
                 alt=""
               />
               {!disabledForm && (
@@ -133,7 +180,7 @@ const Profile = () => {
               className="px-3 py-1.5 rounded-md border w-[100%]"
               type="text"
               name="name"
-              placeholder={mentor.name}
+              value={form.name}
               required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
@@ -144,8 +191,8 @@ const Profile = () => {
             <input
               className="px-3 py-1.5 rounded-md border w-[100%]"
               type="text"
-              name="emailid"
-              placeholder={mentor.username}
+              name="email"
+              value={form.username}
               required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
@@ -157,8 +204,8 @@ const Profile = () => {
               <input
                 className="px-3 py-1.5 rounded-md border w-[100%]"
                 type="text"
-                name="mobileno"
-                placeholder={mentor.phone_number}
+                name="phone"
+                value={form.phone}
                 required
                 onChange={(e) => handle(e)}
                 disabled={disabledForm}
@@ -172,7 +219,7 @@ const Profile = () => {
                 className="px-3 py-1.5 rounded-md border w-[100%]"
                 type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder={mentor.password}
+                value={form.password}
                 onChange={(e) => handle(e)}
                 disabled={disabledForm}
               />
