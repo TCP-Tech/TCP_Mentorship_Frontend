@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaEdit, FaPencilAlt } from "react-icons/fa";
 import Select from "react-select";
+import { fetchDataFromApiWithResponse } from "../../utils/api";
 
 const branchList = [
   {
@@ -82,6 +83,24 @@ const Profile = () => {
     e.preventDefault();
     setDisabledForm((prev) => !prev);
   }
+  const fetchData = async () => {
+    const body = { username: form.userid, password: form.password };
+
+    const data = await fetchDataFromApiWithResponse(body, "update_mentor");
+    if (data.user_data) {
+      toast.success("Updated Successfully!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    console.log("User", data.user_data);
+  };
 
   return (
     <div className="flex justify-center items-center h-full">
