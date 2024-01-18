@@ -1,87 +1,101 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEdit, FaPencilAlt } from "react-icons/fa";
 import Select from "react-select";
-
-const branchList = [
-  {
-    label: "CSE",
-    value: "CSE",
-  },
-  {
-    label: "IT",
-    value: "IT",
-  },
-  {
-    label: "ECE",
-    value: "ECE",
-  },
-  {
-    label: "EE",
-    value: "EE",
-  },
-  {
-    label: "MECH",
-    value: "MECH",
-  },
-  {
-    label: "CIVIL",
-    value: "CIVIL",
-  },
-  {
-    label: "CHEM",
-    value: "CHEM",
-  },
-  {
-    label: "META",
-    value: "META",
-  },
-  {
-    label: "MIN",
-    value: "MIN",
-  },
-  {
-    label: "BIOTECH",
-    value: "BIOTECH",
-  },
-  {
-    label: "BIOMED",
-    value: "BIOMED",
-  },
-  {
-    label: "MCA",
-    value: "MCA",
-  },
-];
+import { branchList } from "../../utils/constants";
+import { semesterList } from "../../utils/constants";
+import { fetchDataFromApiWithResponse } from "../../utils/api";
+import { toast } from "react-toastify";
 
 const Profile = () => {
-  
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    branch: "",
-    phone: "",
-    password: "",
-  });
+  const [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
+  const [form, setForm] = useState({});
+
+  useEffect(() => {
+    setForm({
+      name: mentee.name || "",
+      username: mentee.username || "",
+      email: mentee.email || "",
+      phone: mentee.phone_number || "",
+      image: mentee.image || "",
+      branch: mentee.branch || "",
+      password: mentee.password || "",
+      semester: mentee.semester || "",
+      linkedin: mentee.linkedinID || "",
+      codechef: mentee.codechefID || "",
+      gfg: mentee.gfgID || "",
+      hackerrank: mentee.hackerrankID || "",
+      codeforces: mentee.codeforcesID || "",
+      leetcode: mentee.leetcodeID || "",
+    });
+}, [mentee]);
 
   const [showPassword, setShowPassword] = useState(false);
   const [disabledForm, setDisabledForm] = useState(true);
-  const [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
-  function handle(e) {
+  const handle=(e)=>{
     const n = { ...form };
     n[e.target.name] = e.target.value;
     setForm(n);
   }
 
-  function handleSelect(selectedOption, object) {
+  const handleSelect=(selectedOption, object)=>{
     const n = { ...form };
     n[object.name] = selectedOption.value;
     setForm(n);
   }
 
-  function handleDisabledForm(e) {
+  const handleDisabledForm=(e)=>{
     e.preventDefault();
     setDisabledForm((prev) => !prev);
   }
+  const handleSubmit=(e)=>{
+     e.preventDefault();
+     fetchData();
+  }
+  const fetchData = async () => {
+    const body = { 
+      image:form.image,
+      // name: form.name, 
+      phone_number : form.phone,
+      username: form.username,
+      branch:form.branch,
+      semester:parseInt(form.semester),
+      codechefID:form.codechef,
+      codeforcesID:form.codeforces,
+      leetcodeID:form.leetcode,
+      password: form.password, 
+      gfgID:form.gfg,
+      hackerrankID:form.hackerrank,
+      linkedinID: form.linkedin,
+      // email:form.email,
+    };
+
+    const data = await fetchDataFromApiWithResponse(body, "update_mentee");
+    if (data.status_code == 200) {
+      toast.success("Updated Successfully!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    else{
+      toast.error(data.status_message, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    console.log("User", data);
+  };
 
   return (
     <div className="flex justify-center items-center h-full">
@@ -106,25 +120,52 @@ const Profile = () => {
               )}
             </div>
           </div>
-          <div className="flex flex-col items-start mt-8">
-            <p className="my-1">Name</p>
+          <div className="flex gap-4">
+          <div className="flex flex-col items-start mt-8 w-[50%]">
+            <p className="my-1 text-black dark:text-white ">Name</p>
             <input
-              className="px-3 py-1.5 rounded-md border w-[100%]"
+              className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
               type="text"
               name="name"
-              placeholder={mentee.name}
+              placeholder="Enter your name"
+              value={form.name}
+              required
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start mt-8 w-[50%]">
+            <p className="my-1 text-black dark:text-white">Username</p>
+            <input
+              className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+              value={form.username}
               required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
             />
           </div>
+          </div>
           <div className="flex flex-col items-start">
-            <p className="my-1">Email</p>
+            <p className="my-1 text-black dark:text-white">Email</p>
             <input
-              className="px-3 py-1.5 rounded-md border w-[100%]"
+              className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
               type="text"
-              name="emailid"
-              placeholder="Email"
+              name="email"
+              value={form.email}
+              placeholder="Enter you email address"
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start">
+            <p className="my-1 text-black dark:text-white">Profile Picture</p>
+            <input
+              className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
+              type="text"
+              name="image"
+              placeholder="Enter the drive url for your image"
+              value={form.image}
               required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
@@ -132,37 +173,130 @@ const Profile = () => {
           </div>
           <div className="flex gap-4">
             <div className="flex flex-col items-start w-[50%]">
-              <p className="my-1">Phone</p>
+              <p className="my-1 text-black dark:text-white">Phone</p>
               <input
-                className="px-3 py-1.5 rounded-md border w-[100%]"
+                className="px-3 py-1.5  bg-slate-100 rounded-md border w-[100%] text-black"
                 type="text"
-                name="mobileno"
-                placeholder={mentee.phone_number}
+                name="phone"
+                placeholder="Enter your phone no."
+                value={form.phone}
                 required
                 onChange={(e) => handle(e)}
                 disabled={disabledForm}
               />
             </div>
             <div className="flex flex-col items-start w-[50%]">
-              <p className="my-1">Branch</p>
+              <p className="my-1 text-black dark:text-white">Branch</p>
               <Select
                 options={branchList}
                 onChange={handleSelect}
                 placeholder={mentee.branch}
+                value={form.branch}
                 name="branch"
-                className="w-[100%]"
+                className="w-[100%] dark:bg-black bg-slate-200 text-black"
+                isDisabled={disabledForm}
+              />
+            </div>
+            <div className="flex flex-col items-start w-[50%]">
+              <p className="my-1 text-black dark:text-white">Semester</p>
+              <Select
+                options={semesterList}
+                onChange={handleSelect}
+                placeholder={mentee.semester}
+                value={form.semester}
+                name="branch"
+                className="w-[100%] dark:bg-black bg-slate-200 text-black"
                 isDisabled={disabledForm}
               />
             </div>
           </div>
+          <div className="flex flex-col items-start">
+            <p className="my-1 text-black dark:text-white">LinkedIn</p>
+            <input
+              className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
+              type="text"
+              name="linkedin"
+              placeholder="Your LinkedIn profile url"
+              value={form.linkedin}
+              required
+              onChange={(e) => handle(e)}
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start">
+            <p className="my-1 text-black dark:text-white">CodeChef</p>
+            <input
+              className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
+              type="text"
+              name="codechef"
+              placeholder="Your CodeChef profile url"
+              value={form.codechef}
+              required
+              onChange={(e) => handle(e)}
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start">
+            <p className="my-1 text-black dark:text-white">Leetcode</p>
+            <input
+              className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
+              type="text"
+              name="leetcode"
+              placeholder="Your Leetcode profile url"
+              value={form.leetcode}
+              required
+              onChange={(e) => handle(e)}
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start">
+            <p className="my-1 text-black dark:text-white">CodeForces</p>
+            <input
+              className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
+              type="text"
+              name="codeforces"
+              placeholder="Your CodeForces profile url"
+              value={form.codeforces}
+              required
+              onChange={(e) => handle(e)}
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start">
+            <p className="my-1 text-black dark:text-white">HackerRank</p>
+            <input
+              className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
+              type="text"
+              name="hackerrank"
+              placeholder="Your HackerRank profile url"
+              value={form.hackerrank}
+              required
+              onChange={(e) => handle(e)}
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start">
+            <p className="my-1 text-black dark:text-white">GFG</p>
+            <input
+              className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
+              type="text"
+              name="gfg"
+              placeholder="Your GFG profile url"
+              value={form.gfg}
+              required
+              onChange={(e) => handle(e)}
+              disabled={disabledForm}
+            />
+          </div>
           <div className="relative">
             <div className="flex flex-col items-start">
-              <p className="my-1">Password</p>
+              <p className="my-1 text-black dark:text-white">Password</p>
               <input
-                className="px-3 py-1.5 rounded-md border w-[100%]"
+                className="px-3 py-1.5 bg-slate-100 rounded-md border w-[100%] text-black"
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder={mentee.password}
+                value={form.password}
                 onChange={(e) => handle(e)}
                 disabled={disabledForm}
               />
@@ -230,18 +364,6 @@ const Profile = () => {
             </button>
           </div>
         </form>
-        {/* <div className="flex space-x-2 w-full px-6">
-          <button
-            className="text-white w-full bg-blue-500 py-2 px-8 mt-4 rounded"
-            onClick={handleProfileEdit}
-            disabled={editingEnable}
-          >
-            Edit Profile
-          </button>
-          <button className="text-white w-full bg-blue-500 py-2 px-8 mt-4 rounded">
-            Update
-          </button>
-        </div> */}
       </div>
     </div>
   );

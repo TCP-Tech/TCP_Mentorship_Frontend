@@ -8,94 +8,9 @@ import Menteeimg from "../../assets/images/Menteeimg.jpg";
 import Select from "react-select";
 import { fetchDataFromApiWithResponse } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
-// import bgImage from "../assets/bgImage.jpg";
+import { branchList } from "../../utils/constants";
+import { semesterList } from "../../utils/constants";
 import { useLayoutEffect } from "react";
-
-const branchList = [
-  {
-    label: "CSE",
-    value: "CSE",
-  },
-  {
-    label: "IT",
-    value: "IT",
-  },
-  {
-    label: "ECE",
-    value: "ECE",
-  },
-  {
-    label: "ELEC",
-    value: "ELEC",
-  },
-  {
-    label: "MECH",
-    value: "MECH",
-  },
-  {
-    label: "CIVIL",
-    value: "CIVIL",
-  },
-  {
-    label: "CHEM",
-    value: "CHEM",
-  },
-  {
-    label: "META",
-    value: "META",
-  },
-  {
-    label: "MIN",
-    value: "MIN",
-  },
-  {
-    label: "BIOTECH",
-    value: "BIOTECH",
-  },
-  {
-    label: "BIOMED",
-    value: "BIOMED",
-  },
-  {
-    label: "MCA",
-    value: "MCA",
-  },
-];
-
-const semesterList = [
-  {
-    label: "1",
-    value: 1,
-  },
-  {
-    label: "2",
-    value: 2,
-  },
-  {
-    label: "3",
-    value: 3,
-  },
-  {
-    label: "4",
-    value: 4,
-  },
-  {
-    label: "5",
-    value: 5,
-  },
-  {
-    label: "6",
-    value: 6,
-  },
-  {
-    label: "7",
-    value: 7,
-  },
-  {
-    label: "8",
-    value: 8,
-  },
-];
 
 const Signup = () => {
   useLayoutEffect(() => {
@@ -281,13 +196,13 @@ const Signup = () => {
 
                 {/* email */}
                 <div className="flex flex-col items-start  dark:text-white text-black">
-                  <p>Email or Mobile No.</p>
+                  <p>Email</p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                    type="text"
+                    type="email"
                     name="userid"
                     required
-                    placeholder="Email or Mobile No."
+                    placeholder="Enter your email address"
                     onChange={(e) => handle(e)}
                   />
                 </div>
