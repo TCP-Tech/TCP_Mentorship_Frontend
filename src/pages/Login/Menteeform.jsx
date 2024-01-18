@@ -30,6 +30,18 @@ const Menteeform = () => {
         navigate("/mentee");
       }, 2000);
     }
+    else{
+      toast.error(data.status_message, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
     console.log("User", data.user_data);
   };
 

@@ -132,7 +132,7 @@ const DashBoard = () => {
                   src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                   alt=""
                 />
-                <p className="text-black dark:text-gray-500 md:text-lg text-sm">Hi {mentee.name}</p>
+                <p className="text-black dark:text-gray-500 md:text-lg text-sm">Hi {mentee.username}</p>
                 <div
                   onClick={handleMouseClick}
                   className="text-black dark:text-gray-500 w-8 h-8 flex justify-center items-center "
