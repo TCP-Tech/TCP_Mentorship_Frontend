@@ -91,7 +91,7 @@ const Profile = () => {
      fetchData();
   }
   const fetchData = async () => {
-    const body = { username: form.userid, phone_number : form.phone, password: form.password };
+    const body = { name: form.name, email:form.email, phone_number : form.phone, password: form.password };
 
     const data = await fetchDataFromApiWithResponse(body, "update_mentor");
     if (data.status_code == 200) {
@@ -192,7 +192,7 @@ const Profile = () => {
               className="px-3 py-1.5 rounded-md border w-[100%]"
               type="text"
               name="email"
-              value={form.username}
+              value={form.email}
               required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
