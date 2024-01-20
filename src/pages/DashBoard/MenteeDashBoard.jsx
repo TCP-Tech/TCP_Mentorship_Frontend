@@ -129,7 +129,7 @@ const DashBoard = () => {
               <div className="cursor-pointer flex justify-center items-center">
                 <img
                   className="object-cover md:w-10 md:h-10 w-7 h-7 rounded-full mr-2"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  src={mentee.image}
                   alt=""
                 />
                 <p className="text-black dark:text-gray-500 md:text-lg text-sm">Hi {mentee.username}</p>
