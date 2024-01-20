@@ -62,6 +62,7 @@ const Profile = () => {
   useEffect(() => {
     setForm({
       name: mentor.name || "",
+      image: mentor.image || "",
       email: mentor.email || "",
       phone: mentor.phone_number || "",
       password: mentor.password || "",
@@ -91,7 +92,7 @@ const Profile = () => {
      fetchData();
   }
   const fetchData = async () => {
-    const body = { name: form.name, email:form.email, phone_number : form.phone, password: form.password };
+    const body = { name: form.name, image:form.image, email:form.email, phone_number : form.phone, password: form.password };
 
     const data = await fetchDataFromApiWithResponse(body, "update_mentor");
     if (data.status_code == 200) {
@@ -181,6 +182,19 @@ const Profile = () => {
               type="text"
               name="name"
               value={form.name}
+              required
+              onChange={(e) => handle(e)}
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start">
+            <p className="my-1">Profile Picture</p>
+            <input
+              className="px-3 py-1.5 rounded-md border w-[100%]"
+              type="text"
+              name="image"
+              placeholder="Enter the drive url for your image"
+              value={form.image}
               required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
