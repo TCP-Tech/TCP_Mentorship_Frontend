@@ -2,12 +2,20 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
 const topicList = [
-  { value: "Arrays & Strings", label: "Arrays & Strings" },
-  { value: "Linked List", label: "Linked List" },
-  { value: "Recursion & Backtracking", label: "Recursion & Backtracking" },
-  { value: "DP", label: "DP" },
-  { value: "Trees", label: "Trees" },
-  { value: "Graphs", label: "Graphs" },
+{ value: "Arrays", label: "Arrays" },
+{ value: "Backtracking", label: "Backtracking" },
+{ value: "Binary Trees", label: "Binary Trees" },
+{ value: "Bit Manipulation", label: "Bit Manipulation" },
+{ value: "BST", label: "BST" },
+{ value: "Dynammic Programming", label: "Dynammic Programming" },
+{ value: "Graphs", label: "Graphs" },
+{ value: "Greedy", label: "Greedy" },
+{ value: "Heap", label: "Heap" },
+{ value: "Linked List", label: "Linked List" },
+{ value: "Matrix", label: "Matrix" },
+{ value: "Stacks & Queues", label: "Stacks & Queues" },
+{ value: "String", label: "String" },
+{ value: "Trie", label: "Trie" },
 ];
 
 const difficultyList = [
@@ -78,16 +86,17 @@ const AddProblem = () => {
           />
         </div>
         <div className="flex gap-4">
-          <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
+          <div className="flex flex-col items-start w-[50%] dark:text-white text-black ">
             <p>Problem Topic</p>
             <Select
               options={topicList}
               onChange={handleSelect}
-              defaultValue={[topicList[0], topicList[1]]}
+              // defaultValue={[topicList[0], topicList[1]]}
               placeholder="Select Topic"
               isMulti
               name="topic"
-              className="w-full mt-2"
+              className="w-full mt-2 dark:text-black text-black "
+              style={customStyles}
               required
             />
           </div>
@@ -96,10 +105,10 @@ const AddProblem = () => {
             <Select
               options={difficultyList}
               onChange={handleSelect}
-              defaultValue={[difficultyList[0]]}
+              // defaultValue={[difficultyList[0]]}
               placeholder="Select Difficulty"
               name="difficulty"
-              className="w-full mt-2"
+              className="w-full mt-2 text-black"
               required
             />
           </div>
