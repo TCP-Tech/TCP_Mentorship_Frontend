@@ -3,6 +3,8 @@ import AddProblem from "./AddProblem";
 import React, { useState, useEffect } from "react";
 
 const ProblemList = ({toggleConfetti}) => {
+  const [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
+  const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
   return (
     <div className="flex flex-col">
       <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 font-semibold">
