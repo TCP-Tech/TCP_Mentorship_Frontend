@@ -21,20 +21,22 @@ const Home = () => {
     }
   }, [mentor , mentee]);
   return (
-    <div className="dark:bg-gray-900">
-      <div className="bg-zinc-500 absolute -bottom-[10rem] -z-10 w-right-[5rem] h-[15.25rem] w-[21.25rem] rounded-full blur-[100rem] sm:w-[68.75rem] dark:bg-[#fff] dark:hidden"></div>
-      <div className="bg-blue-300 absolute -top-[10rem] md:-top-[15rem] -z-10  h-[21.25rem] w-[23rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#fff] dark:hidden"></div>
+    <div>
+      <div className="bg-zinc-500 absolute md:-bottom-[10rem] md:left-[10rem] -bottom-[45rem] w-right-[5rem] h-[38rem] md:h-[15.25rem] w-[100vw] rounded-full blur-[100rem] md:w-[68.75rem]"></div>
+      <div className="bg-blue-300 absolute -top-[10rem] md:-top-[15rem]  h-[21.25rem] w-[100vw] rounded-full blur-[10rem] md:w-[68.75rem]  md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem]"></div>
+      <div className="dark:bg-gray-900">
       <Navbar />
       <Wrapper>
         <HeroSection />
       </Wrapper>
-      <Counter />
+      <Counter /> 
       <Wrapper>
         <LeaderBoard />
         <MenteeLeaderBoard />
       </Wrapper>
       <TeamSection />
       <Footer />
+      </div>
     </div>
   );
 };
