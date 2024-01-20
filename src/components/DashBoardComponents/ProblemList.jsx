@@ -6,7 +6,6 @@ import { FaSpinner } from 'react-icons/fa';
 const ProblemList = ({ toggleConfetti }) => {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const fetchData = async () => {
     try {
       const data = await fetchDataFromApi("getQuestions", "");
@@ -17,7 +16,6 @@ const ProblemList = ({ toggleConfetti }) => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);
