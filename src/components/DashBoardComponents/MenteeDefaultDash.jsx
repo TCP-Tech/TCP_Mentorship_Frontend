@@ -4,7 +4,7 @@ import Profile from "./Profile";
 
 const MenteeDefaultDash = ({ toggleConfetti }) => {
   return (
-    <div className="p-5">
+    <div className="p-5 h-[100vh]">
       <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 font-semibold">
         Overview
       </h1>

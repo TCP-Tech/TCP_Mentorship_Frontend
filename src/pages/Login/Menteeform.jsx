@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +8,12 @@ const Menteeform = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const [form, setForm] = useState({
+    userid: "",
+    password: "",
+  });
   const fetchData = async () => {
-    const body = { username: form.userid, password: form.password };
+    const body = { email: form.userid, password: form.password };
 
     const data = await fetchDataFromApiWithResponse(body, "mentee_login");
     if (data.user_data) {
@@ -50,10 +53,6 @@ const Menteeform = () => {
     fetchData();
   };
 
-  const [form, setForm] = useState({
-    userid: "",
-    password: "",
-  });
 
   const checkLoggedIn = () => {
     const mentorData = localStorage.getItem("Mentee");
@@ -90,7 +89,7 @@ const Menteeform = () => {
             type="text"
             name="userid"
             required
-            placeholder="Mentee Email or Mobile No."
+            placeholder="Enter your registered email"
             onChange={(e) => handle(e)}
           />
         </div>
