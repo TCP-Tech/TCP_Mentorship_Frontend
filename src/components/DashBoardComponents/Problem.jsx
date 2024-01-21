@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Problem = ({ title, desc, topic, level, url,time,toggleConfetti }) => {
+const Problem = ({ title, desc, topic, level, url,time,toggleConfetti, user }) => {
   const [isMarked, setIsMarked] = useState(false);
 
   const toggleMark = () => { 
@@ -24,7 +24,7 @@ const Problem = ({ title, desc, topic, level, url,time,toggleConfetti }) => {
       </a>
       <div className="flex flex-col items-center p-4">
         <button
-          className={`${isMarked ? 'text-black dark:text-white border-primary border' : 'bg-[var(--primary-c)] text-white'}  rounded-lg dark:border dark:border-white p-3 m-3`}
+          className={`${isMarked ? 'text-black dark:text-white border-primary border' : 'bg-[var(--primary-c)] text-white'} ${user==="mentor"? 'hidden':''}  rounded-lg dark:border dark:border-white p-3 m-3`}
           onClick={toggleMark}
         >
           {isMarked ? "Marked" : "Mark as Done"}

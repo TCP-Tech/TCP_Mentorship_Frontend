@@ -69,13 +69,13 @@ const Mentorform = () => {
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className="flex flex-col items-start mt-8 dark:text-white text-black">
-          <p>Email or Mobile No.</p>
+          <p>Email</p>
           <input
             className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
             type="text"
             name="userid"
             required
-            placeholder="Mentor Email or Mobile No."
+            placeholder="Enter your registered email"
             onChange={(e) => handle(e)}
           />
         </div>

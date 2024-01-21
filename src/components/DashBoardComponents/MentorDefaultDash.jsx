@@ -1,6 +1,8 @@
-import React from "react";
+import React,{useState} from "react";
 import Profile from "./Profile";
 const MentorDefaultDash = () => {
+
+  const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
   return (
     <>
       <div>
@@ -14,7 +16,7 @@ const MentorDefaultDash = () => {
                 Questions Assigned
               </h1>
               <h1 className="border-b-4 w-1/2 border-red-500 text-2xl py-2 font-bold text-black">
-                522
+              {mentor.total_q}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg p-4 m-2  w-60 md:w-64 bg-green-100  md:mr-2">
@@ -22,7 +24,7 @@ const MentorDefaultDash = () => {
                 Team Score
               </h1>
               <h1 className="border-b-4 w-1/2 border-green-500 text-2xl py-2 font-bold text-black">
-                325
+              {mentor.score}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg p-4 m-2  w-60 md:w-64 bg-blue-100  md:mr-2">
@@ -54,19 +56,19 @@ const MentorDefaultDash = () => {
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
               <h1 className="text-lg  text-black font-semibold mb-2">Easy</h1>
               <h1 className="border-b-4 w-1/2 border-red-500 text-black text-2xl py-2 font-bold ">
-                222
+              {mentor.Qlevel_count["Easy"] || 'N/A'}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-green-100">
               <h1 className="text-lg text-black font-semibold mb-2">Medium</h1>
               <h1 className="border-b-4 w-1/2 border-green-500 text-2xl text-black py-2 font-bold">
-                175
+              {mentor.Qlevel_count["Medium"] || 'N/A'}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-blue-100">
               <h1 className="text-lg text-black font-semibold mb-2">Hard</h1>
               <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
-                125
+              {mentor.Qlevel_count["Hard"] || 'N/A'}
               </h1>
             </div>
           </div>
@@ -76,46 +78,92 @@ const MentorDefaultDash = () => {
         </h1>
         <div className="flex flex-col">
           <div className="flex flex-wrap">
-            <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-gray-100">
-              <h1 className="text-lg text-black font-semibold mb-2">
-                Arrays & strings
-              </h1>
-              <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
-                125
+          <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
+              <h1 className="text-lg text-black font-semibold mb-2">Arrays</h1>
+              <h1 className="border-b-4 w-1/2 border-red-500 text-2xl text-black py-2 font-bold">
+              {mentor.topic_count["Array"] || 'N/A'}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-green-100">
               <h1 className="text-lg text-black font-semibold mb-2">
-                Linked list
+              Backtracking
               </h1>
               <h1 className="border-b-4 w-1/2 border-green-500 text-2xl text-black py-2 font-bold">
-                175
+              {mentor.topic_count["Backtracking"] || 'N/A'}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-blue-100">
               <h1 className="text-lg text-black font-semibold mb-2">
-                Recursion & Backtracking
+              Binary Trees
               </h1>
               <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
-                125
+              {mentor.topic_count["BinaryTrees"] || 'N/A'}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
-              <h1 className="text-lg text-black font-semibold mb-2">DP</h1>
+              <h1 className="text-lg text-black font-semibold mb-2">Bit Manipulation</h1>
               <h1 className="border-b-4 w-1/2 border-red-500 text-2xl text-black py-2 font-bold">
-                101
+              {mentor.topic_count["BitManipulation"] || 'N/A'}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-green-100">
-              <h1 className="text-lg text-black font-semibold mb-2">Trees</h1>
+              <h1 className="text-lg text-black font-semibold mb-2">BST</h1>
               <h1 className="border-b-4 w-1/2 border-green-500 text-2xl text-black py-2 font-bold">
-                175
+              {mentor.topic_count["BST"] || 'N/A'}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-blue-100">
-              <h1 className="text-lg text-black font-semibold mb-2">Graphs</h1>
+              <h1 className="text-lg text-black font-semibold mb-2">Dynammic Programming</h1>
               <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
-                125
+              {mentor.topic_count["DynammicProgramming"] || 'N/A'}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
+              <h1 className="text-lg text-black font-semibold mb-2">Graphs</h1>
+              <h1 className="border-b-4 w-1/2 border-red-500 text-2xl text-black py-2 font-bold">
+              {mentor.topic_count["Graphs"] || 'N/A'}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-green-100">
+              <h1 className="text-lg text-black font-semibold mb-2">Greedy</h1>
+              <h1 className="border-b-4 w-1/2 border-green-500 text-2xl text-black py-2 font-bold">
+              {mentor.topic_count["Greedy"] || 'N/A'}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-blue-100">
+              <h1 className="text-lg text-black font-semibold mb-2">Heap</h1>
+              <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
+              {mentor.topic_count["Heap"] || 'N/A'}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
+              <h1 className="text-lg text-black font-semibold mb-2">Linked List</h1>
+              <h1 className="border-b-4 w-1/2 border-red-500 text-2xl text-black py-2 font-bold">
+              {mentor.topic_count["LinkedList"] || 'N/A'}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-green-100">
+              <h1 className="text-lg text-black font-semibold mb-2">Matrix</h1>
+              <h1 className="border-b-4 w-1/2 border-green-500 text-2xl text-black py-2 font-bold">
+              {mentor.topic_count["Matrix"] || 'N/A'}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-blue-100">
+              <h1 className="text-lg text-black font-semibold mb-2">Stacks & Queues</h1>
+              <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
+              {mentor.topic_count["Stacks&Queues"] || 'N/A'}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
+              <h1 className="text-lg text-black font-semibold mb-2">Strings</h1>
+              <h1 className="border-b-4 w-1/2 border-red-500 text-2xl text-black py-2 font-bold">
+              {mentor.topic_count["String"] || 'N/A'}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-green-100">
+              <h1 className="text-lg text-black font-semibold mb-2">Trie</h1>
+              <h1 className="border-b-4 w-1/2 border-green-500 text-2xl text-black py-2 font-bold">
+              {mentor.topic_count["Trie"] || 'N/A'}
               </h1>
             </div>
           </div>
