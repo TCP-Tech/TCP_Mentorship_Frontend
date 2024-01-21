@@ -68,7 +68,7 @@ const DashBoard = () => {
         return (
           <>
             <AddProblem />
-            <ProblemList />
+            <ProblemList user="mentor"/>
           </>
         );
       // case "Assigned Problems":

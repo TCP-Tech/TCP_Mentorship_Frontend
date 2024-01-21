@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import ProblemList from "./ProblemList";
 import Profile from "./Profile";
 
 const MenteeDefaultDash = ({ toggleConfetti }) => {
+
+  const [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
+
   return (
     <div className="p-5 h-[100vh]">
       <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 font-semibold">
@@ -15,13 +18,13 @@ const MenteeDefaultDash = ({ toggleConfetti }) => {
               Questions Solved
             </h1>
             <h1 className="border-b-4 w-1/2 border-red-500 text-2xl py-2 font-bold text-black">
-              522
+              {mentee.total_q}
             </h1>
           </div>
           <div className="flex flex-col rounded-lg p-4 m-2  w-60 md:w-64 bg-green-100  md:mr-2">
             <h1 className="text-lg font-semibold mb-2 text-black">Score</h1>
             <h1 className="border-b-4 w-1/2 border-green-500 text-2xl py-2 font-bold text-black">
-              325
+              {mentee.score}
             </h1>
           </div>
           <div className="flex flex-col rounded-lg p-4 m-2  w-60 md:w-64 bg-blue-100  md:mr-2">
@@ -41,7 +44,7 @@ const MenteeDefaultDash = ({ toggleConfetti }) => {
           <Profile mode="mentee" />
         </div>
       </div>
-      <ProblemList toggleConfetti={toggleConfetti} />
+      <ProblemList user="mentee" toggleConfetti={toggleConfetti} />
     </div>
   );
 };
