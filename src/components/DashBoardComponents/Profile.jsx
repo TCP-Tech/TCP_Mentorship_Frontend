@@ -3,6 +3,14 @@ import React, { useEffect, useState } from "react";
 import Chart from "./Chart";
 
 const Profile = ({mode}) => {
+  let mentee;
+  let mentor;
+  if(mode === "mentee"){
+  [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
+  }
+  else{
+  [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
+  }
   return (
     <>
       <div className="flex w-full h-60 p-2 justify-center items-center border">
@@ -32,7 +40,7 @@ const Profile = ({mode}) => {
               Assigned {mode === "mentee" ? "Mentor" : "Mentees"} :
             </h1>
             <h1 className="font-normal md:text-lg text-sm text-gray-400">
-            {mode === "mentee" ? "Mentor name" : "Mentee names"}
+            {mode === "mentee" ? mentee.mentor_id : "Mentee names"}
             </h1>
           </div>
           <div className="flex items-center justify-center text-center px-5 space-x-1">
@@ -48,7 +56,7 @@ const Profile = ({mode}) => {
               <div className="flex justify-center py-4 lg:pt-4 pt-8">
                 <div className="mr-4 p-1 text-center">
                   <span className="text-xl text-black dark:text-white font-bold block uppercase tracking-wide text-blueGray-600">
-                    {mode === "mentee" ? "22" : "--"}
+                    {mode === "mentee" ? mentee.score : "--"}
                   </span>
                   <span className="text-sm text-gray-400">Points</span>
                 </div>

@@ -16,6 +16,7 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Confetti from "../../utils/Confetti";
+import ProblemList from "../../components/DashBoardComponents/ProblemList";
 
 const options = ["Profile", "Dashboard", "Team Leaderboard", "Leaderboard"];
 
@@ -59,8 +60,6 @@ const DashBoard = () => {
         return <MenteeDefaultDash toggleConfetti={toggleConfetti} />;
       case "Leaderboard":
         return <MenteeLeaderBoard />;
-      case "Assign Problem":
-        return <AddProblem />;
       case "Team Leaderboard":
         return <LeaderBoard />;
       case "Profile":

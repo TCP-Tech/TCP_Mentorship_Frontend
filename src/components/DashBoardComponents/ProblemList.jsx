@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { fetchDataFromApi } from "../../utils/api";
 import { FaSpinner } from 'react-icons/fa';
 
-const ProblemList = ({ toggleConfetti }) => {
+const ProblemList = ({user, toggleConfetti }) => {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const fetchData = async () => {
@@ -46,6 +46,7 @@ const ProblemList = ({ toggleConfetti }) => {
               desc={question.desc}
               url={question.url}
               time={question.time}
+              user={user}
             />
           ))}
         </div>
