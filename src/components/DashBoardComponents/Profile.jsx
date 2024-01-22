@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+// import { fetchDataFromApi } from '../../utils/api';
 import Chart from "./Chart";
 
 const Profile = ({mode}) => {
@@ -11,6 +11,17 @@ const Profile = ({mode}) => {
   else{
   [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
   }
+
+  // fetchDataFromApi('/get-team-mentor/', '')
+  // .then(data => {
+  //   // Handle the data received from the API
+  //   console.log(data);
+  // })
+  // .catch(error => {
+  //   // Handle errors
+  //   console.error('Error fetching data:', error);
+  // });
+
   return (
     <>
       <div className="flex w-full h-60 p-2 justify-center items-center border">

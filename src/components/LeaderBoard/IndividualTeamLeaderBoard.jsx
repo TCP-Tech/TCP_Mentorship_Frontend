@@ -1,9 +1,31 @@
 import React from "react";
 import MenteesCompo from "../MenteesCard";
+import { fetchDataFromApi } from '../../utils/api';
 import { mentees } from "../../data/MenteeData";
 import pallete from "../../assets/images/starPallete.png";
 
 const IndividualTeamLeaderBoard = ({ teamName }) => {
+
+  const sortedMentees = mentees.sort((a, b) => {
+    // Compare points
+    if (b.pointsScored !== a.pointsScored) {
+      return b.pointsScored - a.pointsScored;
+    }
+  
+    // If points are equal, compare problemsSolved
+    return b.problemsSolved - a.problemsSolved;
+  });
+
+  // fetchDataFromApi('/getTeams', '')
+  // .then(data => {
+  //   // Handle the data received from the API
+  //   console.log(data);
+  // })
+  // .catch(error => {
+  //   // Handle errors
+  //   console.error('Error fetching data:', error);
+  // });
+
   return (
     <div className="flex flex-col p-4 overflow-hidden">
       <div className="team-profile flex flex-col sm:flex-row items-center mb-4 space-x-6">
@@ -41,7 +63,7 @@ const IndividualTeamLeaderBoard = ({ teamName }) => {
         Team Members
       </h1>
       <div className="team-profile-members overflow-y-scroll h-[70vh]">
-        {mentees.map((mentee) => (
+        {sortedMentees.map((mentee) => (
           <MenteesCompo
             key={mentee.id}
             name={mentee.name}

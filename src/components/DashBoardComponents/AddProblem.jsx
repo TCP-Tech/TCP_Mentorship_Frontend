@@ -11,14 +11,14 @@ const topicList = [
 { value: "BinaryTrees", label: "Binary Trees" },
 { value: "BitManipulation", label: "Bit Manipulation" },
 { value: "BST", label: "BST" },
-{ value: "DynammicProgramming", label: "Dynammic Programming" },
+{ value: "DynamicProgramming", label: "Dynamic Programming" },
 { value: "Graphs", label: "Graphs" },
 { value: "Greedy", label: "Greedy" },
 { value: "Heap", label: "Heap" },
 { value: "LinkedList", label: "Linked List" },
 { value: "Matrix", label: "Matrix" },
 { value: "Stacks&Queues", label: "Stacks & Queues" },
-{ value: "String", label: "String" },
+{ value: "Strings", label: "Strings" },
 { value: "Trie", label: "Trie" },
 ];
 
@@ -78,7 +78,7 @@ const AddProblem = () => {
       gfgLink : form.gfgLink ,
       codechefLink : form.codechefLink,
       codeforcesLink : form.codeforcesLink,
-      hackerrankLink : form.hackerrankLink 
+      hackerrankLink : form.hackerrankLink
     }
     const data = await fetchDataFromApiWithResponse(body, "addQuestion");
     if (data.status_code == 200) {
@@ -132,7 +132,11 @@ const AddProblem = () => {
     
   };
 
-
+  const resetForm = () => {
+    setForm(forminitialState);
+    formRef.current.reset();
+    
+  };
 
 
 
@@ -252,13 +256,13 @@ const AddProblem = () => {
           >
             Add
           </button>
-          {/* <button
+          <button
             type="button"
             onClick={resetForm}
             className=" rounded-md text-sm bg-gray-200 border px-8 py-2 text-black font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
           >
             Cancel
-          </button> */}
+          </button>
         </div>
       </form>
     </div>
