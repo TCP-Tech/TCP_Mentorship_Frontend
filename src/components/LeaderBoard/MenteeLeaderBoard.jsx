@@ -20,6 +20,28 @@ const MenteeLeaderBoard = () => {
     };
   }, []);
 
+  const sortedMentees = mentees.sort((a, b) => {
+    // // Compare points
+    // if (b.score !== a.score) {
+    //   return b.score - a.score;
+    // }
+  
+    // // If points are equal, compare problemsSolved
+    // if (b.solvedQ !== a.solvedQ) {
+    // return b.solvedQ - a.solvedQ;
+    // }
+    // // If problemsSolved are equal, compare time taken
+    // return a.cumHour_diff - b.cumHour_diff;
+
+    // Compare points
+    if (b.pointsScored !== a.pointsScored) {
+      return b.pointsScored - a.pointsScored;
+    }
+  
+    // If points are equal, compare problemsSolved
+    return b.problemsSolved - a.problemsSolved;
+  });
+
   return (
     <div>
       <section className="px-4 mx-auto">
@@ -171,7 +193,7 @@ const MenteeLeaderBoard = () => {
                       </th>
                     </tr>
                   </thead>
-                  {mentees.map((mentee, index) => (
+                  {sortedMentees.map((mentee, index) => (
                     <tbody
                       key={index}
                       className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800"

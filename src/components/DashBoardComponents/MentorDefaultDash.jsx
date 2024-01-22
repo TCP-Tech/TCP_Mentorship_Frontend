@@ -3,6 +3,12 @@ import Profile from "./Profile";
 const MentorDefaultDash = () => {
 
   const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
+  // const entriesArray = Object.entries(mentor.topic_count);
+  // function getTopicCount(topic) {
+  //   const stringValue = entriesArray.find(([key, value]) => key === topic);
+  //   return (stringValue ? stringValue[1] : 'N/A');
+  // }
+
   return (
     <>
       <div>
@@ -81,7 +87,7 @@ const MentorDefaultDash = () => {
           <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
               <h1 className="text-lg text-black font-semibold mb-2">Arrays</h1>
               <h1 className="border-b-4 w-1/2 border-red-500 text-2xl text-black py-2 font-bold">
-              {mentor.topic_count["Array"] || 'N/A'}
+              {/* {getTopicCount("Arrays")} */} 10
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-green-100">
@@ -89,7 +95,7 @@ const MentorDefaultDash = () => {
               Backtracking
               </h1>
               <h1 className="border-b-4 w-1/2 border-green-500 text-2xl text-black py-2 font-bold">
-              {mentor.topic_count["Backtracking"] || 'N/A'}
+              {/* {getTopicCount("Backtracking")} */} 10
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-blue-100">
@@ -97,25 +103,25 @@ const MentorDefaultDash = () => {
               Binary Trees
               </h1>
               <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
-              {mentor.topic_count["BinaryTrees"] || 'N/A'}
+              {/* {getTopicCount("BinaryTrees")} */} 10
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
               <h1 className="text-lg text-black font-semibold mb-2">Bit Manipulation</h1>
               <h1 className="border-b-4 w-1/2 border-red-500 text-2xl text-black py-2 font-bold">
-              {mentor.topic_count["BitManipulation"] || 'N/A'}
+              {/* {getTopicCount("BitManipulation")} */} 10
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-green-100">
               <h1 className="text-lg text-black font-semibold mb-2">BST</h1>
               <h1 className="border-b-4 w-1/2 border-green-500 text-2xl text-black py-2 font-bold">
-              {mentor.topic_count["BST"] || 'N/A'}
+              {/* {getTopicCount("BST")} */} 10
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-blue-100">
-              <h1 className="text-lg text-black font-semibold mb-2">Dynammic Programming</h1>
+              <h1 className="text-lg text-black font-semibold mb-2">DP</h1>
               <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
-              {mentor.topic_count["DynammicProgramming"] || 'N/A'}
+              {/* {getTopicCount("DynamicProgramming")} */} 10
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
@@ -157,7 +163,7 @@ const MentorDefaultDash = () => {
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-red-100">
               <h1 className="text-lg text-black font-semibold mb-2">Strings</h1>
               <h1 className="border-b-4 w-1/2 border-red-500 text-2xl text-black py-2 font-bold">
-              {mentor.topic_count["String"] || 'N/A'}
+              {mentor.topic_count["Strings"] || 'N/A'}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 w-60 bg-green-100">

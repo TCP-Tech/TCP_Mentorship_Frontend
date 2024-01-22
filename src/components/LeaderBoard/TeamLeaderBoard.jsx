@@ -5,6 +5,7 @@ import IndividualTeamLeaderBoard from "./IndividualTeamLeaderBoard";
 import close from "../../assets//images/cross.png";
 import crown from "../../assets//images/crown.png";
 import Modal from "react-modal";
+import { fetchDataFromApi } from '../../utils/api';
 
 const LeaderBoard = () => {
   const [teamName, setTeamName] = useState("Team A");
@@ -16,6 +17,27 @@ const LeaderBoard = () => {
   const closeModal = () => {
     setShowModal(false);
   };
+
+  fetchDataFromApi('getTeams', '')
+  .then(TeamsData => {
+    // Handle the data received from the API
+    console.log(TeamsData);
+  })
+  .catch(error => {
+    // Handle errors
+    console.error('Error fetching data:', error);
+  });
+
+  const sortedTeams = teams.sort((a, b) => {
+    // Compare score
+    // if (b.team_score !== a.team_score) {
+      // return b.team_score - a.team_score;
+    // }
+  
+    // If scores are equal, compare time taken
+    // return a.cumHour_diff - b.cumHour_diff;
+    return b.pointsScored - a.pointsScored;
+  });
 
   return (
     <div className="bg-transparent flex flex-col  pt-12">
@@ -104,7 +126,7 @@ const LeaderBoard = () => {
             </div>
           </div>
           <div className="dark:bg-gray-800 overflow-y-scroll px-10 mt-4 h-[70vh] w-full rounded-tl-[40px] rounded-tr-[40px] border dark:border-gray-600">
-            {teams.map((team, index) => (
+            {sortedTeams.map((team, index) => (
               <div key={index} onClick={() => handleClick(team.teamName)}>
                 <TeamCompo
                   key={index}

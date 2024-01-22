@@ -1,6 +1,6 @@
 export const mentees = [
   {
-    id: "🥇",
+    id: 1,
     name: "Mentee 1",
     problemsSolved: 20,
     pointsScored: 180,
@@ -8,7 +8,7 @@ export const mentees = [
     teamName: "Team A",
   },
   {
-    id: "🥈",
+    id: 2,
     name: "Mentee 2",
     problemsSolved: 15,
     pointsScored: 150,
@@ -16,7 +16,7 @@ export const mentees = [
     teamName: "Team B",
   },
   {
-    id: "🥉",
+    id: 3,
     name: "Mentee 3",
     problemsSolved: 25,
     pointsScored: 250,
