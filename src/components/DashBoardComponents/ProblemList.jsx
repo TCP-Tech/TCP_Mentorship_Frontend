@@ -8,7 +8,7 @@ const ProblemList = ({ user, toggleConfetti }) => {
   const [id, setId] = useState(null);
   const mentor = JSON.parse(localStorage.getItem("Mentor"));
   const mentee = JSON.parse(localStorage.getItem("Mentee"));
-
+  
   useEffect(() => {
     if (mentor) {
       setId(mentor.id);
@@ -21,7 +21,7 @@ const ProblemList = ({ user, toggleConfetti }) => {
 
   const fetchData = async () => {
     try {
-      const data = await fetchDataFromApi("getQuestions", 1);
+      const data = await fetchDataFromApi("getQuestions", id);
       setQuestions(data.data);
       setLoading(false);
     } catch (error) {
@@ -62,7 +62,7 @@ const ProblemList = ({ user, toggleConfetti }) => {
               desc={question.desc}
               url={question.url}
               time={question.formated_allotedtime}
-              user={mentee}
+              user={mentee || mentor}
             />
           ))}
         </div>
