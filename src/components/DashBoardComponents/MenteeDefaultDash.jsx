@@ -44,8 +44,8 @@ const MenteeDefaultDash = ({ toggleConfetti }) => {
           <Profile mode="mentee" />
         </div>
       </div>
-      <div className="h-screen">
-      <ProblemList user="mentee" toggleConfetti={toggleConfetti} />
+      <div>
+      <ProblemList toggleConfetti={toggleConfetti} />
       </div>
     </div>
   );
