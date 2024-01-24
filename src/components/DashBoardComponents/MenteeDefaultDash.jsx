@@ -7,7 +7,7 @@ const MenteeDefaultDash = ({ toggleConfetti }) => {
   const [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
 
   return (
-    <div className="p-5 h-[100vh]">
+    <div className="p-5 ">
       <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 font-semibold">
         Overview
       </h1>
@@ -44,7 +44,9 @@ const MenteeDefaultDash = ({ toggleConfetti }) => {
           <Profile mode="mentee" />
         </div>
       </div>
+      <div className="h-screen">
       <ProblemList user="mentee" toggleConfetti={toggleConfetti} />
+      </div>
     </div>
   );
 };
