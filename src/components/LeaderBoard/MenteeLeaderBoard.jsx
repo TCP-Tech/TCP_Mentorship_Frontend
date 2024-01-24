@@ -43,7 +43,7 @@ const MenteeLeaderBoard = () => {
   });
 
   return (
-    <div>
+    <div id="leaderBoard">
       <section className="px-4 mx-auto">
         <div className="flex items-center text-center justify-center gap-x-3 mt-20">
           <h2 className="md:text-5xl text-3xl font-bold font-custom dark:text-white text-black mb-16">
