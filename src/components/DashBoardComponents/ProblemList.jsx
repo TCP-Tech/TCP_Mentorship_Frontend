@@ -3,12 +3,25 @@ import React, { useState, useEffect } from "react";
 import { fetchDataFromApi } from "../../utils/api";
 import { FaSpinner } from 'react-icons/fa';
 
-const ProblemList = ({user, toggleConfetti }) => {
+const ProblemList = ({ user, toggleConfetti }) => {
   const [questions, setQuestions] = useState([]);
+  const [id, setId] = useState(null);
+  const mentor = JSON.parse(localStorage.getItem("Mentor"));
+  const mentee = JSON.parse(localStorage.getItem("Mentee"));
+
+  useEffect(() => {
+    if (mentor) {
+      setId(mentor.id);
+    } else if (mentee) {
+      setId(mentee.mentor_id);
+    }
+  }, [mentor, mentee]);
+
   const [loading, setLoading] = useState(true);
+
   const fetchData = async () => {
     try {
-      const data = await fetchDataFromApi("getQuestions", "");
+      const data = await fetchDataFromApi("getQuestions", 1);
       setQuestions(data.data);
       setLoading(false);
     } catch (error) {
@@ -16,9 +29,10 @@ const ProblemList = ({user, toggleConfetti }) => {
       setLoading(false);
     }
   };
+  console.log(questions)
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <div className="flex flex-col">
@@ -26,27 +40,29 @@ const ProblemList = ({user, toggleConfetti }) => {
         Problems Assigned
       </h1>
       {loading ? (
-        <div className="flex items-center justify-center  text-gray-400">
+        <div className="flex items-center justify-center text-black  dark:text-gray-400">
           <FaSpinner className="animate-spin text-4xl mr-2" />
           Loading...
         </div>
       ) : questions.length === 0 ? (
-        <p className=" text-center text-gray-500 text-2xl">
+        <p className=" text-center text-black dark:text-gray-500 text-2xl">
           No questions assigned yet.
         </p>
       ) : (
         <div className="flex flex-col">
           {questions.map((question) => (
             <Problem
-              key={question.id}  
+              key={question.id}
+              Qstatus={question.Qstatus}
+              id={question.id}
               toggleConfetti={toggleConfetti}
-              title={question.title}
+              title={question.Qname}
               topic={question.topic}
-              level={question.level}
+              level={question.Level}
               desc={question.desc}
               url={question.url}
-              time={question.time}
-              user={user}
+              time={question.formated_allotedtime}
+              user={mentee}
             />
           ))}
         </div>
