@@ -32,10 +32,48 @@ body {
   font-family: var(--font-family);
 }
 
+.dark{
+  background-color: rgb(17,24,39);
+}
 ::-webkit-scrollbar {
   display: none;
   width: 5px;
 }
+
+@keyframes sunrise {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moonrise {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.sun-moon-icon {
+  transition: transform 0.5s ease-in-out;
+}
+
+.animate-sunset {
+  animation: sunrise 0.5s ease-in-out;
+}
+
+.animate-moonrise {
+  animation: moonrise 0.5s ease-in-out;
+}
+
+.sun-moon-icon.reverse {
+  transform: rotate(180deg);
+}
+
 
 ::-webkit-scrollbar:horizontal {
   width: 0;

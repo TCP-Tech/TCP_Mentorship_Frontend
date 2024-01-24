@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { fetchDataFromApi } from "../../utils/api";
 import { FaSpinner } from 'react-icons/fa';
 
-const ProblemList = ({ user, toggleConfetti }) => {
+const ProblemList = ({toggleConfetti }) => {
   const [questions, setQuestions] = useState([]);
   const [id, setId] = useState(null);
   const mentor = JSON.parse(localStorage.getItem("Mentor"));
