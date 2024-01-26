@@ -40,7 +40,7 @@ const Profile = ({ mode }) => {
           <div className="flex flex-col md:flex-row items-start space-y-4 md:space-x-4">
             <div className="md:w-2/3 md:order-2">
             <div className="flex items-start space-x-1">
-                <h1 className="font-semibold md:text-lg text-black dark:text-white">
+                <h1 className="font-semibold md:text-lg text-black">
                   Team Name :
                 </h1>
                 <p className="font-normal md:text-lg text-gray-400">
@@ -48,7 +48,7 @@ const Profile = ({ mode }) => {
                 </p>
               </div>
               <div className="flex items-start space-x-1 mt-2">
-                <h1 className="font-semibold md:text-lg text-black dark:text-white">
+                <h1 className="font-semibold md:text-lg text-black ">
                   Assigned {mode === "mentee" ? "Mentor" : "Mentees"} :
                 </h1>
                 <p className="font-normal md:text-lg text-gray-400">
@@ -58,7 +58,7 @@ const Profile = ({ mode }) => {
                   </p>
               </div>
               <div className="flex items-start space-x-1 mt-2">
-                <h1 className="font-semibold md:text-lg text-black dark:text-white">
+                <h1 className="font-semibold md:text-lg text-black ">
                   Achievements :
                 </h1>
                 <p className="font-normal md:text-lg text-gray-400">
@@ -77,7 +77,7 @@ const Profile = ({ mode }) => {
                   <span className="block text-sm text-gray-400">Team Rank</span>
                 </div>
                 <div className="text-left">
-                  <span className="text-xl font-bold text-black dark:text-white">
+                  <span className="text-xl font-bold text-black">
                     {mode === "mentee" ? "89" : "--"}
                   </span>
                   <span className="block text-sm text-gray-400">Overall Rank</span>
