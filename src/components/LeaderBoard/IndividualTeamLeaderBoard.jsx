@@ -1,30 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MenteesCompo from "../MenteesCard";
 import { fetchDataFromApi } from '../../utils/api';
 import { mentees } from "../../data/MenteeData";
 import pallete from "../../assets/images/starPallete.png";
+import teamimage from "../../assets/images/team.jpg"
 
-const IndividualTeamLeaderBoard = ({ teamName }) => {
+const IndividualTeamLeaderBoard = ({ teamName,menteeData}) => {
 
-  const sortedMentees = mentees.sort((a, b) => {
-    // Compare points
-    if (b.pointsScored !== a.pointsScored) {
-      return b.pointsScored - a.pointsScored;
-    }
-  
-    // If points are equal, compare problemsSolved
-    return b.problemsSolved - a.problemsSolved;
-  });
-
-  // fetchDataFromApi('/getTeams', '')
-  // .then(data => {
-  //   // Handle the data received from the API
-  //   console.log(data);
-  // })
-  // .catch(error => {
-  //   // Handle errors
-  //   console.error('Error fetching data:', error);
-  // });
+    useEffect(() => {
+      
+      menteeData.sort(function (mentee1, mentee2) {
+       if(  mentee2.score == mentee1.score){
+        return mentee2.cumHour_diff - mentee1.cumHour_diff;
+       }
+       else{
+        return mentee2.score - mentee1.score;
+       }
+       });
+       console.log(menteeData)
+      
+    }, [])
+    
 
   return (
     <div className="flex flex-col p-4 overflow-hidden">
@@ -32,6 +28,7 @@ const IndividualTeamLeaderBoard = ({ teamName }) => {
         <div className="relative mb-4 sm:mb-0">
           <div className="rounded-full overflow-hidden bg-gray-300 w-28 h-28">
             {/* Team DP */}
+            <img src={teamimage} alt="" />
           </div>
         </div>
         <div className="team-profile-name flex flex-col text-center ">
@@ -63,12 +60,13 @@ const IndividualTeamLeaderBoard = ({ teamName }) => {
         Team Members
       </h1>
       <div className="team-profile-members overflow-y-scroll h-[70vh]">
-        {sortedMentees.map((mentee) => (
+        {menteeData.map((mentee) => (
           <MenteesCompo
             key={mentee.id}
             name={mentee.name}
-            problemsSolved={mentee.problemsSolved}
-            points={mentee.pointsScored}
+            image={mentee.image}
+            problemsSolved={mentee.solvedQ}
+            points={mentee.score}
             id={mentee.id}
             // dp={}
           />
