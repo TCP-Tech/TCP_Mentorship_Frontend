@@ -60,7 +60,7 @@ const ProblemList = ({toggleConfetti }) => {
               topic={question.topic}
               level={question.Level}
               desc={question.desc}
-              url={question.url}
+              url={question.problemLink}
               time={question.formated_allotedtime}
               user={mentee || mentor}
             />

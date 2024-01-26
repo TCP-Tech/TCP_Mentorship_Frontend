@@ -1,97 +1,93 @@
 import React, { useEffect, useState } from "react";
-// import { fetchDataFromApi } from '../../utils/api';
 import Chart from "./Chart";
+import { fetchDataFromApi } from "../../utils/api";
 
-const Profile = ({mode}) => {
-  let mentee;
-  let mentor;
-  if(mode === "mentee"){
-  [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
-  }
-  else{
-  [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
-  }
+const Profile = ({ mode }) => {
+  const mentor = JSON.parse(localStorage.getItem("Mentor"));
+  const mentee = JSON.parse(localStorage.getItem("Mentee"));
+  const [teamData, setTeamData] = useState();
+  const [id, setId] = useState(null);
 
-  // fetchDataFromApi('/get-team-mentor/', '')
-  // .then(data => {
-  //   // Handle the data received from the API
-  //   console.log(data);
-  // })
-  // .catch(error => {
-  //   // Handle errors
-  //   console.error('Error fetching data:', error);
-  // });
+  useEffect(() => {
+    if (mode === "mentee") {
+      setId(mentee?.id);
+    } else {
+      setId(mentor?.id);
+    }
+  }, [mode]);
+
+  const fetchData = async () => {
+    try {
+      const data = await fetchDataFromApi(`${mode === "mentee" ? "get-team-mentee":"get-team-mentor"}`, id);
+      setTeamData(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching team data:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [id]);
 
   return (
-    <>
-      <div className="flex w-full h-60 p-2 justify-center items-center border">
-        <div className="flex flex-col justify-center items-center">
-          {/* <div className="flex flex-col items-center justify-center space-y-4">
-            <h1 className="md:text-3xl text-2xl font-semibold text-black">
-              Profile
-            </h1>
-            <div className="mentee-profile-pic border-2 border-primary rounded-full p-2">
-              <img
-                className="object-cover md:w-28 md:h-28 order-1 w-12 h-12 rounded-full"
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                alt="profile-pic"
-              />
-            </div>
-            <div>
-              <h1 className="md:text-lg font-semibold text-center text-black">
-                Mentee 1
-              </h1>
-              <h1 className="text-gray-400 md:text-lg text-sm">
-                mentee1@email.com
-              </h1>
-            </div>
-          </div> */}
-          <div className="flex items-center text-center justify-center px-5 space-x-1 mr-10">
-            <h1 className="font-semibold md:text-lg text-sm text-black dark:text-white">
-              Assigned {mode === "mentee" ? "Mentor" : "Mentees"} :
-            </h1>
-            <h1 className="font-normal md:text-lg text-sm text-gray-400">
-            {mode === "mentee" ? mentee.mentor_id : "Mentee names"}
-            </h1>
-          </div>
-          <div className="flex items-center justify-center text-center px-5 space-x-1">
-            <h1 className="font-semibold md:text-lg text-sm text-black dark:text-white">
-              Achievements :
-            </h1>
-            <h1 className="font-normal md:text-lg text-sm text-gray-400">
-              No achievements yet!
-            </h1>
-          </div>
-          <div className="flex flex-wrap justify-center">
-            <div className="w-full px-4 text-center">
-              <div className="flex justify-center py-4 lg:pt-4 pt-8">
-                <div className="mr-4 p-1 text-center">
-                  <span className="text-xl text-black dark:text-white font-bold block uppercase tracking-wide text-blueGray-600">
-                    {mode === "mentee" ? mentee.score : "--"}
+    <div className="flex flex-col items-center justify-center">
+      {teamData && teamData.team_data && (
+        <div className="w-full p-6 bg-white rounded-md shadow-md">
+          <h1 className="md:text-3xl text-2xl font-semibold mb-6 text-black">
+            Team Data
+          </h1>
+          <div className="flex flex-col md:flex-row items-start space-y-4 md:space-x-4">
+            <div className="md:w-2/3 md:order-2">
+            <div className="flex items-start space-x-1">
+                <h1 className="font-semibold md:text-lg text-black dark:text-white">
+                  Team Name :
+                </h1>
+                <p className="font-normal md:text-lg text-gray-400">
+                {teamData.team_data[0]?.team_name}
+                </p>
+              </div>
+              <div className="flex items-start space-x-1 mt-2">
+                <h1 className="font-semibold md:text-lg text-black dark:text-white">
+                  Assigned {mode === "mentee" ? "Mentor" : "Mentees"} :
+                </h1>
+                <p className="font-normal md:text-lg text-gray-400">
+                    {mode === "mentee"
+                      ? teamData.mentor_data?.name
+                      : teamData.team_data[0]?.team_members.map((member) => member.name).join(", ")}
+                  </p>
+              </div>
+              <div className="flex items-start space-x-1 mt-2">
+                <h1 className="font-semibold md:text-lg text-black dark:text-white">
+                  Achievements :
+                </h1>
+                <p className="font-normal md:text-lg text-gray-400">
+                  No achievements yet!
+                </p>
+              </div>
+              <div className="flex mt-6">
+                <div className="mr-4 text-left">
+                  <span className="text-xl font-bold text-black">
+                    {teamData?.team_data[0]?.team_score}
                   </span>
-                  <span className="text-sm text-gray-400">Points</span>
+                  <span className="block text-sm text-gray-400">Team Score</span>
                 </div>
-                <div className="mr-4 p-1 text-center">
-                  <span className="text-xl text-black dark:text-white font-bold block uppercase tracking-wide text-blueGray-600">
-                    10
-                  </span>
-                  <span className="text-sm text-gray-400">Team Rank</span>
+                <div className="mr-4 text-left">
+                  <span className="text-xl font-bold text-black">10</span>
+                  <span className="block text-sm text-gray-400">Team Rank</span>
                 </div>
-                <div className="lg:mr-4 p-1 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-black dark:text-white">
-                  {mode === "mentee" ? "89" : "--"}
+                <div className="text-left">
+                  <span className="text-xl font-bold text-black dark:text-white">
+                    {mode === "mentee" ? "89" : "--"}
                   </span>
-                  <span className="text-sm text-gray-400">Overall Rank</span>
+                  <span className="block text-sm text-gray-400">Overall Rank</span>
                 </div>
               </div>
             </div>
-            {/* <div className="w-fit h-fit pt-6">
-              <Chart />
-            </div> */}
           </div>
         </div>
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 
