@@ -14,7 +14,7 @@ const Mentorform = () => {
     const body = { email: form.userid, password: form.password };
 
     const data = await fetchDataFromApiWithResponse(body, "mentor_login");
-    if (data.user_data) {
+    if (data.status_code == 200) {
       toast.success("Sign In Successful!", {
         position: "bottom-right",
         autoClose: 3000,
@@ -31,7 +31,18 @@ const Mentorform = () => {
         navigate("/mentor");
       }, 2000);
     }
-    console.log("User", data.user_data);
+    else{
+      toast.error(data.status_message, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
