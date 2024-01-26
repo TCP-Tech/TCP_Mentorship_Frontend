@@ -176,7 +176,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="flex flex-col items-start mt-8">
-            <p className="my-1">Name</p>
+            <p className="my-1 dark:text-white text-black">Name</p>
             <input
               className="px-3 py-1.5 rounded-md border w-[100%]"
               type="text"
@@ -188,7 +188,7 @@ const Profile = () => {
             />
           </div>
           <div className="flex flex-col items-start">
-            <p className="my-1">Profile Picture</p>
+            <p className="my-1 dark:text-white text-black">Profile Picture</p>
             <input
               className="px-3 py-1.5 rounded-md border w-[100%]"
               type="text"
@@ -201,7 +201,7 @@ const Profile = () => {
             />
           </div>
           <div className="flex flex-col items-start">
-            <p className="my-1">Email</p>
+            <p className="my-1 dark:text-white text-black">Email</p>
             <input
               className="px-3 py-1.5 rounded-md border w-[100%]"
               type="text"
@@ -214,7 +214,7 @@ const Profile = () => {
           </div>
           <div className="flex gap-4">
             <div className="flex flex-col items-start w-[100%]">
-              <p className="my-1">Phone</p>
+              <p className="my-1 dark:text-white text-black">Phone</p>
               <input
                 className="px-3 py-1.5 rounded-md border w-[100%]"
                 type="text"
@@ -228,7 +228,7 @@ const Profile = () => {
           </div>
           <div className="relative">
             <div className="flex flex-col items-start">
-              <p className="my-1">Password</p>
+              <p className="my-1 dark:text-white text-black">Password</p>
               <input
                 className="px-3 py-1.5 rounded-md border w-[100%]"
                 type={showPassword ? "text" : "password"}
