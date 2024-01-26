@@ -4,13 +4,14 @@ import { toast } from "react-toastify";
 
 const Problem = ({id, title, desc,Qstatus, topic, level, url,time,toggleConfetti, user }) => {
   const [isMarked, setIsMarked] = useState(Qstatus);
+  console.log("sj" , Qstatus)
   const postSubmission = async ()=>{
     const bodyData = {
       menteeId : user.id,
       qId:id
     }
     const data = await fetchDataFromApiWithResponse(bodyData,"/submitQuestion");
-    if(!isMarked){
+    if(data.status_code == 200){
       toast.success(data.message, {
         position: "bottom-right",
         autoClose: 3000,
@@ -54,9 +55,9 @@ const Problem = ({id, title, desc,Qstatus, topic, level, url,time,toggleConfetti
           <h3 className="m-4 text-md dark:text-white text-black">{desc}</h3>
         </div>
       </a>
-      <div className="flex flex-col items-center p-4">
+      <div className="flex flex-col items-end p-4">
         <button
-          className={`${isMarked ? 'text-black dark:text-white border-primary border' : 'bg-[var(--primary-c)] text-white'} ${!user.mentor_id? 'hidden':''}  rounded-lg dark:border dark:border-white p-3 m-3`}
+          className={`${isMarked ? 'text-black dark:text-white border-primary border' : 'bg-[var(--primary-c)] text-white'} ${!user.mentor_id? 'hidden':''} w-fit  rounded-lg dark:border dark:border-white p-3 m-3`}
           onClick={handleSubmission}
         >
           {isMarked ? "Marked" : "Mark as Done"}
