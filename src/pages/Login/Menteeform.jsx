@@ -16,7 +16,7 @@ const Menteeform = () => {
     const body = { email: form.userid, password: form.password };
 
     const data = await fetchDataFromApiWithResponse(body, "mentee_login");
-    if (data.user_data) {
+    if (data.status_code == 200) {
       toast.success("Sign In Successful!", {
         position: "bottom-right",
         autoClose: 3000,
