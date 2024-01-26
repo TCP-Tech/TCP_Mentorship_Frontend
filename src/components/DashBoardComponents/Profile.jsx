@@ -19,6 +19,7 @@ const Profile = ({ mode }) => {
   const fetchData = async () => {
     try {
       const data = await fetchDataFromApi(`${mode === "mentee" ? "get-team-mentee":"get-team-mentor"}`, id);
+      console.log(data)
       setTeamData(data);
       console.log(data);
     } catch (error) {
