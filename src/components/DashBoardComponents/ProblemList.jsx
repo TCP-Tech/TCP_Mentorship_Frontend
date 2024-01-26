@@ -5,10 +5,10 @@ import { FaSpinner } from 'react-icons/fa';
 
 const ProblemList = ({toggleConfetti }) => {
   const [questions, setQuestions] = useState([]);
+  const [solved,setSolved] = useState(false);
   const [id, setId] = useState(null);
   const mentor = JSON.parse(localStorage.getItem("Mentor"));
   const mentee = JSON.parse(localStorage.getItem("Mentee"));
-  
   useEffect(() => {
     if (mentor) {
       setId(mentor.id);
@@ -22,6 +22,8 @@ const ProblemList = ({toggleConfetti }) => {
   const fetchData = async () => {
     try {
       const data = await fetchDataFromApi("getQuestions", id);
+      console.log(data.data)
+      console.log("Data" , data.data[0].submittedmenteeId.includes(mentee.id))
       setQuestions(data.data);
       setLoading(false);
     } catch (error) {
@@ -53,7 +55,7 @@ const ProblemList = ({toggleConfetti }) => {
           {questions.map((question) => (
             <Problem
               key={question.id}
-              Qstatus={question.Qstatus}
+              Qstatus={question?.submittedmenteeId?.includes(String(mentee.id))}
               id={question.id}
               toggleConfetti={toggleConfetti}
               title={question.Qname}
@@ -64,6 +66,7 @@ const ProblemList = ({toggleConfetti }) => {
               time={question.formated_allotedtime}
               user={mentee || mentor}
             />
+            
           ))}
         </div>
       )}
