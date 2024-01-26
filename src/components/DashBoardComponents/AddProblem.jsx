@@ -42,7 +42,6 @@ const customStyles = {
     ...provided,
     color: "#fff", // Set the remove button color
     ":hover": {
-      backgroundColor: "#ccc", // Set the remove button background color on hover
       color: "#000",
     },
   }),
@@ -56,11 +55,7 @@ const AddProblem = () => {
     topic: "",
     difficulty: "",
     description: "",
-    codeforcesLink: "",
-    codechefLink: "",
-    leetcodeLink: "",
-    gfgLink: "",
-    hackerrankLink: "",
+    problemLink: "",
     mentorId: mentor.id,
   }
   const formRef = useRef(null);
@@ -74,11 +69,7 @@ const AddProblem = () => {
       topic : form.topic , 
       Level : form.difficulty , 
       description : form.description , 
-      leetcodeLink:form.leetcodeLink ,
-      gfgLink : form.gfgLink ,
-      codechefLink : form.codechefLink,
-      codeforcesLink : form.codeforcesLink,
-      hackerrankLink : form.hackerrankLink
+      problemLink:form.problemLink 
     }
     const data = await fetchDataFromApiWithResponse(body, "addQuestion");
     if (data.status_code == 200) {
@@ -116,7 +107,6 @@ const AddProblem = () => {
       }
    
     }
-    // console.log("User", data.user_data.phone_number[0]);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -124,21 +114,16 @@ const AddProblem = () => {
       fetchData();
       setForm(forminitialState)
       formRef.current.reset();
-      // if (selectRef.current) {
-      //   selectRef.current.select.setValue(null);
-      // }
-      
-   
-    
+      if (selectRef.current) {
+        selectRef.current.select.clearValue();
+      }
   };
 
   const resetForm = () => {
     setForm(forminitialState);
     formRef.current.reset();
-    
   };
-
-
+  
 
   function handle(e) {
     const n = { ...form };
@@ -177,18 +162,17 @@ const AddProblem = () => {
           <div className="flex flex-col items-start w-[50%] dark:text-white text-black ">
             <p>Problem Topic</p>
             <Select
-              options={topicList}
-              onChange={handleSelectmulti}
-              ref={selectRef}
-              // defaultValue={form.topic}
-              // value={form.topic}
-              placeholder="Select Topic"
-              isMulti
-              name="topic"
-              className="w-full mt-2 dark:text-black text-black "
-              style={customStyles}
-              required
-            />
+                options={topicList}
+                onChange={handleSelectmulti}
+                ref={selectRef}
+                value={topicList.filter(option => form.topic.includes(option.value))}
+                placeholder="Select Topic"
+                isMulti
+                name="topic"
+                className="w-full mt-2 dark:text-black text-black"
+                styles={customStyles}  // Use styles instead of style
+                required
+              />
           </div>
           <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
             <p>Problem Difficulty</p>
@@ -196,6 +180,7 @@ const AddProblem = () => {
               options={difficultyList}
               onChange={handleSelect}
               ref={selectRef}
+              value={difficultyList.filter(option => form.difficulty.includes(option.value))}
               // defaultValue={form.difficulty}
               // defaultValue={[difficultyList[0]]}
               placeholder="Select Difficulty"
@@ -217,34 +202,12 @@ const AddProblem = () => {
           />
         </div>
         <div className="flex flex-col items-start dark:text-white text-black">
-          <p>Leetcode Link</p>
+          <p>Problem URL</p>
           <input
             className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
             type="text"
-            name="leetcodeLink"
+            name="problemLink"
             required
-            placeholder="Enter Problem URL"
-            onChange={(e) => handle(e)}
-          />
-        </div>
-        <div className="flex flex-col items-start dark:text-white text-black">
-          <p>Codeforces Link</p>
-          <input
-            className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-            type="text"
-            name="codeforcesLink"
-            
-            placeholder="Enter Problem URL"
-            onChange={(e) => handle(e)}
-          />
-        </div>
-        <div className="flex flex-col items-start dark:text-white text-black">
-          <p>GFG Link</p>
-          <input
-            className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-            type="text"
-            name="gfgLink"
-            
             placeholder="Enter Problem URL"
             onChange={(e) => handle(e)}
           />

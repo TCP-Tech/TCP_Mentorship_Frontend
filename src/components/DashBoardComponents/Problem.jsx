@@ -45,7 +45,7 @@ const Problem = ({id, title, desc,Qstatus, topic, level, url,time,toggleConfetti
 
   return (
     <div className="flex flex-col sm:flex-row items-center dark:bg-gray-800 dark:border-white justify-between border border-gray-400 rounded-lg m-2">
-      <a href={url} target="_blank">
+      <a href={url} target="_blank" className="cursor-pointer">
         <div className="flex flex-col p-2">
           <h1 className="m-2 text-2xl dark:text-white text-black font-semibold">
             {title}
@@ -62,9 +62,11 @@ const Problem = ({id, title, desc,Qstatus, topic, level, url,time,toggleConfetti
           {isMarked ? "Marked" : "Mark as Done"}
         </button>
         <div className="flex">
-          <p className="border dark:bg-gray-800 dark:text-white text-black dark:border-white border-[var(--primary-c)] rounded-lg text-sm p-1 m-1">
-            {topic}
-          </p>
+         {topic.split(" ").map((topic)=>(
+                <p className="border dark:bg-gray-800 dark:text-white text-black dark:border-white border-[var(--primary-c)] rounded-lg text-sm p-1 m-1">
+                 {topic}
+                </p>
+         ))}
           <p className="border dark:bg-gray-800 dark:text-white text-black dark:border-white border-[var(--primary-c)] rounded-lg text-sm p-1 m-1">
             {level}
           </p>

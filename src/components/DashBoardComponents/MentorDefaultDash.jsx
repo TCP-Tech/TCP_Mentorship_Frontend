@@ -47,7 +47,7 @@ const MentorDefaultDash = () => {
               </h1>
             </div>
           </div>
-          <div className=" w-[100%] md:w-[50%] flex justify-center items-center">
+          <div className="w-[100%] md:w-[50%]">
             <Profile mode="mentor" />
           </div>
         </div>
