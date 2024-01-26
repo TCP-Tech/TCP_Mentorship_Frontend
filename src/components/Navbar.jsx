@@ -152,30 +152,21 @@ const Navbar = () => {
                 Home
                 <hr className="absolute left-2 right-2 border-gray-300 md:hidden  my-2" />
               </Link>
-
-              <Link className="p-3 pl-4 py-3  md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
-                About
+              <a  href="#teamLeaderBoard" className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
+                Team LeaderBoard
                 <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
-              </Link>
-
-              <Link className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
-                Mentor
+              </a>
+              <a href="#leaderBoard" className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
+                LeaderBoard
                 <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
-              </Link>
-              <Link className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
-                Mentee
-                <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
-              </Link>
-              <Link className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
-                Leaderboard
-                <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
-              </Link>
+              </a>
+              <div className="flex px-4 gap-2">
               <Link
                 to="/login"
-                className="p-3 pl-4 py-3 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white"
+                className="self-center md:block text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 my-5 rounded-md py-3 w-[200px] text-center  dark:hover:bg-gray-300 dark:hover:text-gray-900"
               >
                 Log In
-                <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" />
+                {/* <hr className="absolute left-2 right-2 border-gray-300 md:hidden my-2" /> */}
               </Link>
               <Link
                 to="/signup"
@@ -183,6 +174,7 @@ const Navbar = () => {
               >
                 Sign Up
               </Link>
+              </div>
             </div>
           </div>
         )}
