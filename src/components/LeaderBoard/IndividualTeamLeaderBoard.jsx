@@ -5,7 +5,8 @@ import { mentees } from "../../data/MenteeData";
 import pallete from "../../assets/images/starPallete.png";
 import teamimage from "../../assets/images/team.jpg"
 
-const IndividualTeamLeaderBoard = ({ teamName,menteeData}) => {
+
+const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints}) => {
 
     useEffect(() => {
       
@@ -28,7 +29,7 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData}) => {
     
 
   return (
-    <div className="flex flex-col p-4 overflow-hidden">
+    <div className="flex flex-col p-4 overflow-hidden dark:bg-gray-800 bg-gray-100 ">
       <div className="team-profile flex flex-col sm:flex-row items-center mb-4 space-x-6">
         <div className="relative mb-4 sm:mb-0">
           <div className="rounded-full overflow-hidden bg-gray-300 w-28 h-28">
@@ -36,16 +37,20 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData}) => {
             <img src={teamimage} alt="" />
           </div>
         </div>
-        <div className="team-profile-name flex flex-col text-center ">
-          <h1 className="font-bold text-3xl text-black ">{teamName}</h1>
-          <div className="flex items-center">
-            <img src={pallete} alt="Palette" className="w-52 h-28" />
-            <h1 className="absolute ml-16 mb-3 text-xl ">Level 5</h1>
+        <div className="team-profile-name flex flex-col items-center">
+          <div>
+          <h1 className="font-bold text-3xl text-black dark:text-white pr-8">{teamName}</h1>
+
           </div>
-          <h1 className="text-xl text-black relative bottom-7 ">⭐⭐⭐⭐</h1>
+          <div>
+
+          <h1 className=" text-xl text-black dark:text-white pr-8">Score : {teamPoints}</h1>
+          </div>
+          
+          {/* <h1 className="text-xl text-black relative bottom-7 ">⭐⭐⭐⭐</h1> */}
         </div>
       </div>
-      <div className="team-profile-achievements mb-4">
+      {/* <div className="team-profile-achievements mb-4">
         <h1 className="font-bold mb-2 text-black md:text-2xl text-xl">
           Achievements
         </h1>
@@ -60,11 +65,11 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData}) => {
             Achievement3
           </button>
         </div>
-      </div>
-      <h1 className="font-bold mb-2 text-black md:text-2xl text-xl">
+      </div> */}
+      <h1 className="font-bold mb-2 text-black md:text-2xl text-xl dark:text-white">
         Team Members
       </h1>
-      <div className="team-profile-members overflow-y-scroll h-[70vh]">
+      <div className="team-profile-members overflow-y-scroll h-[40vh]">
         {menteeData.map((mentee) => (
           <MenteesCompo
             key={mentee.id}
