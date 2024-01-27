@@ -36,7 +36,7 @@ const LeaderBoard = () => {
     return data;
   };
   const teamd = async()=>{ 
-   const data= await newfetchDataFromApi('getTeams')
+   const data= await newfetchDataFromApi('getTeams/')
    setTeamdata(data.data)
 
    
@@ -55,7 +55,7 @@ const LeaderBoard = () => {
     }
 
    });
-   console.log(Teamdata)
+   
    
 
    
