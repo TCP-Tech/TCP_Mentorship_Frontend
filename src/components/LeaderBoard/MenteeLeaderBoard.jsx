@@ -46,12 +46,17 @@ const MenteeLeaderBoard = () => {
      menteed();
    }, [])
 
-   MenteeData.sort(function (mentee1, mentee2) {
-    if(  mentee2.score == mentee1.score){
-     return mentee2.cumHour_diff - mentee1.cumHour_diff;
+    MenteeData.sort(function (mentee1, mentee2) {
+    if(  mentee2.score === mentee1.score){
+      if(mentee2.solvedQ === mentee1.solvedQ){
+        return mentee1.cumHour_diff - mentee2.cumHour_diff
+      }
+      else{
+        return mentee2.solvedQ - mentee1.solvedQ;
+      }
     }
     else{
-     return mentee2.score - mentee1.score;
+      return mentee2.score - mentee1.score;
     }
     });
    
@@ -211,7 +216,7 @@ const MenteeLeaderBoard = () => {
                       <tr>
                         <td className="px-5 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                           <div className="inline-flex items-center gap-x-3  md:text-lg text-white">
-                            <h1>{index}</h1>
+                            <h1>{index+1}</h1>
 
                             <div className="flex items-center gap-x-2">
                               <img

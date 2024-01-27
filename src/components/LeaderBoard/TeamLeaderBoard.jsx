@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { teams } from "../../data/TeamData";
 import TeamCompo from "../TeamCompo";
 import IndividualTeamLeaderBoard from "./IndividualTeamLeaderBoard";
-import close from "../../assets//images/cross.png";
+import close from "../../assets//images/cross.svg";
+import closelight from "../../assets//images/cross.png";
 import crown from "../../assets//images/crown.png";
 import teamimage from "../../assets/images/team.jpg"
 import Modal from "react-modal";
@@ -11,11 +12,13 @@ import { fetchDataFromApi } from '../../utils/api';
 const LeaderBoard = () => {
   const [Teamdata, setTeamdata] = useState([]);
   const [TeamName, setTeamName] = useState("");
+  const [TeamPoints, setTeamPoints] = useState("");
   const [menteeData,setmenteeData]=useState([]);
   const [showModal, setShowModal] = useState(false);
-  const handleClick = (teamName,menteedata) => {
+  const handleClick = (teamName,menteedata,teamPoints) => {
     setTeamName(teamName);
     setmenteeData(menteedata);
+    setTeamPoints(teamPoints);
     setShowModal(true);
   };
   const closeModal = () => {
@@ -47,8 +50,8 @@ const LeaderBoard = () => {
    }, [])
 
    Teamdata.sort(function (team1, team2) {
-    if(team2.team_score == team1.team_score){
-     return team2.cumHour_diff - team1.cumHour_diff;
+    if(team2.team_score === team1.team_score){
+     return team1.cumHour_diff - team2.cumHour_diff;
     }
     else{
       return team2.team_score - team1.team_score;
@@ -148,7 +151,7 @@ const LeaderBoard = () => {
           </div>
           <div className="dark:bg-gray-800 overflow-y-scroll px-10 mt-4 h-[70vh] w-full rounded-tl-[40px] rounded-tr-[40px] border dark:border-gray-600">
             {Teamdata.map((team,index) => (
-              <div key={team.id} onClick={() => handleClick(team.team_name,team.team_members)}>
+              <div key={team.id} onClick={() => handleClick(team.team_name,team.team_members,team.team_score)}>
                 <TeamCompo
                   key={team.id}
                   teamName={team.team_name}
@@ -164,17 +167,26 @@ const LeaderBoard = () => {
             <Modal
               isOpen={showModal}
               onRequestClose={closeModal}
+              className="dark:bg-gray-800 mx-auto sm:mt-[5%] mt-[12%] bg-gray-100"
               style={{
                 overlay: {
                   zIndex: 1000,
                 },
+               
+                content: {
+                  width: '80%',
+                  
+                  height: '80%',
+                  
+                },
               }}
             >
-              <button onClick={closeModal} className="bg-white">
-                <img alt="close" src={close} className="w-5 h-5" />
+              <button onClick={closeModal} className="dark:bg-gray-800 bg-gray-100">
+                <img alt="close" src={close} className="w-5 h-5 hidden dark:block" />
+                <img alt="close" src={closelight} className="w-4 h-4 dark:hidden" />
               </button>
-              <div className="individual-team-leaderboard">
-                <IndividualTeamLeaderBoard teamName={TeamName} menteeData={menteeData} />
+              <div className="individual-team-leaderboard ">
+                <IndividualTeamLeaderBoard teamName={TeamName} menteeData={menteeData} teamPoints={TeamPoints}/>
               </div>
             </Modal>
           </div>
