@@ -83,12 +83,14 @@ const AddProblem = () => {
         progress: undefined,
         theme: "dark",
       });
-      
+      setForm(forminitialState)
+      formRef.current.reset();
+      if (selectRef.current) {
+        selectRef.current.select.clearValue();
+      }
     }
     else {
       let errorMessage = "";
-  
-      if (data.user_data) {
         Object.entries(data.user_data).forEach(([key, value]) => {
           if (value && Array.isArray(value) && value.length > 0) {
           errorMessage = value[0] + " ";
@@ -104,19 +106,12 @@ const AddProblem = () => {
         });
           }
         });
-      }
    
     }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
       fetchData();
-      setForm(forminitialState)
-      formRef.current.reset();
-      if (selectRef.current) {
-        selectRef.current.select.clearValue();
-      }
   };
 
   const resetForm = () => {
