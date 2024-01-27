@@ -47,8 +47,8 @@ const LeaderBoard = () => {
    }, [])
 
    Teamdata.sort(function (team1, team2) {
-    if(team2.team_score == team1.team_score){
-     return team2.cumHour_diff - team1.cumHour_diff;
+    if(team2.team_score === team1.team_score){
+     return team1.cumHour_diff - team2.cumHour_diff;
     }
     else{
       return team2.team_score - team1.team_score;
