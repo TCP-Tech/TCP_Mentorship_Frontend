@@ -54,7 +54,7 @@ const Profile = () => {
   const fetchData = async () => {
     const body = { 
       image:form.image,
-      // name: form.name, 
+      name: form.name, 
       phone_number : form.phone,
       username: form.username,
       branch:form.branch,
@@ -66,7 +66,7 @@ const Profile = () => {
       gfgID:form.gfg,
       hackerrankID:form.hackerrank,
       linkedinID: form.linkedin,
-      // email:form.email,
+      email:form.email,
     };
 
     const data = await fetchDataFromApiWithResponse(body, "update_mentee");
