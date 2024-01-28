@@ -6,7 +6,7 @@ import close from "../../assets//images/cross.png";
 import crown from "../../assets//images/crown.png";
 import teamimage from "../../assets/images/team.jpg"
 import Modal from "react-modal";
-import { fetchDataFromApi } from '../../utils/api';
+import { fetchDataFromApi, fetchDataWithEndPoint } from '../../utils/api';
 
 const LeaderBoard = () => {
   const [Teamdata, setTeamdata] = useState([]);
@@ -22,31 +22,16 @@ const LeaderBoard = () => {
     setShowModal(false);
   };
 
-  
-  const newfetchDataFromApi = async (api_endpoint) => {
-    const options = {
-      method: "GET",
-    };
-    const res = await fetch(
-      `${"https://codeutsava.nitrr.ac.in/server/"}${api_endpoint}`,
-      options
-    );
-    
-    const data = await res.json();
-    return data;
-  };
   const teamd = async()=>{ 
-   const data= await newfetchDataFromApi('getTeams/')
+   const data= await fetchDataWithEndPoint('getTeams')
    setTeamdata(data.data)
-
-   
    }
   
    useEffect(() => {
      teamd();
    }, [])
 
-   Teamdata.sort(function (team1, team2) {
+   Teamdata?.sort(function (team1, team2) {
     if(team2.team_score == team1.team_score){
      return team2.cumHour_diff - team1.cumHour_diff;
     }
@@ -69,7 +54,7 @@ const LeaderBoard = () => {
         </h1>
       </div>
       {/* Team LeaderBoard */}
-       {Teamdata.length?<div className="flex items-center justify-center pt-44 md:pt-60">
+       {Teamdata?.length?<div className="flex items-center justify-center pt-44 md:pt-60">
         <div className="outer flex flex-col justify-center items-center w-full md:px-5">
           <div className="w-full h-36 md:h-44 dark:bg-gray-800 shadow-sm rounded-2xl flex justify-around border dark:border-gray-600">
             <div className="flex flex-col items-center">
@@ -84,8 +69,8 @@ const LeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">2</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="md:text-xl text-sm dark:text-white text-black">{Teamdata[1].team_name}</h1>
-                <h1 className="md:text-xl text-sm text-gray-500">{Teamdata[1].team_score}</h1>
+                <h1 className="md:text-xl text-sm dark:text-white text-black">{Teamdata[1]?.team_name}</h1>
+                <h1 className="md:text-xl text-sm text-gray-500">{Teamdata[1]?.team_score}</h1>
               </div>
             </div>
             {/* First Position */}
@@ -124,8 +109,8 @@ const LeaderBoard = () => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center text-center space-y-3 mt-8 md:mt-10">
-                  <h1 className="md:text-xl text-sm dark:text-white text-black">{Teamdata[0].team_name}</h1>
-                  <h1 className="md:text-xl text-sm text-amber-500">{Teamdata[0].team_score}</h1>
+                  <h1 className="md:text-xl text-sm dark:text-white text-black">{Teamdata[0]?.team_name}</h1>
+                  <h1 className="md:text-xl text-sm text-amber-500">{Teamdata[0]?.team_score}</h1>
                 </div>
               </div>
             </div>
@@ -141,19 +126,19 @@ const LeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">3</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="md:text-xl text-sm dark:text-white text-black">{Teamdata[2].team_name}</h1>
-                <h1 className="md:text-xl text-sm text-amber-700">{Teamdata[2].team_score}</h1>
+                <h1 className="md:text-xl text-sm dark:text-white text-black">{Teamdata[2]?.team_name}</h1>
+                <h1 className="md:text-xl text-sm text-amber-700">{Teamdata[2]?.team_score}</h1>
               </div>
             </div>
           </div>
           <div className="dark:bg-gray-800 overflow-y-scroll px-10 mt-4 h-[70vh] w-full rounded-tl-[40px] rounded-tr-[40px] border dark:border-gray-600">
-            {Teamdata.map((team,index) => (
+            {Teamdata?.map((team,index) => (
               <div key={team.id} onClick={() => handleClick(team.team_name,team.team_members)}>
                 <TeamCompo
-                  key={team.id}
-                  teamName={team.team_name}
+                  key={team?.id}
+                  teamName={team?.team_name}
                   teamLeaderName={"ayush"}
-                  teamPoints={team.team_score}
+                  teamPoints={team?.team_score}
                   id={index +1}
                 />
                 <div className=" h-0 w-full border border-zinc-300 dark:border-zinc-600 border-opacity-50"></div>
