@@ -9,18 +9,27 @@ const ProblemList = ({toggleConfetti }) => {
   const mentor = JSON.parse(localStorage.getItem("Mentor"));
   const mentee = JSON.parse(localStorage.getItem("Mentee"));
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    if (mentor) {
-      setId(mentor.id);
-    } else if (mentee) {
-      setId(mentee.mentor_id);
-    }
-  }, [mentor, mentee]);
+  // useEffect(() => {
+  //   if (mentor) {
+  //     setId(mentor.id);
+  //   } else if (mentee) {
+  //     setId(mentee.mentor_id);
+  //   }
+  // }, [mentor, mentee]);
+
+  // console.log(mentee.mentor_id)
+
+  // if (mentor) {
+  //       setId(mentor.id);
+  //     } else if (mentee) {
+  //       setId(mentee.mentor_id);
+  //     }
+  
 
 
   const fetchData = async () => {
     try {
-      const data = await fetchDataFromApi("getQuestions", id);
+      const data = await fetchDataFromApi("getQuestions", mentor?mentor.id:mentee.mentor_id);
       const sortedQuestions = data.data.sort((a, b) => {
         const timestampA = new Date(a.allotedTime).getTime();
         const timestampB = new Date(b.allotedTime).getTime();
@@ -35,7 +44,7 @@ const ProblemList = ({toggleConfetti }) => {
   };
   useEffect(() => { 
     fetchData();
-  }, [id]);
+  }, []);
 
   return (
     <div className="flex flex-col">
