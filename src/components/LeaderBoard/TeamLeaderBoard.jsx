@@ -149,16 +149,16 @@ const LeaderBoard = () => {
             <Modal
               isOpen={showModal}
               onRequestClose={closeModal}
-              className="dark:bg-gray-800 mx-auto sm:mt-[5%] mt-[12%] bg-gray-100 p-8"
+              className="dark:bg-gray-800 mx-auto mt-[8%] sm:mt-[2%] bg-gray-100 p-4"
               style={{
                 overlay: {
-                  zIndex: 1000,
+                  zIndex: 10000,
                 },
                
                 content: {
                   width: '80%',
                   
-                  height: '80%',
+                  height: '90%',
                   
                 },
               }}
