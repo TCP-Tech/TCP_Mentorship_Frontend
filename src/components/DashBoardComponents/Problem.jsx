@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { fetchDataFromApiWithResponse } from "../../utils/api";
 import { toast } from "react-toastify";
 
-const Problem = ({id, title, desc,Qstatus, topic, level, url,time,toggleConfetti, user }) => {
+const Problem = ({id, title, desc,Qstatus, topic, level, url,time,toggleConfetti,description, user }) => {
   const [isMarked, setIsMarked] = useState(Qstatus);
-  console.log("sj" , Qstatus)
   const postSubmission = async ()=>{
     const bodyData = {
       menteeId : user.id,
       qId:id
     }
-    const data = await fetchDataFromApiWithResponse(bodyData,"/submitQuestion");
+    const data = await fetchDataFromApiWithResponse(bodyData,"submitQuestion");
     if(data.status_code == 200){
       toast.success(data.message, {
         position: "bottom-right",
@@ -24,7 +23,7 @@ const Problem = ({id, title, desc,Qstatus, topic, level, url,time,toggleConfetti
       });
     }
     else{
-      toast.error(data.message, {
+      toast.error("Some error occured while processing your request", {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -37,20 +36,34 @@ const Problem = ({id, title, desc,Qstatus, topic, level, url,time,toggleConfetti
     }
   }
   const handleSubmission = () => { 
-    postSubmission();
     if(!isMarked){
-      toggleConfetti();
+      postSubmission();  
+      setIsMarked(true);
     }
-    setIsMarked(true);
+    else{
+      toast.error("Question submitted already", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   return (
     <div className="flex flex-col sm:flex-row items-center dark:bg-gray-800 dark:border-white justify-between border border-gray-400 rounded-lg m-2">
       <a href={url} target="_blank" className="cursor-pointer">
-        <div className="flex flex-col p-2">
-          <h1 className="m-2 text-2xl dark:text-white text-black font-semibold">
+        <div className="flex flex-col p-4 space-y-2">
+          <h1 className="mx-2 text-2xl dark:text-white text-black font-semibold">
             {title}
           </h1>
+         {description&& <h1 className="text-lg mx-2 dark:text-white text-black ">
+            {description}
+          </h1>}
           <p className="ml-2 text-sm italic text-black dark:text-white">Posted on <span>{time}</span></p>
           <h3 className="m-4 text-md dark:text-white text-black">{desc}</h3>
         </div>
