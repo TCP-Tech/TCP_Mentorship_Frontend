@@ -19,6 +19,7 @@ const LeaderBoard = () => {
     setTeamName(teamName);
     setmenteeData(menteedata);
     setTeamPoints(teamPoints);
+    console.log(teamPoints)
     setShowModal(true);
   };
   const closeModal = () => {
@@ -43,10 +44,6 @@ const LeaderBoard = () => {
     }
 
    });
-   
-   
-
-   
 
   return (
     <div id="teamLeaderBoard" className="bg-transparent flex flex-col  pt-12">
@@ -136,7 +133,7 @@ const LeaderBoard = () => {
           </div>
           <div className="dark:bg-gray-800 overflow-y-scroll px-10 mt-4 h-[70vh] w-full rounded-tl-[40px] rounded-tr-[40px] border dark:border-gray-600">
             {Teamdata?.map((team,index) => (
-              <div key={team.id} onClick={() => handleClick(team.team_name,team.team_members)}>
+              <div key={team.id} onClick={() => handleClick(team.team_name,team.team_members,team?.team_score)}>
                 <TeamCompo
                   key={team?.id}
                   teamName={team?.team_name}
@@ -152,7 +149,7 @@ const LeaderBoard = () => {
             <Modal
               isOpen={showModal}
               onRequestClose={closeModal}
-              className="dark:bg-gray-800 mx-auto sm:mt-[5%] mt-[12%] bg-gray-100"
+              className="dark:bg-gray-800 mx-auto sm:mt-[5%] mt-[12%] bg-gray-100 p-8"
               style={{
                 overlay: {
                   zIndex: 1000,
