@@ -67,6 +67,7 @@ const ProblemList = ({toggleConfetti }) => {
               key={question.id}
               Qstatus={question?.submitedMentees?.some((mentees)=>mentees.id === parseInt(mentee?.id))}
               id={question.id}
+              description={question.description}
               toggleConfetti={toggleConfetti}
               title={question.Qname}
               topic={question.topic}
