@@ -10,17 +10,17 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints}) => {
 
     useEffect(() => {
       
-      menteeData.sort(function (mentee1, mentee2) {
-        if(  mentee2.score === mentee1.score){
-          if(mentee2.solvedQ === mentee1.solvedQ){
-            return mentee1.cumHour_diff - mentee2.cumHour_diff
+      menteeData?.sort(function (mentee1, mentee2) {
+        if(  mentee2?.score === mentee1?.score){
+          if(mentee2?.solvedQ === mentee1?.solvedQ){
+            return mentee1?.cumHour_diff - mentee2?.cumHour_diff
           }
           else{
-            return mentee2.solvedQ - mentee1.solvedQ;
+            return mentee2?.solvedQ - mentee1?.solvedQ;
           }
         }
         else{
-          return mentee2.score - mentee1.score;
+          return mentee2?.score - mentee1?.score;
         }
        });
        console.log(menteeData)
@@ -44,7 +44,7 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints}) => {
           </div>
           <div>
 
-          <h1 className=" text-xl text-black dark:text-white pr-8">Score : {teamPoints}</h1>
+          <h1 className=" text-xl text-black dark:text-white pr-12">Score : {teamPoints}</h1>
           </div>
           
           {/* <h1 className="text-xl text-black relative bottom-7 ">⭐⭐⭐⭐</h1> */}
