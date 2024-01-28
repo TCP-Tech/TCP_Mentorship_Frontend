@@ -20,9 +20,9 @@ const MenteeDefaultDash = ({ toggleConfetti }) => {
             </h1>
           </div>
           <div className="flex flex-col rounded-lg p-4 m-2  w-60 md:w-64 bg-blue-100  md:mr-2">
-            <h1 className="text-lg font-semibold mb-2 text-black ">Time taken</h1>
+            <h1 className="text-lg font-semibold mb-2 text-black ">Avg time (mins)</h1>
             <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl py-2 font-bold text-black">
-              {mentee.cumHour_diff}
+              {`${(mentee.cumHour_diff / mentee.solvedQ).toFixed(2)}`}
             </h1>
           </div>
           <div className="flex flex-col rounded-lg p-4 m-2 w-60 md:w-64 bg-red-100 md:mr-2 mt-2">
