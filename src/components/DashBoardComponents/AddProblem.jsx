@@ -61,7 +61,6 @@ const AddProblem = () => {
   const formRef = useRef(null);
   const selectRef = useRef(null);
   const [form, setForm] = useState(forminitialState);
-  console.log(form)
   const fetchData = async () => {
     const body={
       mentorId : form.mentorId ,
