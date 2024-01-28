@@ -39,7 +39,7 @@ const Signup = () => {
   console.log(form.semester)
   const fetchData = async () => {
     const body={
-      id : form.userid ,
+      email : form.userid ,
       name:form.fullname , 
       username : form.username , 
       password : form.password , 
@@ -310,7 +310,7 @@ const Signup = () => {
                       onChange={handleSelect}
                       placeholder="Select Branch"
                       name="branch"
-                      className="w-full mt-2"
+                      className="w-full mt-2  dark:text-black"
                       required
                     />
                   </div>
@@ -321,7 +321,7 @@ const Signup = () => {
                       onChange={handleSelect}
                       placeholder="Select Semester"
                       name="semester"
-                      className="w-full mt-2"
+                      className="w-full mt-2 dark:text-black"
                       required
                     />
                   </div>
