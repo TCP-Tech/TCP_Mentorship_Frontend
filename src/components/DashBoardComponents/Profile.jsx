@@ -8,20 +8,19 @@ const Profile = ({ mode }) => {
   const [teamData, setTeamData] = useState();
   const [id, setId] = useState(null);
 
-  useEffect(() => {
-    if (mode === "mentee") {
-      setId(mentee?.id);
-    } else {
-      setId(mentor?.id);
-    }
-  }, [mode]);
+  // useEffect(() => {
+  //   if (mode === "mentee") {
+  //     setId(mentee?.id);
+  //   } else {
+  //     setId(mentor?.id);
+  //   }
+  // }, [mode]);
 
   const fetchData = async () => {
     try {
-      const data = await fetchDataFromApi(`${mode === "mentee" ? "get-team-mentee":"get-team-mentor"}`, id);
-      console.log(data)
+      const data = await fetchDataFromApi(`${mode === "mentee" ? "get-team-mentee":"get-team-mentor"}`, mentor?mentor.id:mentee.id);
       setTeamData(data);
-      console.log(data);
+      
     } catch (error) {
       console.error("Error fetching team data:", error.message);
     }
@@ -29,7 +28,8 @@ const Profile = ({ mode }) => {
 
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, []);
+  console.log(teamData);
 
   return (
     <div className="flex flex-col items-center justify-center">
