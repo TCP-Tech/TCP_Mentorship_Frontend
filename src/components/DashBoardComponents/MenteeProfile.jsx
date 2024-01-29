@@ -6,42 +6,47 @@ import { semesterList } from "../../utils/constants";
 import { fetchDataFromApiWithResponse } from "../../utils/api";
 import { toast } from "react-toastify";
 
-const Profile = () => {
-  const [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
+  const Profile = ({mentee, onMenteeUpdate }) => {
   const [form, setForm] = useState({});
-
-  useEffect(() => {
-    setForm({
-      name: mentee.name || "",
-      username: mentee.username || "",
-      email: mentee.email || "",
-      phone: mentee.phone_number || "",
-      image: mentee.image || "",
-      branch: mentee.branch || "",
-      password: mentee.password || "",
-      semester: mentee.semester || "",
-      linkedin: mentee.linkedinID || "",
-      codechef: mentee.codechefID || "",
-      gfg: mentee.gfgID || "",
-      hackerrank: mentee.hackerrankID || "",
-      codeforces: mentee.codeforcesID || "",
-      leetcode: mentee.leetcodeID || "",
-    });
-}, [mentee]);
-
   const [showPassword, setShowPassword] = useState(false);
   const [disabledForm, setDisabledForm] = useState(true);
-  const handle=(e)=>{
-    const n = { ...form };
-    n[e.target.name] = e.target.value;
-    setForm(n);
-  }
 
-  const handleSelect=(selectedOption, object)=>{
-    const n = { ...form };
-    n[object.name] = selectedOption.value;
-    setForm(n);
-  }
+  useEffect(() => {
+    if (mentee) {
+      setForm({
+        name: mentee.name || "",
+        username: mentee.username || "",
+        email: mentee.email || "",
+        phone: mentee.phone_number || "",
+        image: mentee.image || "",
+        branch: mentee.branch || "",
+        password: mentee.password || "",
+        semester: mentee.semester || "",
+        linkedin: mentee.linkedinID || "",
+        codechef: mentee.codechefID || "",
+        gfg: mentee.gfgID || "",
+        hackerrank: mentee.hackerrankID || "",
+        codeforces: mentee.codeforcesID || "",
+        leetcode: mentee.leetcodeID || "",
+      });
+    }
+  }, [mentee]);
+
+  const handle = (e) => {
+    if (mentee) {
+      const n = { ...form };
+      n[e.target.name] = e.target.value;
+      setForm(n);
+    }
+  };
+
+  const handleSelect = (selectedOption, object) => {
+    if (mentee) {
+      const n = { ...form };
+      n[object.name] = selectedOption.value;
+      setForm(n);
+    }
+  };
 
   const handleDisabledForm=(e)=>{
     e.preventDefault();
@@ -81,6 +86,24 @@ const Profile = () => {
         progress: undefined,
         theme: "dark",
       });
+      const updatedMentee = {
+        ...mentee,
+        name: form.name,
+        username: form.username,
+        email: form.email,
+        phone_number: form.phone,
+        image: form.image,
+        branch: form.branch,
+        semester: parseInt(form.semester),
+        codechefID: form.codechef,
+        codeforcesID: form.codeforces,
+        leetcodeID: form.leetcode,
+        password: form.password,
+        gfgID: form.gfg,
+        hackerrankID: form.hackerrank,
+        linkedinID: form.linkedin,
+      };
+      onMenteeUpdate(updatedMentee);
     }
     else{
       toast.error(data.status_message, {
@@ -94,7 +117,6 @@ const Profile = () => {
         theme: "dark",
       });
     }
-    console.log("User", data);
   };
 
   const customStyles = {
@@ -138,7 +160,7 @@ const Profile = () => {
             <div className="flex justify-center">
               <img
                 className="object-cover w-28 h-28 rounded-full border-2 border-[var(--primary-c)] p-1"
-                src={mentee.image}
+                src={mentee?.image || ""}
                 alt=""
               />
               {!disabledForm && (
@@ -218,7 +240,7 @@ const Profile = () => {
               <Select
                 options={branchList}
                 onChange={handleSelect}
-                placeholder={mentee.branch}
+                placeholder={mentee?.branch || ""}
                 // value={form.branch}
                 name="branch"
                 styles={customStyles}
@@ -231,9 +253,9 @@ const Profile = () => {
               <Select
                 options={semesterList}
                 onChange={handleSelect}
-                placeholder={mentee.semester}
+                placeholder={mentee?.semester || ""}
                 // value={form.semester}
-                name="branch"
+                name="semester"
                 styles={customStyles}
                 className="w-[100%] dark:bg-black text-black"
                 isDisabled={disabledForm}

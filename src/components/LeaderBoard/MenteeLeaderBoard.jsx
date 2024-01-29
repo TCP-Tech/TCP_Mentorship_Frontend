@@ -25,10 +25,7 @@ const MenteeLeaderBoard = () => {
   const menteed = async()=>{ 
    const data= await fetchDataWithEndPoint('getMentees')
    setMenteeData(data.data)
-
-   
    }
-  
    useEffect(() => {
      menteed();
    }, [])

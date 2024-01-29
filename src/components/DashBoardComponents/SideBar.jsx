@@ -10,7 +10,7 @@ const MentorSidebar = ({ toggleSidebar, setSelectedOption , selectedOption , opt
   };
 
   return (
-    <div className='flex flex-col border dark:border-gray-700 text-left h-screen md:relative absolute md:w-72 w-screen bg-transparent backdrop-blur-md text-black'>
+    <div className='flex flex-col border dark:border-gray-700 text-left h-screen md:relative fixed md:w-72 w-screen bg-transparent backdrop-blur-md text-black'>
       <div className="flex items-center justify-between px-5 py-3">
         <div>
           <img 

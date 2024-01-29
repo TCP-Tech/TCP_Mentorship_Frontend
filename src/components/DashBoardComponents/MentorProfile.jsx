@@ -1,85 +1,27 @@
 import React, { useState, useEffect } from "react";
 import {toast} from "react-toastify";
 import { FaEdit, FaPencilAlt } from "react-icons/fa";
-import Select from "react-select";
 import { fetchDataFromApiWithResponse } from "../../utils/api";
 
-const branchList = [
-  {
-    label: "CSE",
-    value: "CSE",
-  },
-  {
-    label: "IT",
-    value: "IT",
-  },
-  {
-    label: "ECE",
-    value: "ECE",
-  },
-  {
-    label: "EE",
-    value: "EE",
-  },
-  {
-    label: "MECH",
-    value: "MECH",
-  },
-  {
-    label: "CIVIL",
-    value: "CIVIL",
-  },
-  {
-    label: "CHEM",
-    value: "CHEM",
-  },
-  {
-    label: "META",
-    value: "META",
-  },
-  {
-    label: "MIN",
-    value: "MIN",
-  },
-  {
-    label: "BIOTECH",
-    value: "BIOTECH",
-  },
-  {
-    label: "BIOMED",
-    value: "BIOMED",
-  },
-  {
-    label: "MCA",
-    value: "MCA",
-  },
-];
-
-const Profile = () => {
-  const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
+const Profile = ({mentor,onMentorUpdate}) => {
   const [form, setForm] = useState({});
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [disabledForm, setDisabledForm] = useState(true);
   useEffect(() => {
-    setForm({
+    if(mentor){
+      setForm({
       name: mentor.name || "",
       image: mentor.image || "",
       email: mentor.email || "",
       phone: mentor.phone_number || "",
       password: mentor.password || "",
     });
-}, [mentor]);
-  const [showPassword, setShowPassword] = useState(false);
-  const [disabledForm, setDisabledForm] = useState(true);
+  }
+  }, [mentor]);
 
   const handle=(e)=>{
     const n = { ...form };
     n[e.target.name] = e.target.value;
-    setForm(n);
-  }
-
-  const handleSelect=(selectedOption, object)=>{
-    const n = { ...form };
-    n[object.name] = selectedOption.value;
     setForm(n);
   }
 
@@ -92,7 +34,13 @@ const Profile = () => {
      fetchData();
   }
   const fetchData = async () => {
-    const body = { name: form.name, image:form.image, email:form.email, phone_number : form.phone, password: form.password };
+    const body = {
+       name: form.name,
+       image:form.image, 
+       email:form.email, 
+       phone_number : form.phone, 
+       password: form.password 
+      };
 
     const data = await fetchDataFromApiWithResponse(body, "update_mentor");
     if (data.status_code == 200) {
@@ -106,6 +54,15 @@ const Profile = () => {
         progress: undefined,
         theme: "dark",
       });
+      const updateMentor = {
+        ...mentor,
+        name: form.name,
+        image:form.image, 
+        email:form.email, 
+        phone_number : form.phone, 
+        password: form.password 
+      };
+      onMentorUpdate(updateMentor);
     }
     else{
       toast.error(data.status_message, {
@@ -119,36 +76,7 @@ const Profile = () => {
         theme: "dark",
       });
     }
-    console.log("User", data);
   };
-
-  // const customStyles = {
-  //   control: (base, state) => ({
-  //     ...base,
-  //     background: "#f1f5f9",
-  //     borderRadius: state.isFocused ? "6px 6px 0 0" : 6,
-  //     borderColor: state.isFocused ? "black" : null,
-  //     boxShadow: null,
-  //     "&:hover": {
-  //       // Overwrittes the different states of border
-  //       borderColor: null
-  //     }      
-  //   }),
-  //   menu: base => ({
-  //     ...base,
-  //     background: "#f1f5f9",
-  //     // override border radius to match the box
-  //     borderRadius: 0,
-  //     // kill the gap
-  //     marginTop: 0
-  //   }),
-  //   menuList: base => ({
-  //     ...base,
-  //     background: "#f1f5f9",
-  //     // kill the white space on first and last option
-  //     padding: 0
-  //   })
-  // };
 
   return (
     <div className="flex justify-center items-center h-full">
@@ -168,17 +96,12 @@ const Profile = () => {
                 src={mentor.image} 
                 alt=""
               />
-              {!disabledForm && (
-                <div className="absolute ml-28 mt-1 mr-1">
-                  <FaEdit className="text-black dark:text-white cursor-pointer" />
-                </div>
-              )}
             </div>
           </div>
           <div className="flex flex-col items-start mt-8">
             <p className="my-1 dark:text-white text-black">Name</p>
             <input
-              className="px-3 py-1.5 rounded-md border w-[100%]"
+              className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
               type="text"
               name="name"
               value={form.name}
@@ -190,7 +113,7 @@ const Profile = () => {
           <div className="flex flex-col items-start">
             <p className="my-1 dark:text-white text-black">Profile Picture</p>
             <input
-              className="px-3 py-1.5 rounded-md border w-[100%]"
+              className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
               type="text"
               name="image"
               placeholder="Enter the drive url for your image"
@@ -203,7 +126,7 @@ const Profile = () => {
           <div className="flex flex-col items-start">
             <p className="my-1 dark:text-white text-black">Email</p>
             <input
-              className="px-3 py-1.5 rounded-md border w-[100%]"
+              className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
               type="text"
               name="email"
               value={form.email}
@@ -216,7 +139,7 @@ const Profile = () => {
             <div className="flex flex-col items-start w-[100%]">
               <p className="my-1 dark:text-white text-black">Phone</p>
               <input
-                className="px-3 py-1.5 rounded-md border w-[100%]"
+                className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
                 type="text"
                 name="phone"
                 value={form.phone}
@@ -230,7 +153,7 @@ const Profile = () => {
             <div className="flex flex-col items-start">
               <p className="my-1 dark:text-white text-black">Password</p>
               <input
-                className="px-3 py-1.5 rounded-md border w-[100%]"
+                className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
                 type={showPassword ? "text" : "password"}
                 name="password"
                 value={form.password}
@@ -287,7 +210,7 @@ const Profile = () => {
             <button
               onClick={(e) => handleDisabledForm(e)}
               name="notaction"
-              className="flex justify-center items-center w-[50%] my-8 bg-white border-[1px] rounded-md text-black py-2 hover:bg-gray-300 hover:text-white duration-300"
+              className="flex justify-center items-center w-[50%] my-8 bg-white border-[1px] rounded-md text-black py-2 hover:bg-gray-300 dark:hover:text-white duration-300"
             >
               Edit Profile
               <FaPencilAlt className="ml-2" />
@@ -301,18 +224,6 @@ const Profile = () => {
             </button>
           </div>
         </form>
-        {/* <div className="flex space-x-2 w-full px-6">
-          <button
-            className="text-white w-full bg-blue-500 py-2 px-8 mt-4 rounded"
-            onClick={handleProfileEdit}
-            disabled={editingEnable}
-          >
-            Edit Profile
-          </button>
-          <button className="text-white w-full bg-blue-500 py-2 px-8 mt-4 rounded">
-            Update
-          </button>
-        </div> */}
       </div>
     </div>
   );
