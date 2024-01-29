@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { fetchDataFromApi } from "../../utils/api";
 import { FaSpinner } from 'react-icons/fa';
 
-const ProblemList = ({toggleConfetti , mentee , onMenteeUpdate }) => {
+const ProblemList = ({teamData ,setTeamData , mentee , onMenteeUpdate }) => {
   const [questions, setQuestions] = useState([]);
   const mentor = JSON.parse(localStorage.getItem("Mentor"));
   // const mentee = JSON.parse(localStorage.getItem("Mentee"));
@@ -49,7 +49,6 @@ const ProblemList = ({toggleConfetti , mentee , onMenteeUpdate }) => {
               Qstatus={question?.submitedMentees?.some((mentees)=>mentees.id === parseInt(mentee?.id))}
               id={question.id}
               description={question.description}
-              toggleConfetti={toggleConfetti}
               title={question.Qname}
               topic={question.topic}
               level={question.Level}
@@ -58,6 +57,8 @@ const ProblemList = ({toggleConfetti , mentee , onMenteeUpdate }) => {
               time={question.formated_allotedtime}
               user={mentee || mentor}
               onMenteeUpdate={onMenteeUpdate}
+              teamData={teamData}
+              setTeamData={setTeamData}
             />
             
           ))}

@@ -3,7 +3,7 @@ import { fetchDataFromApiWithResponse } from "../../utils/api";
 import { toast } from "react-toastify";
 import "../../index.css";
 
-const Problem = ({ id, title, desc, Qstatus, topic, level, url, time, toggleConfetti, description, user, onMenteeUpdate }) => {
+const Problem = ({ id, title, desc, Qstatus, topic, level, url, time, teamData ,setTeamData, description, user, onMenteeUpdate }) => {
   const [isMarked, setIsMarked] = useState(Qstatus);
   const [scoreAnimationVisible, setScoreAnimationVisible] = useState(false);
   const [scoreAnimation, setScoreAnimation] = useState(null);
@@ -31,13 +31,21 @@ const Problem = ({ id, title, desc, Qstatus, topic, level, url, time, toggleConf
       if (data.score) {
         setScoreAnimation(data.score);
       }
-
       const updatedMentee = {
         ...user,
         score: parseInt(user.score) + data.score,
         solvedQ: parseInt(user.solvedQ) + 1
       };
-
+      const updatedTeamData = {
+        ...teamData,
+        team_data: [
+          {
+            ...teamData.team_data[0],
+            team_score: parseInt(teamData.team_data[0].team_score) + data.score,
+          },
+        ],
+      };
+      setTeamData(updatedTeamData);
       onMenteeUpdate(updatedMentee);
       setScoreAnimationVisible(true);
     } else {
