@@ -5,7 +5,7 @@ import AddProblem from "../../components/DashBoardComponents/AddProblem";
 import LeaderBoard from "../../components/LeaderBoard/TeamLeaderBoard";
 import MentorDefaultDash from "../../components/DashBoardComponents/MentorDefaultDash";
 import MenteeLeaderBoard from "../../components/LeaderBoard/MenteeLeaderBoard";
-import Profile from "../../components/DashBoardComponents/MentorProfile";
+import MentorProfile from "../../components/DashBoardComponents/MentorProfile";
 import ProblemList from "../../components/DashBoardComponents/ProblemList";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,10 +27,14 @@ const options = [
 
 const DashBoard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
+  const [mentor,setmentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
   const [selectedOption, setSelectedOption] = useState("Dashboard");
   const [dropVisible, setdropVisible] = useState(false);
   const navigate = useNavigate();
+  const handleMentorUpdate = (updatedMentor) => {
+    setmentor(updatedMentor);
+    localStorage.setItem("Mentor", JSON.stringify(updatedMentor));
+  };
   const handleSignOut = () => {
     toast.success("Sign Out Successful!", {
       position: "bottom-right",
@@ -63,7 +67,7 @@ const DashBoard = () => {
       case "Team Leaderboard":
         return <LeaderBoard />;
       case "Profile":
-        return <Profile />;
+        return <MentorProfile mentor={mentor} onMentorUpdate={handleMentorUpdate}   />;
       case "Assign Problem":
         return (
           <>
@@ -137,7 +141,7 @@ const DashBoard = () => {
               <div className="cursor-pointer flex justify-center items-center">
                 <img
                   className="object-cover md:w-10 md:h-10 w-7 h-7 rounded-full mr-2"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  src={mentor.image}
                   alt=""
                 />
                 <p className="text-black dark:text-gray-500 md:text-lg text-sm">

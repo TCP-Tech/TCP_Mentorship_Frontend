@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Chart from "./Chart";
 import { fetchDataFromApi } from "../../utils/api";
 
 const Profile = ({ mode }) => {
   const mentor = JSON.parse(localStorage.getItem("Mentor"));
   const mentee = JSON.parse(localStorage.getItem("Mentee"));
   const [teamData, setTeamData] = useState();
-  const [id, setId] = useState(null);
-
-  // useEffect(() => {
-  //   if (mode === "mentee") {
-  //     setId(mentee?.id);
-  //   } else {
-  //     setId(mentor?.id);
-  //   }
-  // }, [mode]);
-
   const fetchData = async () => {
     try {
       const data = await fetchDataFromApi(`${mode === "mentee" ? "get-team-mentee":"get-team-mentor"}`, mentor?mentor.id:mentee.id);
@@ -29,12 +18,11 @@ const Profile = ({ mode }) => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(teamData);
 
   return (
     <div className="flex flex-col items-center justify-center">
       {teamData && teamData.team_data && (
-        <div className="w-full p-6 bg-white rounded-md shadow-md">
+        <div className="w-full px-6 py-4 bg-white rounded-md shadow-md">
           <h1 className="md:text-3xl text-2xl font-semibold mb-6 text-black">
             Team Data
           </h1>

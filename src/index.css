@@ -39,6 +39,26 @@ body {
   display: none;
   width: 5px;
 }
+@keyframes floatAndFade {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+.score-animation {
+  padding: 10px;
+  border-radius: 5px;
+  animation: floatAndFade 2s ease-out; 
+}
+.score-animation.hidden {
+  visibility: hidden;
+}
+
 
 @keyframes sunrise {
   0% {

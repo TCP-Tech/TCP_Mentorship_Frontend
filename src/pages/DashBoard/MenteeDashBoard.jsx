@@ -25,9 +25,13 @@ const DashBoard = () => {
   const [selectedOption, setSelectedOption] = useState("Dashboard");
   const [dropVisible, setdropVisible] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
-  const [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
+  const [mentee, setMentee] = useState(JSON.parse(localStorage.getItem("Mentee")));
   const navigate = useNavigate();
 
+  const handleMenteeUpdate = (updatedMentee) => {
+    setMentee(updatedMentee);
+    localStorage.setItem("Mentee", JSON.stringify(updatedMentee));
+  };
   const handleSignOut = () => {
     toast.success("Sign Out Successful!", {
       position: "bottom-right",
@@ -57,13 +61,13 @@ const DashBoard = () => {
   const renderMainContent = () => {
     switch (selectedOption) {
       case "Dashboard":
-        return <MenteeDefaultDash toggleConfetti={toggleConfetti} />;
+        return <MenteeDefaultDash  mentee={mentee} onMenteeUpdate={handleMenteeUpdate}/>;
       case "Leaderboard":
         return <MenteeLeaderBoard />;
       case "Team Leaderboard":
         return <LeaderBoard />;
       case "Profile":
-        return <MenteeProfile />;
+        return <MenteeProfile  mentee={mentee} onMenteeUpdate={handleMenteeUpdate}  />;
       default:
         return null;
     }
