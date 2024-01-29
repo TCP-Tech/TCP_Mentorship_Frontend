@@ -1,8 +1,22 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ProblemList from "./ProblemList";
 import Profile from "./Profile";
+import { fetchDataFromApi } from "../../utils/api";
 
 const MenteeDefaultDash = ({ toggleConfetti,mentee,onMenteeUpdate }) => {
+  const [teamData, setTeamData] = useState();
+  const fetchData = async () => {
+    try {
+      const data = await fetchDataFromApi( "get-team-mentee",mentee.id);
+      setTeamData(data);
+      
+    } catch (error) {
+      console.error("Error fetching team data:", error.message);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div className="px-5 flex flex-col">
       <h1 className="text-3xl text-center md:text-left text-black dark:text-white md:pt-5 pb-4 md:pb-1 md:px-2 font-semibold">
@@ -38,11 +52,15 @@ const MenteeDefaultDash = ({ toggleConfetti,mentee,onMenteeUpdate }) => {
           </div>
         </div>
         <div className=" w-[100%] md:w-[50%] ">
-        <Profile mode="mentee" />
+        <Profile mode="mentee" teamData={teamData} />
         </div>
       </div>
       <div>
-      <ProblemList toggleConfetti={toggleConfetti} mentee={mentee} onMenteeUpdate={onMenteeUpdate} />
+      <ProblemList
+       mentee={mentee} 
+       onMenteeUpdate={onMenteeUpdate} 
+       teamData={teamData}
+       setTeamData={setTeamData} />
       </div>
     </div>
   );

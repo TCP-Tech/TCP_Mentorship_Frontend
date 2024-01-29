@@ -1,24 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { fetchDataFromApi } from "../../utils/api";
-
-const Profile = ({ mode }) => {
-  const mentor = JSON.parse(localStorage.getItem("Mentor"));
-  const mentee = JSON.parse(localStorage.getItem("Mentee"));
-  const [teamData, setTeamData] = useState();
-  const fetchData = async () => {
-    try {
-      const data = await fetchDataFromApi(`${mode === "mentee" ? "get-team-mentee":"get-team-mentor"}`, mentor?mentor.id:mentee.id);
-      setTeamData(data);
-      
-    } catch (error) {
-      console.error("Error fetching team data:", error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+import React from "react";
+const Profile = ({ mode , teamData }) => {
   return (
     <div className="flex flex-col items-center justify-center">
       {teamData && teamData.team_data && (
