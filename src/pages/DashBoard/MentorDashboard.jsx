@@ -61,17 +61,17 @@ const DashBoard = () => {
   const renderMainContent = () => {
     switch (selectedOption) {
       case "Dashboard":
-        return <MentorDefaultDash />;
+        return <MentorDefaultDash mentor={mentor} />;
       case "Leaderboard":
         return <MenteeLeaderBoard />;
       case "Team Leaderboard":
         return <LeaderBoard />;
       case "Profile":
-        return <MentorProfile mentor={mentor} onMentorUpdate={handleMentorUpdate}   />;
+        return <MentorProfile mentor={mentor} onMentorUpdate={handleMentorUpdate} />;
       case "Assign Problem":
         return (
           <>
-            <AddProblem />
+            <AddProblem onMentorUpdate={handleMentorUpdate}/>
             <ProblemList user="mentor"/>
           </>
         );
@@ -181,7 +181,7 @@ const DashBoard = () => {
             </div>
           </nav>
           {/* Main section starts */}
-          <div className="flex flex-col mt-20 p-5">{renderMainContent()}</div>
+          <div className="flex flex-col mt-10 md:mt-20 p-5">{renderMainContent()}</div>
         </div>
       </div>
     </>
