@@ -34,20 +34,19 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints}) => {
         <div className="relative mb-4 sm:mb-0">
           <div className="rounded-full overflow-hidden bg-gray-300 w-28 h-28">
             {/* Team DP */}
-            <img src={teamimage} alt="" />
+            <img 
+            src={teamimage} 
+            className="object-cover w-28 h-28"
+            alt={`${teamName}-dp`} />
           </div>
         </div>
         <div className="team-profile-name flex flex-col items-center">
           <div>
           <h1 className="font-bold text-3xl text-black dark:text-white pr-8">{teamName}</h1>
-
           </div>
           <div>
-
-          <h1 className=" text-xl text-black dark:text-white pr-12">Score : {teamPoints}</h1>
+          <h1 className=" text-xl text-black dark:text-white pr-12 pt-2">Score : {teamPoints}</h1>
           </div>
-          
-          {/* <h1 className="text-xl text-black relative bottom-7 ">⭐⭐⭐⭐</h1> */}
         </div>
       </div>
       {/* <div className="team-profile-achievements mb-4">

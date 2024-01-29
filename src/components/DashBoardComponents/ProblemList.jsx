@@ -3,30 +3,11 @@ import React, { useState, useEffect } from "react";
 import { fetchDataFromApi } from "../../utils/api";
 import { FaSpinner } from 'react-icons/fa';
 
-const ProblemList = ({toggleConfetti }) => {
+const ProblemList = ({toggleConfetti , mentee , onMenteeUpdate }) => {
   const [questions, setQuestions] = useState([]);
-  const [id, setId] = useState(null);
   const mentor = JSON.parse(localStorage.getItem("Mentor"));
-  const mentee = JSON.parse(localStorage.getItem("Mentee"));
+  // const mentee = JSON.parse(localStorage.getItem("Mentee"));
   const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   if (mentor) {
-  //     setId(mentor.id);
-  //   } else if (mentee) {
-  //     setId(mentee.mentor_id);
-  //   }
-  // }, [mentor, mentee]);
-
-  // console.log(mentee.mentor_id)
-
-  // if (mentor) {
-  //       setId(mentor.id);
-  //     } else if (mentee) {
-  //       setId(mentee.mentor_id);
-  //     }
-  
-
-
   const fetchData = async () => {
     try {
       const data = await fetchDataFromApi("getQuestions", mentor?mentor.id:mentee.mentor_id);
@@ -48,7 +29,7 @@ const ProblemList = ({toggleConfetti }) => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 font-semibold">
+      <h1 className="text-3xl text-black text-center md:text-left dark:text-white pt-7 pb-5 font-semibold">
         Problems Assigned
       </h1>
       {loading ? (
@@ -76,6 +57,7 @@ const ProblemList = ({toggleConfetti }) => {
               url={question.problemLink}
               time={question.formated_allotedtime}
               user={mentee || mentor}
+              onMenteeUpdate={onMenteeUpdate}
             />
             
           ))}

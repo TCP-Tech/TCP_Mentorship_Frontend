@@ -46,7 +46,7 @@ const LeaderBoard = () => {
    });
 
   return (
-    <div id="teamLeaderBoard" className="bg-transparent flex flex-col  pt-12">
+    <div id="teamLeaderBoard" className="bg-transparent flex flex-col pt-12">
       {/* LeaderBoard Heading */}
       <div className="text-center">
         <h1 className="md:text-5xl text-3xl p-8 font-bold text-black dark:text-white">
@@ -154,12 +154,9 @@ const LeaderBoard = () => {
                 overlay: {
                   zIndex: 10000,
                 },
-               
                 content: {
                   width: '80%',
-                  
                   height: '90%',
-                  
                 },
               }}
             >

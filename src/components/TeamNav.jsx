@@ -66,12 +66,27 @@ const TeamNav = () => {
               alt="TCP Logo"
             />
           </Link>
-          <div className="flex-grow md:ml-28 flex items-center justify-center text-gray-900 text-md hover:text-[--primary-c] duration-200 dark:text-gray-500">
+          <div className="flex-grow ml-5 md:ml-28 flex items-center justify-center text-gray-900 text-md hover:text-[--primary-c] duration-200 dark:text-gray-500">
             <Link to="/">
               Back to Main Page
             </Link>
           </div>
           <div className="flex items-center gap-2 md:hidden">
+             {!isDarkMode ? (
+              <MdWbSunny
+                fill="#f1c40f"
+                size={24}
+                onClick={handleDarkMode}
+                className="cursor-pointer"
+              />
+            ) : (
+              <FaMoon
+                fill="#fff"
+                size={24}
+                onClick={handleDarkMode}
+                className="cursor-pointer"
+              />
+            )}
             <button
               className="inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg hover:bg-gray-100 dark:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black m-2"
               onClick={handleDropdownToggle}
@@ -79,7 +94,7 @@ const TeamNav = () => {
               <img src={ham} alt="Hamburger icon" />
             </button>
           </div>
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-3">
             {!isDarkMode ? (
               <MdWbSunny
                 fill="#f1c40f"
@@ -96,16 +111,16 @@ const TeamNav = () => {
               />
             )}
             <Link
-              to="/signup"
-              className="text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 rounded-md sm:text-sm sm:py-3 sm:px-4 px-2 text-center dark:hover:bg-gray-300 dark:hover:text-gray-900"
-            >
-              Sign Up
-            </Link>
-            <Link
               to="/login"
               className="text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 rounded-md sm:text-sm sm:py-3 sm:px-4 px-2 text-center dark:hover:bg-gray-300 dark:hover:text-gray-900"
             >
               Log In
+            </Link>
+            <Link
+              to="/signup"
+              className="text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 rounded-md sm:text-sm sm:py-3 sm:px-4 px-2 text-center dark:hover:bg-gray-300 dark:hover:text-gray-900"
+            >
+              Sign Up
             </Link>
           </div>
         </div>
@@ -119,6 +134,7 @@ const TeamNav = () => {
           >
             Back to Main Page
           </Link> */}
+          
            <Link
             to="/login"
             className="self-center px-4 md:block text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 my-5 rounded-md py-3 w-[200px] text-center  dark:hover:bg-gray-300 dark:hover:text-gray-900"
@@ -129,7 +145,7 @@ const TeamNav = () => {
             to="/signup"
             className="self-center px-4 md:block text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 my-5 rounded-md py-3 w-[200px] text-center  dark:hover:bg-gray-300 dark:hover:text-gray-900"
             >
-                Sign Up
+            Sign Up
          </Link>
         </div>
       )}
