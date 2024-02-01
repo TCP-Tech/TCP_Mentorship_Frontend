@@ -82,32 +82,20 @@ const AddProblem = ({onMentorUpdate}) => {
         progress: undefined,
         theme: "dark",
       });
-      // const jsonQLevelCount = mentor.Qlevel_count.replace(/'/g, '"');
-      // const jsonTopicCount = mentor.topic_count.replace(/'/g, '"');
-  
-      // // Parse the topic_count and Qlevel_count if they are JSON strings
-      // const parsedQLevelCount = typeof jsonQLevelCount === 'string'
-     
-      //   : {};
-  
-      // const parsedTopicCount = typeof jsonTopicCount === 'string'
-   
-      //   : {};
-  
-      // const updatedMentor = {
-      //   ...mentor,
-      //   total_q: parseInt(mentor.total_q) + 1,
-      //   Qlevel_count: {
-      //     ...mentor.Qlevel_count,
-      //     [form.difficulty]: (mentor.Qlevel_count[form.difficulty] || 0) + 1,
-      //   },
-      //   topic_count: {
-      //     ...mentor.topic_count,
-      //     [selectedTopics[selectedTopics.length - 1]]: (mentor.topic_count[selectedTopics[selectedTopics.length - 1]] || 0) + 1,
-      //   },
-      // };
-      // console.log("Updated Mentor", updatedMentor);
-      // onMentorUpdate(updatedMentor);
+      const updatedMentor = {
+        ...mentor,
+        total_q: parseInt(mentor.total_q) + 1,
+        Qlevel_count: {
+          ...mentor.Qlevel_count,
+          [form.difficulty]: (mentor.Qlevel_count[form.difficulty] || 0) + 1,
+        },
+        topic_count: {
+          ...mentor.topic_count,
+          [selectedTopics[selectedTopics.length - 1]]: (mentor.topic_count[selectedTopics[selectedTopics.length - 1]] || 0) + 1,
+        },
+      };
+      console.log("Updated Mentor", updatedMentor);
+      onMentorUpdate(updatedMentor);
       setForm(forminitialState);
       formRef.current.reset();
       if (selectRef.current) {
