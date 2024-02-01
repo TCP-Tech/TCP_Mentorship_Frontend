@@ -3,10 +3,8 @@ import Profile from "./Profile";
 import { fetchDataFromApi } from "../../utils/api";
 const MentorDefaultDash = () => {
   const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
-  const Qlevel=mentor.Qlevel_count.replace(/'/g, '"');
-  const Level=JSON.parse(Qlevel);
-  const QTopic=mentor.topic_count.replace(/'/g,'"');
-  const Topic=JSON.parse(QTopic);
+  const Level=(mentor.Qlevel_count);
+  const Topic=(mentor.topic_count);
   const [teamData, setTeamData] = useState();
   const fetchData = async () => {
     try {
