@@ -133,7 +133,7 @@ const Problem = ({ id, title, desc, Qstatus, topic, level, url, time, teamData ,
               {topic}
             </p>
           ))}
-          <p className="border dark:bg-gray-800 dark:text-white text-black dark:border-white border-[var(--primary-c)] rounded-lg text-sm p-1 m-1">
+          <p className={`border ${level=="Easy"?"text-green-500 border-green-500":""} ${level=="Medium"?"text-yellow-500 border-yellow-500":""} ${level=="Hard"?"text-red-500 border-red-500":""} dark:bg-gray-800 rounded-lg text-sm p-1 m-1`}>
             {level}
           </p>
         </div>
