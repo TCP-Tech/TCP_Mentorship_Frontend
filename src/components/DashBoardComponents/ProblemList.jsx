@@ -6,8 +6,8 @@ import { FaSpinner } from 'react-icons/fa';
 const ProblemList = ({teamData ,setTeamData , mentee , onMenteeUpdate }) => {
   const [questions, setQuestions] = useState([]);
   const mentor = JSON.parse(localStorage.getItem("Mentor"));
-  // const mentee = JSON.parse(localStorage.getItem("Mentee"));
   const [loading, setLoading] = useState(true);
+  console.log(questions)
   const fetchData = async () => {
     try {
       const data = await fetchDataFromApi("getQuestions", mentor?mentor.id:mentee.mentor_id);
@@ -26,6 +26,17 @@ const ProblemList = ({teamData ,setTeamData , mentee , onMenteeUpdate }) => {
   useEffect(() => { 
     fetchData();
   }, []);
+
+  useEffect(()=>{
+    if(mentee){
+      const updatedMentee={
+        ...mentee,
+       total_q:questions.length
+      }
+      console.log(updatedMentee)
+      onMenteeUpdate(updatedMentee)
+    }
+  },[questions])
 
   return (
     <div className="flex flex-col">
