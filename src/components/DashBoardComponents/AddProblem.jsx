@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const topicList = [
-{ value: "Arrays", label: "Arrays" },
+{ value: "Array", label: "Array" },
 { value: "Backtracking", label: "Backtracking" },
 { value: "BinaryTrees", label: "Binary Trees" },
 { value: "BitManipulation", label: "Bit Manipulation" },
@@ -50,6 +50,7 @@ const customStyles = {
 const AddProblem = ({onMentorUpdate}) => {
   const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
   const navigate = useNavigate();
+  const [selectedTopics, setSelectedTopics] = useState([]);
   const forminitialState={
     Qname: "",
     topic: "",
@@ -61,9 +62,10 @@ const AddProblem = ({onMentorUpdate}) => {
   const formRef = useRef(null);
   const selectRef = useRef(null);
   const [form, setForm] = useState(forminitialState);
+  console.log(form)
   const fetchData = async () => {
     const body={
-      mentorId : form.mentorId ,
+      mentorId :String(form.mentorId),
       Qname:form.Qname , 
       topic : form.topic , 
       Level : form.difficulty , 
@@ -91,9 +93,12 @@ const AddProblem = ({onMentorUpdate}) => {
         },
         topic_count: {
           ...mentor.topic_count,
-          [selectedTopics[selectedTopics.length - 1]]: (mentor.topic_count[selectedTopics[selectedTopics.length - 1]] || 0) + 1,
         },
       };
+      selectedTopics.forEach((selectedTopic) => {
+        updatedMentor.topic_count[selectedTopic] = (mentor.topic_count[selectedTopic] || 0) + 1;
+      });
+      console.log(selectedTopics)
       console.log("Updated Mentor", updatedMentor);
       onMentorUpdate(updatedMentor);
       setForm(forminitialState);
@@ -146,9 +151,11 @@ const AddProblem = ({onMentorUpdate}) => {
   }
   function handleSelectmulti(selectedOptions, object) {
     const n = { ...form };
-    n[object.name] = selectedOptions.map(option => option.value).join(' ');
+    n[object.name] = selectedOptions.map((option) => option.value).join(' ');
     setForm(n);
+    setSelectedTopics(selectedOptions.map((option) => option.value));
   }
+  
   return (
     <div className="flex flex-col">
       <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 font-semibold">
