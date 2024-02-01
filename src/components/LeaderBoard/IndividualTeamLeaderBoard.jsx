@@ -69,14 +69,14 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints}) => {
         Team Members
       </h1>
       <div className="team-profile-members overflow-y-scroll h-[40vh]">
-        {menteeData.map((mentee) => (
+        {menteeData.map((mentee , index) => (
           <MenteesCompo
             key={mentee.id}
             name={mentee.name}
             image={mentee.image}
             problemsSolved={mentee.solvedQ}
             points={mentee.score}
-            id={mentee.id}
+            id={index+1}
             // dp={}
           />
         ))}

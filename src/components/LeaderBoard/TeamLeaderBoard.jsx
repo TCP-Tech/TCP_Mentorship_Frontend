@@ -137,7 +137,7 @@ const LeaderBoard = () => {
                 <TeamCompo
                   key={team?.id}
                   teamName={team?.team_name}
-                  teamLeaderName={"ayush"}
+                  teamLeaderName={team?.alloted_mentor?.name}
                   teamPoints={team?.team_score}
                   id={index +1}
                 />
