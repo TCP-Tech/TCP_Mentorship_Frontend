@@ -194,7 +194,7 @@ const MenteeLeaderBoard = () => {
                     >
                       <tr>
                         <td className="px-5 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center gap-x-3  md:text-lg text-white">
+                          <div className="inline-flex items-center gap-x-3  md:text-lg text-black dark:text-white ">
                             <h1>{index+1}</h1>
 
                             <div className="flex items-center gap-x-2">
