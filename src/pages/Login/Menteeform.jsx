@@ -6,12 +6,23 @@ import { fetchDataFromApiWithResponse } from "../../utils/api";
 
 const Menteeform = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const[mentee,setMentee]=useState(JSON.parse(localStorage.getItem("Mentee")) || null);
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [form, setForm] = useState({
     userid: "",
     password: "",
   });
+  useEffect(() => {
+    if (loggedIn && mentee) {
+      setTimeout(() => {
+        navigate("/mentee/" + mentee.name);
+        console.log("Data", mentee);
+      }, 1000);
+    } else if (checkLoggedIn()) {
+      setLoggedIn(true);
+    }
+  }, [loggedIn, navigate, mentee]);
   const fetchData = async () => {
     const body = { email: form.userid, password: form.password };
 
@@ -28,10 +39,11 @@ const Menteeform = () => {
         theme: "dark",
       });
       localStorage.setItem("Mentee", JSON.stringify(data.user_data));
+      setMentee(data.user_data)
       setLoggedIn(true);
-      setTimeout(() => {
-        navigate("/mentee");
-      }, 2000);
+      // setTimeout(() => {
+      //   navigate("/mentee/"+mentee?.name);
+      // }, 2000);
     }
     else{
       toast.error(data.status_message, {
@@ -45,7 +57,7 @@ const Menteeform = () => {
         theme: "dark",
       });
     }
-    console.log("User", data.user_data);
+  
   };
 
   const handleSubmit = async (e) => {
@@ -58,16 +70,6 @@ const Menteeform = () => {
     const mentorData = localStorage.getItem("Mentee");
     return mentorData !== null;
   };
-
-  useEffect(() => {
-    if (loggedIn) {
-      setTimeout(() => {
-        navigate("/mentee");
-      }, 2000);
-    } else if (checkLoggedIn()) {
-      setLoggedIn(true);
-    }
-  }, [loggedIn, navigate]);
 
   function handle(e) {
     const n = { ...form };

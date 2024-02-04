@@ -7,8 +7,18 @@ import { fetchDataFromApiWithResponse } from "../../utils/api";
 
 const Mentorform = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const[mentor,setMentor]=useState(JSON.parse(localStorage.getItem("Mentor"))||null);
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (loggedIn && mentor) {
+      setTimeout(() => {
+        navigate("/mentor/"+mentor?.name);
+      }, 1000);
+    } else if (checkLoggedIn()) {
+      setLoggedIn(true);
+    }
+  }, [loggedIn, navigate ,mentor]);
 
   const fetchData = async () => {
     const body = { email: form.userid, password: form.password };
@@ -25,11 +35,9 @@ const Mentorform = () => {
         progress: undefined,
         theme: "dark",
       });
+      setMentor(data.user_data);
       localStorage.setItem("Mentor", JSON.stringify(data.user_data));
       setLoggedIn(true);
-      setTimeout(() => {
-        navigate("/mentor");
-      }, 2000);
     }
     else{
       toast.error(data.status_message, {
@@ -59,12 +67,6 @@ const Mentorform = () => {
     return mentorData !== null;
   };
 
-  useEffect(() => {
-    if (loggedIn) {
-    } else if (checkLoggedIn()) {
-      setLoggedIn(true);
-    }
-  }, [loggedIn, navigate]);
 
   function handle(e) {
     const n = { ...form };
