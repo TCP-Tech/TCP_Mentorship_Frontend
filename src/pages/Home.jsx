@@ -14,10 +14,10 @@ const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (mentor) {
-      navigate("/mentor");
+      navigate("/mentor/"+mentor?.name);
     }
     if(mentee){
-      navigate("/mentee")
+      navigate("/mentee/"+mentee?.name)
     }
   }, [mentor , mentee]);
   return (
