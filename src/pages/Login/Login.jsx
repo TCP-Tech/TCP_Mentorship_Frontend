@@ -53,19 +53,6 @@ const Login = () => {
     setForm(n);
   }
 
-  const handleForgotPassword = async (e) => {
-    toast.error("OK", {
-      position: "bottom-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  };
-
   return (
     <div className="flex  h-screen flex-col justify-center">
       <div className="h-screen w-screen">
@@ -232,13 +219,13 @@ const Login = () => {
             Login with Google
           </button> */}
 
-            <div className=" mt-10 text-xs gap-4 flex justify-between items-center text-[var(--primary-c)]">
-              <p
+            <div className=" mt-7 text-xs  flex justify-center items-center text-[var(--primary-c)]">
+              {/* <p
                 onClick={handleForgotPassword}
                 className="cursor-pointer underline"
               >
                 Forgot Password
-              </p>
+              </p> */}
               {usertype === "Mentee" ? (
                 <div className="flex flex-row items-center gap-2">
                   <p className="text-right">Don't have an account?</p>
