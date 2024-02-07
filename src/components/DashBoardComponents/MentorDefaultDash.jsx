@@ -216,78 +216,91 @@ const MentorDefaultDash = () => {
         </div>
 
       </div>
-        <div>
-        <h1 className="text-3xl pt-7 pb-5  text-black dark:text-white font-semibold">
-          Mentee Coding Stats
-        </h1>
-        <div className="dark:bg-gray-800 overflow-y-scroll px-10 mt-4 h-[70vh] w-full rounded-tl-[40px] rounded-tr-[40px] border dark:border-gray-600">
-        
-              {teamData?.map((team) => (
-        <div key={team.id}>
-          {team.team_members.map((member) => (
-            <div key={member.id} onClick={() => handleClick(member)}>
-                <div className="flex items-center justify-between py-3 ">
-      <div className="flex items-center">
-        <div className="rounded-full overflow-hidden dark:bg-gray-800 w-12 h-12 mr-2"></div>
-        <div className="cursor-pointer">
-          <h1 className="md:font-semibold text-black dark:text-white">
-            {member.name}
-          </h1>
-          <h2 className="dark:text-gray-400 text-gray-600 text-sm">
-            {member.team_name}
-          </h2>
-        </div>
-      </div>
-      <h1 className="md:font-semibold text-black dark:text-white text-sm md:text-lg">
-        {member.score} Points
-      </h1>
-    </div>
-                <div className=" h-0 w-full border border-zinc-300 dark:border-zinc-600 border-opacity-50"></div>
+      <div>
+  <h1 className="text-3xl pt-7 pb-5 text-black dark:text-white font-semibold">
+    Mentee Coding Stats
+  </h1>
+  <div className="dark:bg-gray-800 overflow-y-scroll px-10 mt-4 h-[70vh] w-full rounded-tl-[40px] rounded-tr-[40px] border dark:border-gray-600">
+    {teamData?.map((team) => (
+      <div key={team.id}>
+        {team.team_members.map((member) => (
+          <div key={member.id} onClick={() => handleClick(member)}>
+            <div className="flex items-center justify-between py-3 mt-6 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
+              <div className="flex items-center space-x-2">
+                <div className="rounded-full overflow-hidden dark:bg-gray-800 w-12 h-12 mr-2">
+                <img className="h-12 w-12 rounded-full" src={member.image} alt={`${member.name}-dp`} />
+                </div>
+                <div>
+                  <h1 className="md:font-semibold text-black dark:text-white">
+                    {member.name}
+                  </h1>
+                  <h2 className="dark:text-gray-400 text-gray-600 text-sm">
+                    {member.team_name}
+                  </h2>
+                </div>
               </div>
-            ))}
+              <h1 className="md:font-semibold text-black dark:text-white text-sm md:text-lg">
+                {member.score} Points
+              </h1>
             </div>
-        ))}</div>
-          <div className="">
-            <Modal
-              isOpen={showModal}
-              onRequestClose={closeModal}
-              className="dark:bg-gray-800 mx-auto mt-[8%] sm:mt-[2%] bg-gray-100 p-4"
-              style={{
-                overlay: {
-                  zIndex: 10000,
-                },
-                content: {
-                  width: '80%',
-                  height: '90%',
-                },
-              }}
-            >
-              
-              <button onClick={closeModal} className="dark:bg-gray-800 bg-gray-100">
-                <img alt="close" src={close} className="w-5 h-5 hidden dark:block" />
-                <img alt="close" src={closelight} className="w-4 h-4 dark:hidden" />
-              </button>
-              <h1 className="font-bold mb-2 text-black md:text-2xl text-xl dark:text-white">
-        Mentee Profile
-      </h1>
-      <div className="team-profile-members overflow-y-scroll h-[80vh]">
-        {menteeData && 
-          <MenteesUrlsCard
-            image={menteeData.image}
-            name={menteeData.name}
-            codechefID={menteeData.codechefID}
-            codeforcesID={menteeData.codeforcesID}
-            leetcodeID={menteeData.leetcodeID}
-            gfgID={menteeData.gfgID}
-            hackerrankID={menteeData.hackerrankID}
-            points={menteeData.score}
-            // dp={}
-          />
-        }
-      </div>
-            </Modal>
+            <div className="h-0 w-full border border-zinc-300 dark:border-zinc-600 border-opacity-50"></div>
           </div>
-            </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>
+
+          <div className="flex items-center justify-center">
+          <Modal
+        isOpen={showModal}
+        onRequestClose={closeModal}
+        className="dark:bg-gray-800 mx-auto mt-[8%] sm:mt-[2%] bg-gray-100 p-4"
+        style={{
+          overlay: {
+            zIndex: 10000,
+          },
+          content: {
+            width:"90%",
+            maxWidth: "700px",
+            height:"80%",
+          },
+        }}
+      >
+        <button onClick={closeModal} className="dark:bg-gray-800 bg-gray-100">
+          <img
+            alt="close"
+            src={close}
+            className="w-5 h-5 hidden dark:block"
+          />
+          <img
+            alt="close"
+            src={closelight}
+            className="w-4 h-4 dark:hidden"
+          />
+        </button>
+        <div className="flex flex-col items-center justify-center">
+        <h1 className="font-bold text-center text-black md:text-2xl text-xl dark:text-white">
+          {menteeData? menteeData?.name : "Mentee"}'s Profile
+        </h1>
+        <div className="team-profile-members overflow-y-scroll h-[80vh] mt-12">
+          {menteeData && (
+            <MenteesUrlsCard
+              image={menteeData.image}
+              name={menteeData.name}
+              codechefID={menteeData.codechefID}
+              codeforcesID={menteeData.codeforcesID}
+              leetcodeID={menteeData.leetcodeID}
+              gfgID={menteeData.gfgID}
+              hackerrankID={menteeData.hackerrankID}
+              points={menteeData.score}
+              solvedQ={menteeData.solvedQ}
+            />
+          )}
+        </div>
+        </div>
+      </Modal>
+          </div>
     </>
   );
 };
