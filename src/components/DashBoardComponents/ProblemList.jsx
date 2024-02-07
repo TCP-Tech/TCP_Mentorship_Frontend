@@ -40,8 +40,8 @@ const ProblemList = ({teamData ,setTeamData , mentee , onMenteeUpdate }) => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-3xl text-black text-center md:text-left dark:text-white pt-7 pb-5 font-semibold">
-        Problems Assigned
+      <h1 className="text-3xl text-black text-center md:text-left dark:text-white pt-7 pb-5 md:ml-2 font-semibold">
+       {mentor? "Problems Assigned":"Problems"}
       </h1>
       {loading ? (
         <div className="flex items-center justify-center text-black  dark:text-gray-400">
@@ -64,6 +64,7 @@ const ProblemList = ({teamData ,setTeamData , mentee , onMenteeUpdate }) => {
               topic={question.topic}
               level={question.Level}
               desc={question.desc}
+              submitedMentees={question?.submitedMentees}
               url={question.problemLink}
               time={question.formated_allotedtime}
               user={mentee || mentor}

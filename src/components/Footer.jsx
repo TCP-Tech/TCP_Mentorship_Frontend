@@ -124,29 +124,24 @@ const Footer = () => {
           {/* Right side links */}
           <div className="bg-transparent flex md:flex-col justify-center text-right space-x-2 md:py-0 py-2 ">
             <a
-              href="/#home"
+              href="#home"
               className="block py-2 text-black text-[17px] md:text-2xl hover:text-primary transition duration-300 ease-in-out  dark:text-white"
             >
               Home
             </a>
             <a
-              href="/events"
+              href="#leaderBoard"
               className="block py-2 text-black text-[17px] md:text-2xl hover:text-primary transition duration-300 ease-in-out dark:text-white"
             >
               Leaderboard
             </a>
             <a
-              href="/events"
+              href="#teamLeaderBoard"
               className="block py-2 text-black text-[17px] md:text-2xl hover:text-primary transition duration-300 ease-in-out dark:text-white"
             >
-              Mentors
+              Team LeaderBoard
             </a>
-            <a
-              href="/events"
-              className="block py-2 text-black text-[17px] md:text-2xl hover:text-primary transition duration-300 ease-in-out dark:text-white"
-            >
-              Problems
-            </a>
+          
           </div>
         </div>
       </div>
