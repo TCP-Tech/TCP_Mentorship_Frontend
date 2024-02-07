@@ -1,15 +1,24 @@
 import React,{useEffect, useState} from "react";
+import Modal from "react-modal";
+import MenteesUrlsCard from "../MenteesUrlsCard";
 import Profile from "./Profile";
+import close from "../../assets//images/cross.svg";
+import closelight from "../../assets//images/cross.png";
 import { fetchDataFromApi } from "../../utils/api";
 const MentorDefaultDash = () => {
   const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
   const Level=(mentor.Qlevel_count);
   const Topic=(mentor.topic_count);
   const [teamData, setTeamData] = useState();
+  const [teamData1, setTeamData1] = useState();
+  const [menteeData, setMenteeData] = useState();
+  const [showModal, setShowModal] = useState(false);
   const fetchData = async () => {
     try {
       const data = await fetchDataFromApi( "get-team-mentor",mentor.id);
-      setTeamData(data);
+
+      setTeamData(data.team_data);
+      setTeamData1(data);
       
     } catch (error) {
       console.error("Error fetching team data:", error.message);
@@ -18,6 +27,16 @@ const MentorDefaultDash = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleClick = (teamData) => {
+    setMenteeData(teamData);
+    console.log(teamData);
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <div>
@@ -56,7 +75,7 @@ const MentorDefaultDash = () => {
             </div>
           </div>
           <div className="w-[100%] md:w-[50%]">
-            <Profile mode="mentor" teamData={teamData}/>
+            <Profile mode="mentor" teamData={teamData1}/>
           </div>
         </div>
       </div>
@@ -195,7 +214,80 @@ const MentorDefaultDash = () => {
             </div>
           </div>
         </div>
+
       </div>
+        <div>
+        <h1 className="text-3xl pt-7 pb-5  text-black dark:text-white font-semibold">
+          Mentee Coding Stats
+        </h1>
+        <div className="dark:bg-gray-800 overflow-y-scroll px-10 mt-4 h-[70vh] w-full rounded-tl-[40px] rounded-tr-[40px] border dark:border-gray-600">
+        
+              {teamData?.map((team) => (
+        <div key={team.id}>
+          {team.team_members.map((member) => (
+            <div key={member.id} onClick={() => handleClick(member)}>
+                <div className="flex items-center justify-between py-3 ">
+      <div className="flex items-center">
+        <div className="rounded-full overflow-hidden dark:bg-gray-800 w-12 h-12 mr-2"></div>
+        <div className="cursor-pointer">
+          <h1 className="md:font-semibold text-black dark:text-white">
+            {member.name}
+          </h1>
+          <h2 className="dark:text-gray-400 text-gray-600 text-sm">
+            {member.team_name}
+          </h2>
+        </div>
+      </div>
+      <h1 className="md:font-semibold text-black dark:text-white text-sm md:text-lg">
+        {member.score} Points
+      </h1>
+    </div>
+                <div className=" h-0 w-full border border-zinc-300 dark:border-zinc-600 border-opacity-50"></div>
+              </div>
+            ))}
+            </div>
+        ))}</div>
+          <div className="">
+            <Modal
+              isOpen={showModal}
+              onRequestClose={closeModal}
+              className="dark:bg-gray-800 mx-auto mt-[8%] sm:mt-[2%] bg-gray-100 p-4"
+              style={{
+                overlay: {
+                  zIndex: 10000,
+                },
+                content: {
+                  width: '80%',
+                  height: '90%',
+                },
+              }}
+            >
+              
+              <button onClick={closeModal} className="dark:bg-gray-800 bg-gray-100">
+                <img alt="close" src={close} className="w-5 h-5 hidden dark:block" />
+                <img alt="close" src={closelight} className="w-4 h-4 dark:hidden" />
+              </button>
+              <h1 className="font-bold mb-2 text-black md:text-2xl text-xl dark:text-white">
+        Mentee Profile
+      </h1>
+      <div className="team-profile-members overflow-y-scroll h-[80vh]">
+        {menteeData && 
+          <MenteesUrlsCard
+            image={menteeData.image}
+            name={menteeData.name}
+            codechefID={menteeData.codechefID}
+            codeforcesID={menteeData.codeforcesID}
+            leetcodeID={menteeData.leetcodeID}
+            gfgID={menteeData.gfgID}
+            hackerrankID={menteeData.hackerrankID}
+            points={menteeData.score}
+            // dp={}
+          />
+        }
+      </div>
+            </Modal>
+          </div>
+            </div>
     </>
   );
 };
