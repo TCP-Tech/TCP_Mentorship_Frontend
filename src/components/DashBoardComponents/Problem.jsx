@@ -3,11 +3,11 @@ import { fetchDataFromApiWithResponse } from "../../utils/api";
 import { toast } from "react-toastify";
 import "../../index.css";
 
-const Problem = ({ id, title, desc, Qstatus, topic, level, url, time, teamData ,setTeamData, description, user, onMenteeUpdate }) => {
+const Problem = ({ id, title, desc, Qstatus, topic, level,submitedMentees, url, time, teamData ,setTeamData, description, user, onMenteeUpdate }) => {
   const [isMarked, setIsMarked] = useState(Qstatus);
   const [scoreAnimationVisible, setScoreAnimationVisible] = useState(false);
   const [scoreAnimation, setScoreAnimation] = useState(null);
-
+  console.log("USbmuem ",submitedMentees)
   const postSubmission = async () => {
     const bodyData = {
       menteeId: user.id,
@@ -113,6 +113,7 @@ const Problem = ({ id, title, desc, Qstatus, topic, level, url, time, teamData ,
           </h1>}
           <p className="ml-2 text-sm italic text-black dark:text-white">Posted on <span>{time}</span></p>
           <h3 className="m-4 text-md dark:text-white text-black">{desc}</h3>
+          <h3 className={`my-4 ml-2 text-sm md:text-md dark:text-white text-black ${user.mentor_id ? 'hidden' : ''}`}>Submitted by: {submitedMentees?submitedMentees.map((sMentee)=>sMentee.name).join(","):"None yet"}</h3>
         </div>
       </a>
       <div className="flex flex-col items-center md:items-end p-4">

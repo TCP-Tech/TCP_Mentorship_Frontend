@@ -2,7 +2,7 @@ import React from "react";
 const Profile = ({ mode , teamData }) => {
   return (
     <div className="flex flex-col items-center justify-center">
-      {teamData && teamData.team_data && (
+      { (
         <div className="w-full px-6 py-4 bg-white rounded-md shadow-md">
           <h1 className="md:text-3xl text-2xl font-semibold mb-6 text-black">
             Team Data
@@ -14,7 +14,7 @@ const Profile = ({ mode , teamData }) => {
                   Team Name :
                 </h1>
                 <p className="font-normal md:text-lg text-gray-400">
-                {teamData.team_data[0]?.team_name}
+                {teamData?.team_data[0]?.team_name}
                 </p>
               </div>
               <div className="flex items-start space-x-1 mt-2">
@@ -23,8 +23,8 @@ const Profile = ({ mode , teamData }) => {
                 </h1>
                 <p className="font-normal md:text-lg text-gray-400">
                     {mode === "mentee"
-                      ? teamData.mentor_data?.name
-                      : teamData.team_data[0]?.team_members.map((member) => member.name).join(", ")}
+                      ? teamData?.mentor_data?.name
+                      : teamData?.team_data[0]?.team_members.map((member) => member.name).join(", ")}
                   </p>
               </div>
               <div className="flex items-start space-x-1 mt-2">
