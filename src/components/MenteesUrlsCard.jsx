@@ -6,7 +6,7 @@ const MenteesCompo = ({ image, name, codechefID, codeforcesID, leetcodeID, gfgID
       <div className="px-6 py-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex-shrink-0 mr-4">
-            <img className="h-12 w-12 rounded-full" src={image} alt={`${name}-dp`} />
+            <img className="h-12 object-cover w-12 rounded-full" src={image} alt={`${name}-dp`} />
           </div>
           <div>
             <h1 className="text-lg font-semibold text-gray-800 dark:text-white">{name}</h1>

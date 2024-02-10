@@ -4,6 +4,7 @@ import Select from "react-select";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import ProblemList from "./ProblemList";
 
 const topicList = [
 { value: "Array", label: "Array" },
@@ -49,6 +50,7 @@ const customStyles = {
 
 const AddProblem = ({onMentorUpdate}) => {
   const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
+  const [addQuestion,setAddedQuestion] = useState();
   const navigate = useNavigate();
   const [selectedTopics, setSelectedTopics] = useState([]);
   const forminitialState={
@@ -84,6 +86,7 @@ const AddProblem = ({onMentorUpdate}) => {
         progress: undefined,
         theme: "dark",
       });
+      setAddedQuestion(!addQuestion);
       const updatedMentor = {
         ...mentor,
         total_q: parseInt(mentor.total_q) + 1,
@@ -243,6 +246,7 @@ const AddProblem = ({onMentorUpdate}) => {
           </button>
         </div>
       </form>
+      <ProblemList addQuestion={addQuestion} />
     </div>
   );
 };
