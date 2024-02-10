@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import { fetchDataFromApi } from "../../utils/api";
 import { FaSpinner } from 'react-icons/fa';
 
-const ProblemList = ({teamData ,setTeamData , mentee , onMenteeUpdate }) => {
+const ProblemList = ({addQuestion , teamData ,setTeamData , mentee , onMenteeUpdate }) => {
   const [questions, setQuestions] = useState([]);
   const mentor = JSON.parse(localStorage.getItem("Mentor"));
   const [loading, setLoading] = useState(true);
-  console.log(questions)
+  console.log("Team data",questions)
   const fetchData = async () => {
     try {
       const data = await fetchDataFromApi("getQuestions", mentor?mentor.id:mentee.mentor_id);
@@ -25,7 +25,7 @@ const ProblemList = ({teamData ,setTeamData , mentee , onMenteeUpdate }) => {
   };
   useEffect(() => { 
     fetchData();
-  }, []);
+  }, [addQuestion]);
 
   useEffect(()=>{
     if(mentee){

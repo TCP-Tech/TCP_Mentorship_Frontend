@@ -212,8 +212,8 @@ const Profile = ({mentor,onMentorUpdate}) => {
               name="notaction"
               className="flex justify-center items-center w-[50%] my-8 bg-white border-[1px] rounded-md text-black py-2 hover:bg-gray-300 dark:hover:text-white duration-300"
             >
-              Edit Profile
-              <FaPencilAlt className="ml-2" />
+            {disabledForm?"Edit Profile" :"Editing Enabled" }
+             { disabledForm&& <FaPencilAlt className="ml-2" />}
             </button>
             <button
               disabled={disabledForm}

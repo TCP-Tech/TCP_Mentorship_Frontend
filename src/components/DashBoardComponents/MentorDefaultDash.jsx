@@ -228,7 +228,7 @@ const MentorDefaultDash = () => {
             <div className="flex items-center justify-between py-3 mt-6 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
               <div className="flex items-center space-x-2">
                 <div className="rounded-full overflow-hidden dark:bg-gray-800 w-12 h-12 mr-2">
-                <img className="h-12 w-12 rounded-full" src={member.image} alt={`${member.name}-dp`} />
+                <img className="h-12 w-12 object-cover rounded-full" src={member.image} alt={`${member.name}-dp`} />
                 </div>
                 <div>
                   <h1 className="md:font-semibold text-black dark:text-white">
