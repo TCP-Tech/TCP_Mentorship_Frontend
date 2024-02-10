@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import SideBar from "../../components/DashBoardComponents/SideBar";
+import { MdWbSunny } from "react-icons/md";
+import { FaMoon } from "react-icons/fa";
 import AddProblem from "../../components/DashBoardComponents/AddProblem";
 import LeaderBoard from "../../components/LeaderBoard/TeamLeaderBoard";
 import MenteeLeaderBoard from "../../components/LeaderBoard/MenteeLeaderBoard";
@@ -32,6 +34,39 @@ const DashBoard = () => {
     setMentee(updatedMentee);
     localStorage.setItem("Mentee", JSON.stringify(updatedMentee));
   };
+  const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [isDarkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme ? savedTheme === 'dark' : prefersDarkMode;
+  });
+
+  const handleDarkMode = () => {
+    const newMode = !isDarkMode;
+    setDarkMode(newMode);
+    localStorage.setItem('theme', newMode ? 'dark' : 'light');
+  };
+
+  useEffect(() => {
+    const prefersDarkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const updateTheme = (e) => {
+      const newMode = e.matches;
+      setDarkMode(newMode);
+      localStorage.setItem('theme', newMode ? 'dark' : 'light');
+    };
+
+    prefersDarkModeQuery.addListener(updateTheme);
+    return () => {
+      prefersDarkModeQuery.removeListener(updateTheme);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
   const handleSignOut = () => {
     toast.success("Sign Out Successful!", {
       position: "bottom-right",
@@ -111,7 +146,7 @@ const DashBoard = () => {
         >
           <nav
             className={`w-full z-[999] flex fixed items-center justify-between shadow-md py-2 px-5  ${
-              isSidebarOpen && "pr-80"
+              isSidebarOpen && "pr-80" 
             } bg-transparent backdrop-blur-md`}
           >
             {!isSidebarOpen && (
@@ -120,7 +155,7 @@ const DashBoard = () => {
                 onClick={toggleSidebar}
               />
             )}
-            <div className="h-auto py-2 mr-auto pl-4 ">
+            <div className={`${!isSidebarOpen && "ml-10"} h-auto py-2 mr-auto pl-4`}>
               <p className="md:text-2xl text-sm  font-semibold md:block hidden text-black dark:text-white">
                 Welcome Back!👋
               </p>
@@ -128,7 +163,22 @@ const DashBoard = () => {
                 Let's learn something new today.
               </p>
             </div>
-            <div className="flex items-center">
+            {!isDarkMode ? (
+                <MdWbSunny
+                  fill="#f1c40f"
+                  size={24}
+                  onClick={handleDarkMode}
+                  className="cursor-pointer"
+                />
+              ) : (
+                <FaMoon
+                  fill="#fff"
+                  size={24}
+                  onClick={handleDarkMode}
+                  className="cursor-pointer"
+                />
+              )}
+            <div className="flex items-center md:ml-4 ml-2 -mr-4">
               <div className="cursor-pointer flex justify-center items-center">
                 <img
                   className="object-cover md:w-10 md:h-10 w-7 h-7 rounded-full mr-2"
@@ -140,7 +190,7 @@ const DashBoard = () => {
                   onClick={handleMouseClick}
                   className="text-black dark:text-gray-500 w-8 h-8 flex justify-center items-center "
                 >
-                  {dropVisible ? <FaChevronUp /> : <FaChevronDown />}
+                  {dropVisible ? <FaChevronUp className="w-2 md:w-10" /> : <FaChevronDown className="w-2 md:w-10"/>}
                 </div>
               </div>
               {dropVisible && (

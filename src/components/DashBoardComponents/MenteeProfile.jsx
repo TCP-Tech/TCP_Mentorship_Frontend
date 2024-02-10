@@ -163,11 +163,6 @@ import { toast } from "react-toastify";
                 src={mentee?.image || ""}
                 alt=""
               />
-              {!disabledForm && (
-                <div className="absolute ml-28 mt-1 mr-1">
-                  <FaEdit className="text-black dark:text-white cursor-pointer" />
-                </div>
-              )}
             </div>
           </div>
           <div className="flex gap-4">
@@ -404,8 +399,8 @@ import { toast } from "react-toastify";
               name="notaction"
               className="flex justify-center items-center w-[50%] my-8 bg-white border-[1px] rounded-md text-black py-2 hover:bg-gray-300 hover:text-white duration-300"
             >
-              Edit Profile
-              <FaPencilAlt className="ml-2" />
+              {disabledForm?"Edit Profile" :"Editing Enabled" }
+             { disabledForm&& <FaPencilAlt className="ml-2" />}
             </button>
             <button
               disabled={disabledForm}
