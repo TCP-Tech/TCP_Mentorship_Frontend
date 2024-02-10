@@ -2,7 +2,7 @@ import React from "react";
 const Profile = ({ mode , teamData }) => {
   return (
     <div className="flex flex-col items-center justify-center">
-      { (
+      {teamData&&teamData.team_data &&(
         <div className="w-full px-6 py-4 bg-white rounded-md shadow-md">
           <h1 className="md:text-3xl text-2xl font-semibold mb-6 text-black">
             Team Data
