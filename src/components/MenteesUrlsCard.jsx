@@ -15,25 +15,25 @@ const MenteesCompo = ({ image, name, codechefID, codeforcesID, leetcodeID, gfgID
           </div>
         </div>
         <div className="flex flex-col space-y-4">
-          <div>
+          <div className="link-container">
             <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-400">CodeChef:</h2>
-            <a href={codechefID} className="text-sm text-blue-600 dark:text-blue-400 hover:underline">{codechefID}</a>
+            <a href={codechefID} className="link truncate hover:underline text-blue-600 text-sm">{codechefID}</a>
           </div>
-          <div>
+          <div className="link-container">
             <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-400">CodeForces:</h2>
-            <a href={codeforcesID} className="text-sm text-blue-600 dark:text-blue-400 hover:underline">{codeforcesID}</a>
+            <a href={codeforcesID} className="link truncate hover:underline text-blue-600 text-sm">{codeforcesID}</a>
           </div>
-          <div>
+          <div className="link-container">
             <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-400">LeetCode:</h2>
-            <a href={leetcodeID} className="text-sm text-blue-600 dark:text-blue-400 hover:underline">{leetcodeID}</a>
+            <a href={leetcodeID} className="link truncate hover:underline text-blue-600 text-sm">{leetcodeID}</a>
           </div>
-          <div>
+          <div className="link-container">
             <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-400">GeeksForGeeks:</h2>
-            <a href={gfgID} className="text-sm text-blue-600 dark:text-blue-400 hover:underline">{gfgID}</a>
+            <a href={gfgID} className="link truncate hover:underline text-blue-600 text-sm">{gfgID}</a>
           </div>
-          <div>
+          <div className="link-container">
             <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-400">HackerRank:</h2>
-            <a href={hackerrankID} className="text-sm text-blue-600 dark:text-blue-400 hover:underline">{hackerrankID}</a>
+            <a href={hackerrankID} className="link truncate hover:underline text-blue-600 text-sm">{hackerrankID}</a>
           </div>
         </div>
       </div>

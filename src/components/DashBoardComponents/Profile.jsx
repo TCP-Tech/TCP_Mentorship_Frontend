@@ -1,12 +1,10 @@
 import React from "react";
+import CreateTeam from "./CreateTeam";
 const Profile = ({ mode , teamData }) => {
   return (
-    <div className="flex flex-col items-center justify-center">
-      {teamData&&teamData.team_data &&(
+    <div className="flex flex-col items-center justify-center ">
+      {teamData && teamData.team_data ? (
         <div className="w-full px-6 py-4 bg-white rounded-md shadow-md">
-          <h1 className="md:text-3xl text-2xl font-semibold mb-6 text-black">
-            Team Data
-          </h1>
           <div className="flex flex-col md:flex-row items-start space-y-4 md:space-x-4">
             <div className="md:w-2/3 md:order-2">
             <div className="flex items-start space-x-1">
@@ -48,6 +46,15 @@ const Profile = ({ mode , teamData }) => {
               </div>
             </div>
           </div>
+        </div>
+      ):(
+        <div  className="border flex justify-center items-center">
+          { mode=="mentee" ? <h1>
+            No Teams Created yet wait  for your Mentor to create one!
+           </h1>
+           :
+           <CreateTeam/>
+           }
         </div>
       )}
     </div>
