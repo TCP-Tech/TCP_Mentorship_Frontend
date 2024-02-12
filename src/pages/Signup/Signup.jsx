@@ -24,6 +24,7 @@ const Signup = () => {
     fullname: "",
     userid: "",
     username: "",
+    mentorid: "",
     password: "",
     confirmpassword: "",
     phonenumber: "",
@@ -42,6 +43,7 @@ const Signup = () => {
       email : form.userid ,
       name:form.fullname , 
       username : form.username , 
+      mentor_id: form.mentorid,
       password : form.password , 
       branch : form.branch , 
       semester: parseInt(form.semester),
@@ -207,6 +209,7 @@ const Signup = () => {
                   />
                 </div>
                 {/* username */}
+                <div className="flex space-x-2">
                 <div className="flex flex-col items-start  dark:text-white text-black">
                   <p>User Name</p>
                   <input
@@ -218,6 +221,21 @@ const Signup = () => {
                     onChange={(e) => handle(e)}
                   />
                 </div>
+                {/* Mentor Id */}
+             <div className="flex flex-col items-start  dark:text-white text-black">
+                <p>Mentor ID</p>
+                <input
+                  className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                  type="number"
+                  name="mentorid"
+                  required
+                  placeholder="Enter your Mentor ID"
+                  onChange={(e) => handle(e)}
+                />
+            </div>
+
+                </div>
+               
                 {/* password */}
                 <div className="relative">
                   <div className="flex flex-col items-start dark:text-white text-black">
@@ -345,7 +363,6 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="leetcode"
-                    required
                     placeholder="Enter your Leetcode Profile Url"
                     onChange={(e) => handle(e)}
                   />
@@ -358,7 +375,6 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="codechef"
-                    required
                     placeholder="Enter your Codechef Profile Url"
                     onChange={(e) => handle(e)}
                   />
@@ -369,7 +385,6 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="codeforces"
-                    required
                     placeholder="Enter your Codeforces Profile Url"
                     onChange={(e) => handle(e)}
                   />
@@ -380,7 +395,6 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="gfg"
-                    required
                     placeholder="Enter your GFG Profile Url"
                     onChange={(e) => handle(e)}
                   />
@@ -391,7 +405,6 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="hackerrank"
-                    required
                     placeholder="Enter your HackerRank Profile Url"
                     onChange={(e) => handle(e)}
                   />
