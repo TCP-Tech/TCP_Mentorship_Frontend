@@ -16,9 +16,13 @@ const MenteeCodingProfiles = ({ mentor,mentee }) => {
   const fetchData = async () => {
     try {
       const data = await fetchDataFromApi( "get-team-mentor",mentor? mentor?.id : mentee?.mentor_id);
-
-      setTeamData(data.team_data);
-      setTeamData1(data);
+      if(data.status_code == 200){
+        setTeamData(data.team_data);
+        setTeamData1(data);
+      }
+      else{
+        setTeamData(null);
+      }
       
     } catch (error) {
       console.error("Error fetching team data:", error.message);
