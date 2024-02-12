@@ -10,7 +10,13 @@ const MenteeDefaultDash = ({ mentee, onMenteeUpdate }) => {
   const fetchData = async () => {
     try {
       const data = await fetchDataFromApi("get-team-mentor", mentee.mentor_id);
-      setTeamData(data);
+      if(data.status_code == 200){
+        setTeamData(data);
+      }
+      else{
+        setTeamData(null);
+      }
+      
     } catch (error) {
       console.error("Error fetching team data:", error.message);
     }
