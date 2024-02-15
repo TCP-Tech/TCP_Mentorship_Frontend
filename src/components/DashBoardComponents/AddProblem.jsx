@@ -166,7 +166,7 @@ const AddProblem = ({onMentorUpdate}) => {
       </h1>
       <form ref={formRef} onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4 ml-2">
         <div className="flex flex-col items-start mt-8  dark:text-white text-black">
-          <p>Problem Title</p>
+          <p>Problem Title <span className="font-bold text-red-500">*</span></p>
           <input
             className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
             type="text"
@@ -178,7 +178,7 @@ const AddProblem = ({onMentorUpdate}) => {
         </div>
         <div className="flex gap-4">
           <div className="flex flex-col items-start w-[50%] dark:text-white text-black ">
-            <p>Problem Topic</p>
+            <p>Problem Topic <span className="font-bold text-red-500">*</span></p>
             <Select
                 options={topicList}
                 onChange={handleSelectmulti}
@@ -193,7 +193,7 @@ const AddProblem = ({onMentorUpdate}) => {
               />
           </div>
           <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
-            <p>Problem Difficulty</p>
+            <p>Problem Difficulty <span className="font-bold text-red-500">*</span></p>
             <Select
               options={difficultyList}
               onChange={handleSelect}
@@ -220,7 +220,7 @@ const AddProblem = ({onMentorUpdate}) => {
           />
         </div>
         <div className="flex flex-col items-start dark:text-white text-black">
-          <p>Problem URL</p>
+          <p>Problem URL <span className="font-bold text-red-500">*</span></p>
           <input
             className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
             type="text"
