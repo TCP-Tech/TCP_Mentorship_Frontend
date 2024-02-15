@@ -265,7 +265,6 @@ import { toast } from "react-toastify";
               name="linkedin"
               placeholder="Your LinkedIn profile url"
               value={form.linkedin}
-              required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
             />
@@ -278,7 +277,6 @@ import { toast } from "react-toastify";
               name="codechef"
               placeholder="Your CodeChef profile url"
               value={form.codechef}
-              required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
             />
@@ -291,7 +289,6 @@ import { toast } from "react-toastify";
               name="leetcode"
               placeholder="Your Leetcode profile url"
               value={form.leetcode}
-              required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
             />
@@ -304,7 +301,6 @@ import { toast } from "react-toastify";
               name="codeforces"
               placeholder="Your CodeForces profile url"
               value={form.codeforces}
-              required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
             />
@@ -317,7 +313,6 @@ import { toast } from "react-toastify";
               name="hackerrank"
               placeholder="Your HackerRank profile url"
               value={form.hackerrank}
-              required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
             />
@@ -330,7 +325,6 @@ import { toast } from "react-toastify";
               name="gfg"
               placeholder="Your GFG profile url"
               value={form.gfg}
-              required
               onChange={(e) => handle(e)}
               disabled={disabledForm}
             />
