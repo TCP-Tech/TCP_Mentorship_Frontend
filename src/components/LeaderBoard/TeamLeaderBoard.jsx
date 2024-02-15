@@ -11,6 +11,7 @@ import { fetchDataFromApi, fetchDataWithEndPoint } from '../../utils/api';
 
 const LeaderBoard = () => {
   const [Teamdata, setTeamdata] = useState([]);
+  const[mentor] = useState(JSON.parse(localStorage.getItem("Mentor"))|| null);
   const [TeamName, setTeamName] = useState("");
   const [TeamPoints, setTeamPoints] = useState("");
   const [menteeData,setmenteeData]=useState([]);
@@ -44,6 +45,8 @@ const LeaderBoard = () => {
     }
 
    });
+   const loggedInMentorRank = Teamdata?.findIndex((item)=> item.alloted_mentor?.name===mentor?.name);
+   const loggedInMentorTeamData = Teamdata?.filter((item)=> item.alloted_mentor?.name===mentor?.name);
 
   return (
     <div id="teamLeaderBoard" className="bg-transparent flex flex-col pt-12">
@@ -132,6 +135,21 @@ const LeaderBoard = () => {
             </div>
           </div>
           <div className="dark:bg-gray-800 overflow-y-scroll px-10 mt-4 h-[70vh] w-full rounded-tl-[40px] rounded-tr-[40px] border dark:border-gray-600">
+            {
+              mentor&&loggedInMentorTeamData&&
+              <div className="" key={loggedInMentorTeamData[0].id} onClick={() => handleClick(loggedInMentorTeamData[0].team_name,loggedInMentorTeamData[0].team_members,loggedInMentorTeamData[0]?.team_score)}>
+              <div className="mt-5 rounded-lg border border-gray-300 dark:border-gray-600 bg-blue-100 dark:bg-gray-900 p-4 mb-4 cursor-pointer hover:shadow-md transition duration-300">
+                <TeamCompo
+                  key={loggedInMentorTeamData[0]?.id}
+                  teamName={"Your Team"}
+                  teamLeaderName={loggedInMentorTeamData[0]?.alloted_mentor?.name}
+                  teamPoints={loggedInMentorTeamData[0]?.team_score}
+                  id={loggedInMentorRank + 1}
+                />
+              </div>
+              <div className=" h-0 w-full border border-zinc-300 dark:border-zinc-600 border-opacity-50"></div>
+            </div>
+            }
             {Teamdata?.map((team,index) => (
               <div key={team.id} onClick={() => handleClick(team.team_name,team.team_members,team?.team_score)}>
                 <TeamCompo
