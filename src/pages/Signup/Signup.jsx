@@ -185,7 +185,7 @@ const Signup = () => {
               >
                 {/* Fullname */}
                 <div className="flex flex-col items-start mt-8  dark:text-white text-black">
-                  <p>Full Name</p>
+                  <p>Full Name <span className="font-bold text-red-500">*</span></p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
@@ -198,7 +198,7 @@ const Signup = () => {
 
                 {/* email */}
                 <div className="flex flex-col items-start  dark:text-white text-black">
-                  <p>Email</p>
+                  <p>Email <span className="font-bold text-red-500">*</span></p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="email"
@@ -211,25 +211,25 @@ const Signup = () => {
                 {/* username */}
                 <div className="flex space-x-2">
                 <div className="flex flex-col items-start  dark:text-white text-black">
-                  <p>User Name</p>
+                  <p>Username <span className="font-bold text-red-500">*</span></p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="username"
                     required
-                    placeholder="Enter your  User name"
+                    placeholder="Enter your username"
                     onChange={(e) => handle(e)}
                   />
                 </div>
                 {/* Mentor Id */}
              <div className="flex flex-col items-start  dark:text-white text-black">
-                <p>Mentor ID</p>
+                <p>Mentor ID <span className="font-bold text-red-500">*</span></p>
                 <input
                   className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                   type="number"
                   name="mentorid"
                   required
-                  placeholder="Enter your Mentor ID"
+                  placeholder="Enter your mentor ID"
                   onChange={(e) => handle(e)}
                 />
             </div>
@@ -239,7 +239,7 @@ const Signup = () => {
                 {/* password */}
                 <div className="relative">
                   <div className="flex flex-col items-start dark:text-white text-black">
-                    <p>Password</p>
+                    <p>Password <span className="font-bold text-red-500">*</span></p>
                     <input
                       className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                       type={showPassword ? "text" : "password"}
@@ -296,7 +296,7 @@ const Signup = () => {
                 </div>
                 {/* confirmpassword */}
                 <div className="flex flex-col items-start dark:text-white text-black">
-                  <p>Confirm Password</p>
+                  <p>Confirm Password <span className="font-bold text-red-500">*</span></p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
@@ -309,20 +309,20 @@ const Signup = () => {
 
                 {/* phonenumber */}
                 <div className="flex flex-col items-start  dark:text-white text-black">
-                  <p>Phone Number</p>
+                  <p>Phone Number <span className="font-bold text-red-500">*</span></p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="phonenumber"
                     required
-                    placeholder="Enter your Phone Number"
+                    placeholder="Enter your phone number"
                     onChange={(e) => handle(e)}
                   />
                 </div>
 
                 <div className="flex gap-4">
                   <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
-                    <p>Branch</p>
+                    <p>Branch <span className="font-bold text-red-500">*</span></p>
                     <Select
                       options={branchList}
                       onChange={handleSelect}
@@ -333,7 +333,7 @@ const Signup = () => {
                     />
                   </div>
                   <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
-                    <p>Semester</p>
+                    <p>Semester <span className="font-bold text-red-500">*</span></p>
                     <Select
                       options={semesterList}
                       onChange={handleSelect}
