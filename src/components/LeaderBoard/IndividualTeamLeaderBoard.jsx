@@ -49,22 +49,6 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints}) => {
           </div>
         </div>
       </div>
-      {/* <div className="team-profile-achievements mb-4">
-        <h1 className="font-bold mb-2 text-black md:text-2xl text-xl">
-          Achievements
-        </h1>
-        <div className="md:space-x-3 my-5">
-          <button className="bg-blue-500 text-white md:px-4 md:py-1 my-2 rounded-full">
-            Achievement1
-          </button>
-          <button className="bg-green-500 text-white md:px-4 md:py-1 my-2 rounded-full">
-            Achievement2
-          </button>
-          <button className="bg-red-500 text-white md:px-4 md:py-1 my-2 rounded-full">
-            Achievement3
-          </button>
-        </div>
-      </div> */}
       <h1 className="font-bold mb-2 text-black md:text-2xl text-xl dark:text-white">
         Team Members
       </h1>
