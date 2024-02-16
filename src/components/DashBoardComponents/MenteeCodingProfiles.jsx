@@ -11,7 +11,7 @@ const MenteeCodingProfiles = ({ mentor,mentee , onMenteeUpdate ,onMentorUpdate }
   const [menteeData, setMenteeData] = useState();
   const [showModal, setShowModal] = useState(false);
   const [loading,setLoading] = useState(true);
-  const [teamData, setTeamData] = useState();
+  const [teamData, setTeamData] = useState(null);
   const [teamData1, setTeamData1] = useState();
   const inputRef = useRef();
   const fetchData = async () => {
@@ -21,17 +21,18 @@ const MenteeCodingProfiles = ({ mentor,mentee , onMenteeUpdate ,onMentorUpdate }
         setTeamData(data.team_data);
         setTeamData1(data);
         setLoading(false);
-        if(mentee && !mentee.Menteeteam){
+        if(mentee  && mentee.Menteeteam.length==0 && teamData){
+          console.log("jdnwknew" ,teamData)
           const updatedMentee={
             ...mentee,
-            Menteeteam : data?.team_data
+            Menteeteam : teamData
           }
           onMenteeUpdate(updatedMentee);
         }
-        if(mentor && !mentor.Mentorteam){
+        if(mentor && !mentor.Mentorteam && teamData){
           const updatedMentor={
             ...mentor,
-            Mentorteam : data?.team_data
+            Mentorteam : teamData
           }
           onMentorUpdate(updatedMentor);
         }
