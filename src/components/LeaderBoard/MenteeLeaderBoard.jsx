@@ -231,7 +231,7 @@ const MenteeLeaderBoard = () => {
                         {mentee?.score}
                       </td>
                       <td className="px-4 py-4 text-sm md:text-lg text-gray-500 whitespace-nowrap">
-                        {mentee?.Menteeteam?.team_name || "ayush"}
+                        {mentee?.Menteeteam?.team_name || mentee?.Menteeteam[0]?.team_name}
                       </td>
                     </tr>
                   </tbody>
@@ -276,7 +276,7 @@ const MenteeLeaderBoard = () => {
                       {mentee.score}
                     </td>
                     <td className="px-4 py-4 text-sm md:text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                      {mentee.Menteeteam?.team_name || "ayush"}
+                    {mentee?.Menteeteam?.team_name || mentee?.Menteeteam[0]?.team_name}
                       
                     </td>
                   </tr>

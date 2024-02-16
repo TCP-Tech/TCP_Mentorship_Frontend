@@ -21,7 +21,6 @@ const MenteeDefaultDash = ({ mentee, onMenteeUpdate }) => {
       console.error("Error fetching team data:", error.message);
     }
   };
- console.log("snsjkdn",teamData)
   useEffect(() => {
     fetchData();
   }, []);
@@ -69,7 +68,10 @@ const MenteeDefaultDash = ({ mentee, onMenteeUpdate }) => {
           {/* <h1 className="text-3xl text-center md:text-left text-black dark:text-white md:pt-5 pb-4 md:pb-1 md:px-2 font-semibold">
             Mentee Coding Profile
           </h1> */}
-          <MenteeCodingProfiles mentee={mentee} />
+            <MenteeCodingProfiles 
+            mentee={mentee}
+            onMenteeUpdate={onMenteeUpdate}
+             />
         </div>
       </div>
 

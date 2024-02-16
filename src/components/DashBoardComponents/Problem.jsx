@@ -18,7 +18,6 @@ const Problem = ({ id, title, desc, Qstatus, topic, level, submitedMentees, url,
     };
 
     const data = await fetchDataFromApiWithResponse(bodyData, "submitQuestion");
-    console.log(data)
 
     if (data.status_code === 200) {
       toast.success(data.message, {
@@ -69,7 +68,7 @@ const Problem = ({ id, title, desc, Qstatus, topic, level, submitedMentees, url,
   const handleSubmission = () => {
     if (!isMarked) {
       setShowModal(true);
-    } else if(!data || data.status_code!=200) {
+    } else{
       toast.error("Question submitted already", {
         position: "bottom-right",
         autoClose: 3000,
