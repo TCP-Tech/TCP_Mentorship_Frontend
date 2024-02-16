@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from "react";
 import MenteeCodingProfiles from "./MenteeCodingProfiles";
-const MentorDefaultDash = () => {
+const MentorDefaultDash = ({onMentorUpdate}) => {
   const [mentor] = useState(JSON.parse(localStorage.getItem("Mentor")));
   const Level=(mentor.Qlevel_count);
   const Topic=(mentor.topic_count);
@@ -40,7 +40,9 @@ const MentorDefaultDash = () => {
     </div>
   </div>
   <div className="w-full md:w-1/2 p-4">
-          <MenteeCodingProfiles mentor={mentor}/>
+          <MenteeCodingProfiles 
+          mentor={mentor}
+          onMentorUpdate={onMentorUpdate}/>
     </div>
  </div>
 

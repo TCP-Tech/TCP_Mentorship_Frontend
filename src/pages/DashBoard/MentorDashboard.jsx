@@ -96,7 +96,7 @@ const DashBoard = () => {
   const renderMainContent = () => {
     switch (selectedOption) {
       case "Dashboard":
-        return <MentorDefaultDash mentor={mentor} />;
+        return <MentorDefaultDash mentor={mentor}  onMentorUpdate={handleMentorUpdate} />;
       case "Leaderboard":
         return <MenteeLeaderBoard />;
       case "Team Leaderboard":

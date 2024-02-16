@@ -5,12 +5,13 @@ import close from '../../assets/images/cross.svg';
 import closelight from '../../assets/images/cross.png';
 import { toast } from 'react-toastify';
 import { fetchDataFromApi, fetchDataFromApiWithResponse } from '../../utils/api';
+import { FaSpinner } from 'react-icons/fa';
 
-const MenteeCodingProfiles = ({ mentor,mentee }) => {
+const MenteeCodingProfiles = ({ mentor,mentee , onMenteeUpdate ,onMentorUpdate }) => {
   const [menteeData, setMenteeData] = useState();
   const [showModal, setShowModal] = useState(false);
-  const [teamCreated,setTeamCreated] = useState(false);
-  const [teamData, setTeamData] = useState();
+  const [loading,setLoading] = useState(true);
+  const [teamData, setTeamData] = useState(null);
   const [teamData1, setTeamData1] = useState();
   const inputRef = useRef();
   const fetchData = async () => {
@@ -19,6 +20,22 @@ const MenteeCodingProfiles = ({ mentor,mentee }) => {
       if(data.status_code == 200){
         setTeamData(data.team_data);
         setTeamData1(data);
+        setLoading(false);
+        if(mentee  && mentee.Menteeteam.length==0 && teamData){
+          console.log("jdnwknew" ,teamData)
+          const updatedMentee={
+            ...mentee,
+            Menteeteam : teamData
+          }
+          onMenteeUpdate(updatedMentee);
+        }
+        if(mentor && !mentor.Mentorteam && teamData){
+          const updatedMentor={
+            ...mentor,
+            Mentorteam : teamData
+          }
+          onMentorUpdate(updatedMentor);
+        }
       }
       else{
         setTeamData(null);
@@ -58,6 +75,14 @@ const MenteeCodingProfiles = ({ mentor,mentee }) => {
         progress: undefined,
         theme: "dark",
       });
+      if(mentor && !mentor.Mentorteam){
+        const updatedMentor={
+          ...mentor,
+          Mentorteam : body
+        }
+        onMentorUpdate(updatedMentor);
+      }
+      
       fetchData();
     }
     else{
@@ -80,7 +105,13 @@ const MenteeCodingProfiles = ({ mentor,mentee }) => {
        { mentor ? "Mentee Profiles" : "Team Members"}
       </h1>
       
-      {teamData && teamData.length>0 ? (
+      { loading  ? 
+      <div className="flex items-center justify-center text-black  dark:text-gray-400">
+        <FaSpinner className="animate-spin text-4xl mr-2" />
+          Loading...
+      </div>
+      :
+      teamData && teamData?.length>0 ? (
         <>
           <div className="dark:bg-gray-800  overflow-y-auto h-[34.5vh] rounded-lg dark:border-none border">
           {teamData1 && (

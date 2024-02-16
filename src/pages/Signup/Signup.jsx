@@ -351,7 +351,6 @@ const Signup = () => {
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="linkedin"
-                    required
                     placeholder="Enter your LinkedIn Profile Url"
                     onChange={(e) => handle(e)}
                   />
