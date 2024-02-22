@@ -60,7 +60,8 @@ const LeaderBoard = () => {
        {Teamdata?.length?<div className="flex items-center justify-center pt-44 md:pt-60">
         <div className="outer flex flex-col justify-center items-center w-full md:px-5">
           <div className="w-full h-36 md:h-44 dark:bg-gray-800 shadow-sm rounded-2xl flex justify-around border dark:border-gray-600">
-            <div className="flex flex-col items-center">
+            {/* Second Position */}
+            <div className="flex flex-col items-center max-w-[150px]">
               <div className="rounded-full overflow-hidden border-4 border-gray-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
                 <img
                   className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
@@ -72,7 +73,7 @@ const LeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">2</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="md:text-xl text-sm dark:text-white text-black">{Teamdata[1]?.team_name}</h1>
+                <h1 className="md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{Teamdata[1]?.team_name}</h1>
                 <h1 className="md:text-xl text-sm text-gray-500">{Teamdata[1]?.team_score}</h1>
               </div>
             </div>
@@ -112,13 +113,13 @@ const LeaderBoard = () => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center text-center space-y-3 mt-8 md:mt-10">
-                  <h1 className="md:text-xl text-sm dark:text-white text-black">{Teamdata[0]?.team_name}</h1>
-                  <h1 className="md:text-xl text-sm text-amber-500">{Teamdata[0]?.team_score}</h1>
+                  <h1 className="relative md:px-5 md:text-lg text-sm dark:text-white text-black md:max-w-[200px] max-w-[100px] ">{Teamdata[0]?.team_name}</h1>
+                  <h1 className="md:text-xl text-sm text-amber-700">{Teamdata[0]?.team_score}</h1>
                 </div>
               </div>
             </div>
-            <div className="flex flex-col items-center ">
-              <div className="rounded-full overflow-hidden border-4 border-amber-700 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
+            <div className="flex flex-col items-center max-w-[150px]">
+              <div className="rounded-full overflow-hidden border-4 border-amber-700 bg-amber-700 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
                 <img
                   className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
                   src={teamimage}
@@ -129,11 +130,11 @@ const LeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">3</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="md:text-xl text-sm dark:text-white text-black">{Teamdata[2]?.team_name}</h1>
-                <h1 className="md:text-xl text-sm text-amber-700">{Teamdata[2]?.team_score}</h1>
+                <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{Teamdata[2]?.team_name}</h1>
+                <h1 className="md:text-xl text-sm text-gray-500">{Teamdata[2]?.team_score}</h1>
               </div>
             </div>
-          </div>
+            </div>
           <div className="dark:bg-gray-800 overflow-y-scroll px-10 mt-4 h-[70vh] w-full rounded-tl-[40px] rounded-tr-[40px] border dark:border-gray-600">
             {
               mentor&&loggedInMentorTeamData&&
