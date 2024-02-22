@@ -70,7 +70,7 @@ const MenteeLeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">2</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="md:text-xl text-sm dark:text-white text-black">{MenteeData[1]?.name}</h1>
+                <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{MenteeData[1]?.name}</h1>
                 <h1 className="md:text-xl text-sm text-gray-500">{MenteeData[1]?.score}</h1>
               </div>
             </div>
@@ -110,7 +110,7 @@ const MenteeLeaderBoard = () => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center text-center space-y-3 mt-8 md:mt-10">
-                  <h1 className="md:text-xl text-sm dark:text-white text-black">{MenteeData[0]?.name}</h1>
+                  <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{MenteeData[0]?.name}</h1>
                   <h1 className="md:text-xl text-sm text-amber-500">{MenteeData[0]?.score}</h1>
                 </div>
               </div>
@@ -127,15 +127,14 @@ const MenteeLeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">3</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="md:text-xl text-sm dark:text-white text-black">{MenteeData[2]?.name}</h1>
+                <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{MenteeData[2]?.name}</h1>
                 <h1 className="md:text-xl text-sm text-amber-700">{MenteeData[2]?.score}</h1>
               </div>
             </div>
           </div>
         </div>
         :
-        ""
-        }
+        ""}
 
         {/*####################################### Table part starts here ############################################*/}
         <div className="flex flex-col mt-6 ">
