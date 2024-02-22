@@ -106,7 +106,6 @@ const Profile = ({mentor,onMentorUpdate}) => {
               name="name"
               value={form.name}
               required
-              onChange={(e) => handle(e)}
               disabled={disabledForm}
             />
           </div>

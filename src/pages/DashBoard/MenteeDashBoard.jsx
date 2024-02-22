@@ -164,19 +164,19 @@ const DashBoard = () => {
               </p>
             </div>
             {!isDarkMode ? (
-                <MdWbSunny
-                  fill="#f1c40f"
-                  size={24}
-                  onClick={handleDarkMode}
-                  className="cursor-pointer"
-                />
-              ) : (
                 <FaMoon
-                  fill="#fff"
-                  size={24}
-                  onClick={handleDarkMode}
-                  className="cursor-pointer"
-                />
+                fill="#000"
+                size={24}
+                onClick={handleDarkMode}
+                className="cursor-pointer"
+              />
+            ) : (
+              <MdWbSunny
+                fill="#f1c40f"
+                size={24}
+                onClick={handleDarkMode}
+                className="cursor-pointer"
+              />
               )}
             <div className="flex items-center md:ml-4 ml-2 -mr-4">
               <div className="cursor-pointer flex justify-center items-center">
