@@ -132,7 +132,10 @@ const MenteeLeaderBoard = () => {
               </div>
             </div>
           </div>
-        </div>:""}
+        </div>
+        :
+        ""
+        }
 
         {/*####################################### Table part starts here ############################################*/}
         <div className="flex flex-col mt-6 ">

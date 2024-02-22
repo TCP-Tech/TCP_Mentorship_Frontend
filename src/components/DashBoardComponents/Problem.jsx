@@ -113,7 +113,7 @@ const Problem = ({ id, title, desc, Qstatus, topic, level, submitedMentees, url,
 
   return (
     <div className="flex flex-col sm:flex-row items-center dark:bg-gray-800 dark:border-white justify-between border border-gray-400 rounded-lg m-2 text-center md:text-left">
-          <div className="flex flex-col p-4 space-y-2">
+          <div className="flex flex-col items-center md:items-start p-4 space-y-2">
         <a href={url} target="_blank" className="flex items-center hover:underline w-fit">
           <h1 className="mx-2 text-2xl flex w-fit dark:text-white text-black font-semibold ">
             {title} <FiExternalLink className="ml-1 text-primary" />
@@ -142,7 +142,7 @@ const Problem = ({ id, title, desc, Qstatus, topic, level, submitedMentees, url,
 
       <div className="flex flex-col items-center md:items-end p-4">
         <button
-          className={`${isMarked ? 'text-black dark:text-white border-primary border' : 'bg-[var(--primary-c)] text-white'} ${!user.mentor_id ? 'hidden' : ''} w-fit  rounded-lg dark:border dark:border-white p-3 m-1 md:m-3`}
+          className={`${isMarked ? 'text-black dark:text-white border-primary border' : 'bg-[var(--primary-c)] text-white'} ${!user.mentor_id ? 'hidden' : ''} md:w-fit w-48  rounded-lg dark:border dark:border-white p-3 m-1 md:my-3`}
           onClick={handleSubmission}
         >
           {isMarked ? "Done" : "Mark as Done"}
@@ -154,7 +154,7 @@ const Problem = ({ id, title, desc, Qstatus, topic, level, submitedMentees, url,
         )}
         <div className="flex flex-col text-center md:text-left md:flex-row">
           {topic.split(" ").map((topic) => (
-            <p className="border dark:bg-gray-800 dark:text-white text-black dark:border-white border-[var(--primary-c)] rounded-lg text-sm md:px-2 py-1 px-6  m-1">
+            <p className="border dark:bg-gray-800 dark:text-white text-black dark:border-white border-[var(--primary-c)] rounded-lg text-sm md:w-fit w-48 md:px-2 py-1 px-6  m-1">
               {topic}
             </p>
           ))}
@@ -165,7 +165,7 @@ const Problem = ({ id, title, desc, Qstatus, topic, level, submitedMentees, url,
         <Modal
           isOpen={showModal}
           onRequestClose={() => setShowModal(false)}
-          className="dark:bg-gray-800  bg-gray-100 p-8 "
+          className="dark:bg-gray-800  bg-gray-100 p-8 rounded-xl"
           style={{
             overlay: {
               zIndex: 10000,
@@ -183,8 +183,8 @@ const Problem = ({ id, title, desc, Qstatus, topic, level, submitedMentees, url,
           <div className="flex flex-col">
             <p className="dark:text-white text-black text-center">Are you sure you have solved this problem?</p>
             <div className="flex justify-evenly mt-6">
-              <button onClick={() => handleSubmit(true)} className="px-3 py-2 rounded-md bg-green-500 text-white font-medium hover:bg-green-700">Yes</button>
-              <button onClick={() => handleSubmit(false)} className="px-3 py-2 rounded-md bg-red-500 text-white font-medium hover:bg-red-700">No</button>
+              <button onClick={() => handleSubmit(true)} className="md:px-10 px-6 py-2 rounded-md bg-green-500 text-white font-medium hover:bg-green-700">Yes</button>
+              <button onClick={() => handleSubmit(false)} className="md:px-10 px-6 py-2 rounded-md bg-red-500 text-white font-medium hover:bg-red-700">No</button>
             </div>
           </div>
         </Modal>
