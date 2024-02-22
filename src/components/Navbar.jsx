@@ -64,7 +64,7 @@ const Navbar = () => {
             />
           </Link>
           <div className="flex">
-            <div className="md:flex items-center gap-5 font-medium text-md hidden dark:text-white">
+            <div className="md:flex items-center gap-8 font-medium text-md hidden dark:text-white">
               <a
               href="#home"
               className="p-2 md:p-0 text-gray-900 rounded md:bg-transparent hover:text-[--primary-c] duration-200 dark:text-white">
@@ -87,6 +87,15 @@ const Navbar = () => {
                 Leaderboard
               </a>
               {!isDarkMode ? (
+                
+                <FaMoon
+                  fill="#000"
+                  size={24}
+                  onClick={handleDarkMode}
+                  className="cursor-pointer"
+                  // className={`cursor-pointer sun-moon-icon ${isDarkMode ? "animate-moonrise" : ""}`}
+                />
+              ) : (
                 <MdWbSunny
                   fill="#f1c40f"
                   size={24}
@@ -94,20 +103,12 @@ const Navbar = () => {
                   className="cursor-pointer"
                   // className={`cursor-pointer sun-moon-icon ${isDarkMode ? "" : "animate-sunset"}`}
                 />
-              ) : (
-                <FaMoon
-                  fill="#fff"
-                  size={24}
-                  onClick={handleDarkMode}
-                  className="cursor-pointer"
-                  // className={`cursor-pointer sun-moon-icon ${isDarkMode ? "animate-moonrise" : ""}`}
-                />
               )}
                 {/* Button Start*/}
              <div className="flex gap-2">
               <Link
                 to="/login"
-                className="hidden md:block text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 rounded-md sm:text-sm sm:py-3 sm:px-4 px-2 text-center dark:hover:bg-gray-300 dark:hover:text-gray-900"
+                className="hidden md:block text-white bg-[--primary-c] hover:bg-[--tertiary-c] duration-200 rounded-md sm:text-sm sm:py-3 sm:px-4 px-5 text-center dark:hover:bg-gray-300 dark:hover:text-gray-900"
               >
                Login
               </Link>
@@ -122,15 +123,15 @@ const Navbar = () => {
             </div>
             <div className="flex items-center gap-2 md:hidden">
               {!isDarkMode ? (
-                <MdWbSunny
-                  fill="#f1c40f"
+                <FaMoon
+                  fill="#000"
                   size={24}
                   onClick={handleDarkMode}
                   className="cursor-pointer"
                 />
               ) : (
-                <FaMoon
-                  fill="#fff"
+                <MdWbSunny
+                  fill="#f1c40f"
                   size={24}
                   onClick={handleDarkMode}
                   className="cursor-pointer"
