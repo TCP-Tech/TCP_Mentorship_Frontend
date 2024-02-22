@@ -40,16 +40,16 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints}) => {
             alt={`${teamName}-dp`} />
           </div>
         </div>
-        <div className="team-profile-name flex flex-col items-center">
+        <div className="team-profile-name flex flex-col md:items-start items-center">
           <div>
-          <h1 className="font-bold text-3xl text-black dark:text-white pr-8">{teamName}</h1>
+          <h1 className="font-bold md:text-3xl text-sm text-black dark:text-white md:pr-8">{teamName}</h1>
           </div>
           <div>
-          <h1 className=" text-xl text-black dark:text-white pr-12 pt-2">Score : {teamPoints}</h1>
+          <h1 className=" md:text-xl text-black dark:text-white pr-12 pt-2">Score : {teamPoints}</h1>
           </div>
         </div>
       </div>
-      <h1 className="font-bold mb-2 text-black md:text-2xl text-xl dark:text-white">
+      <h1 className="font-bold mb-2 md:text-left text-center text-black md:text-2xl text-xl dark:text-white mt-8">
         Team Members
       </h1>
       <div className="team-profile-members overflow-y-scroll h-[35vh]">
