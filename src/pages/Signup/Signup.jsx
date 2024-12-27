@@ -357,11 +357,12 @@ const Signup = () => {
                 </div>
                 {/* leetcode */}
                 <div className="flex flex-col items-start  dark:text-white text-black">
-                  <p>Leetcode </p>
+                  <p>Leetcode <span className="font-bold text-red-500">*</span></p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
                     name="leetcode"
+                    required
                     placeholder="Enter your Leetcode Profile Url"
                     onChange={(e) => handle(e)}
                   />
