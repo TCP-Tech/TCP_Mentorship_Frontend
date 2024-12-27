@@ -24,10 +24,11 @@ const topicList = [
   { value: "LinkedList", label: "Linked List" },
   { value: "Matrix", label: "Matrix" },
   { value: "Stacks&Queues", label: "Stacks & Queues" },
-  { value: "Strings", label: "Strings" },
+  { value: "String", label: "String" },
   { value: "Trie", label: "Trie" },
   { value: "Two Pointers", label: "Two Pointers" },
   { value: "Sorting", label: "Sorting" },  
+  { value: "Hash Table", label: "Hash Table" },  
 ];
 
 const difficultyList = [
@@ -183,11 +184,12 @@ const AddProblem = ({ onMentorUpdate }) => {
           const topic = topicList.find((t) => t.value === tag.name);
           return topic ? topic.value : tag.name;
         });
+        const topicsAsString = transformedTopics.join(" ");
         setForm((prevForm) => ({
           ...prevForm,
           description: problem.description || prevForm.description,
           difficulty: problem.difficulty || prevForm.difficulty,
-          topic: transformedTopics || prevForm.topic,
+          topic: topicsAsString || prevForm.topic,
         }));
       }
     }
