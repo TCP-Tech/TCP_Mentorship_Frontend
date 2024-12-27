@@ -5,3 +5,10 @@ from = "/*"
 to = "/index.html"
 
 status = 200
+
+
+[[redirects]]
+from = "/leetcode"
+to = "https://leetcode.com/graphql"
+status = 200
+force = true
