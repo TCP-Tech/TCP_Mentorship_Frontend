@@ -4,11 +4,13 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { fetchDataFromApiWithResponse } from "../../utils/api";
+import { FaSpinner } from "react-icons/fa";
 
 const Mentorform = () => {
   const [showPassword, setShowPassword] = useState(false);
   const[mentor,setMentor]=useState(JSON.parse(localStorage.getItem("Mentor"))||null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading,setIsloading]=useState(false)
   const navigate = useNavigate();
   useEffect(() => {
     if (loggedIn && mentor) {
@@ -22,8 +24,9 @@ const Mentorform = () => {
 
   const fetchData = async () => {
     const body = { email: form.userid, password: form.password };
-
-    const data = await fetchDataFromApiWithResponse(body, "mentor_login");
+    setIsloading(true);
+    try {
+      const data = await fetchDataFromApiWithResponse(body, "mentor_login");
     if (data.status_code == 200) {
       toast.success("Sign In Successful!", {
         position: "bottom-right",
@@ -51,6 +54,22 @@ const Mentorform = () => {
         theme: "dark",
       });
     }
+    } catch (error) {
+       toast.error("Something went wrong",{
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+       } )
+    }finally{
+      setIsloading(false);
+    }
+
+    
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -150,7 +169,13 @@ const Mentorform = () => {
           )}
         </div>
         <button className="bg-[var(--primary-c)] rounded-md text-white py-2 mt-8 hover:bg-[var(--tertiary-c)] duration-300">
-          Login
+          {isLoading ?
+                    <div className="flex items-center justify-center text-black  dark:text-gray-400">
+                            <FaSpinner className="animate-spin text-4xl mr-2" />
+                          </div>
+                      
+                    : 
+                    "Login"}
         </button>
       </form>
     </>

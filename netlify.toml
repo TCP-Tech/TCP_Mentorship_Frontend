@@ -1,14 +1,12 @@
 [[redirects]]
-
-from = "/*"
-
-to = "/index.html"
-
-status = 200
-
-
-[[redirects]]
-from = "/leetcode"
-to = "https://leetcode.com/graphql"
+# Proxy API requests to the LeetCode GraphQL endpoint
+from = "/leetcode/*"
+to = "https://leetcode.com/graphql/:splat"
 status = 200
 force = true
+
+[[redirects]]
+# SPA fallback for client-side routing
+from = "/*"
+to = "/index.html"
+status = 200
