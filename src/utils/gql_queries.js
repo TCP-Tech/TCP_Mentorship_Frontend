@@ -64,4 +64,15 @@ query selectProblem($titleSlug: String!) {
     }
 }`;
 
-export {selectProblemQuery};
+const recentAcSubmission = `#graphql
+query getACSubmissions ($username: String!, $limit: Int) {
+    recentAcSubmissionList(username: $username, limit: $limit) {
+        title
+        titleSlug
+        timestamp
+        statusDisplay
+        lang
+    }
+}`
+
+export {selectProblemQuery, recentAcSubmission};

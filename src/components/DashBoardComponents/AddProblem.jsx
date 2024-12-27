@@ -17,7 +17,7 @@ const topicList = [
   { value: "BinaryTrees", label: "Binary Trees" },
   { value: "BitManipulation", label: "Bit Manipulation" },
   { value: "BST", label: "BST" },
-  { value: "DynamicProgramming", label: "Dynamic Programming" },
+  { value: "Dynamic Programming", label: "Dynamic Programming" },
   { value: "Graphs", label: "Graphs" },
   { value: "Greedy", label: "Greedy" },
   { value: "Heap", label: "Heap" },

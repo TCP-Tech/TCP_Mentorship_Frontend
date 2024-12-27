@@ -5,11 +5,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   server: {
     proxy: {
-      '/api': {
+      '/leetcode': {
         target: 'https://leetcode.com',
         changeOrigin: true, // Ensures the host header matches the target
         secure: true, // Ensures HTTPS is used
-        rewrite: (path) => path.replace(/^\/api/, '/graphql'), // Rewrite to /graphql
+        rewrite: (path) => path.replace(/^\/leetcode/, '/graphql'), // Rewrite to /graphql
       },
     },
   },
