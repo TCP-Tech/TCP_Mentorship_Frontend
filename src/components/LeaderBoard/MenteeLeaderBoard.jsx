@@ -225,7 +225,7 @@ const MenteeLeaderBoard = () => {
                           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
                           <h2 className="text-sm md:text-lg font-normal text-emerald-500 ">
-                            {mentee.solvedQ}
+                            {mentee?.solvedQ}
                           </h2>
                         </div>
                       </td>
@@ -238,7 +238,7 @@ const MenteeLeaderBoard = () => {
                     </tr>
                   </tbody>
                 )}
-                {MenteeData.map((mentee, index) => (
+                {MenteeData?.map((mentee, index) => (
                   <tbody
                   key={index}
                   className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800"
@@ -251,15 +251,15 @@ const MenteeLeaderBoard = () => {
                         <div className="flex items-center gap-x-2">
                           <img
                             className="object-cover w-10 h-10 rounded-full"
-                            src={mentee.image}
+                            src={mentee?.image}
                             alt=""
                           />
                           <div>
                             <h2 className="font-medium text-gray-800 dark:text-white ">
-                              {mentee.name}
+                              {mentee?.name}
                             </h2>
                             <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                              @{mentee.username}
+                              @{mentee?.username}
                             </p>
                           </div>
                         </div>
@@ -270,15 +270,17 @@ const MenteeLeaderBoard = () => {
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
                         <h2 className="text-sm md:text-lg font-normal text-emerald-500 ">
-                          {mentee.solvedQ}
+                          {mentee?.solvedQ}
                         </h2>
                       </div>
                     </td>
                     <td className="px-9 py-4 text-sm md:text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                      {mentee.score}
+                      {mentee?.score}
                     </td>
                     <td className="px-4 py-4 text-sm md:text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                    {mentee?.Menteeteam?.team_name || mentee?.Menteeteam[0]?.team_name}
+                    {mentee?.Menteeteam?.team_name || "Sample team"}
+                    {console.log(mentee)}
+                    
                       
                     </td>
                   </tr>
