@@ -7,7 +7,7 @@ import { base_url } from "../utils/urls";
 import TeamCard from "../components/TeamCard";
 import TeamNav from "../components/TeamNav";
 const Team = () => {
-  const url = base_url + "team/" + "2023";
+  const url = base_url +"team/2024/";
   const [state, setState] = useState({
     data: [],
     loading: true,
@@ -16,29 +16,35 @@ const Team = () => {
     const fetchData = async () => {
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data.data)
       //   console.log(data[0].data);
       //   console.log("State" , state)
       setState({
-        data: data[0].data,
+        data: data.data,
         loading: false,
       });
     };
     fetchData();
   }, []);
-  const overAllCoordinaters = state.data.filter(
-    (member) => member.Designation == "Overall Coordinator"
+
+  const MembersByDesignation = (designation)=>{
+    const filteredMembers = state?.data
+        .filter(member => member.member_type === designation)
+        .sort((a, b) => {
+          const domainOrder = ['Technical', 'Design','Video Editing' ,'Documentation', 'sponsorship', 'PR & Marketing'];
+          return domainOrder.indexOf(a.domain) - domainOrder.indexOf(b.domain);
+        });
+
+        return filteredMembers;
+  }
+  const overAllCoordinaters = MembersByDesignation("OCO");
+  const headCoordinators = MembersByDesignation("HCO").filter(
+    (member) => member.name !== "Neel Sharma"
   );
-  const headCoordinaters = state.data.filter(
-    (member) =>
-      member.Designation == "Head Coordinator" ||
-      member.Designation == "Domain Lead"
-  );
-  const managers = state.data.filter(
-    (member) => member.Designation == "Manager"
-  );
-  const executives = state.data.filter(
-    (member) => member.Designation == "Executive"
-  );
+  const mentorshipHead = state?.data.find((member) => member.name === "Neel Sharma");
+  const managers = MembersByDesignation("MNG");
+  const executives = MembersByDesignation("EXC");
+  // console.log(headCoordinators , mentorshipHead);
   return (
     <>
       <nav className="w-screen fixed z-50 border-b ">
@@ -68,18 +74,32 @@ const Team = () => {
         </Link>
         <div className="md:p-16  flex flex-col justify-center items-center">
           <div className="md:text-5xl text-2xl font-bold dark:text-white py-10">
+            Mentorship Head
+          </div>
+          <div className="flex flex-wrap justify-center gap-4">
+              {mentorshipHead && <TeamCard
+                email={mentorshipHead?.email}
+                img={mentorshipHead?.image}
+                name={mentorshipHead?.name}
+                position="Mentorship Head"
+                linkedin={mentorshipHead?.linkedin}
+                insta={mentorshipHead?.instagram}
+                // domain={member.domain}
+              />}
+          </div>
+          <div className="md:text-5xl text-2xl font-bold dark:text-white py-10">
             Overall Coordinators
           </div>
           <div className="flex flex-wrap justify-center gap-4">
             {overAllCoordinaters.map((member, index) => (
               <TeamCard
                 key={index}
-                email={member.Email}
-                img={member.Photo}
-                name={member.Name}
-                position={member.Designation}
+                email={member.email}
+                img={member.image}
+                name={member.name}
+                position={member.member_type}
                 linkedin={member.linkedin}
-                //   domain={member.Domain}
+                // domain={member.domain}
               />
             ))}
           </div>
@@ -87,14 +107,15 @@ const Team = () => {
             Head Coordinators
           </div>
           <div className="flex flex-wrap justify-center gap-4">
-            {headCoordinaters.map((member, index) => (
+            {headCoordinators.map((member, index) => (
               <TeamCard
-                key={index}
-                img={member.Photo}
-                name={member.Name}
-                position={member.Designation}
-                linkedin={member.linkedin}
-                domain={member.Domain}
+              key={index}
+              img={member.image}
+              name={member.name}
+              position={member.member_type}
+              linkedin={member.linkedin}
+              insta={member.instagram}
+              domain={member.domain}
               />
             ))}
           </div>
@@ -105,11 +126,12 @@ const Team = () => {
             {managers.map((member, index) => (
               <TeamCard
                 key={index}
-                img={member.Photo}
-                name={member.Name}
-                position={member.Designation}
+                img={member.image}
+                name={member.name}
+                position={member.member_type}
                 linkedin={member.linkedin}
-                domain={member.Domain}
+                insta={member.instagram}
+                domain={member.domain}
               />
             ))}
           </div>
@@ -120,11 +142,12 @@ const Team = () => {
             {executives.map((member, index) => (
               <TeamCard
                 key={index}
-                img={member.Photo}
-                name={member.Name}
-                position={member.Designation}
+                img={member.image}
+                name={member.name}
+                position={member.member_type}
                 linkedin={member.linkedin}
-                domain={member.Domain}
+                insta={member.instagram}
+                domain={member.domain}
               />
             ))}
           </div>
