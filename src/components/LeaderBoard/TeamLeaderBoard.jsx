@@ -17,6 +17,7 @@ const LeaderBoard = () => {
   const [menteeData,setmenteeData]=useState([]);
   const [showModal, setShowModal] = useState(false);
   const handleClick = (teamName,menteedata,teamPoints) => {
+    if(!menteeData || !teamName || !teamPoints) return;
     setTeamName(teamName);
     setmenteeData(menteedata);
     setTeamPoints(teamPoints);
@@ -138,7 +139,7 @@ const LeaderBoard = () => {
           <div className="dark:bg-gray-800 overflow-y-scroll px-10 mt-4 h-[70vh] w-full rounded-tl-[40px] rounded-tr-[40px] border dark:border-gray-600">
             {
               mentor&&loggedInMentorTeamData&&
-              <div className="" key={loggedInMentorTeamData[0].id} onClick={() => handleClick(loggedInMentorTeamData[0].team_name,loggedInMentorTeamData[0].team_members,loggedInMentorTeamData[0]?.team_score)}>
+              <div className="" key={loggedInMentorTeamData[0]?.id} onClick={() => handleClick(loggedInMentorTeamData[0]?.team_name,loggedInMentorTeamData[0]?.team_members,loggedInMentorTeamData[0]?.team_score)}>
               <div className="mt-5 rounded-lg border border-gray-300 dark:border-gray-600 bg-blue-100 dark:bg-gray-900 p-4 mb-4 cursor-pointer hover:shadow-md transition duration-300">
                 <TeamCompo
                   key={loggedInMentorTeamData[0]?.id}

@@ -30,7 +30,7 @@ export const fetchDataWithEndPoint = async (api_endpoint) => {
 
 export const fetchDataFromApiWithResponse = async (bodyData, api_endpoint) => {
   console.log(JSON.stringify(bodyData));
-  console.log(`${base_url}${api_endpoint}`);
+  console.log(`${base_url}${api_endpoint}/`);
   const options = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
