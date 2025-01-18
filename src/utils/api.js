@@ -49,7 +49,7 @@ export const fetchDataFromApiWithResponse = async (bodyData, api_endpoint) => {
     'X-CSRFToken': csrfToken,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(bodyData),
-    // credentials: 'include'
+    credentials: 'include'
   };
   const res = await fetch(`${base_url}${api_endpoint}`, options);
   const data = await res.json();
