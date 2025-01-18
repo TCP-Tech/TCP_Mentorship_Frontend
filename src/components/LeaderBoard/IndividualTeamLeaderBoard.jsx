@@ -11,19 +11,20 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints}) => {
     useEffect(() => {
       
       menteeData?.sort(function (mentee1, mentee2) {
-        if(  mentee2?.score === mentee1?.score){
-          if(mentee2?.solvedQ === mentee1?.solvedQ){
-            return mentee1?.cumHour_diff - mentee2?.cumHour_diff
-          }
-          else{
-            return mentee2?.solvedQ - mentee1?.solvedQ;
-          }
-        }
-        else{
-          return mentee2?.score - mentee1?.score;
-        }
+      //   if(  mentee2?.score === mentee1?.score){
+      //     if(mentee2?.solvedQ === mentee1?.solvedQ){
+      //       return mentee1?.cumHour_diff - mentee2?.cumHour_diff
+      //     }
+      //     else{
+      //       return mentee2?.solvedQ - mentee1?.solvedQ;
+      //     }
+      //   }
+      //   else{
+      //     return mentee2?.score - mentee1?.score;
+      //   }
+      return mentee1?.Mentee_rank - mentee2?.Mentee_rank;
        });
-       console.log(menteeData)
+      //  console.log(menteeData)
       
     }, [])
     

@@ -33,17 +33,18 @@ const MenteeLeaderBoard = () => {
    }, [])
 
    MenteeData?.sort(function (mentee1, mentee2) {
-    if(  mentee2?.score === mentee1?.score){
-      if(mentee2?.solvedQ === mentee1?.solvedQ){
-        return mentee1?.cumHour_diff - mentee2?.cumHour_diff
-      }
-      else{
-        return mentee2?.solvedQ - mentee1?.solvedQ;
-      }
-    }
-    else{
-      return mentee2?.score - mentee1?.score;
-    }
+    // if(  mentee2?.score === mentee1?.score){
+    //   if(mentee2?.solvedQ === mentee1?.solvedQ){
+    //     return mentee1?.cumHour_diff - mentee2?.cumHour_diff
+    //   }
+    //   else{
+    //     return mentee2?.solvedQ - mentee1?.solvedQ;
+    //   }
+    // }
+    // else{
+    //   return mentee2?.score - mentee1?.score;
+    // }
+    return mentee1?.Mentee_rank - mentee2?.Mentee_rank;
     });
    const loggedInMenteeIndex = MenteeData?.findIndex((item)=> item.name===mentee?.name);
   
@@ -279,7 +280,7 @@ const MenteeLeaderBoard = () => {
                     </td>
                     <td className="px-4 py-4 text-sm md:text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">
                     {mentee?.Menteeteam?.team_name || "Sample team"}
-                    {console.log(mentee)}
+                    {/* {console.log(mentee)} */}
                     
                       
                     </td>
