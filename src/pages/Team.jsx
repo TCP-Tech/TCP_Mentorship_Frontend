@@ -16,7 +16,7 @@ const Team = () => {
     const fetchData = async () => {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data.data)
+      // console.log(data.data)
       //   console.log(data[0].data);
       //   console.log("State" , state)
       setState({
