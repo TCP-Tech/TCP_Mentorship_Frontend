@@ -31,19 +31,22 @@ const LeaderBoard = () => {
   const teamd = async()=>{ 
    const data= await fetchDataWithEndPoint('getTeams')
    setTeamdata(data.data)
+  //  console.log(data)
    }
+  //  console.log("DATA",Teamdata)
   
    useEffect(() => {
      teamd();
    }, [])
 
    Teamdata?.sort(function (team1, team2) {
-    if(team2.team_score === team1.team_score){
-     return team1.cumHour_diff - team2.cumHour_diff;
-    }
-    else{
-      return team2.team_score - team1.team_score;
-    }
+    // if(team2.team_score === team1.team_score){
+    //  return team1.cumHour_diff - team2.cumHour_diff;
+    // }
+    // else{
+    //   return team2.team_score - team1.team_score;
+    // }
+    return team1?.team_rank - team2?.team_rank;
 
    });
    const loggedInMentorRank = Teamdata?.findIndex((item)=> item.alloted_mentor?.name===mentor?.name);
