@@ -22,7 +22,7 @@ const MenteeCodingProfiles = ({ mentor,mentee , onMenteeUpdate ,onMentorUpdate }
         setTeamData1(data);
         setLoading(false);
         if(mentee  && mentee.Menteeteam.length==0 && teamData){
-          console.log("jdnwknew" ,teamData)
+          // console.log("jdnwknew" ,teamData)
           const updatedMentee={
             ...mentee,
             Menteeteam : teamData
