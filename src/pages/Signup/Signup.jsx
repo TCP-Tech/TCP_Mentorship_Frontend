@@ -24,7 +24,7 @@ const Signup = () => {
     fullname: "",
     userid: "",
     username: "",
-    mentorid: "",
+    mentor_email: "",
     password: "",
     confirmpassword: "",
     phonenumber: "",
@@ -43,7 +43,7 @@ const Signup = () => {
       email : form.userid ,
       name:form.fullname , 
       username : form.username , 
-      mentor_id: form.mentorid,
+      mentor_email: form.mentor_email,
       password : form.password , 
       branch : form.branch , 
       semester: parseInt(form.semester),
@@ -223,13 +223,13 @@ const Signup = () => {
                 </div>
                 {/* Mentor Id */}
              <div className="flex flex-col items-start  dark:text-white text-black">
-                <p>Mentor ID <span className="font-bold text-red-500">*</span></p>
+                <p>Mentor Email <span className="font-bold text-red-500">*</span></p>
                 <input
                   className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                  type="number"
-                  name="mentorid"
+                  type="email"
+                  name="mentor_email"
                   required
-                  placeholder="Enter your mentor ID"
+                  placeholder="Enter your mentor email"
                   onChange={(e) => handle(e)}
                 />
             </div>
