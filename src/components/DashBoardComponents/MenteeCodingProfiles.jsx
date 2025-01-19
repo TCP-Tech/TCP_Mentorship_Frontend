@@ -59,6 +59,10 @@ const MenteeCodingProfiles = ({ mentor,mentee , onMenteeUpdate ,onMentorUpdate }
   };
 
   const handleTeamCreation =async () => {
+    if (!inputRef.current.value.trim()) {
+      toast("Team name cannot be empty!");
+      return;
+  }
     const body={
         teamname:inputRef.current.value,
         mentorid:mentor?.id
