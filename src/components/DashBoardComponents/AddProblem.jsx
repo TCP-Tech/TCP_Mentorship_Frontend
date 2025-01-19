@@ -14,21 +14,24 @@ import {
 const topicList = [
   { value: "Array", label: "Array" },
   { value: "Backtracking", label: "Backtracking" },
-  { value: "BinaryTrees", label: "Binary Trees" },
+  { value: "BinaryTree", label: "Binary Tree" },
   { value: "BitManipulation", label: "Bit Manipulation" },
-  { value: "BST", label: "BST" },
-  { value: "Dynamic Programming", label: "Dynamic Programming" },
-  { value: "Graphs", label: "Graphs" },
+  { value: "BST", label: "Binary Search Tree" },
+  { value: "DynamicProgramming", label: "Dynamic Programming" },
+  { value: "Graph", label: "Graph" },
   { value: "Greedy", label: "Greedy" },
   { value: "Heap", label: "Heap" },
   { value: "LinkedList", label: "Linked List" },
   { value: "Matrix", label: "Matrix" },
-  { value: "Stacks&Queues", label: "Stacks & Queues" },
+  { value: "Stack", label: "Stack" },
+  { value: "Queue", label: "Queue" },
   { value: "String", label: "String" },
   { value: "Trie", label: "Trie" },
-  { value: "Two Pointers", label: "Two Pointers" },
-  { value: "Sorting", label: "Sorting" },  
-  { value: "Hash Table", label: "Hash Table" },  
+  { value: "TwoPointers", label: "Two Pointers" },
+  { value: "Sorting", label: "Sorting" },
+  { value: "HashTable", label: "Hash Table" },
+  { value: "Recursion", label: "Recursion" },
+  { value: "Math", label: "Math" },
 ];
 
 const difficultyList = [
@@ -106,11 +109,13 @@ const AddProblem = ({ onMentorUpdate }) => {
           ...mentor.topic_count,
         },
       };
+
+      
       selectedTopics.forEach((selectedTopic) => {
         updatedMentor.topic_count[selectedTopic] =
           (mentor.topic_count[selectedTopic] || 0) + 1;
       });
-      console.log(selectedTopics);
+      
       console.log("Updated Mentor", updatedMentor);
       onMentorUpdate(updatedMentor);
       setForm(forminitialState);
@@ -147,6 +152,8 @@ const AddProblem = ({ onMentorUpdate }) => {
     formRef.current.reset();
   };
 
+  console.log(selectedTopics);
+
   function handle(e) {
     const n = { ...form };
     n[e.target.name] = e.target.value;
@@ -180,17 +187,22 @@ const AddProblem = ({ onMentorUpdate }) => {
           theme: "dark",
         });
       } else {
-        const transformedTopics = problem.topicTags.map((tag) => {
-          const topic = topicList.find((t) => t.value === tag.name);
-          return topic ? topic.value : tag.name;
-        });
+        const transformedTopics = problem.topicTags
+          .map((tag) => topicList.find((t) => t.label === tag.name)?.value) 
+          .filter(Boolean); 
+
+          // console.log("Tras" , transformedTopics)
+          setSelectedTopics(transformedTopics);
         const topicsAsString = transformedTopics.join(" ");
         setForm((prevForm) => ({
           ...prevForm,
+          Qname: problem.questionTitle || prevForm.Qname,
           description: problem.description || prevForm.description,
           difficulty: problem.difficulty || prevForm.difficulty,
           topic: topicsAsString || prevForm.topic,
         }));
+
+        console.log("dsdh" ,form)
       }
     }
   };
