@@ -9,6 +9,28 @@ import {
   getLeetCodeUsername,
 } from "../../utils/problemUtils";
 
+const topicList = [
+  { value: "Array", label: "Array" },
+  { value: "Backtracking", label: "Backtracking" },
+  { value: "BinaryTree", label: "Binary Tree" },
+  { value: "BitManipulation", label: "Bit Manipulation" },
+  { value: "BST", label: "Binary Search Tree" },
+  { value: "DynamicProgramming", label: "Dynamic Programming" },
+  { value: "Graph", label: "Graph" },
+  { value: "Greedy", label: "Greedy" },
+  { value: "Heap", label: "Heap" },
+  { value: "LinkedList", label: "Linked List" },
+  { value: "Matrix", label: "Matrix" },
+  { value: "Stack", label: "Stack" },
+  { value: "Queues", label: "Queues" },
+  { value: "String", label: "String" },
+  { value: "Trie", label: "Trie" },
+  { value: "TwoPointers", label: "Two Pointers" },
+  { value: "Sorting", label: "Sorting" },
+  { value: "HashTable", label: "Hash Table" },
+  { value: "Recursion", label: "Recursion" },
+  { value: "Math", label: "Math" },
+];
 const Problem = ({
   id,
   title,
@@ -40,7 +62,7 @@ const Problem = ({
       url.includes("leetcode.com") &&
       !(await checkLeetCodeProblemSolved(leetcodeUsername, title))
     ) {
-       toast.error("Problem is not solved!!", {
+      toast.error("Problem is not solved!!", {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -208,11 +230,14 @@ const Problem = ({
           </div>
         )}
         <div className="flex flex-col text-center md:text-left md:flex-row">
-          {topic.split(" ").map((topic) => (
-            <p className="border dark:bg-gray-800 dark:text-white text-black dark:border-white border-[var(--primary-c)] rounded-lg text-sm md:w-fit w-48 md:px-2 py-1 px-6  m-1">
-              {topic}
-            </p>
-          ))}
+          {topic.split(" ").map((t) => {
+            const matchedTopic = topicList.find((item) => item.value === t);
+            return matchedTopic ? (
+              <p className="border dark:bg-gray-800 dark:text-white text-black dark:border-white border-[var(--primary-c)] rounded-lg text-sm md:w-fit w-48 md:px-2 py-1 px-6 m-1">
+                {matchedTopic.label}
+              </p>
+            ) : null;
+          })}
           <p
             className={`border ${
               level == "Easy" ? "text-green-500 border-green-500" : ""

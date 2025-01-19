@@ -14,21 +14,24 @@ import {
 const topicList = [
   { value: "Array", label: "Array" },
   { value: "Backtracking", label: "Backtracking" },
-  { value: "BinaryTrees", label: "Binary Trees" },
+  { value: "BinaryTree", label: "Binary Tree" },
   { value: "BitManipulation", label: "Bit Manipulation" },
-  { value: "BST", label: "BST" },
-  { value: "Dynamic Programming", label: "Dynamic Programming" },
-  { value: "Graphs", label: "Graphs" },
+  { value: "BST", label: "Binary Search Tree" },
+  { value: "DynamicProgramming", label: "Dynamic Programming" },
+  { value: "Graph", label: "Graph" },
   { value: "Greedy", label: "Greedy" },
   { value: "Heap", label: "Heap" },
   { value: "LinkedList", label: "Linked List" },
   { value: "Matrix", label: "Matrix" },
-  { value: "Stacks&Queues", label: "Stacks & Queues" },
+  { value: "Stack", label: "Stack" },
+  { value: "Queues", label: "Queues" },
   { value: "String", label: "String" },
   { value: "Trie", label: "Trie" },
-  { value: "Two Pointers", label: "Two Pointers" },
-  { value: "Sorting", label: "Sorting" },  
-  { value: "Hash Table", label: "Hash Table" },  
+  { value: "TwoPointers", label: "Two Pointers" },
+  { value: "Sorting", label: "Sorting" },
+  { value: "HashTable", label: "Hash Table" },
+  { value: "Recursion", label: "Recursion" },
+  { value: "Math", label: "Math" },
 ];
 
 const difficultyList = [
@@ -180,13 +183,13 @@ const AddProblem = ({ onMentorUpdate }) => {
           theme: "dark",
         });
       } else {
-        const transformedTopics = problem.topicTags.map((tag) => {
-          const topic = topicList.find((t) => t.value === tag.name);
-          return topic ? topic.value : tag.name;
-        });
+        const transformedTopics = problem.topicTags
+          .map((tag) => topicList.find((t) => t.label === tag.name)?.value) // Map to topic value or undefined
+          .filter(Boolean); // Remove undefined or falsy values
         const topicsAsString = transformedTopics.join(" ");
         setForm((prevForm) => ({
           ...prevForm,
+          Qname: problem.questionTitle || prevForm.Qname,
           description: problem.description || prevForm.description,
           difficulty: problem.difficulty || prevForm.difficulty,
           topic: topicsAsString || prevForm.topic,

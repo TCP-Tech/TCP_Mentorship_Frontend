@@ -159,10 +159,17 @@ const MentorDefaultDash = ({onMentorUpdate}) => {
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 md:w-60 bg-blue-100 mr-2">
-              <h1 className="text-lg text-black font-semibold mb-2">Stacks & Queues</h1>
+              <h1 className="text-lg text-black font-semibold mb-2">Stack</h1>
               <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
               
-              {Topic['Stacks&Queues'] || 0}
+              {Topic['Stack'] || 0}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 md:w-60 bg-blue-100 mr-2">
+              <h1 className="text-lg text-black font-semibold mb-2">Queue</h1>
+              <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
+              
+              {Topic['Queue'] || 0}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 md:w-60 bg-red-100 mr-2">
