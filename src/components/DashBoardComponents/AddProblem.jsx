@@ -109,11 +109,13 @@ const AddProblem = ({ onMentorUpdate }) => {
           ...mentor.topic_count,
         },
       };
+
+      
       selectedTopics.forEach((selectedTopic) => {
         updatedMentor.topic_count[selectedTopic] =
           (mentor.topic_count[selectedTopic] || 0) + 1;
       });
-      console.log(selectedTopics);
+      
       console.log("Updated Mentor", updatedMentor);
       onMentorUpdate(updatedMentor);
       setForm(forminitialState);
@@ -150,6 +152,8 @@ const AddProblem = ({ onMentorUpdate }) => {
     formRef.current.reset();
   };
 
+  console.log(selectedTopics);
+
   function handle(e) {
     const n = { ...form };
     n[e.target.name] = e.target.value;
@@ -184,8 +188,11 @@ const AddProblem = ({ onMentorUpdate }) => {
         });
       } else {
         const transformedTopics = problem.topicTags
-          .map((tag) => topicList.find((t) => t.label === tag.name)?.value) // Map to topic value or undefined
-          .filter(Boolean); // Remove undefined or falsy values
+          .map((tag) => topicList.find((t) => t.label === tag.name)?.value) 
+          .filter(Boolean); 
+
+          // console.log("Tras" , transformedTopics)
+          setSelectedTopics(transformedTopics);
         const topicsAsString = transformedTopics.join(" ");
         setForm((prevForm) => ({
           ...prevForm,
@@ -194,6 +201,8 @@ const AddProblem = ({ onMentorUpdate }) => {
           difficulty: problem.difficulty || prevForm.difficulty,
           topic: topicsAsString || prevForm.topic,
         }));
+
+        console.log("dsdh" ,form)
       }
     }
   };
