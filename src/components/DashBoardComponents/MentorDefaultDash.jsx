@@ -176,7 +176,7 @@ const MentorDefaultDash = ({onMentorUpdate}) => {
               <h1 className="text-lg text-black font-semibold mb-2">Strings</h1>
               <h1 className="border-b-4 w-1/2 border-red-500 text-2xl text-black py-2 font-bold">
              
-              {Topic['Strings'] || 0}
+              {Topic['String'] || 0}
               </h1>
             </div>
             <div className="flex flex-col rounded-lg m-2 p-4 md:w-60 bg-green-100 mr-2">
@@ -184,6 +184,27 @@ const MentorDefaultDash = ({onMentorUpdate}) => {
               <h1 className="border-b-4 w-1/2 border-green-500 text-2xl text-black py-2 font-bold">
              
               {Topic['Trie'] || 0}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 md:w-60 bg-blue-100 mr-2">
+              <h1 className="text-lg text-black font-semibold mb-2">Hash Table</h1>
+              <h1 className="border-b-4 w-1/2 border-blue-500 text-2xl text-black py-2 font-bold">
+              
+              {Topic['HashTable'] || 0}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 md:w-60 bg-red-100 mr-2">
+              <h1 className="text-lg text-black font-semibold mb-2">Recursion</h1>
+              <h1 className="border-b-4 w-1/2 border-red-500 text-2xl text-black py-2 font-bold">
+             
+              {Topic['Recursion'] || 0}
+              </h1>
+            </div>
+            <div className="flex flex-col rounded-lg m-2 p-4 md:w-60 bg-green-100 mr-2">
+              <h1 className="text-lg text-black font-semibold mb-2">Math</h1>
+              <h1 className="border-b-4 w-1/2 border-green-500 text-2xl text-black py-2 font-bold">
+             
+              {Topic['Math'] || 0}
               </h1>
             </div>
           </div>

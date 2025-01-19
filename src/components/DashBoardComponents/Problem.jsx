@@ -22,7 +22,7 @@ const topicList = [
   { value: "LinkedList", label: "Linked List" },
   { value: "Matrix", label: "Matrix" },
   { value: "Stack", label: "Stack" },
-  { value: "Queues", label: "Queues" },
+  { value: "Queue", label: "Queue" },
   { value: "String", label: "String" },
   { value: "Trie", label: "Trie" },
   { value: "TwoPointers", label: "Two Pointers" },
