@@ -37,25 +37,25 @@ const Signup = () => {
     gfg: "",
     hackerrank: "",
   });
-  console.log(form.semester)
+  console.log(form.semester);
   const fetchData = async () => {
-    const body={
-      email : form.userid ,
-      name:form.fullname , 
-      username : form.username , 
+    const body = {
+      email: form.userid,
+      name: form.fullname,
+      username: form.username,
       mentor_email: form.mentor_email,
-      password : form.password , 
-      branch : form.branch , 
+      password: form.password,
+      branch: form.branch,
       semester: parseInt(form.semester),
-      phone_number:form.phonenumber ,
-      confirmpassword : form.confirmpassword ,
-      codechefID : form.codechef,
-      codeforcesID : form.codeforces,
-      leetcodeID : form.leetcode ,
-      gfgID : form.gfg ,
-      hackerrankID : form.hackerrank ,
-      linkedinID : form.linkedin ,
-    }
+      phone_number: form.phonenumber,
+      confirmpassword: form.confirmpassword,
+      codechefID: form.codechef,
+      codeforcesID: form.codeforces,
+      leetcodeID: form.leetcode,
+      gfgID: form.gfg,
+      hackerrankID: form.hackerrank,
+      linkedinID: form.linkedin,
+    };
     const data = await fetchDataFromApiWithResponse(body, "mentee_signup");
     if (data.status_code == 200) {
       toast.success("Registered Successfully!", {
@@ -71,38 +71,35 @@ const Signup = () => {
       setTimeout(() => {
         navigate("/login");
       }, 2000);
-    }
-    else {
+    } else {
       let errorMessage = "";
-  
+
       if (data.user_data) {
         Object.entries(data.user_data).forEach(([key, value]) => {
           if (value && Array.isArray(value) && value.length > 0) {
-          errorMessage = value[0] + " ";
-          toast.error(errorMessage, {
-          position: "bottom-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+            errorMessage = value[0] + " ";
+            toast.error(errorMessage, {
+              position: "bottom-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
           }
         });
       }
-   
     }
     // console.log("User", data.user_data.phone_number[0]);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(form.password == form.confirmpassword){
+    if (form.password == form.confirmpassword) {
       fetchData();
-    }
-    else{
-      toast.error("Password and Confirm Password should be same" , {
+    } else {
+      toast.error("Password and Confirm Password should be same", {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -111,9 +108,8 @@ const Signup = () => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-      })
+      });
     }
-    
   };
 
   function handle(e) {
@@ -145,7 +141,7 @@ const Signup = () => {
     <div className="flex h-screen flex-col justify-center">
       <div className="h-screen w-screen">
         <ToastContainer />
-        <div className="h-screen w-full bg-white flex-col md:flex-row shadow-lg flex">
+        <div className=" bg-white flex-col md:flex-row shadow-lg flex">
           <div className="h-max sm:h-screen sm:overflow-y-auto dark:bg-gray-900 p-8 flex justify-center flex-col w-full md:w-[50%] ">
             {/* <Link
             to={"/"}
@@ -170,10 +166,10 @@ const Signup = () => {
               </div>
             </div>
 
-            <h2 className="font-bold text-4xl mt-8 text-[var(--primary-c)]">
+            <h2 className="font-bold text-center text-4xl mt-8 text-[var(--primary-c)]">
               {`Signup`}
             </h2>
-            <p className="text-lg mt-4  dark:text-white text-black">
+            <p className="text-lg mt-4  text-center dark:text-white text-black">
               Register with your details
             </p>
 
@@ -185,7 +181,9 @@ const Signup = () => {
               >
                 {/* Fullname */}
                 <div className="flex flex-col items-start mt-8  dark:text-white text-black">
-                  <p>Full Name <span className="font-bold text-red-500">*</span></p>
+                  <p>
+                    Full Name <span className="font-bold text-red-500">*</span>
+                  </p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
@@ -198,7 +196,9 @@ const Signup = () => {
 
                 {/* email */}
                 <div className="flex flex-col items-start  dark:text-white text-black">
-                  <p>Email <span className="font-bold text-red-500">*</span></p>
+                  <p>
+                    Email <span className="font-bold text-red-500">*</span>
+                  </p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="email"
@@ -210,36 +210,42 @@ const Signup = () => {
                 </div>
                 {/* username */}
                 <div className="flex space-x-2">
-                <div className="flex flex-col items-start  dark:text-white text-black">
-                  <p>Username <span className="font-bold text-red-500">*</span></p>
-                  <input
-                    className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                    type="text"
-                    name="username"
-                    required
-                    placeholder="Enter your username"
-                    onChange={(e) => handle(e)}
-                  />
+                  <div className="flex flex-col items-start  dark:text-white text-black">
+                    <p>
+                      Username <span className="font-bold text-red-500">*</span>
+                    </p>
+                    <input
+                      className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                      type="text"
+                      name="username"
+                      required
+                      placeholder="Enter your username"
+                      onChange={(e) => handle(e)}
+                    />
+                  </div>
+                  {/* Mentor Id */}
+                  <div className="flex flex-col items-start  dark:text-white text-black">
+                    <p>
+                      Mentor Email{" "}
+                      <span className="font-bold text-red-500">*</span>
+                    </p>
+                    <input
+                      className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
+                      type="email"
+                      name="mentor_email"
+                      required
+                      placeholder="Enter your mentor email"
+                      onChange={(e) => handle(e)}
+                    />
+                  </div>
                 </div>
-                {/* Mentor Id */}
-             <div className="flex flex-col items-start  dark:text-white text-black">
-                <p>Mentor Email <span className="font-bold text-red-500">*</span></p>
-                <input
-                  className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-                  type="email"
-                  name="mentor_email"
-                  required
-                  placeholder="Enter your mentor email"
-                  onChange={(e) => handle(e)}
-                />
-            </div>
 
-                </div>
-               
                 {/* password */}
                 <div className="relative">
                   <div className="flex flex-col items-start dark:text-white text-black">
-                    <p>Password <span className="font-bold text-red-500">*</span></p>
+                    <p>
+                      Password <span className="font-bold text-red-500">*</span>
+                    </p>
                     <input
                       className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                       type={showPassword ? "text" : "password"}
@@ -296,7 +302,10 @@ const Signup = () => {
                 </div>
                 {/* confirmpassword */}
                 <div className="flex flex-col items-start dark:text-white text-black">
-                  <p>Confirm Password <span className="font-bold text-red-500">*</span></p>
+                  <p>
+                    Confirm Password{" "}
+                    <span className="font-bold text-red-500">*</span>
+                  </p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
@@ -309,7 +318,10 @@ const Signup = () => {
 
                 {/* phonenumber */}
                 <div className="flex flex-col items-start  dark:text-white text-black">
-                  <p>Phone Number <span className="font-bold text-red-500">*</span></p>
+                  <p>
+                    Phone Number{" "}
+                    <span className="font-bold text-red-500">*</span>
+                  </p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"
@@ -322,7 +334,9 @@ const Signup = () => {
 
                 <div className="flex gap-4">
                   <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
-                    <p>Branch <span className="font-bold text-red-500">*</span></p>
+                    <p>
+                      Branch <span className="font-bold text-red-500">*</span>
+                    </p>
                     <Select
                       options={branchList}
                       onChange={handleSelect}
@@ -333,7 +347,9 @@ const Signup = () => {
                     />
                   </div>
                   <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
-                    <p>Semester <span className="font-bold text-red-500">*</span></p>
+                    <p>
+                      Semester <span className="font-bold text-red-500">*</span>
+                    </p>
                     <Select
                       options={semesterList}
                       onChange={handleSelect}
@@ -357,7 +373,9 @@ const Signup = () => {
                 </div>
                 {/* leetcode */}
                 <div className="flex flex-col items-start  dark:text-white text-black">
-                  <p>Leetcode <span className="font-bold text-red-500">*</span></p>
+                  <p>
+                    Leetcode <span className="font-bold text-red-500">*</span>
+                  </p>
                   <input
                     className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
                     type="text"

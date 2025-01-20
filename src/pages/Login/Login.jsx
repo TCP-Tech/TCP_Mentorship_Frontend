@@ -66,7 +66,7 @@ const Login = () => {
             Home
           </Link> */}
             <div className="sm:mx-auto  sm:w-full sm:max-w-sm">
-              <div className=" text-center w-max">
+              <div className="text-center w-max">
                 <button
                   type="button"
                   id="mentee"
@@ -99,10 +99,10 @@ const Login = () => {
                 </button>
               </div>
             </div>
-            <h2 className="font-bold text-4xl mt-8 text-[var(--primary-c)]">
+            <h2 className="text-center font-bold text-4xl mt-8 text-[var(--primary-c)]">
               {`Login As ${usertype}`}
             </h2>
-            <p className="text-xl mt-4 dark:text-white text-black">
+            <p className="text-center text-xl mt-4 dark:text-white text-black">
               Welcome back, you have been missed!
             </p>
 
@@ -113,7 +113,7 @@ const Login = () => {
                 <div className="flex flex-row items-center w-full justify-between">
                   <p className="text-right">Don't have an account?</p>
                   <Link to="/signup">
-                    <div className="py-2 px-5 bg-white border rounded-full hover:opacity-[0.7] duration-300">
+                    <div className="py-2 px-5 text-center bg-white border rounded-full hover:opacity-[0.7] duration-300">
                       Register
                     </div>
                   </Link>
