@@ -7,7 +7,7 @@ import { base_url } from "../utils/urls";
 import TeamCard from "../components/TeamCard";
 import TeamNav from "../components/TeamNav";
 const Team = () => {
-  const url = base_url +"team/2024/";
+  const url = base_url + "team/2024/";
   const [state, setState] = useState({
     data: [],
     loading: true,
@@ -27,21 +27,30 @@ const Team = () => {
     fetchData();
   }, []);
 
-  const MembersByDesignation = (designation)=>{
+  const MembersByDesignation = (designation) => {
     const filteredMembers = state?.data
-        .filter(member => member.member_type === designation)
-        .sort((a, b) => {
-          const domainOrder = ['Technical', 'Design','Video Editing' ,'Documentation', 'sponsorship', 'PR & Marketing'];
-          return domainOrder.indexOf(a.domain) - domainOrder.indexOf(b.domain);
-        });
+      .filter((member) => member.member_type === designation)
+      .sort((a, b) => {
+        const domainOrder = [
+          "Technical",
+          "Design",
+          "Video Editing",
+          "Documentation",
+          "sponsorship",
+          "PR & Marketing",
+        ];
+        return domainOrder.indexOf(a.domain) - domainOrder.indexOf(b.domain);
+      });
 
-        return filteredMembers;
-  }
+    return filteredMembers;
+  };
   const overAllCoordinaters = MembersByDesignation("OCO");
   const headCoordinators = MembersByDesignation("HCO").filter(
     (member) => member.name !== "Neel Sharma"
   );
-  const mentorshipHead = state?.data.find((member) => member.name === "Neel Sharma");
+  const mentorshipHead = state?.data.find(
+    (member) => member.name === "Neel Sharma"
+  );
   const managers = MembersByDesignation("MNG");
   const executives = MembersByDesignation("EXC");
   // console.log(headCoordinators , mentorshipHead);
@@ -63,7 +72,7 @@ const Team = () => {
             alt="tcp-logo"
           />
           <h1 className="font-bold md:text-5xl text-2xl ml-4 dark:text-white">
-            {"<"} Team TCP 2023 {">"}
+            {"<"} Team TCP 2024 {">"}
           </h1>
         </div>
         <Link to="/">
@@ -77,7 +86,8 @@ const Team = () => {
             Mentorship Head
           </div>
           <div className="flex flex-wrap justify-center gap-4">
-              {mentorshipHead && <TeamCard
+            {mentorshipHead && (
+              <TeamCard
                 email={mentorshipHead?.email}
                 img={mentorshipHead?.image}
                 name={mentorshipHead?.name}
@@ -85,7 +95,8 @@ const Team = () => {
                 linkedin={mentorshipHead?.linkedin}
                 insta={mentorshipHead?.instagram}
                 // domain={member.domain}
-              />}
+              />
+            )}
           </div>
           <div className="md:text-5xl text-2xl font-bold dark:text-white py-10">
             Overall Coordinators
@@ -109,13 +120,13 @@ const Team = () => {
           <div className="flex flex-wrap justify-center gap-4">
             {headCoordinators.map((member, index) => (
               <TeamCard
-              key={index}
-              img={member.image}
-              name={member.name}
-              position={member.member_type}
-              linkedin={member.linkedin}
-              insta={member.instagram}
-              domain={member.domain}
+                key={index}
+                img={member.image}
+                name={member.name}
+                position={member.member_type}
+                linkedin={member.linkedin}
+                insta={member.instagram}
+                domain={member.domain}
               />
             ))}
           </div>
