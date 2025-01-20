@@ -14,6 +14,12 @@ const Profile = ({mentor,onMentorUpdate}) => {
       image: mentor.image || "",
       email: mentor.email || "",
       phone: mentor.phone_number || "",
+      codechefID: mentor.codechefID || "",
+      codeforcesID: mentor.codeforcesID || "",
+      gfgID: mentor.gfgID || "",
+      linkedinID: mentor.linkedinID || "",
+      leetcodeID: mentor.leetcodeID || "",
+      hackerrankID: mentor.hackerrankID || "",
       password: mentor.password || "",
     });
   }
@@ -39,7 +45,13 @@ const Profile = ({mentor,onMentorUpdate}) => {
        image:form.image, 
        email:form.email, 
        phone_number : form.phone, 
-       password: form.password 
+       password: form.password ,
+       codechefID: form.codechefID ,
+       codeforcesID: form.codeforcesID ,
+       gfgID: form.gfgID ,
+       linkedinID: form.linkedinID ,
+       leetcodeID: form.leetcodeID ,
+       hackerrankID: form.hackerrankID ,
       };
 
     const data = await fetchDataFromApiWithResponse(body, "update_mentor");
@@ -148,6 +160,80 @@ const Profile = ({mentor,onMentorUpdate}) => {
               />
             </div>
           </div>
+          <div className="flex flex-col items-start ">
+            <p className="my-1 dark:text-white text-black">LinkedIn</p>
+            <input
+              className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
+              type="text"
+              name="linkedinID"
+              value={form.linkedinID}
+              onChange={(e) => handle(e)}
+              required
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start ">
+            <p className="my-1 dark:text-white text-black">CodeChef</p>
+            <input
+              className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
+              type="text"
+              name="codechefID"
+              value={form.codechefID}
+              onChange={(e) => handle(e)}
+              required
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start ">
+            <p className="my-1 dark:text-white text-black">CodeForces</p>
+            <input
+              className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
+              type="text"
+              name="codeforcesID"
+              value={form.codeforcesID}
+              onChange={(e) => handle(e)}
+              required
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start ">
+            <p className="my-1 dark:text-white text-black">Leetcode</p>
+            <input
+              className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
+              type="text"
+              name="leetcodeID"
+              value={form.leetcodeID}
+              onChange={(e) => handle(e)}
+              required
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start ">
+            <p className="my-1 dark:text-white text-black">GFG</p>
+            <input
+              className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
+              type="text"
+              name="gfgID"
+              value={form.gfgID}
+              onChange={(e) => handle(e)}
+              required
+              disabled={disabledForm}
+            />
+          </div>
+          <div className="flex flex-col items-start ">
+            <p className="my-1 dark:text-white text-black">HackerRank</p>
+            <input
+              className="px-3 bg-slate-100 text-black py-1.5 rounded-md border w-[100%]"
+              type="text"
+              name="hackerrankID"
+              value={form.hackerrankID}
+              onChange={(e) => handle(e)}
+              required
+              disabled={disabledForm}
+            />
+          </div>
+          
+          
           <div className="relative">
             <div className="flex flex-col items-start">
               <p className="my-1 dark:text-white text-black">Password</p>

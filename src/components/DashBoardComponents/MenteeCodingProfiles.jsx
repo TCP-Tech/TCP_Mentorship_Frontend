@@ -202,7 +202,7 @@ const MenteeCodingProfiles = ({ mentor,mentee , onMenteeUpdate ,onMentorUpdate }
           </Modal>
         </>
       ) : mentor ? (
-        <div className="flex flex-col items-center justify-center h-[35vh] border dark:border:none">
+        <div className="flex flex-col items-center justify-center px-2 h-[35vh] border dark:border:none">
           <h1 className="dark:text-white text-black mb-4">
             No teams have been created yet
           </h1>
@@ -210,7 +210,7 @@ const MenteeCodingProfiles = ({ mentor,mentee , onMenteeUpdate ,onMentorUpdate }
             type="text"
             ref={inputRef}
             placeholder="Enter the team name to be created"
-            className="border border-gray-300 p-2 rounded-md mb-2 bg-white text-black"
+            className="border w-full  border-gray-300 p-2 rounded-md mb-2 bg-white text-black"
           />
           <button
             onClick={handleTeamCreation}
