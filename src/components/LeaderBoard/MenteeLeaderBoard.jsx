@@ -5,11 +5,11 @@ import { fetchDataFromApi, fetchDataWithEndPoint } from '../../utils/api';
 
 const MenteeLeaderBoard = () => {
   const [showCarousel, setShowCarousel] = useState(false);
-  const[mentee] = useState(JSON.parse(localStorage.getItem("Mentee")) || null);
+  const [mentee] = useState(JSON.parse(localStorage.getItem("Mentee")) || null);
   // const [loggedInMenteeIndex ,setloggedInMenteeIndex]=useState(null);
-  const [MenteeData,setMenteeData]=useState([])
+  const [MenteeData, setMenteeData] = useState([])
   const topThreeRankers = [mentees[0], mentees[1], mentees[2]];
-  useEffect(() => { 
+  useEffect(() => {
     const handleResize = () => {
       if (window.outerWidth >= 768) {
         setShowCarousel(false);
@@ -24,15 +24,15 @@ const MenteeLeaderBoard = () => {
     };
   }, []);
 
-  const menteed = async()=>{ 
-   const data= await fetchDataWithEndPoint('getMentees')
-   setMenteeData(data.data)
-   }
-   useEffect(() => {
-     menteed();
-   }, [])
+  const menteed = async () => {
+    const data = await fetchDataWithEndPoint('getMentees')
+    setMenteeData(data.data)
+  }
+  useEffect(() => {
+    menteed();
+  }, [])
 
-   MenteeData?.sort(function (mentee1, mentee2) {
+  MenteeData?.sort(function (mentee1, mentee2) {
     // if(  mentee2?.score === mentee1?.score){
     //   if(mentee2?.solvedQ === mentee1?.solvedQ){
     //     return mentee1?.cumHour_diff - mentee2?.cumHour_diff
@@ -45,9 +45,9 @@ const MenteeLeaderBoard = () => {
     //   return mentee2?.score - mentee1?.score;
     // }
     return mentee1?.Mentee_rank - mentee2?.Mentee_rank;
-    });
-   const loggedInMenteeIndex = MenteeData?.findIndex((item)=> item.name===mentee?.name);
-  
+  });
+  const loggedInMenteeIndex = MenteeData?.findIndex((item) => item.name === mentee?.name);
+
   return (
     <div id="leaderBoard" className=" pt-12">
       <section className="px-4 mx-auto">
@@ -57,13 +57,13 @@ const MenteeLeaderBoard = () => {
           </h2>
         </div>
 
-        {MenteeData?.length?<div className="md:pt-52 pt-32">
+        { MenteeData?.length ? <div className="md:pt-52 pt-32">
           <div className="w-full h-36 md:h-44 dark:bg-gray-800 shadow-sm rounded-2xl flex justify-around border dark:border-gray-600">
             <div className="flex flex-col items-center">
               <div className="rounded-full overflow-hidden border-4 border-gray-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
                 <img
                   className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
-                  src={MenteeData[1]?.image}
+                  src={ MenteeData[1]?.image }
                   alt=""
                 />
               </div>
@@ -71,14 +71,14 @@ const MenteeLeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">2</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{MenteeData[1]?.name}</h1>
-                <h1 className="md:text-xl text-sm text-gray-500">{MenteeData[1]?.score}</h1>
+                <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{ MenteeData[1]?.name }</h1>
+                <h1 className="md:text-xl text-sm text-gray-500">{ MenteeData[1]?.score }</h1>
               </div>
             </div>
-            {/* First Position */}
+            {/* First Position */ }
             <div className="md:w-44 w-28 h-46 bg-slate-100 shadow-md dark:bg-gray-700 rounded-tl-[30px] rounded-tr-[30px] z-20 -mt-14 border dark:border-gray-600">
               <div className="flex flex-col items-center">
-                {/* <img className="absolute -mt-32 " src={crown}/> */}
+                {/* <img className="absolute -mt-32 " src={crown}/> */ }
                 <svg
                   className="absolute -mt-20 md:-mt-32 w-36 md:w-40 "
                   height="40"
@@ -101,7 +101,7 @@ const MenteeLeaderBoard = () => {
                 <div className="rounded-full overflow-hidden border-4 border-amber-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 -mt-10 md:-mt-20">
                   <img
                     className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
-                    src={MenteeData[0]?.image}
+                    src={ MenteeData[0]?.image }
                     alt=""
                   />
                 </div>
@@ -111,8 +111,8 @@ const MenteeLeaderBoard = () => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center text-center space-y-3 mt-8 md:mt-10">
-                  <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{MenteeData[0]?.name}</h1>
-                  <h1 className="md:text-xl text-sm text-amber-500">{MenteeData[0]?.score}</h1>
+                  <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{ MenteeData[0]?.name }</h1>
+                  <h1 className="md:text-xl text-sm text-amber-500">{ MenteeData[0]?.score }</h1>
                 </div>
               </div>
             </div>
@@ -120,7 +120,7 @@ const MenteeLeaderBoard = () => {
               <div className="rounded-full overflow-hidden border-4 border-amber-700 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
                 <img
                   className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
-                  src={MenteeData[2]?.image}
+                  src={ MenteeData[2]?.image }
                   alt=""
                 />
               </div>
@@ -128,16 +128,16 @@ const MenteeLeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">3</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{MenteeData[2]?.name}</h1>
-                <h1 className="md:text-xl text-sm text-amber-700">{MenteeData[2]?.score}</h1>
+                <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{ MenteeData[2]?.name }</h1>
+                <h1 className="md:text-xl text-sm text-amber-700">{ MenteeData[2]?.score }</h1>
               </div>
             </div>
           </div>
         </div>
-        :
-        ""}
+          :
+          "" }
 
-        {/*####################################### Table part starts here ############################################*/}
+        {/*####################################### Table part starts here ############################################*/ }
         <div className="flex flex-col mt-6 ">
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -194,99 +194,101 @@ const MenteeLeaderBoard = () => {
                         Team
                       </th>
 
-                      
+
                     </tr>
                   </thead>
-                {mentee && (
-                  <tbody className="bg-blue-100">
-                    <tr>
-                      <td className="px-5 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3  md:text-lg text-black dark:text-gray-800">
-                          <h1>{loggedInMenteeIndex+1}</h1>
+                  { mentee && (
+                    <tbody className="bg-blue-100">
+                      <tr>
+                        <td className="px-5 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center gap-x-3  md:text-lg text-black dark:text-gray-800">
+                            <h1>{ loggedInMenteeIndex + 1 }</h1>
 
-                          <div className="flex items-center gap-x-2">
-                            <img
-                              className="object-cover w-10 h-10 rounded-full"
-                              src={mentee?.image}
-                              alt=""
-                            />
-                            <div>
-                              <h2 className="font-medium text-gray-800  ">
-                                {"You"}
-                              </h2>
-                              <p className="text-sm font-normal text-gray-600">
-                                @{mentee?.username}
-                              </p>
+                            <div className="flex items-center gap-x-2">
+                              <img
+                                className="object-cover w-10 h-10 rounded-full"
+                                src={ mentee?.image }
+                                alt=""
+                              />
+                              <div>
+                                <h2 className="font-medium text-gray-800  ">
+                                  { "You" }
+                                </h2>
+                                <p className="text-sm font-normal text-gray-600">
+                                  @{ mentee?.username }
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-20 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="inline-flex items-center text-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        </td>
+                        <td className="px-20 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center text-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                          <h2 className="text-sm md:text-lg font-normal text-emerald-500 ">
-                            {mentee?.solvedQ}
-                          </h2>
-                        </div>
-                      </td>
-                      <td className="px-9 py-4 text-sm md:text-lg text-gray-500 whitespace-nowrap">
-                        {mentee?.score}
-                      </td>
-                      <td className="px-4 py-4 text-sm md:text-lg text-gray-500 whitespace-nowrap">
-                        {mentee?.Menteeteam?.team_name || mentee?.Menteeteam[0]?.team_name}
-                      </td>
-                    </tr>
-                  </tbody>
-                )}
-                {MenteeData?.map((mentee, index) => (
-                  <tbody
-                  key={index}
-                  className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800"
-                >
-                  <tr>
-                    <td className="px-5 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <div className="inline-flex items-center gap-x-3  md:text-lg text-black dark:text-white ">
-                        <h1>{index+1}</h1>
-
-                        <div className="flex items-center gap-x-2">
-                          <img
-                            className="object-cover w-10 h-10 rounded-full"
-                            src={mentee?.image}
-                            alt=""
-                          />
-                          <div>
-                            <h2 className="font-medium text-gray-800 dark:text-white ">
-                              {mentee?.name}
+                            <h2 className="text-sm md:text-lg font-normal text-emerald-500 ">
+                              { mentee?.solvedQ }
                             </h2>
-                            <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                              @{mentee?.username}
-                            </p>
                           </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-20 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <div className="inline-flex items-center text-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        </td>
+                        <td className="px-9 py-4 text-sm md:text-lg text-gray-500 whitespace-nowrap">
+                          { mentee?.score }
+                        </td>
+                        <td className="px-4 py-4 text-sm md:text-lg text-gray-500 whitespace-nowrap">
+                          { Array.isArray(mentee?.Menteeteam)
+                            ? mentee?.Menteeteam[0]?.team_name
+                            : mentee?.Menteeteam?.team_name || "No team name available" }
+                        </td>
+                      </tr>
+                    </tbody>
+                  ) }
+                  { MenteeData?.map((mentee, index) => (
+                    <tbody
+                      key={ index }
+                      className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800"
+                    >
+                      <tr>
+                        <td className="px-5 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center gap-x-3  md:text-lg text-black dark:text-white ">
+                            <h1>{ index + 1 }</h1>
 
-                        <h2 className="text-sm md:text-lg font-normal text-emerald-500 ">
-                          {mentee?.solvedQ}
-                        </h2>
-                      </div>
-                    </td>
-                    <td className="px-9 py-4 text-sm md:text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                      {mentee?.score}
-                    </td>
-                    <td className="px-4 py-4 text-sm md:text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                    {mentee?.Menteeteam?.team_name || "Sample team"}
-                    {/* {console.log(mentee)} */}
-                    
-                      
-                    </td>
-                  </tr>
-                </tbody>
-                ))}
+                            <div className="flex items-center gap-x-2">
+                              <img
+                                className="object-cover w-10 h-10 rounded-full"
+                                src={ mentee?.image }
+                                alt=""
+                              />
+                              <div>
+                                <h2 className="font-medium text-gray-800 dark:text-white ">
+                                  { mentee?.name }
+                                </h2>
+                                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
+                                  @{ mentee?.username }
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-20 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center text-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+
+                            <h2 className="text-sm md:text-lg font-normal text-emerald-500 ">
+                              { mentee?.solvedQ }
+                            </h2>
+                          </div>
+                        </td>
+                        <td className="px-9 py-4 text-sm md:text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                          { mentee?.score }
+                        </td>
+                        <td className="px-4 py-4 text-sm md:text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                          { mentee?.Menteeteam?.team_name || "Sample team" }
+                          {/* {console.log(mentee)} */ }
+
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  )) }
                 </table>
               </div>
             </div>
