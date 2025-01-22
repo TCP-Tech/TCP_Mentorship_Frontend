@@ -34,7 +34,7 @@ const MentorDefaultDash = ({onMentorUpdate}) => {
       <div className="flex flex-col rounded-lg p-4 bg-violet-100">
         <h1 className="text-lg font-semibold mb-2 text-black">Total Mentees</h1>
         <h1 className="border-b-4 w-1/2 border-violet-500 text-2xl py-2 font-bold text-black">
-          {mentor?.Mentorteam?.team_members.length}
+          {mentor?.Mentorteam?.team_members && mentor?.Mentorteam?.team_members.length}
         </h1>
       </div>
     </div>
