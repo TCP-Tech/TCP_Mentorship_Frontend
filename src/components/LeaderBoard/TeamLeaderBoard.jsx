@@ -17,7 +17,8 @@ const LeaderBoard = () => {
   const [menteeData,setmenteeData]=useState([]);
   const [showModal, setShowModal] = useState(false);
   const handleClick = (teamName,menteedata,teamPoints) => {
-    if(!menteeData || !teamName || !teamPoints) return;
+    console.log(teamName,menteedata,teamPoints)
+    if(!menteeData || !teamName || teamPoints === null) return;
     setTeamName(teamName);
     setmenteeData(menteedata);
     setTeamPoints(teamPoints);

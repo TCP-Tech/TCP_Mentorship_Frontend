@@ -29,12 +29,19 @@ const MenteeCodingProfiles = ({ mentor,mentee , onMenteeUpdate ,onMentorUpdate }
           }
           onMenteeUpdate(updatedMentee);
         }
-        if(mentor && !mentor.Mentorteam && teamData){
+        // console.log(teamData[0]?.team_members.length === mentor.Mentorteam.team_members.length)
+        // console.log(teamData[0])
+        if(mentor && teamData){
           const updatedMentor={
             ...mentor,
-            Mentorteam : teamData
+            Mentorteam : teamData[0]
           }
-          onMentorUpdate(updatedMentor);
+          // console.log(updatedMentor)
+           onMentorUpdate(updatedMentor);
+          // if(!(mentor?.Mentorteam?.team_members))  onMentorUpdate(updatedMentor);
+          // else{
+          //   if(!(teamData[0]?.team_members.length === mentor?.Mentorteam?.team_members?.length)) onMentorUpdate(updatedMentor);
+          // }
         }
       }
       else{
