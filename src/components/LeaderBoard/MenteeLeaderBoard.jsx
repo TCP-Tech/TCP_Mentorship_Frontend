@@ -32,6 +32,8 @@ const MenteeLeaderBoard = () => {
     menteed();
   }, [])
 
+  // console.log(MenteeData);
+
   MenteeData?.sort(function (mentee1, mentee2) {
     // if(  mentee2?.score === mentee1?.score){
     //   if(mentee2?.solvedQ === mentee1?.solvedQ){
@@ -44,8 +46,15 @@ const MenteeLeaderBoard = () => {
     // else{
     //   return mentee2?.score - mentee1?.score;
     // }
-    return mentee1?.Mentee_rank - mentee2?.Mentee_rank;
+    // console.log(mentee1?.Mentee_rank - mentee2?.Mentee_rank);
+    const rank1 = parseInt(mentee1?.Mentee_rank, 10);
+    const rank2 = parseInt(mentee2?.Mentee_rank, 10);
+    if (!rank1 && rank2) return 1; 
+    if (rank1 && !rank2) return -1;
+
+    return rank1 - rank2;
   });
+  console.log(MenteeData);
   const loggedInMenteeIndex = MenteeData?.findIndex((item) => item.name === mentee?.name);
 
   return (
