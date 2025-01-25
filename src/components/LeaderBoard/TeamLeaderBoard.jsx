@@ -13,16 +13,18 @@ const LeaderBoard = () => {
   const [Teamdata, setTeamdata] = useState([]);
   const[mentor] = useState(JSON.parse(localStorage.getItem("Mentor"))|| null);
   const [TeamName, setTeamName] = useState("");
+  const [TeamDP, setTeamDP] = useState(teamimage);
   const [TeamPoints, setTeamPoints] = useState("");
   const [menteeData,setmenteeData]=useState([]);
   const [showModal, setShowModal] = useState(false);
-  const handleClick = (teamName,menteedata,teamPoints) => {
+  const handleClick = (teamName,menteedata,teamPoints,teamDP) => {
     console.log(teamName,menteedata,teamPoints)
     if(!menteeData || !teamName || teamPoints === null) return;
     setTeamName(teamName);
     setmenteeData(menteedata);
     setTeamPoints(teamPoints);
-    console.log(teamPoints)
+    setTeamDP(teamDP);
+    // console.log(teamPoints)
     setShowModal(true);
   };
   const closeModal = () => {
@@ -47,7 +49,10 @@ const LeaderBoard = () => {
     // else{
     //   return team2.team_score - team1.team_score;
     // }
-    return team1?.team_rank - team2?.team_rank;
+    const rank1 = parseInt(team1?.team_score, 10);
+    const rank2 = parseInt(team2?.team_score, 10);
+    if (!rank1 && rank2) return 1; 
+    if (rank1 && !rank2) return -1;
 
    });
    const loggedInMentorRank = Teamdata?.findIndex((item)=> item.alloted_mentor?.name===mentor?.name);
@@ -70,7 +75,7 @@ const LeaderBoard = () => {
               <div className="rounded-full overflow-hidden border-4 border-gray-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
                 <img
                   className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
-                  src={teamimage}
+                  src={Teamdata[1]?.alloted_mentor?.image || teamimage}
                   alt=""
                 />
               </div>
@@ -78,7 +83,7 @@ const LeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">2</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{Teamdata[1]?.team_name}</h1>
+                <h1 className="md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{Teamdata[1]?.team_score == 0 ? "..." :Teamdata[1]?.team_name}</h1>
                 <h1 className="md:text-xl text-sm text-gray-500">{Teamdata[1]?.team_score}</h1>
               </div>
             </div>
@@ -108,7 +113,7 @@ const LeaderBoard = () => {
                 <div className="rounded-full overflow-hidden border-4 border-amber-500 bg-gray-300 md:w-28 md:h-28 w-16 h-16 -mt-10 md:-mt-20">
                   <img
                     className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
-                    src={teamimage}
+                    src={Teamdata[0]?.alloted_mentor?.image || teamimage}
                     alt=""
                   />
                 </div>
@@ -118,7 +123,7 @@ const LeaderBoard = () => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center text-center space-y-3 mt-8 md:mt-10">
-                  <h1 className="relative md:px-5 md:text-lg text-sm dark:text-white text-black md:max-w-[200px] max-w-[100px] ">{Teamdata[0]?.team_name}</h1>
+                  <h1 className="relative md:px-5 md:text-lg text-sm dark:text-white text-black md:max-w-[200px] max-w-[100px] ">{Teamdata[0]?.team_score == 0 ? "..." : Teamdata[0]?.team_name}</h1>
                   <h1 className="md:text-xl text-sm text-amber-700">{Teamdata[0]?.team_score}</h1>
                 </div>
               </div>
@@ -127,7 +132,7 @@ const LeaderBoard = () => {
               <div className="rounded-full overflow-hidden border-4 border-amber-700 bg-amber-700 md:w-28 md:h-28 w-16 h-16 md:-mt-20 -mt-10">
                 <img
                   className="object-cover md:w-28 md:h-28 w-16 h-16 rounded-full "
-                  src={teamimage}
+                  src={Teamdata[2]?.alloted_mentor?.image || teamimage}
                   alt=""
                 />
               </div>
@@ -135,7 +140,7 @@ const LeaderBoard = () => {
                 <div className="transform -rotate-45 text-xs md:text-lg">3</div>
               </div>
               <div className="flex flex-col justify-center text-center space-y-3 mt-6 md:mt-6">
-                <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{Teamdata[2]?.team_name}</h1>
+                <h1 className="relative md:text-lg text-sm p-1 dark:text-white text-black md:max-w-[200px] max-w-[100px] truncate">{Teamdata[2]?.team_score == 0 ? "..." : Teamdata[2]?.team_name}</h1>
                 <h1 className="md:text-xl text-sm text-gray-500">{Teamdata[2]?.team_score}</h1>
               </div>
             </div>
@@ -157,7 +162,7 @@ const LeaderBoard = () => {
             </div>
             }
             {Teamdata?.map((team,index) => (
-              <div key={team.id} onClick={() => handleClick(team.team_name,team.team_members,team?.team_score)}>
+              <div key={team.id} onClick={() => handleClick(team.team_name,team.team_members,team?.team_score,team?.alloted_mentor?.image)}>
                 <TeamCompo
                   key={team?.id}
                   teamName={team?.team_name}
@@ -189,7 +194,11 @@ const LeaderBoard = () => {
                 <img alt="close" src={closelight} className="w-4 h-4 dark:hidden" />
               </button>
               <div className="individual-team-leaderboard ">
-                <IndividualTeamLeaderBoard teamName={TeamName} menteeData={menteeData} teamPoints={TeamPoints}/>
+                <IndividualTeamLeaderBoard 
+                teamName={TeamName} 
+                menteeData={menteeData} 
+                teamPoints={TeamPoints}
+                teamDP = {TeamDP}/>
               </div>
             </Modal>
           </div>
