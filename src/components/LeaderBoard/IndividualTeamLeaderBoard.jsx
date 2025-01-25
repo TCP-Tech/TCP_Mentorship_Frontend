@@ -6,7 +6,7 @@ import pallete from "../../assets/images/starPallete.png";
 import teamimage from "../../assets/images/team.jpg"
 
 
-const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints}) => {
+const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints,teamDP}) => {
 
     useEffect(() => {
       
@@ -36,7 +36,7 @@ const IndividualTeamLeaderBoard = ({ teamName,menteeData,teamPoints}) => {
           <div className="rounded-full overflow-hidden bg-gray-300 w-28 h-28">
             {/* Team DP */}
             <img 
-            src={teamimage} 
+            src={teamDP || teamimage} 
             className="object-cover w-28 h-28"
             alt={`${teamName}-dp`} />
           </div>
