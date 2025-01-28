@@ -78,7 +78,7 @@ async function checkLeetCodeProblemSolved(username, problemSlug) {
     console.log(submissions);
     const problem = submissions.find(
       (submission) =>
-        submission.titleSlug === problemSlug &&
+        submission.title === problemSlug &&
         submission.statusDisplay === "Accepted"
     );
 
