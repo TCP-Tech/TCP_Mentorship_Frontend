@@ -34,6 +34,7 @@ const MenteeCodingProfiles = ({ mentor,mentee , onMenteeUpdate ,onMentorUpdate }
         if(mentor && teamData){
           const updatedMentor={
             ...mentor,
+            score:teamData[0]?.score || mentor?.score,
             Mentorteam : teamData[0]
           }
           // console.log(updatedMentor)

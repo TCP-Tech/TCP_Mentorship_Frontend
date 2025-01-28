@@ -25,6 +25,7 @@ const MenteeDefaultDash = ({ mentee, onMenteeUpdate }) => {
     fetchData();
   }, []);
 
+
   return (
     <div className="px-5 flex flex-col">
       <div className="md:flex md:space-x-5">
