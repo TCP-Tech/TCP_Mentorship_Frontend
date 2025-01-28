@@ -124,13 +124,18 @@ function getLeetCodeUsername(url) {
   try {
     const parsedUrl = new URL(url);
 
-    // Validate if the URL contains the LeetCode user path
-    if (!parsedUrl.hostname.includes("leetcode.com") || !parsedUrl.pathname.startsWith("/u/")) {
+    // Validate if the URL contains the LeetCode domain
+    if (!parsedUrl.hostname.includes("leetcode.com")) {
       throw new Error("Invalid LeetCode profile URL.");
     }
 
     // Extract the username from the pathname
-    const username = parsedUrl.pathname.split("/u/")[1].replace("/", "");
+    let username = null;
+    if (parsedUrl.pathname.startsWith("/u/")) {
+      username = parsedUrl.pathname.split("/u/")[1].replace("/", "");
+    } else {
+      username = parsedUrl.pathname.split("/")[1].replace("/", "");
+    }
 
     // Check if username is empty or invalid
     if (!username) {
