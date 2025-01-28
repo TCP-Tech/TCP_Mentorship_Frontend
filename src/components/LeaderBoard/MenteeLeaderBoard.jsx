@@ -54,7 +54,7 @@ const MenteeLeaderBoard = () => {
 
     return rank1 - rank2;
   });
-  console.log(MenteeData);
+  // console.log(MenteeData);
   const loggedInMenteeIndex = MenteeData?.findIndex((item) => item.name === mentee?.name);
 
   return (

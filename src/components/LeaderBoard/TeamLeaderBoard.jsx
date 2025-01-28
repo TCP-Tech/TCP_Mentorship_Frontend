@@ -49,12 +49,15 @@ const LeaderBoard = () => {
     // else{
     //   return team2.team_score - team1.team_score;
     // }
-    const rank1 = parseInt(team1?.team_score, 10);
-    const rank2 = parseInt(team2?.team_score, 10);
+    const rank1 = parseInt(team1?.team_rank, 10);
+    const rank2 = parseInt(team2?.team_rank, 10);
     if (!rank1 && rank2) return 1; 
     if (rank1 && !rank2) return -1;
+    return rank1 - rank2
 
    });
+
+  //  console.log(Teamdata)
    const loggedInMentorRank = Teamdata?.findIndex((item)=> item.alloted_mentor?.name===mentor?.name);
    const loggedInMentorTeamData = Teamdata?.filter((item)=> item.alloted_mentor?.name===mentor?.name);
 
