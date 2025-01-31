@@ -11,14 +11,17 @@ export default defineConfig({
         drop_debugger: true, 
       },
     },
+    rollupOptions: {
+      external: ['devtools-detector'], 
+    },
   },
   server: {
     proxy: {
       '/leetcode': {
         target: 'https://leetcode.com',
-        changeOrigin: true, // Ensures the host header matches the target
-        secure: true, // Ensures HTTPS is used
-        rewrite: (path) => path.replace(/^\/leetcode/, '/graphql'), // Rewrite to /graphql
+        changeOrigin: true, 
+        secure: true, 
+        rewrite: (path) => path.replace(/^\/leetcode/, '/graphql'), 
       },
     },
   },
