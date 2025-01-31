@@ -1,1 +1,63 @@
-import{useEffect}from"react";import{useNavigate}from"react-router-dom";const useDetectDevTools=()=>{const t=useNavigate(),n=window.innerHeight,r=window.innerWidth,i=window.devicePixelRatio;useEffect(()=>{const o=()=>{t("/yareyarexuo09")},d=()=>{const t=window.innerHeight-n,a=window.innerWidth-r,c=window.devicePixelRatio-i;if(Math.abs(c)<.1&&(t>200||a>200))o()},e=e=>{(e.ctrlKey&&e.shiftKey&&e.key==="I"||(e.ctrlKey&&e.shiftKey&&e.key==="J")||(e.ctrlKey&&e.key==="U")||e.key==="F12")&&(e.preventDefault(),o())};const m=setInterval(()=>{const t=performance.now();debugger;const n=performance.now()-t;n>100&&o()},1e3);window.addEventListener("resize",d);window.addEventListener("keydown",e);return()=>{clearInterval(m);window.removeEventListener("resize",d);window.removeEventListener("keydown",e)}},[t]);return null};export default useDetectDevTools;
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+const useDetectDevTools = () => {
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const redirect = () => {
+//       navigate("/yareyarexuo09");
+//     };
+
+//     // Function to check for any unusual changes in the window size or console behavior
+//     const checkForDevTools = () => {
+//       // Check if the window height or width is unusually large (this could indicate DevTools open)
+//       const outerHeight = window.outerHeight;
+//       const innerHeight = window.innerHeight;
+
+//       // A significant difference in height could indicate that the DevTools have been opened
+//       if (outerHeight - innerHeight > 200) {
+//         redirect();
+//       }
+
+//       // Optionally, we can use `console` behavior to detect dev tools (this can be tricky)
+//       const start = performance.now();
+//       console.log("%c", "color: transparent"); // Just a log with a custom style
+//       const timeTaken = performance.now() - start;
+
+//       // If the time taken for the log is unusually long, we assume DevTools are open
+//       if (timeTaken > 100) {
+//         redirect();
+//       }
+//     };
+
+//     // Checking at regular intervals
+//     const interval = setInterval(checkForDevTools, 1000);
+
+//     // Handle key press events like opening DevTools via shortcuts (F12, Ctrl + Shift + I)
+//     const handleKeyDown = (e) => {
+//       if (
+//         (e.ctrlKey && e.shiftKey && e.key === "I") ||
+//         (e.ctrlKey && e.shiftKey && e.key === "J") ||
+//         (e.ctrlKey && e.key === "U") ||
+//         e.key === "F12"
+//       ) {
+//         e.preventDefault(); // Prevent the default action
+//         redirect();
+//       }
+//     };
+
+//     // Attach events to check for DevTools
+//     window.addEventListener("keydown", handleKeyDown);
+
+//     // Cleanup
+//     return () => {
+//       clearInterval(interval);
+//       window.removeEventListener("keydown", handleKeyDown);
+//     };
+//   }, [navigate]);
+
+  return null;
+};
+
+export default useDetectDevTools;
