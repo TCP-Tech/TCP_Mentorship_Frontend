@@ -14,20 +14,20 @@ import useDetectDevTools from "./utils/hooks/useDetectDevTools";
 import Gzbxy from "./components/Gzbxy";
 // import DisableRightClick from "./utils/DisableRightClick";
 
-const Samp = () => {
-  useDetectDevTools(); 
-  return (
-    // <div>samp</div>
-    null
-  )
-}
+// const Samp = () => {
+//   useDetectDevTools(); 
+//   return (
+//     // <div>samp</div>
+//     null
+//   )
+// }
 
 const App = () => {
 
   return (
     <Router>
       {/* <DisableRightClick/> */}
-      <Samp/>
+      {/* <Samp/> */}
       <ToastContainer position="bottom-right" />
       <Routes>
         <Route path="*" element={<NotFoundPage />} />
