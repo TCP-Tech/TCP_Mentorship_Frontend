@@ -2,7 +2,7 @@ import React from 'react'
 import { toast } from 'react-toastify'
 
 const Gzbxy = () => {
-    toast.error("Try resizing your screen.",{
+    toast.error("DevTools Detected",{
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -14,7 +14,7 @@ const Gzbxy = () => {
     })
   return (
     <div className='bg-gray-900'>
-        <h1>Hmmm.</h1>
+        <h1>DevTools detected.</h1>
     </div>
   )
 }

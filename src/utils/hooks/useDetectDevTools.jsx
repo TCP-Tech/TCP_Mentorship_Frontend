@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import DevToolsDetector from 'devtools-detector';
 
 const useDetectDevTools = () => {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
 //   useEffect(() => {
 //     const redirect = () => {
@@ -56,6 +57,28 @@ const useDetectDevTools = () => {
 //       window.removeEventListener("keydown", handleKeyDown);
 //     };
 //   }, [navigate]);
+
+useEffect(() => {
+    const handleDevToolsOpened = () => {
+    //   alert("Opened")
+    navigate("/yareyarexuo09")
+    //   window.location.href = '/restricted'; 
+    };
+    // console.log(Dev)
+
+    DevToolsDetector.addListener((isOpen) => {
+      if (isOpen) {
+        handleDevToolsOpened();
+      }
+    });
+
+    DevToolsDetector.launch(); 
+
+    return () => {
+      DevToolsDetector.stop();
+    };
+  }, []);
+
 
   return null;
 };
