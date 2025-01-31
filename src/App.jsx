@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home";
@@ -11,38 +10,37 @@ import MentorDashboard from "./pages/DashBoard/MentorDashboard";
 import NotFoundPage from "./pages/NotFoundPage";
 import PrivateRoute from "./components/PrivateRoute";
 import Team from "./pages/Team";
+import useDetectDevTools from "./utils/hooks/useDetectDevTools";
+import Gzbxy from "./components/Gzbxy";
+// import DisableRightClick from "./utils/DisableRightClick";
+
+const Samp = () => {
+  useDetectDevTools(); 
+  return (
+    // <div>samp</div>
+    null
+  )
+}
 
 const App = () => {
-  const [isDarkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setDarkMode(savedTheme === 'dark');
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode]);
   return (
     <Router>
-        <ToastContainer 
-        position="bottom-right" />
+      {/* <DisableRightClick/> */}
+      <Samp/>
+      <ToastContainer position="bottom-right" />
       <Routes>
-        <Route exact path="*" element={<NotFoundPage />} />
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/team" element={<Team />} />
-        <Route exact path="/signup" element={<Signup />} />
-        <Route exact path="/mentee/:name" element={<PrivateRoute element={<MenteeDashBoard />}/>} />
-        <Route exact path="/mentor/:name" element={<PrivateRoute element={<MentorDashboard />}/>} />
+        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/mentee/:name" element={<PrivateRoute element={<MenteeDashBoard />} />} />
+        <Route path="/mentor/:name" element={<PrivateRoute element={<MentorDashboard />} />} />
+        <Route path="/yareyarexuo09" element={<Gzbxy />} />
       </Routes>
     </Router>
   );
 };
+
 export default App;
