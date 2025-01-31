@@ -11,9 +11,9 @@ export default defineConfig({
         drop_debugger: true, 
       },
     },
-    rollupOptions: {
-      external: ['devtools-detector'], 
-    },
+    // rollupOptions: {
+    //   external: ['devtools-detector'], 
+    // },
   },
   server: {
     proxy: {
