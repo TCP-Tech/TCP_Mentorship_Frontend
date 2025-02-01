@@ -12,6 +12,7 @@
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "chart.js": "^4.4.1",
+    "devtools-detector": "^2.0.22",
     "react": "^18.2.0",
     "react-calendar": "^4.7.0",
     "react-chartjs-2": "^5.2.0",
