@@ -7,6 +7,7 @@ const Profile = ({mentor,onMentorUpdate}) => {
   const [form, setForm] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [disabledForm, setDisabledForm] = useState(true);
+  const [superMentor, setSuperMentor] = useState(false);
   useEffect(() => {
     if(mentor){
       setForm({
@@ -22,6 +23,7 @@ const Profile = ({mentor,onMentorUpdate}) => {
       hackerrankID: mentor.hackerrankID || "",
       password: mentor.password || "",
     });
+    setSuperMentor(mentor.supermentor || false);
   }
   }, [mentor]);
 
@@ -94,7 +96,9 @@ const Profile = ({mentor,onMentorUpdate}) => {
     <div className="flex justify-center items-center h-full">
       <div className="w-full py-10 flex flex-col justify-center items-center">
         <h1 className="text-3xl font-bold mb-4 text-black dark:text-white">
-          Your Profile
+          {
+            superMentor ? "Super Mentor Profile" : "Mentor Profile"
+          }
         </h1>
         <form
           action=""

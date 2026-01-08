@@ -35,27 +35,25 @@ const topicList = [
 ];
 
 const difficultyList = [
-  { value: "Easy", label: "Easy" },
-  { value: "Medium", label: "Medium" },
-  { value: "Hard", label: "Hard" },
+  { value: "1", label: "Easy" },
+  { value: "2", label: "Medium" }, 
+  { value: "3", label: "Hard" },
 ];
 
 const customStyles = {
-  multiValue: (provided, state) => ({
+  multiValue: (provided) => ({
     ...provided,
-    backgroundColor: "var(--primary-c)", // Set your desired background color here
+    backgroundColor: "var(--primary-c)",
     borderRadius: "4px",
   }),
-  multiValueLabel: (provided, state) => ({
+  multiValueLabel: (provided) => ({
     ...provided,
-    color: "#fff", // Set the label text color
+    color: "#fff",
   }),
-  multiValueRemove: (provided, state) => ({
+  multiValueRemove: (provided) => ({
     ...provided,
-    color: "#fff", // Set the remove button color
-    ":hover": {
-      color: "#000",
-    },
+    color: "#fff",
+    ":hover": { color: "#000" },
   }),
 };
 
@@ -64,6 +62,8 @@ const AddProblem = ({ onMentorUpdate }) => {
   const [addQuestion, setAddedQuestion] = useState();
   const navigate = useNavigate();
   const [selectedTopics, setSelectedTopics] = useState([]);
+  const [scope, setScope] = useState("TEAM");
+
   const forminitialState = {
     Qname: "",
     topic: "",
@@ -71,33 +71,35 @@ const AddProblem = ({ onMentorUpdate }) => {
     description: "",
     problemLink: "",
     mentorId: mentor.id,
+    platform: "",
   };
+
   const formRef = useRef(null);
   const selectRef = useRef(null);
   const [form, setForm] = useState(forminitialState);
-  console.log(form);
+
   const fetchData = async () => {
     const body = {
-      mentorId: String(form.mentorId),
+      mentorId: parseInt(form.mentorId),
       Qname: form.Qname,
       topic: form.topic,
       Level: form.difficulty,
       description: form.description,
       problemLink: form.problemLink,
+      scope: mentor.supermentor ? scope : "TEAM",
     };
+
     const data = await fetchDataFromApiWithResponse(body, "addQuestion");
-    if (data.status_code == 200) {
+
+    if (data.status_code === 200) {
       toast.success("Question Registered Successfully!", {
         position: "bottom-right",
         autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
         theme: "dark",
       });
+
       setAddedQuestion(!addQuestion);
+
       const updatedMentor = {
         ...mentor,
         total_q: parseInt(mentor.total_q) + 1,
@@ -105,118 +107,100 @@ const AddProblem = ({ onMentorUpdate }) => {
           ...mentor.Qlevel_count,
           [form.difficulty]: (mentor.Qlevel_count[form.difficulty] || 0) + 1,
         },
-        topic_count: {
-          ...mentor.topic_count,
-        },
+        topic_count: { ...mentor.topic_count },
       };
 
-      
-      selectedTopics.forEach((selectedTopic) => {
-        updatedMentor.topic_count[selectedTopic] =
-          (mentor.topic_count[selectedTopic] || 0) + 1;
+      selectedTopics.forEach((t) => {
+        updatedMentor.topic_count[t] =
+          (mentor.topic_count[t] || 0) + 1;
       });
-      
-      console.log("Updated Mentor", updatedMentor);
+
       onMentorUpdate(updatedMentor);
+
       setForm(forminitialState);
+      setScope("TEAM");
+      setSelectedTopics([]);
       formRef.current.reset();
-      if (selectRef.current) {
-        selectRef.current.select.clearValue();
-      }
+      if (selectRef.current) selectRef.current.select.clearValue();
     } else {
-      let errorMessage = "";
-      Object.entries(data.user_data).forEach(([key, value]) => {
-        if (value && Array.isArray(value) && value.length > 0) {
-          errorMessage = value[0] + " ";
-          toast.error(errorMessage, {
-            position: "bottom-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-        }
+      Object.values(data.user_data || {}).forEach((err) => {
+        toast.error(err[0], {
+          position: "bottom-right",
+          autoClose: 3000,
+          theme: "dark",
+        });
       });
     }
   };
-  const handleSubmit = async (e) => {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     fetchData();
   };
 
   const resetForm = () => {
     setForm(forminitialState);
+    setScope("TEAM");
+    setSelectedTopics([]);
     formRef.current.reset();
+    if (selectRef.current) selectRef.current.select.clearValue();
   };
 
-  console.log(selectedTopics);
-
   function handle(e) {
-    const n = { ...form };
-    n[e.target.name] = e.target.value;
-    setForm(n);
+    setForm({ ...form, [e.target.name]: e.target.value });
   }
 
   const handleURL = async (e) => {
     const url = e.target.value;
     const { platform, problemName } = await getPlatformAndProblem(url);
-    console.log(platform, problemName);
 
-    setForm((prevForm) => ({
-      ...prevForm,
+    setForm((prev) => ({
+      ...prev,
       problemLink: url,
-      Qname: problemName || prevForm.Qname,
+      Qname: problemName || prev.Qname,
       platform: platform || "Unknown",
     }));
 
     if (platform === "leetcode") {
       const problem = await fetchSingleProblemLeetCode(problemName);
-      console.log(problem);
-      if (problem.error) {
-        toast.error("Enter Correct url", {
-          position: "bottom-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-      } else {
-        const transformedTopics = problem.topicTags
-          .map((tag) => topicList.find((t) => t.label === tag.name)?.value) 
-          .filter(Boolean); 
+      if (!problem?.error) {
+        const topics = problem.topicTags
+          .map((t) => topicList.find((x) => x.label === t.name)?.value)
+          .filter(Boolean);
 
-          // console.log("Tras" , transformedTopics)
-          setSelectedTopics(transformedTopics);
-        const topicsAsString = transformedTopics.join(" ");
-        setForm((prevForm) => ({
-          ...prevForm,
-          Qname: problem.questionTitle || prevForm.Qname,
-          description: problem.description || prevForm.description,
-          difficulty: problem.difficulty || prevForm.difficulty,
-          topic: topicsAsString || prevForm.topic,
+        // ✅ AUTO-SET: Topics and difficulty
+        setSelectedTopics(topics);
+        
+        // ✅ MAP LeetCode difficulty to Django values ("1", "2", "3")
+        const difficultyMap = {
+          "Easy": "1",
+          "Medium": "2", 
+          "Hard": "3"
+        };
+        
+        const mappedDifficulty = difficultyMap[problem.difficulty] || "2";
+
+        setForm((prev) => ({
+          ...prev,
+          topic: topics.join(" "),
+          difficulty: mappedDifficulty,  // Now "1", "2", or "3"
+          description: problem.description,
         }));
-
-        console.log("dsdh" ,form)
       }
     }
   };
 
   function handleSelect(selectedOptions, object) {
-    const n = { ...form };
-    n[object.name] = selectedOptions.value;
-    setForm(n);
+    setForm({ ...form, [object.name]: selectedOptions.value });
   }
+
   function handleSelectmulti(selectedOptions, object) {
-    const n = { ...form };
-    n[object.name] = selectedOptions.map((option) => option.value).join(" ");
-    setForm(n);
-    setSelectedTopics(selectedOptions.map((option) => option.value));
+    const topics = selectedOptions.map((o) => o.value);
+    setForm({
+      ...form,
+      [object.name]: topics.join(" "),
+    });
+    setSelectedTopics(topics);
   }
 
   return (
@@ -224,9 +208,10 @@ const AddProblem = ({ onMentorUpdate }) => {
       <h1 className="text-3xl text-black dark:text-white pt-7 pb-5 font-semibold">
         Add a Problem
       </h1>
+
       <form
         ref={formRef}
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={handleSubmit}
         className="flex flex-col gap-4 ml-2"
       >
         <div className="flex flex-col items-start mt-8 dark:text-white text-black">
@@ -234,108 +219,106 @@ const AddProblem = ({ onMentorUpdate }) => {
             Problem URL <span className="font-bold text-red-500">*</span>
           </p>
           <input
-            className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-            type="text"
-            name="problemLink"
+            className="px-3 py-1.5 mt-2 rounded-md border w-full dark:text-black bg-white"
             required
             placeholder="Enter Problem URL"
             onChange={handleURL}
           />
         </div>
+
         <div className="flex flex-col items-start dark:text-white text-black">
           <p>Platform</p>
           <input
-            className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-gray-200"
-            type="text"
-            name="platform"
+            className="px-3 py-1.5 mt-2 rounded-md border w-full dark:text-black bg-gray-200"
             value={form.platform}
             disabled
           />
         </div>
+
         <div className="flex flex-col items-start dark:text-white text-black">
           <p>
             Problem Title <span className="font-bold text-red-500">*</span>
           </p>
           <input
-            className="px-3 py-1.5 mt-2 rounded-md border w-[100%] dark:text-black bg-white"
-            type="text"
+            className="px-3 py-1.5 mt-2 rounded-md border w-full dark:text-black bg-white"
             name="Qname"
             value={form.Qname}
-            placeholder="Enter Problem Title"
-            onChange={(e) => handle(e)}
+            onChange={handle}
           />
         </div>
+
         <div className="flex gap-4">
-          <div className="flex flex-col items-start w-[50%] dark:text-white text-black ">
-            <p>
-              Problem Topic <span className="font-bold text-red-500">*</span>
-            </p>
+          <div className="w-[50%]">
             <Select
               options={topicList}
               onChange={handleSelectmulti}
               ref={selectRef}
-              value={topicList.filter((option) =>
-                form.topic.includes(option.value)
-              )}
-              placeholder="Select Topic"
               isMulti
               name="topic"
-              className="w-full mt-2 dark:text-black text-black"
-              styles={customStyles} // Use styles instead of style
-              required
+              value={selectedTopics.map(t => topicList.find(item => item.value === t))}
+              styles={customStyles}
+              className="w-full mt-2 dark:text-black"
             />
           </div>
-          <div className="flex flex-col items-start w-[50%] dark:text-white text-black">
-            <p>
-              Problem Difficulty{" "}
-              <span className="font-bold text-red-500">*</span>
-            </p>
+
+          <div className="w-[50%]">
             <Select
               options={difficultyList}
               onChange={handleSelect}
-              ref={selectRef}
-              value={difficultyList.filter((option) =>
-                form.difficulty.includes(option.value)
-              )}
-              // defaultValue={form.difficulty}
-              // defaultValue={[difficultyList[0]]}
-              placeholder="Select Difficulty"
               name="difficulty"
+              value={difficultyList.find(item => item.value === form.difficulty) || null}
               className="w-full mt-2 text-black"
-              required
             />
           </div>
         </div>
-        <div className="flex flex-col items-start  dark:text-white text-black">
+
+        <div className="flex flex-col items-start dark:text-white text-black">
           <p>Problem Description</p>
           <textarea
-            className="px-3 py-1.5 mt-2 h-[150px] rounded-md border w-[100%] dark:text-black bg-white"
-            type="text"
+            className="px-3 py-1.5 mt-2 h-[150px] rounded-md border w-full dark:text-black bg-white"
             name="description"
             value={form.description}
-            placeholder="Enter Problem Description (Optional)"
-            onChange={(e) => handle(e)}
+            onChange={handle}
           />
         </div>
+
+        {mentor?.supermentor && (
+          <div className="flex flex-col items-start dark:text-white text-black mt-4">
+            <p>
+              Assign Question To <span className="font-bold text-red-500">*</span>
+            </p>
+            <select
+              value={scope}
+              onChange={(e) => setScope(e.target.value)}
+              className="px-3 py-1.5 mt-2 rounded-md border w-[250px] dark:text-black bg-white"
+            >
+              <option value="TEAM">My Team</option>
+              <option value="ALL">All Mentees</option>
+            </select>
+          </div>
+        )}
 
         <div className="mt-6 flex items-center justify-start gap-x-3">
           <button
             type="submit"
-            className="rounded-md bg-[var(--primary-c)] px-8 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="rounded-md bg-[var(--primary-c)] px-8 py-2 text-sm font-semibold text-white"
           >
             Add
           </button>
           <button
             type="button"
             onClick={resetForm}
-            className=" rounded-md text-sm bg-gray-200 border px-5 py-2 text-black font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+            className="rounded-md text-sm bg-gray-200 border px-5 py-2 text-black font-semibold"
           >
             Cancel
           </button>
         </div>
       </form>
+
       <ProblemList addQuestion={addQuestion} />
+      <ToastContainer />
     </div>
   );
 };
+
 export default AddProblem;
